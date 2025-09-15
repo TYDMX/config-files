@@ -33,7 +33,8 @@
 - "+.samsungcloud.com"
 - "+.samsungapps.com"
 - "+.samsungqbe.com"
-- "+.samsungotn.net"      # 主要用于电视和设备固件更新
+- "+.samsungotn.net"
+      # 主要用于电视和设备固件更新
 - "+.smartthings.com"
 - "+.smartthingsfind.samsung.com"
 # -- 苹果 (Apple) --# 即使是安卓用户，也可能在网络中拥有其他苹果设备。
@@ -43,13 +44,17 @@
 - "+.xiaomi.com"
 - "+.mi.com"
 # -- 谷歌 (Google) --# 虽然主要服务被屏蔽，但部分服务或SDK可能仍需连接。
-- "+.services.googleapis.cn" # Google 在中国的服务
-- "+.xn--ngstr-lra8j.com"      # test-ipv6.com 的 Punycode 形式
+- "+.services.googleapis.cn"
+      # Google 在中国的服务
+- "+.xn--ngstr-lra8j.com"
+      # test-ipv6.com 的 Punycode 形式
 # 5. 游戏与 P2P 服务 (STUN)# 确保游戏、语音视频通话能正常建立连接。
 - "geosite:category-games-cn"
 - "+.stun.playstation.net"
 - "+.srv.nintendo.net"
 - "+.xboxlive.com"
-- "speedtest.cros.wr.pvp.net" # 游戏内测速
+- "speedtest.cros.wr.pvp.net"
+     # 游戏内测速
 # 6. 其他特定服务
-- "resolver1.opendns.com" # 备用公共 DNS
+- "resolver1.opendns.com"
+     # 备用公共 DNS
