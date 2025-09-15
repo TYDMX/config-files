@@ -1,0 +1,15 @@
+## ----------------程序功能组---------------------
+
+#  BEService.exe
+#  beac_wt_mlauncher.exe
+#  Agent.exe
+#PROCESS-NAME,svchost.exe
+
+PROCESS-NAME,aces.exe
+PROCESS-NAME,com.supercell.moco
+
+#PROCESS-NAME,com.google.android.apps.bard
+#PROCESS-NAME,com.google.android.googlequicksearchbox # 圈搜
+#PROCESS-NAME,com.google.bard # Gemini 走美国节点
+
+#PROCESS-NAME,com.samsung.android.packageinstaller # 三星软件安装
