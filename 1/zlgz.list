@@ -2,12 +2,12 @@
 # 自用
 DOMAIN-KEYWORD,cn.download.nvidia.com
 DOMAIN-KEYWORD,developer.download.nvidia.com
-DOMAIN-KEYWORD,download.nvidia.com
+DOMAIN-KEYWORD,download.nvidia.com # 测试
 
 DOMAIN-KEYWORD,tpb.proxyninja
 
 DOMAIN-KEYWORD,challenges.cloudflare.com
-#DOMAIN-SUFFIX,challenges.cloudflare.com
+DOMAIN-SUFFIX,challenges.cloudflare.com
 
 #三星
 DOMAIN-KEYWORD,samsung
