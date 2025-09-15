@@ -1,6 +1,6 @@
 ## ----------------程序功能组---------------------
 PROCESS-NAME,com.tencent.mobileqq
-PROCESS-NAME,QQ.exe
+PROCESS-NAME,QQ.exe # QQ
 
 #PROCESS-NAME,aces.exe
 PROCESS-NAME,aces_BE.exe
