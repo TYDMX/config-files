@@ -7,7 +7,7 @@ DOMAIN-KEYWORD,download.nvidia.com
 DOMAIN-KEYWORD,tpb.proxyninja
 
 #DOMAIN-KEYWORD,challenges.cloudflare.com # 人机验证
-DOMAIN-SUFFIX,challenges.cloudflare.com # 人机验证
+DOMAIN-SUFFIX,challenges.cloudflare.com
 
 #三星
 DOMAIN-KEYWORD,samsung
