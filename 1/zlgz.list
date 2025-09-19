@@ -109,6 +109,7 @@ DOMAIN-KEYWORD,client-stats.gaijin.net
 #DOMAIN-KEYWORD,alt6-mtalk.google.com
 #DOMAIN-KEYWORD,alt7-mtalk.google.com
 #DOMAIN-KEYWORD,alt8-mtalk.google.com
+#DOMAIN-WILDCARD,alt*-*.google.com
 #DOMAIN-KEYWORD,dl.google.com
 #DOMAIN-KEYWORD,dl.l.google.com
 
