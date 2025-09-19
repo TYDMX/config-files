@@ -11,7 +11,8 @@ DOMAIN-WILDCARD,char*.warthunder.com
 #战雷
 DOMAIN-KEYWORD,gaijin
 #DOMAIN-KEYWORD,warthunder
-#DOMAIN-KEYWORD,client-stats.gaijin.net
+#DOMAIN-KEYWORD,client-stats.gaijin.net # 自动匹配服务器的参考
+#DOMAIN-KEYWORD,client-stats.warthunder.com # 客户端性能数据
 
 
 DOMAIN-KEYWORD,challenges.cloudflare
