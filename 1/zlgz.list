@@ -3,8 +3,16 @@
 DOMAIN-KEYWORD,cn.download.nvidia.com
 DOMAIN-KEYWORD,developer.download.nvidia.com
 DOMAIN-KEYWORD,download.nvidia.com
-
 DOMAIN-KEYWORD,tpb.proxyninja
+
+# 战雷
+DOMAIN-WILDCARD,chat*.warthunder.com
+DOMAIN-WILDCARD,char*.warthunder.com
+#战雷
+DOMAIN-KEYWORD,gaijin
+#DOMAIN-KEYWORD,warthunder
+#DOMAIN-KEYWORD,client-stats.gaijin.net
+
 
 DOMAIN-KEYWORD,challenges.cloudflare
 #DOMAIN-SUFFIX,challenges.cloudflare.com
@@ -62,7 +70,6 @@ DOMAIN-KEYWORD,by.files.1drv.com
 #DOMAIN-KEYWORD,vkuser
 #DOMAIN-KEYWORD,queuev4.vk
 #DOMAIN-KEYWORD,okcdn
-
 # ms.vk.com
 # vkvd84.mycdn.me
 # vkvd415.okcdn.ru:443
@@ -78,8 +85,6 @@ DOMAIN-KEYWORD,media.elitebabes
 #DOMAIN-KEYWORD,miui
 #DOMAIN-KEYWORD,xiaomi
 
-
-
 # 红迪
 # v.redd.it
 
@@ -87,11 +92,6 @@ DOMAIN-KEYWORD,media.elitebabes
 #DOMAIN-KEYWORD,short.weixin.qq.com
 #DOMAIN-KEYWORD,extshort.weixin.qq.com
 #DOMAIN-KEYWORD,dns.weixin.qq.com.cn
-
-#战雷
-DOMAIN-KEYWORD,gaijin
-#DOMAIN-KEYWORD,warthunder
-DOMAIN-KEYWORD,client-stats.gaijin.net
 
 
 
