@@ -21,6 +21,7 @@ PROCESS-NAME,com.sec.spp.push
 #com.sec.factory.camera
 #-ss.getui.com:5225
 PROCESS-NAME,com.xiaomi.smarthome
+PROCESS-NAME,com.tplink.ipc
 
 PROCESS-NAME,DownloadSDKServer.exe
 PROCESS-NAME,Thunder.exe
