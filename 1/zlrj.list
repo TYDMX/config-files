@@ -22,6 +22,7 @@ PROCESS-NAME,com.sec.spp.push
 #-ss.getui.com:5225
 PROCESS-NAME,com.xiaomi.smarthome
 PROCESS-NAME,com.tplink.ipc
+#PROCESS-NAME,com.samsung.android.sskds (1000),SelectGroup
 
 PROCESS-NAME,DownloadSDKServer.exe
 PROCESS-NAME,Thunder.exe
