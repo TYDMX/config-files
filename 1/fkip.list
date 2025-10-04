@@ -1,59 +1,60 @@
 # 1. 局域网、私有网络和路由器# 确保内网设备、路由器管理页面可以正常访问。
-- "*.lan"
-- "+.local"
-- "+.miwifi.com"
-- "+.routerlogin.com"
-- "+.routerlogin.net"
-- "+.tendawifi.com"
-- "+.tendawifi.net"
-- "+.tplinklogin.net"
-- "+.tplinkwifi.net"
-- "+.tplinkrepeater.net"
-- "+.router.asus.com"
+*.lan
++.local
++.miwifi.com
++.routerlogin.com
++.routerlogin.net
++.tendawifi.com
++.tendawifi.net
++.tplinklogin.net
++.tplinkwifi.net
++.tplinkrepeater.net
++.router.asus.com
 # 2. 操作系统与网络探测# 保证系统能正确判断网络连通性。
-- "GC._msDCS.*.*"
-- "DC._msDCS.*.*"
-- "PDC._msDCS.*.*"
-- "+.msftconnecttest.com"
-- "+.msftncsi.com"
-- "+.ipv6.microsoft.com"
-- "network-test.debian.org"
-- "detectportal.firefox.com"
-- "cable.auth.com"
+GC._msDCS.*.*
+DC._msDCS.*.*
+PDC._msDCS.*.*
++.msftconnecttest.com
++.msftncsi.com
++.ipv6.microsoft.com
+network-test.debian.org
+detectportal.firefox.com
+cable.auth.com
 # 3. NTP 时间同步服务# 确保设备时间准确，这对于网络安全和应用功能至关重要。
-- "time*.com"
-- "ntp*.com"
-- "+.pool.ntp.org"
-- "*.openwrt.pool.ntp.org"
-- "time.*.gov"
+time*.com
+ntp*.com
++.pool.ntp.org
+*.openwrt.pool.ntp.org
+time.*.gov
 # 4. 厂商与服务商域名 (重点区域)
 # --------------------------------------------------
 # -- 三星 (Samsung) --# 确保三星账户、云服务、应用商店、SmartThings、设备查找等功能正常。
-- "+.samsung.com"
-- "+.samsungcloud.com"
-- "+.samsungapps.com"
-- "+.samsungqbe.com"
-- "+.samsungotn.net"
++.samsung.com
++.samsungcloud.com
++.samsungapps.com
++.samsungqbe.com
++.samsungotn.net
       # 主要用于电视和设备固件更新
-- "+.smartthings.com"
-- "+.smartthingsfind.samsung.com"
++.smartthings.com
++.smartthingsfind.samsung.com
 # -- 苹果 (Apple) --# 即使是安卓用户，也可能在网络中拥有其他苹果设备。
-- "+.apple.com"
-- "+.icloud.com"
++.apple.com
++.icloud.com
 # -- 小米 (Xiaomi) -- (已添加)# 确保小米路由器、智能家居（米家）等设备和服务正常工作。
-- "+.xiaomi.com"
-- "+.mi.com"
++.xiaomi.com
++.mi.com
 # -- 谷歌 (Google) --# 虽然主要服务被屏蔽，但部分服务或SDK可能仍需连接。
-- "+.services.googleapis.cn"
++.services.googleapis.cn
       # Google 在中国的服务
-- "+.xn--ngstr-lra8j.com"
++.xn--ngstr-lra8j.com
       # test-ipv6.com 的 Punycode 形式
 # 5. 游戏与 P2P 服务 (STUN)# 确保游戏、语音视频通话能正常建立连接。
-- "+.stun.playstation.net"
-- "+.srv.nintendo.net"
-- "+.xboxlive.com"
-- "speedtest.cros.wr.pvp.net"
-     # 游戏内测速
+# 备注：geosite:category-games-cn 规则无法用于domain-set文件，已移除。
++.stun.playstation.net
++.srv.nintendo.net
++.xboxlive.com
+speedtest.cros.wr.pvp.net
+      # 游戏内测速
 # 6. 其他特定服务
-- "resolver1.opendns.com"
-     # 备用公共 DNS
+resolver1.opendns.com
+      # 备用公共 DNS
