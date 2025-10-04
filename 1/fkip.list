@@ -49,7 +49,6 @@
 - "+.xn--ngstr-lra8j.com"
       # test-ipv6.com 的 Punycode 形式
 # 5. 游戏与 P2P 服务 (STUN)# 确保游戏、语音视频通话能正常建立连接。
-- "geosite:category-games-cn"
 - "+.stun.playstation.net"
 - "+.srv.nintendo.net"
 - "+.xboxlive.com"
