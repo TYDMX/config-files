@@ -10,13 +10,12 @@ chat*.warthunder.com
 char*.warthunder.com
 #战雷
 gaijin.com
-#warthunder.com
+#warthunder
 #client-stats.gaijin.net # 自动匹配服务器的参考
 #client-stats.warthunder.com # 客户端性能数据
 
-
 challenges.cloudflare.com
-#DOMAIN-SUFFIX,challenges.cloudflare.com
+#challenges.cloudflare.com
 
 #三星
 samsung.com
@@ -30,61 +29,61 @@ brokenarrowgame.com
 download.epicgames.com
 
 # 暴雪
-#api.blizzard.com
+#api.blizzard
 #account.battle.net
 #battle.net
 #ingest.gdp.blizzard.com
 
 # bili
-#bili.com
-#b23.com
+#bili
+#b23
 
 # onedrive
-live.com
-office.com
-office.net
-msn.com
-storage.live.com
-1drv.com
-public.sn.files.1drv.com
-public.by.files.1drv.com
-vizyng.sn.files.1drv.com
-vizyng.by.files.1drv.com
+#live.com
+#office.com
+#office.net
+#msn.com
+#storage.live
+#1drv
+#public.sn.files.1drv.com
+#public.by.files.1drv.com
+#vizyng.sn.files.1drv.com
+#vizyng.by.files.1drv.com
 sn.files.1drv.com
 by.files.1drv.com
 
 #twitch
 #广告流
-#video-weaver.com
+#video-weaver
 #视频流
-#video-edge.com
+#video-edge
 #abs.hls.ttvnw.net
 #hls.ttvnw.net
 
 # vk
-#sun9.com
-#sun6.com
-#vkvd.com
+#sun9
+#sun6
+#vkvd
 #mycdn.me
-#st6.com
+#st6
 #userapi.com/impg
-#vkuser.com
-#queuev4.vk.com
-#okcdn.com
+#vkuser
+#queuev4.vk
+#okcdn
 # ms.vk.com
 # vkvd84.mycdn.me
 # vkvd415.okcdn.ru:443
 
 # elite
-img.strpst.com
-media.elitebabes.com
+img.strpst
+media.elitebabes
 
 
 
 #米家
-#mijia.com
-#miui.com
-#xiaomi.com
+#mijia
+#miui
+#xiaomi
 
 # 红迪
 # v.redd.it
