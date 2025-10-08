@@ -7,8 +7,11 @@ DOMAIN-KEYWORD,tpb.proxyninja
 
 # 战雷
 DOMAIN-WILDCARD,chat*.warthunder.com
-DOMAIN-WILDCARD,char*.warthunder.com
+#DOMAIN-WILDCARD,char*.warthunder.com
 DOMAIN-KEYWORD,forum.warthunder.com
+# chat*.warthunder.com # 聊天
+# char*.warthunder.com # 角色
+# forum.warthunder.com # 论坛
 
 DOMAIN-KEYWORD,gaijin
 #DOMAIN-KEYWORD,warthunder
