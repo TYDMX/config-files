@@ -1,117 +1,114 @@
 #rules:
 # 自用
-cn.download.nvidia.com
-developer.download.nvidia.com
-download.nvidia.com
-tpb.proxyninja
+DOMAIN-KEYWORD,cn.download.nvidia.com
+DOMAIN-KEYWORD,developer.download.nvidia.com
+DOMAIN-KEYWORD,download.nvidia.com
+DOMAIN-KEYWORD,tpb.proxyninja
 
 # 战雷
-chat*.warthunder.com
-char*.warthunder.com
-#战雷
-gaijin
-# warthunder
-# client-stats.gaijin.net # 自动匹配服务器的参考
-# client-stats.warthunder.com # 客户端性能数据
+DOMAIN-WILDCARD,chat*.warthunder.com
+DOMAIN-WILDCARD,char*.warthunder.com
+DOMAIN-KEYWORD,forum.warthunder.com
+DOMAIN-KEYWORD,gaijin
+#DOMAIN-KEYWORD,warthunder
+#DOMAIN-KEYWORD,client-stats.gaijin.net
 
 
-challenges.cloudflare
-# +.challenges.cloudflare.com
+DOMAIN-KEYWORD,challenges.cloudflare
+#DOMAIN-SUFFIX,challenges.cloudflare.com
 
 #三星
-samsung
-galaxyappstore
+DOMAIN-KEYWORD,samsung
+DOMAIN-KEYWORD,galaxyappstore
 
 # steam
-+.steamcontent.com
-brokenarrowgame.com
+DOMAIN-SUFFIX,steamcontent.com
+DOMAIN-KEYWORD,brokenarrowgame.com
 
 # epic
-download.epicgames
+DOMAIN-KEYWORD,download.epicgames
 
 # 暴雪
-# api.blizzard
-# account.battle.net
-# battle.net
-# ingest.gdp.blizzard.com
+#DOMAIN-KEYWORD,api.blizzard
+#DOMAIN-KEYWORD,account.battle.net
+#DOMAIN-KEYWORD,battle.net
+#DOMAIN-KEYWORD,ingest.gdp.blizzard.com
 
 # bili
-# bili
-# b23
+#DOMAIN-KEYWORD,bili
+#DOMAIN-KEYWORD,b23
 
 # onedrive
-# live.com
-# office.com
-# office.net
-# msn.com
-# storage.live
-# 1drv
-# +.public.sn.files.1drv.com
-# +.public.by.files.1drv.com
-# +.vizyng.sn.files.1drv.com
-# +.vizyng.by.files.1drv.com
-sn.files.1drv.com
-by.files.1drv.com
+#DOMAIN-KEYWORD,live.com
+#DOMAIN-KEYWORD,office.com
+#DOMAIN-KEYWORD,office.net
+#DOMAIN-KEYWORD,msn.com
+#DOMAIN-KEYWORD,storage.live
+#DOMAIN-KEYWORD,1drv
+#DOMAIN-SUFFIX,public.sn.files.1drv.com
+#DOMAIN-SUFFIX,public.by.files.1drv.com
+#DOMAIN-SUFFIX,vizyng.sn.files.1drv.com
+#DOMAIN-SUFFIX,vizyng.by.files.1drv.com
+DOMAIN-KEYWORD,sn.files.1drv.com
+DOMAIN-KEYWORD,by.files.1drv.com
 
 #twitch
 #广告流
-# video-weaver
+#DOMAIN-KEYWORD,video-weaver
 #视频流
-# video-edge
-# abs.hls.ttvnw.net
-# hls.ttvnw.net
+#DOMAIN-KEYWORD,video-edge
+#DOMAIN-KEYWORD,abs.hls.ttvnw.net
+#DOMAIN-KEYWORD,hls.ttvnw.net
 
 # vk
-# sun9
-# sun6
-# vkvd
-# mycdn.me
-# st6
-# userapi.com
-# vkuser
-# queuev4.vk
-# okcdn
+#DOMAIN-KEYWORD,sun9
+#DOMAIN-KEYWORD,sun6
+#DOMAIN-KEYWORD,vkvd
+#DOMAIN-KEYWORD,mycdn.me
+#DOMAIN-KEYWORD,st6
+#DOMAIN-KEYWORD,userapi.com/impg
+#DOMAIN-KEYWORD,vkuser
+#DOMAIN-KEYWORD,queuev4.vk
+#DOMAIN-KEYWORD,okcdn
 # ms.vk.com
 # vkvd84.mycdn.me
-# vkvd415.okcdn.ru
+# vkvd415.okcdn.ru:443
 
 # elite
-img.strpst
-media.elitebabes
+DOMAIN-KEYWORD,img.strpst
+DOMAIN-KEYWORD,media.elitebabes
 
 
 
 #米家
-# mijia
-# miui
-# xiaomi
+#DOMAIN-KEYWORD,mijia
+#DOMAIN-KEYWORD,miui
+#DOMAIN-KEYWORD,xiaomi
 
 # 红迪
 # v.redd.it
 
 # 微信
-# short.weixin.qq.com
-# extshort.weixin.qq.com
-# dns.weixin.qq.com.cn
+#DOMAIN-KEYWORD,short.weixin.qq.com
+#DOMAIN-KEYWORD,extshort.weixin.qq.com
+#DOMAIN-KEYWORD,dns.weixin.qq.com.cn
 
 
 
 
 #谷歌FCM
-# mtalk.google.com
-# mtalk4.google.com
-# mtalk-staging.google.com
-# mtalk-dev.google.com
-# alt1-mtalk.google.com
-# alt2-mtalk.google.com
-# alt3-mtalk.google.com
-# alt4-mtalk.google.com
-# alt5-mtalk.google.com
-# alt6-mtalk.google.com
-# alt7-mtalk.google.com
-# alt8-mtalk.google.com
-# alt*-*.google.com
-# dl.google.com
-# dl.l.google.com
-
-# NOTE: The PROCESS-NAME rule cannot be converted to a domain format. Original rule: #PROCESS-NAME,com.samsung.android.sskds (1000),SelectGroup
+#DOMAIN-KEYWORD,mtalk.google.com
+#DOMAIN-KEYWORD,mtalk4.google.com
+#DOMAIN-KEYWORD,mtalk-staging.google.com
+#DOMAIN-KEYWORD,mtalk-dev.google.com
+#DOMAIN-KEYWORD,alt1-mtalk.google.com
+#DOMAIN-KEYWORD,alt2-mtalk.google.com
+#DOMAIN-KEYWORD,alt3-mtalk.google.com
+#DOMAIN-KEYWORD,alt4-mtalk.google.com
+#DOMAIN-KEYWORD,alt5-mtalk.google.com
+#DOMAIN-KEYWORD,alt6-mtalk.google.com
+#DOMAIN-KEYWORD,alt7-mtalk.google.com
+#DOMAIN-KEYWORD,alt8-mtalk.google.com
+#DOMAIN-WILDCARD,alt*-*.google.com
+#DOMAIN-KEYWORD,dl.google.com
+#DOMAIN-KEYWORD,dl.l.google.com
