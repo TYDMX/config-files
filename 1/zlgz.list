@@ -9,9 +9,14 @@ DOMAIN-KEYWORD,tpb.proxyninja
 DOMAIN-WILDCARD,chat*.warthunder.com
 DOMAIN-WILDCARD,char*.warthunder.com
 DOMAIN-KEYWORD,forum.warthunder.com
+
 DOMAIN-KEYWORD,gaijin
 #DOMAIN-KEYWORD,warthunder
-#DOMAIN-KEYWORD,client-stats.gaijin.net
+
+DOMAIN-KEYWORD,client-stats.gaijin.net
+DOMAIN-KEYWORD,client-stats.warthunder.com
+# client-stats.gaijin.net # 自动匹配服务器的参考
+# client-stats.warthunder.com # 客户端性能数据
 
 
 DOMAIN-KEYWORD,challenges.cloudflare
