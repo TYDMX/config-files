@@ -3,8 +3,8 @@ PROCESS-NAME,com.tencent.mobileqq
 PROCESS-NAME,QQ.exe
 
 #PROCESS-NAME,aces.exe
-PROCESS-NAME,aces_BE.exe
-PROCESS-NAME,BEService.exe
+#PROCESS-NAME,aces_BE.exe
+#PROCESS-NAME,BEService.exe
 #  BEService.exe
 #  beac_wt_mlauncher.exe
 PROCESS-NAME,com.blizzard.arc
