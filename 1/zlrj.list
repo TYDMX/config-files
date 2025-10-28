@@ -13,6 +13,7 @@ PROCESS-NAME,PhoneExperienceHost.exe
 PROCESS-NAME,CrossDeviceService.exe
 PROCESS-NAME,com.microsoft.appmanager
 PROCESS-NAME,OneDrive.exe
+PROCESS-NAME,com.microsoft.skydrive
 #PROCESS-NAME,svchost.exe
 
 PROCESS-NAME,com.sec.android.app.samsungapps
