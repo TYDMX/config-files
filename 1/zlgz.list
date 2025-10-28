@@ -16,7 +16,7 @@ DOMAIN-KEYWORD,forum.warthunder.com
 DOMAIN-KEYWORD,gaijin
 #DOMAIN-KEYWORD,warthunder
 
-DOMAIN-KEYWORD,forum.warthunder.com
+#DOMAIN-KEYWORD,forum.warthunder.com
 DOMAIN-KEYWORD,client-stats.gaijin.net
 DOMAIN-KEYWORD,client-stats.warthunder.com
 # client-stats.gaijin.net # 自动匹配服务器的参考
