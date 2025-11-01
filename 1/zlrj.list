@@ -8,6 +8,7 @@ PROCESS-NAME,BEService.exe
 #  BEService.exe
 #  beac_wt_mlauncher.exe
 PROCESS-NAME,com.blizzard.arc
+PROCESS-NAME,WarcraftRumble.exe
 
 PROCESS-NAME,PhoneExperienceHost.exe
 PROCESS-NAME,CrossDeviceService.exe
