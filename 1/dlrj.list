@@ -7,7 +7,7 @@
 
 PROCESS-NAME,aces.exe
 PROCESS-NAME,com.supercell.moco
-PROCESS-NAME,com.blizzard.arc
+#PROCESS-NAME,com.blizzard.arc
 
 #PROCESS-NAME,com.google.android.apps.bard
  # 圈搜
