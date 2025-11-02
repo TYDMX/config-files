@@ -20,3 +20,5 @@ PROCESS-NAME,com.android.vending
 
  # 三星软件安装
 #PROCESS-NAME,com.samsung.android.packageinstaller
+ # flodersync
+PROCESS-NAME,dk.tacit.android.foldersync.lite
