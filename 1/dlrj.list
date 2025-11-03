@@ -16,7 +16,7 @@ PROCESS-NAME,com.supercell.moco
  # Gemini 走美国节点
 #PROCESS-NAME,com.google.bard
  # play商店
-PROCESS-NAME,com.android.vending
+#PROCESS-NAME,com.android.vending
 
  # 三星软件安装
 #PROCESS-NAME,com.samsung.android.packageinstaller
