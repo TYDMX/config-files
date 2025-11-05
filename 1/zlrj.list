@@ -22,6 +22,7 @@ PROCESS-NAME,com.sec.android.app.samsungapps
 PROCESS-NAME,com.sec.spp.push
 #com.sec.factory.camera
 #-ss.getui.com:5225
+PROCESS-NAME,com.samsung.android.app.reminder
 PROCESS-NAME,com.xiaomi.smarthome
 PROCESS-NAME,com.tplink.ipc
 #PROCESS-NAME,com.samsung.android.sskds (1000),SelectGroup
