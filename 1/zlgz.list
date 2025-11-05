@@ -16,7 +16,6 @@ DOMAIN-KEYWORD,forum.warthunder.com
 DOMAIN-KEYWORD,gaijin
 #DOMAIN-KEYWORD,warthunder
 
-#DOMAIN-KEYWORD,forum.warthunder.com
 DOMAIN-KEYWORD,client-stats.gaijin.net
 DOMAIN-KEYWORD,client-stats.warthunder.com
 # client-stats.gaijin.net # 自动匹配服务器的参考
@@ -61,6 +60,7 @@ DOMAIN-KEYWORD,download.epicgames
 DOMAIN-KEYWORD,sn.files.1drv.com
 DOMAIN-KEYWORD,by.files.1drv.com
 DOMAIN-KEYWORD,my.microsoftpersonalcontent.com
+
 #twitch
 #广告流
 #DOMAIN-KEYWORD,video-weaver
@@ -84,8 +84,8 @@ DOMAIN-KEYWORD,my.microsoftpersonalcontent.com
 # vkvd415.okcdn.ru:443
 
 # elite
-DOMAIN-KEYWORD,img.strpst
-DOMAIN-KEYWORD,media.elitebabes
+#DOMAIN-KEYWORD,img.strpst
+#DOMAIN-KEYWORD,media.elitebabes
 
 
 
