@@ -4,6 +4,7 @@ DOMAIN-KEYWORD,cn.download.nvidia.com
 DOMAIN-KEYWORD,developer.download.nvidia.com
 DOMAIN-KEYWORD,download.nvidia.com
 DOMAIN-KEYWORD,tpb.proxyninja
+DOMAIN-KEYWORD,nfsq
 
 # 战雷
 DOMAIN-WILDCARD,chat*.warthunder.com
