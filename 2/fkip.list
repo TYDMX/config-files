@@ -58,3 +58,4 @@ speedtest.cros.wr.pvp.net
 # 6. 其他特定服务
 resolver1.opendns.com
       # 备用公共 DNS
+WORKGROUP
