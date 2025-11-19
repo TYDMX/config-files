@@ -1,5 +1,5 @@
-  - PROCESS-NAME,com.sec.factory.camera
-  - PROCESS-NAME,com.sec.spp.push
-  - PROCESS-NAME,com.microsoft.appmanager
-  - PROCESS-NAME,com.samsung.android.pushservice
-  - DOMAIN-KEYWORD,ss.getui.com
+PROCESS-NAME,com.sec.factory.camera
+PROCESS-NAME,com.sec.spp.push
+PROCESS-NAME,com.microsoft.appmanager
+PROCESS-NAME,com.samsung.android.pushservice
+DOMAIN-KEYWORD,ss.getui.com
