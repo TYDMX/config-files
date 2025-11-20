@@ -58,9 +58,9 @@ DOMAIN-KEYWORD,download.epicgames
 #DOMAIN-SUFFIX,public.by.files.1drv.com
 #DOMAIN-SUFFIX,vizyng.sn.files.1drv.com
 #DOMAIN-SUFFIX,vizyng.by.files.1drv.com
-DOMAIN-KEYWORD,sn.files.1drv.com
-DOMAIN-KEYWORD,by.files.1drv.com
-DOMAIN-KEYWORD,my.microsoftpersonalcontent.com
+#DOMAIN-KEYWORD,sn.files.1drv.com
+#DOMAIN-KEYWORD,by.files.1drv.com
+#DOMAIN-KEYWORD,my.microsoftpersonalcontent.com
 
 #twitch
 #广告流
