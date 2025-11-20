@@ -29,6 +29,7 @@ PROCESS-NAME,com.microsoft.skydrive
 #PROCESS-NAME,svchost.exe
 
 #  三星
+#商店
 #PROCESS-NAME,com.sec.android.app.samsungapps
 #PROCESS-NAME,com.sec.spp.push
 #com.sec.factory.camera
