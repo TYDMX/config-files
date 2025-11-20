@@ -7,7 +7,8 @@
 DOMAIN-KEYWORD,proxy.social.supercell
 
 # OneDrive
-#观看地址 tcp://australiaeast1-mediap.svc.ms:443
+#观看地址
+DOMAIN-KEYWORD:-mediap.svc.ms,📹 视频平台
 
 
 # ph xv等
