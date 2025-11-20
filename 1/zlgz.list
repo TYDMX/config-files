@@ -32,8 +32,8 @@ DOMAIN-KEYWORD,challenges.cloudflare
 #DOMAIN-SUFFIX,challenges.cloudflare.com
 
 #三星
-DOMAIN-KEYWORD,samsung
-DOMAIN-KEYWORD,galaxyappstore
+#DOMAIN-KEYWORD,samsung
+#DOMAIN-KEYWORD,galaxyappstore
 
 # steam
 DOMAIN-SUFFIX,steamcontent.com
