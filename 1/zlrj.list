@@ -21,12 +21,14 @@ PROCESS-NAME,QQ.exe
 #  Agent.exe
 
 # 微软
+#PROCESS-NAME,svchost.exe
 PROCESS-NAME,PhoneExperienceHost.exe
 PROCESS-NAME,CrossDeviceService.exe
+#连接至windows
 PROCESS-NAME,com.microsoft.appmanager
+#OneDrive
 PROCESS-NAME,OneDrive.exe
-PROCESS-NAME,com.microsoft.skydrive
-#PROCESS-NAME,svchost.exe
+#PROCESS-NAME,com.microsoft.skydrive
 
 #  三星
 #商店
