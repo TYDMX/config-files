@@ -6,7 +6,7 @@
 #PROCESS-NAME,svchost.exe
 
 PROCESS-NAME,aces.exe
-PROCESS-NAME,com.supercell.moco
+#PROCESS-NAME,com.supercell.moco
 #PROCESS-NAME,com.blizzard.arc
 
  # Google app
