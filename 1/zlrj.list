@@ -31,9 +31,6 @@ PROCESS-NAME,com.microsoft.skydrive
 #  三星
 #商店
 PROCESS-NAME,com.sec.android.app.samsungapps
-#PROCESS-NAME,com.sec.spp.push
-#com.sec.factory.camera
-#-ss.getui.com:5225
 #PROCESS-NAME,com.samsung.android.app.reminder
 #PROCESS-NAME,com.samsung.android.sskds (1000),SelectGroup
 
