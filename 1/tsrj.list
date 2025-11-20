@@ -1,3 +1,5 @@
+# 前置规则
+
 PROCESS-NAME,com.sec.factory.camera
 PROCESS-NAME,com.sec.spp.push
 PROCESS-NAME,com.microsoft.appmanager
