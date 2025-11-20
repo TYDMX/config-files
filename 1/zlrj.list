@@ -31,6 +31,7 @@ PROCESS-NAME,com.microsoft.skydrive
 #  三星
 #商店
 PROCESS-NAME,com.sec.android.app.samsungapps
+#提醒
 #PROCESS-NAME,com.samsung.android.app.reminder
 #PROCESS-NAME,com.samsung.android.sskds (1000),SelectGroup
 
