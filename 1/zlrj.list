@@ -14,16 +14,18 @@ PROCESS-NAME,Wow.exe
 PROCESS-NAME,PhoneExperienceHost.exe
 PROCESS-NAME,CrossDeviceService.exe
 PROCESS-NAME,com.microsoft.appmanager
-PROCESS-NAME,OneDrive.exe
-PROCESS-NAME,com.microsoft.skydrive
+#PROCESS-NAME,OneDrive.exe
+#PROCESS-NAME,com.microsoft.skydrive
 #PROCESS-NAME,svchost.exe
 
 PROCESS-NAME,com.sec.android.app.samsungapps
 #  三星推送
-PROCESS-NAME,com.sec.spp.push
+#PROCESS-NAME,com.sec.spp.push
 #com.sec.factory.camera
 #-ss.getui.com:5225
-PROCESS-NAME,com.samsung.android.app.reminder
+
+#PROCESS-NAME,com.samsung.android.app.reminder
+
 PROCESS-NAME,com.xiaomi.smarthome
 PROCESS-NAME,com.tplink.ipc
 #PROCESS-NAME,com.samsung.android.sskds (1000),SelectGroup
