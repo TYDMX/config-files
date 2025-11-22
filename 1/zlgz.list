@@ -36,7 +36,7 @@ DOMAIN-KEYWORD,challenges.cloudflare
 #DOMAIN-KEYWORD,galaxyappstore
 
 # steam
-DOMAIN-SUFFIX,steamcontent.com
+#DOMAIN-SUFFIX,steamcontent.com
 DOMAIN-KEYWORD,brokenarrowgame.com
 
 # epic
