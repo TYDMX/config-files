@@ -13,15 +13,15 @@ DOMAIN-KEYWORD,nfsq
 DOMAIN-WILDCARD,chat*.warthunder.com
 #DOMAIN-WILDCARD,char*.warthunder.com
 DOMAIN-KEYWORD,forum.warthunder.com
-# chat*.warthunder.com # 聊天
-# char*.warthunder.com # 角色
-# forum.warthunder.com # 论坛
+## chat*.warthunder.com # 聊天
+## char*.warthunder.com # 角色
+## forum.warthunder.com # 论坛
 DOMAIN-KEYWORD,gaijin
 #DOMAIN-KEYWORD,warthunder
 DOMAIN-KEYWORD,client-stats.gaijin.net
 DOMAIN-KEYWORD,client-stats.warthunder.com
-# client-stats.gaijin.net # 自动匹配服务器的参考
-# client-stats.warthunder.com # 客户端性能数据
+## client-stats.gaijin.net # 自动匹配服务器的参考
+## client-stats.warthunder.com # 客户端性能数据
 
 
 #三星
@@ -29,7 +29,8 @@ DOMAIN-KEYWORD,client-stats.warthunder.com
 #DOMAIN-KEYWORD,galaxyappstore
 
 # steam
-#DOMAIN-SUFFIX,steamcontent.com
+##下载
+DOMAIN-SUFFIX,steamcontent.com
 DOMAIN-KEYWORD,brokenarrowgame.com
 
 # epic
@@ -54,14 +55,14 @@ DOMAIN-KEYWORD,download.epicgames
 #DOMAIN-SUFFIX,vizyng.by.files.1drv.com
 #DOMAIN-KEYWORD,sn.files.1drv.com
 #DOMAIN-KEYWORD,by.files.1drv.com
-#上传-下载域名
+##上传-下载域名
 DOMAIN-KEYWORD,my.microsoftpersonalcontent.com
-# 观看域名tcp://australiaeast1-mediap.svc.ms:443
+## 观看域名tcp://australiaeast1-mediap.svc.ms:443
 
 #twitch
-#广告流
+##广告流
 #DOMAIN-KEYWORD,video-weaver
-#视频流
+##视频流
 #DOMAIN-KEYWORD,video-edge
 #DOMAIN-KEYWORD,abs.hls.ttvnw.net
 #DOMAIN-KEYWORD,hls.ttvnw.net
