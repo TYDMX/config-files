@@ -1,8 +1,4 @@
 # ==========================================================
-# 全局测速配置
-#cfw-latency-timeout: 2000
-#cfw-latency-url: https://cp.cloudflare.com/generate_204
-# ==========================================================
 ## ----------------节点过滤锚点--------------------------
 #|China|🇨🇳|港|hk|🇭🇰|台|臺|tw|🇹🇼|日|JP|🇯🇵|韩|🇰🇷|新|🇸🇬|越|🇻🇳|印尼|🇮🇩|马|🇲🇾|柬|🇰🇭|泰|🇹🇭|菲|🇵🇭|澳|🇦🇺|ali|水寨|尼日
 #|美|us|🇺🇸|🇺🇲|英|🇬🇧|法|🇫🇷|意|🇮🇹|荷|🇳🇱|土|🇹🇷|印|🇮🇳|加|🇨🇦|德|🇩🇪|奥|🇦🇹|西|
@@ -102,9 +98,6 @@ unified-delay: true # 对所有类型节点使用统一的延迟计算标准
 tcp-concurrent: true # 尝试与多个IP建立TCP连接，提高响应速度
 external-controller: 127.0.0.1:9090 # 外部UI控制器的访问地址和端口，'0.0.0.0'表示任何IP都可访问
 secret: "12345678" # 连接外部控制器时所需密码
-#external-ui: "/etc/mihomo/run/ui" # 外部UI(Dashboard)的静态文件存放目录
-#external-ui-name: zashboard # 使用的UI面板名
-#external-ui-url: "https://github.com/Zephyruso/zashboard/archive/refs/heads/gh-pages.zip" # UI面板下载地址
 find-process-mode: strict # 进程名匹配模式
 global-client-fingerprint: chrome # 伪装TLS指纹为随机random
 keep-alive-idle: 120 # TCP长连接空闲时间
@@ -201,13 +194,8 @@ dns:
     "geosite:private": *dns_guonei
     "geosite:cn,geolocation-cn,Google@CN,googlefcm": *dns_guonei
     "geosite:geolocation-!cn,gfw": *dns_guowai
-    #"geosite:category-ads-all,tracker,category-public-tracker": rcode://success
-    #"geoip：ad": rcode://success
-    #"full-nameserver": *dns_guowai
 
 ## ----------------  地理数据 ----------------
-#geodata-mode: true
-#geodata-loader: standard
 geox-url: # 数据库下载地址
   geosite: https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geosite.dat
   mmdb: https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip.metadb
@@ -225,8 +213,6 @@ proxies:
     udp: true
   - name: "🈚️ 假节点"
     type: reject
-  #- name: "💧 假节点"
-    #type: reject
 
 # ==========================================================
 ## ---------------- 策略组类型模板 --------------------------------
@@ -295,7 +281,6 @@ proxy-groups:
   - {name: 📹 视频平台,       <<: *gz, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/YouTube.png}
   # ---------------- 社交平台 ----------------
   - {name: 📲 Telegram,      <<: *gz, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Telegram_X.png}
-  #- {name: 🎯 抖快书定位,    <<: *zl, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Null_Nation.png}
   # ---------------- 商业服务 ----------------
   - {name: 🤖 AI,            <<: [*BaseFB, *SG], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/AI.png}
   - {name: 💶 PayPal,        <<: *wd, icon: https://git.imee.me/https://raw.githubusercontent.com/Orz-3/mini/master/Alpha/Bitcloud.png}
@@ -348,22 +333,7 @@ proxy-groups:
   #- {name: ♻️ 中转服务,     <<: [*BaseSL, *direct], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Rocket.png}
   #- {name: ♻️ 落地服务,     <<: [*BaseSL, *direct], include-all: true, filter: *FilterAL, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Domestic.png}
   #- {name: ♻️ 中转服务,     <<: *BaseCH, include-all: true, filter: *FilterHK, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Round_Robin.png}
-  
-        ## reg: 'slbable$'表示以slbable字符结尾订阅地址的开启负载均衡
-  
-        ## type: load-balance
-        ## load-balance: 负载均衡模式，Clash会均衡地使用组内的代理服务器，适用于需要分散请求负载的场景。
-        ## strategy: consistent-hashing 表示负载均衡策略为一致性散列Hash
-        ## strategy: round-robin 表示负载均衡策略为轮询
-  
-        ## type: url-test, tolerance: 50, interval: 300
-        ## URL-Test: 自动测试模式，Clash会定期测试组内代理的连接速度，自动选择最快的代理服务器。
-        ## interval: 30 表示每隔30秒检查节点是否可用
-        ## tolerance 延迟切换阈值
-        ## lazy, true
-     
-        ## Select: 手动选择模式，用户可以从组内选择一个代理进行连接。
-        ## Fallback: 故障转移模式，Clash会按顺序测试代理服务器，直到找到一个可用的代理。
+
 
 # ==========================================================
 ## ----------------规则---------------------# (规则决定流量走向，从上到下逐条匹配，匹配即停止)
@@ -439,14 +409,7 @@ rule-providers:
   自用直连软件: { <<: *class, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/1/zlrj.list"}
   自用代理软件: { <<: *class, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/1/dlrj.list"}
   #直连推送软件: { <<: *class, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/1/tsrj.list"}
-## ----------------广告拦截规则提供者---------------------
-  #广告拦截BanAD: { <<: *class, url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/refs/heads/master/Clash/BanAD.list"}
-  #广告拦截BanEasyList: { <<: *class, url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/refs/heads/master/Clash/BanEasyList.list"}
-  #广告拦截BanEasyPrivacy: { <<: *class, url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/refs/heads/master/Clash/BanEasyPrivacy.list"}
-  #广告拦截BanEasyListChina: { <<: *class, url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/refs/heads/master/Clash/BanEasyListChina.list"}
-  #广告拦截BanProgramAD: { <<: *class, url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/refs/heads/master/Clash/BanProgramAD.list"}
-## ----------------domain域名规则提供者---------------------
-  #fake_ip_filter_DustinWin: { <<: *domain, url: "https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/fakeip-filter.mrs"}
+## ----------------广告拦截规则提供者--------------------
+## ----------------domain域名规则提供者---------------
   自用fake-ip-filter: { <<: *text-domain, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/2/fkip.list"}
-  #抖快书定位: { <<: *domain , url: "https://github.com/666OS/rules/raw/release/mihomo/domain/LocationDKS.mrs"}
 ## ----------------ip规则提供者---------------------  
