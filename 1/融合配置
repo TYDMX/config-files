@@ -1,0 +1,451 @@
+# ==========================================================
+# 全局测速配置
+#cfw-latency-timeout: 2000
+#cfw-latency-url: https://cp.cloudflare.com/generate_204
+# ==========================================================
+## ----------------节点过滤锚点--------------------------
+#|China|🇨🇳|港|hk|🇭🇰|台|臺|tw|🇹🇼|日|JP|🇯🇵|韩|🇰🇷|新|🇸🇬|越|🇻🇳|印尼|🇮🇩|马|🇲🇾|柬|🇰🇭|泰|🇹🇭|菲|🇵🇭|澳|🇦🇺|ali|水寨|尼日
+#|美|us|🇺🇸|🇺🇲|英|🇬🇧|法|🇫🇷|意|🇮🇹|荷|🇳🇱|土|🇹🇷|印|🇮🇳|加|🇨🇦|德|🇩🇪|奥|🇦🇹|西|
+关键字黑名单: &exclude-filter "(?i)China|🇨🇳|高倍|×10|10M|节点|过滤|剩余|流量|距离|下次|重置|重新|订阅|导入|套餐|到期|跳转|域名|请勿|邀请|好友|关注|频道|收费|就说明|被骗|续费|更新|地址|官网|下载|群组|永久|长期|中继|更换|协议|软件|教程|Lite|ali"
+关键字白名单: &filter "(?i)住|宅|家|home|美|us|🇺🇸|🇺🇲|港|hk|🇭🇰|台|臺|tw|🇹🇼|日|JP|🇯🇵|韩|🇰🇷|英|🇬🇧|新|🇸🇬|越|🇻🇳"
+
+# ==========================================================
+## ----------------代理提供者模板锚点------------------
+代理提供者模板: &template
+  type: http # 订阅类型
+#  interval: 604800 # 自动更新的秒数
+  tfo: true # 启用 TCP Fast Open（TFO），可以减少 TCP 握手时间
+  #filter: *filter  # 引用白名单锚点
+  exclude-filter: *exclude-filter  # 引用黑名单锚点
+  exclude-type: "http|ss"
+  health-check:
+    enable: true
+    url: https://cp.cloudflare.com/generate_204
+    interval: 21600
+    timeout: 5000
+    consecutive-failures: 3
+    lazy: true
+    method: HEAD  # 使用 HTTP HEAD 方法进行健康检查，仅请求头部信息，减少数据使用量
+  smux: # smux 连接复用
+    enabled: true
+    padding: false # 增加随机数据
+    protocol: smux4 # 使用的复用协议类型 smux，Yamux, h2mux, smux4
+    #mode: auto
+    max-connections: 16 # 同一客户端允许的最大物理连接数（抗阻塞能力，不止一个 TCP）
+    max-streams: 64 # 每个连接可承载的逻辑流数量，并发性能
+    statistic: false # 记录 smux 的统计信息（连接/流量）
+    only-tcp: false # 是否只在 TCP 上启用smux，是否可以在 QUIC/XTLS 上也启用
+  #proxies: select1 # 使用此提供者为select1中转
+  #proxy: select1 # 更新用的代理组
+    override:
+      #dialer-proxy: ♻️ 中转服务 # 通过中转服务中转
+
+## ----------------代理提供者----------------
+proxy-providers:
+
+  Flclash手机 💧:
+    <<: *template
+    url: "https://7.nfsqttt.us/nfsq/?token=My3JVU_nWsMNV1cI2TPaou72LsGGJ94E"
+    override:
+      additional-prefix: "💧 "
+      #additional-suffix: " 💧"
+
+  Flclash电脑 💧:
+    <<: *template
+    url: "https://7.nfsqttt.us/nfsq/?token=uUCT5bm2fQcqly4283FA2cAAFgESPJfL"
+    override:
+      additional-prefix: "💧 "
+      #additional-suffix: " 💧"
+
+  Clash Meta 💧:
+    <<: *template
+    url: "https://1.nfsqttt.us/nfsq/?token=59btQtBUZq7w5FY0PW_gxoTzeuFEc_GZ"
+    override:
+      additional-prefix: "💧 "
+      #additional-suffix: " 💧"
+      
+  FlyClash 💧:
+    <<: *template
+    url: "https://7.nfsqttt.us/nfsq/?token=G79Sr_wQlOsNJcrx43p2wpX-CwO3i-iT"
+    override:
+      additional-prefix: "💧 "
+      #additional-suffix: " 💧"
+      
+  Clash Verge 💧:
+    <<: *template
+    url: "https://1.nfsqttt.us/nfsq/?token=vIW9ao2HtgbpfTdG4WYtbSQF67ns5GW_"
+    override:
+      additional-prefix: "💧 "
+      #additional-suffix: " 💧"
+      
+      
+  订阅分享中心 🌏:
+    <<: *template
+    interval: 86400
+    url: "https://sub.dmit.dpdns.org/share/sub/dingyue_Center_zijian_auto?token=xgy1nCsG7xgerdecv4QRn"
+    override:
+      additional-prefix: "🌏 "
+      #additional-suffix: " 🌏"
+
+
+# ==========================================================
+## ----------------全局配置----------------
+collectdata: true
+port: 7890 # HTTP代理端口
+socks-port: 7891 # SOCKS5代理端口
+#redir-port: 7892 # 透明代理端口 (Linux/macOS)
+#tproxy-port: 7894  # TProxy透明代理端口 (Linux)
+mixed-port: 7893 # 混合代理端口 (同时支持HTTP和SOCKS5)
+ipv6: true # 允许处理IPv6流量
+allow-lan: true # 允许局域网设备连接此代理
+unified-delay: true # 对所有类型节点使用统一的延迟计算标准
+tcp-concurrent: true # 尝试与多个IP建立TCP连接，提高响应速度
+external-controller: 127.0.0.1/9090 # 外部UI控制器的访问地址和端口，'0.0.0.0'表示任何IP都可访问
+secret: "12345678" # 连接外部控制器时所需密码
+#external-ui: "/etc/mihomo/run/ui" # 外部UI(Dashboard)的静态文件存放目录
+#external-ui-name: zashboard # 使用的UI面板名
+#external-ui-url: "https://github.com/Zephyruso/zashboard/archive/refs/heads/gh-pages.zip" # UI面板下载地址
+find-process-mode: strict # 进程名匹配模式
+global-client-fingerprint: chrome # 伪装TLS指纹为随机random
+keep-alive-idle: 120 # TCP长连接空闲时间
+keep-alive-interval: 30
+keep-alive-probes: 5
+disable-keep-alive: false
+
+profile:
+  store-selected: true # 保存策略组的最后选择
+  store-fake-ip: true # 保存Fake-IP的映射关系
+experimental:
+  quic-go-disable-gso: true # 禁用网卡分段卸载技术
+
+# ==========================================================
+## ----------------流量嗅探----------------
+sniffer:
+  enable: true
+  force-dns-mapping: true # 强制DNS映射。当嗅探到一个IP流量时，会尝试为其创建临时的域名-IP映射，以确保后续的规则匹配能正常进行。
+  parse-pure-ip: true # 嗅探所有“纯IP”流量。
+  sniff:
+    HTTP:
+      ports: [80, 8080-8880]
+      override-destination: true # 嗅探到域名后，使用域名进行规则匹配
+    TLS:
+      ports: [443, 5228, 8443]
+    QUIC:
+      ports: [443, 5228, 8443]
+  force-domain:
+    - "+.v2ex.com"
+    - "geosite:Google@CN,googlefcm"
+  skip-domain: # 跳过嗅探这些域名
+    - "geosite:private,cn,geolocation-cn"
+    - "+.push.apple.com"
+
+# ==========================================================
+## ---------------- TUN ----------------
+tun:
+  enable: true
+  stack: mixed # 网络协议栈类型 (gVisor和System混合)
+  dns-hijack:
+  - "any:53"
+  - "tcp://any:53"
+  auto-route: true # 自动设置系统路由表，将流量导向TUN网卡
+  auto-redirect: true # 自动重定向流量
+  auto-detect-interface: true # 自动检测出口网络接口
+  mtu: 1400 # 减少 MTU 问题，如网页无法打开、测速慢
+  gso: true # 启用通用分段卸载（提升性能）
+  gso-max-size: 65536
+  udp-timeout: 3600 # UDP 会话保持时间
+  bypass:
+    - 192.168.0.0/16
+    - 10.0.0.0/8
+    - 172.16.0.0/12
+    - 127.0.0.1/8
+    - ::1/128
+    - ::ffff:0:0/96
+    #- PROCESS-NAME,svchost.exe
+
+# ==========================================================
+## ---------------- DNS ----------------
+dns:
+  enable: true
+  cache-algorithm: arc
+  use-hosts: false
+  use-system-hosts: false
+  listen: 0.0.0.0:1053
+  ipv6: true  
+  prefer-h3: true
+  respect-rules: true  
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  fake-ip-filter-mode: blacklist
+  fake-ip-filter:
+    - "geosite:connectivity-check"
+    - "geosite:private,cn,geolocation-cn"
+    - "geosite:Google@CN,googlefcm"
+    - "rule-set:自用fake-ip-filter"
+    - WORKGROUP
+## ---------------- # DNS锚点 #h3=true ----------------
+  国内dns锚点: &dns_guonei
+    - https://dns.alidns.com/dns-query
+    #- https://doh.pub/dns-query
+  国外dns锚点: &dns_guowai
+    - https://dns.cloudflare.com/dns-query
+    #- https://dns.google/dns-query
+## ---------------- # DNS配置 ----------------
+  default-nameserver:
+    - tls://223.5.5.5
+    #- tls://119.29.29.29
+  proxy-server-nameserver: *dns_guonei
+  direct-nameserver: *dns_guonei
+  nameserver: *dns_guowai
+  nameserver-policy:
+    "geosite:private": *dns_guonei
+    "geosite:cn,geolocation-cn,Google@CN,googlefcm": *dns_guonei
+    "geosite:geolocation-!cn,gfw": *dns_guowai
+    #"geosite:category-ads-all,tracker,category-public-tracker": rcode://success
+    #"geoip：ad": rcode://success
+    #"full-nameserver": *dns_guowai
+
+## ----------------  地理数据 ----------------
+#geodata-mode: true
+#geodata-loader: standard
+geox-url: # 数据库下载地址
+  geosite: https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geosite.dat
+  mmdb: https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip.metadb
+  geoip: https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip.dat
+  asn: https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/GeoLite2-ASN.mmdb
+geo-auto-update: true # 自动更新Geo数据库
+geo-update-interval: 168 # 更新间隔小时数 (7天)
+
+
+# ==========================================================
+## ---------------- 自定义节点 ----------------
+proxies:
+  - name: "🎯 全球直连"
+    type: direct
+    udp: true
+  - name: "🈚️ 假节点"
+    type: reject
+  #- name: "💧 假节点"
+    #type: reject
+
+# ==========================================================
+## ---------------- 策略组类型模板 --------------------------------
+故转: &BaseFB {type: fallback, interval: 300, hidden: true, lazy: true}
+哈希散列: &BaseCH {type: load-balance, interval: 333, strategy: consistent-hashing, hidden: true, lazy: true}
+轮询: &BaseCR {type: load-balance, interval: 366, strategy: round-robin, hidden: true, lazy: true}
+测速: &BaseUT {type: url-test, tolerance: 50, interval: 399, hidden: true, lazy: true}
+选择: &BaseSL {type: select}
+## ---------------- 节点筛选正则表达式 --------------------------------
+香港: &FilterHK '^(?=.*(?i)(假|港|🇭🇰|HK|Hong|HKG))(?=.*💧)(?!.*(住|5x)).*$'
+农夫香港: &nfHK '^(?=.*(?i)(假|港|🇭🇰|HK|Hong|HKG))(?=.*💧)(?!.*(住|5x)).*$'
+香港全部: &HKall '^(?=.*(?i)(假|港|🇭🇰|HK|Hong|HKG))(?!.*(5x)).*$'
+新加坡: &FilterSG '^(?=.*(?i)(假|坡|🇸🇬|SG|Sing|SIN|XSP))(?=.*💧)(?!.*(中国|5x)).*$'
+新加坡全部: &SGall '^(?=.*(?i)(假|坡|🇸🇬|SG|Sing|SIN|XSP))(?!.*(中国|5x)).*$'
+日本: &FilterJP '^(?=.*(?i)(假|日|🇯🇵|JP|Japan|NRT|HND|KIX|CTS|FUK))(?!.*(5x)).*$'
+韩国: &FilterKR '^(?=.*(?i)(假|韩|🇰🇷|韓|首尔|南朝鲜|KR|KOR|Korea|South))(?!.*(5x)).*$'
+美国: &FilterUS '^(?=.*(?i)(假|美|🇺🇸|US|USA|JFK|LAX|ORD|ATL|DFW|SFO|MIA|SEA|IAD))(?!.*(印度|💧|5x)).*$'
+农夫美国: &nfUS '^(?=.*(?i)(假|美|🇺🇸|US|USA|JFK|LAX|ORD|ATL|DFW|SFO|MIA|SEA|IAD))(?=.*💧)(?!.*(印度|5x)).*$'
+美国全部: &USall '^(?=.*(?i)(假|美|🇺🇸|US|USA|JFK|LAX|ORD|ATL|DFW|SFO|MIA|SEA|IAD))(?!.*(印度|5x)).*$'
+台湾: &FilterTW '^(?=.*(?i)(假|台|🇼🇸|🇹🇼|TW|tai|TPE|TSA|KHH))(?!.*(?i)(china|network|5x)).*$'
+欧盟: &FilterEU '^(?=.*(?i)(假|奥|比|保|克罗地亚|塞|捷|丹|爱沙|芬|法|德|希|匈|爱尔|意|拉|立|卢|马其它|荷|波|葡|罗|斯洛伐|斯洛文|西|瑞|英|🇧🇪|🇨🇿|🇩🇰|🇫🇮|🇫🇷|🇩🇪|🇮🇪|🇮🇹|🇱🇹|🇱🇺|🇳🇱|🇵🇱|🇸🇪|🇬🇧|CDG|FRA|AMS|MAD|BCN|FCO|MUC|BRU))(?!.*(美|💧|马来|印度|5x)).*$'
+欧盟全部: &EUall '^(?=.*(?i)(假|奥|比|保|克罗地亚|塞|捷|丹|爱沙|芬|法|德|希|匈|爱尔|意|拉|立|卢|马其它|荷|波|葡|罗|斯洛伐|斯洛文|西|瑞|英|🇧🇪|🇨🇿|🇩🇰|🇫🇮|🇫🇷|🇩🇪|🇮🇪|🇮🇹|🇱🇹|🇱🇺|🇳🇱|🇵🇱|🇸🇪|🇬🇧|CDG|FRA|AMS|MAD|BCN|FCO|MUC|BRU))(?!.*(美|马来|印度|5x)).*$'
+冷门: &FilterOT '^(?!.*(?i)(DIRECT|ali|china|tencent|维护|可用|🎯 全球直连|美|港|坡|台|新|日|韩|奥|比|保|克罗地亚|塞|捷|丹|爱沙|芬|法|德|希|匈|爱尔|意|拉|立|卢|马其它|荷|波|葡|罗|斯洛伐|斯洛文|西|瑞|英|🇭🇰|🇼🇸|🇹🇼|🇸🇬|🇯🇵|🇰🇷|🇺🇸|🇬🇧|🇦🇹|🇧🇪|🇨🇿|🇩🇰|🇫🇮|🇫🇷|🇩🇪|🇮🇪|🇮🇹|🇱🇹|🇱🇺|🇳🇱|🇵🇱|🇸🇪|HK|TW|SG|JP|KR|US|GB|CDG|FRA|AMS|MAD|BCN|FCO|MUC|BRU|HKG|TPE|TSA|KHH|SIN|XSP|NRT|HND|KIX|CTS|FUK|JFK|LAX|ORD|ATL|DFW|SFO|MIA|SEA|IAD|LHR|LGW))'
+全球: &FilterAL '^(?!.*(?i)(DIRECT|ali|china|tencent|维护|可用|🎯 全球直连|群|邀请|返利|循环|官网|客服|网站|网址|获取|订阅|流量|到期|机场|下次|版本|官址|备用|过期|已用|联系|邮箱|工单|贩卖|通知|倒卖|防止|国内|地址|频道|无法|说明|使用|提示|特别|访问|支持|教程|关注|更新|作者|加入|USE|USED|TOTAL|EXPIRE|EMAIL|Panel|Channel|Author))'
+## ---------------- 策略组代理列表模板 --------------------------------
+默认节点: &JD {proxies: [🚀 故障转移, 🇭🇰 香港策略, 🇸🇬 狮城策略, 🇯🇵 日本策略, 🇰🇷 韩国策略, 🇺🇸 美国策略, 🇹🇼 台湾策略, 🇪🇺 欧盟策略, 🌐 冷门自选, 🌐 全部节点, 🎯 全球直连]}
+故转节点: &GZ {proxies: [🚀 故障转移HK, 🚀 故障转移US, 🚀 故障转移SG, 🚀 故障转移JP]}
+默认香港: &HK {proxies: [🇭🇰 香港策略, 🇸🇬 狮城策略, 🇯🇵 日本策略, 🇺🇸 美国策略]}
+默认新加坡: &SG {proxies: [🇸🇬 狮城策略, 🇭🇰 香港策略, 🇯🇵 日本策略, 🇺🇸 美国策略]}
+默认美国: &US {proxies: [🇺🇸 美国策略, 🇸🇬 狮城策略, 🇭🇰 香港策略, 🇯🇵 日本策略]}
+默认日本: &JP {proxies: [🇯🇵 日本策略, 🇺🇸 美国策略, 🇸🇬 狮城策略, 🇭🇰 香港策略]}
+默认直连: &direct {proxies: [🎯 全球直连, 🇭🇰 香港策略, 🇸🇬 狮城策略, 🇯🇵 日本策略, 🇺🇸 美国策略, 🌐 冷门自选, 🌐 全部节点]}
+## ---------------- 代理组模板锚点 --------------------------------
+稳定: &wd {<<: [*BaseFB, proxies: [🚀 故障转移]]}
+代理: &dl {<<: [*BaseFB, proxies: [🚀 节点选择]]}
+直连: &zl {<<: [*BaseFB, proxies: [🎯 全球直连]]}
+自选: &zx {<<: [*BaseSL, *JD]}
+自选故转: &gz {<<: [*BaseSL, *GZ]}
+广告: &ad {<<: [*BaseFB, proxies: [REJECT]]}
+
+# ==================== 代理策略组 ====================
+proxy-groups:
+  # ---------------- 主要策略组 ----------------
+  - {name: 🚀 节点选择,       <<: *zx, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Static.png}
+  - {name: 🚀 故障转移,       <<: *gz, hidden: false, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/ULB.png}
+  - {name: 🚀 故障转移HK,     <<: [*BaseFB, *HK], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/ULB.png}
+  - {name: 🚀 故障转移SG,     <<: [*BaseFB, *SG], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/ULB.png}
+  - {name: 🚀 故障转移US,     <<: [*BaseFB, *US], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/ULB.png}
+  - {name: 🚀 故障转移JP,     <<: [*BaseFB, *JP], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/ULB.png}
+  - {name: 🪜 代理域名,       <<: *dl, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Static.png}
+  - {name: 🌐 自用代理,       <<: *dl, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Static.png}
+  - {name: 🇨🇳 自用直连,       <<: *zl}
+  - {name: 🇨🇳 直连域名,       <<: *zl}
+  - {name: 🔒 私有网络,       <<: *zl}
+  - {name: 🐟 漏网之鱼,       <<: *dl, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Final.png}
+  # ---------------- 功能策略组 ----------------
+  - {name: 📈 测速地址,       <<: *zl, include-all: true, filter: *FilterAL, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Speedtest.png}
+  - {name: 🖥️ 直连软件,       <<: *zl}
+  - {name: 🖥️ 代理软件,       <<: *wd}
+  - {name: 🖥️ 直连服务,       <<: *zl}
+  - {name: 🖥️ 代理服务,       <<: *wd}  
+  - {name: 🆎 广告拦截,       <<: *ad} 
+  - {name: 🆎 追踪拦截,       <<: *ad} 
+  # ---------------- 媒体服务 ----------------
+  - {name: 📹 视频平台,       <<: *gz, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/YouTube.png}
+  # ---------------- 社交平台 ----------------
+  - {name: 📲 Telegram,      <<: *gz, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Telegram_X.png}
+  #- {name: 🎯 抖快书定位,    <<: *zl, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Null_Nation.png}
+  # ---------------- 商业服务 ----------------
+  - {name: 🤖 AI,            <<: [*BaseFB, *SG], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/AI.png}
+  - {name: 💶 PayPal,        <<: *wd, icon: https://git.imee.me/https://raw.githubusercontent.com/Orz-3/mini/master/Alpha/Bitcloud.png}
+  - {name: 🎮 game@CN,       <<: *zl, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Game.png}
+  - {name: 👨🏿‍💻 GitHub,        <<: *dl, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Microsoft.png}
+  - {name: 🪟 OneDrive,      <<: [*BaseFB, *US], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/OneDrive.png}
+  - {name: 🪟 Bing,          <<: *dl, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Microsoft.png}
+  - {name: 🪟 Microsoft,     <<: *zl, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Microsoft.png}
+  - {name: 🇬 谷歌,            <<: [*BaseFB, *HK], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Google_Search.png}
+  - {name: 🇬 谷歌@CN,         <<: *zl, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Google_Search.png}
+  - {name: 🍎 Apple,         <<: *zl, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Apple.png}
+  # ---------------- 地区策略组 ----------------
+  - {name: 🇭🇰 香港策略,     type: select, proxies: [🇭🇰 香港自动, 🇭🇰 香港均衡-散列, 🇭🇰 香港均衡-轮询], include-all: true, filter: *HKall, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Hong_Kong.png}
+  - {name: 🇹🇼 台湾策略,     type: select, proxies: [🇹🇼 台湾自动, 🇹🇼 台湾均衡-散列, 🇹🇼 台湾均衡-轮询], include-all: true, filter: *FilterTW, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Taiwan.png}
+  - {name: 🇸🇬 狮城策略,     type: select, proxies: [🇸🇬 狮城自动, 🇸🇬 狮城均衡-散列, 🇸🇬 狮城均衡-轮询], include-all: true, filter: *SGall, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Singapore.png}
+  - {name: 🇯🇵 日本策略,     type: select, proxies: [🇯🇵 日本自动, 🇯🇵 日本均衡-散列, 🇯🇵 日本均衡-轮询], include-all: true, filter: *FilterJP, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Japan.png}
+  - {name: 🇰🇷 韩国策略,     type: select, proxies: [🇰🇷 韩国自动, 🇰🇷 韩国均衡-散列, 🇰🇷 韩国均衡-轮询], include-all: true, filter: *FilterKR, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Korea.png}
+  - {name: 🇺🇸 美国策略,     type: select, proxies: [🇺🇸 美国自动, 🇺🇸 美国均衡-散列, 🇺🇸 美国均衡-轮询], include-all: true, filter: *USall, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/United_States.png}
+  - {name: 🇪🇺 欧盟策略,     type: select, proxies: [🇪🇺 欧盟自动, 🇪🇺 欧盟均衡-散列, 🇪🇺 欧盟均衡-轮询], include-all: true, filter: *EUall, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/European_Union.png}
+  # ---------------- 其他策略组 ----------------
+  - {name: 🌐 冷门自选,     type: select, include-all: true, filter: *FilterOT, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Europe_Map.png}
+  - {name: 🌐 全部节点,     type: select, include-all: true, filter: *FilterAL, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Clubhouse.png}
+  # ---------------- 自动测速组 ----------------
+  - {name: 🇭🇰 香港自动,      <<: *BaseUT, include-all: true, filter: *FilterHK, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Auto.png}
+  - {name: 🇹🇼 台湾自动,      <<: *BaseUT, include-all: true, filter: *FilterTW, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Auto.png}
+  - {name: 🇸🇬 狮城自动,      <<: *BaseUT, include-all: true, filter: *FilterSG, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Auto.png}
+  - {name: 🇯🇵 日本自动,      <<: *BaseUT, include-all: true, filter: *FilterJP, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Auto.png}
+  - {name: 🇰🇷 韩国自动,      <<: *BaseUT, include-all: true, filter: *FilterKR, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Auto.png}
+  - {name: 🇺🇸 美国自动,      <<: *BaseUT, include-all: true, filter: *FilterUS, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Auto.png}
+  - {name: 🇪🇺 欧盟自动,      <<: *BaseUT, include-all: true, filter: *FilterEU, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Auto.png}
+  # ---------------- 负载均衡-散列 ----------------
+  - {name: 🇭🇰 香港均衡-散列,  <<: *BaseCH, include-all: true, filter: *FilterHK, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Round_Robin_1.png}
+  - {name: 🇹🇼 台湾均衡-散列,  <<: *BaseCH, include-all: true, filter: *FilterTW, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Round_Robin_1.png}
+  - {name: 🇸🇬 狮城均衡-散列,  <<: *BaseCH, include-all: true, filter: *FilterSG, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Round_Robin_1.png}
+  - {name: 🇯🇵 日本均衡-散列,  <<: *BaseCH, include-all: true, filter: *FilterJP, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Round_Robin_1.png}
+  - {name: 🇰🇷 韩国均衡-散列,  <<: *BaseCH, include-all: true, filter: *FilterKR, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Round_Robin_1.png}
+  - {name: 🇺🇸 美国均衡-散列,  <<: *BaseCH, include-all: true, filter: *FilterUS, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Round_Robin_1.png}
+  - {name: 🇪🇺 欧盟均衡-散列,  <<: *BaseCH, include-all: true, filter: *FilterEU, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Round_Robin_1.png}
+  # ---------------- 负载均衡-轮询 ----------------
+  - {name: 🇭🇰 香港均衡-轮询,  <<: *BaseCR, include-all: true, filter: *FilterHK, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Round_Robin.png}
+  - {name: 🇹🇼 台湾均衡-轮询,  <<: *BaseCR, include-all: true, filter: *FilterTW, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Round_Robin.png}
+  - {name: 🇸🇬 狮城均衡-轮询,  <<: *BaseCR, include-all: true, filter: *FilterSG, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Round_Robin.png}
+  - {name: 🇯🇵 日本均衡-轮询,  <<: *BaseCR, include-all: true, filter: *FilterJP, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Round_Robin.png}
+  - {name: 🇰🇷 韩国均衡-轮询,  <<: *BaseCR, include-all: true, filter: *FilterKR, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Round_Robin.png}
+  - {name: 🇺🇸 美国均衡-轮询,  <<: *BaseCR, include-all: true, filter: *FilterUS, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Round_Robin.png}
+  - {name: 🇪🇺 欧盟均衡-轮询,  <<: *BaseCR, include-all: true, filter: *FilterEU, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Round_Robin.png}
+
+  # ---------------- 中转服务层 ---------------- # 提供中转服务提升连通性，选用一个或多个服务商做中转，比如 优质服务商，可通过正则表达式，过滤掉不需要的节点，使用时请修改
+  #- {name: ♻️ 链式代理,     type: relay, proxies: [♻️ 中转机, ♻️ 落地机], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/TIDAL_1.png}
+  #- {name: ♻️ 中转服务,     <<: [*BaseSL, *direct], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Rocket.png}
+  #- {name: ♻️ 落地服务,     <<: [*BaseSL, *direct], include-all: true, filter: *FilterAL, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Domestic.png}
+  #- {name: ♻️ 中转服务,     <<: *BaseCH, include-all: true, filter: *nfHK, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Round_Robin.png}
+  
+        ## reg: 'slbable$'表示以slbable字符结尾订阅地址的开启负载均衡
+  
+        ## type: load-balance
+        ## load-balance: 负载均衡模式，Clash会均衡地使用组内的代理服务器，适用于需要分散请求负载的场景。
+        ## strategy: consistent-hashing 表示负载均衡策略为一致性散列Hash
+        ## strategy: round-robin 表示负载均衡策略为轮询
+  
+        ## type: url-test, tolerance: 50, interval: 300
+        ## URL-Test: 自动测试模式，Clash会定期测试组内代理的连接速度，自动选择最快的代理服务器。
+        ## interval: 30 表示每隔30秒检查节点是否可用
+        ## tolerance 延迟切换阈值
+        ## lazy, true
+     
+        ## Select: 手动选择模式，用户可以从组内选择一个代理进行连接。
+        ## Fallback: 故障转移模式，Clash会按顺序测试代理服务器，直到找到一个可用的代理。
+
+# ==========================================================
+## ----------------规则---------------------# (规则决定流量走向，从上到下逐条匹配，匹配即停止)
+rules:
+
+## ----------------前置规则组---------------------
+  - or,((geosite,private),(geoip,private)),🔒 私有网络
+  #- RULE-SET,直连推送软件,🖥️ 直连软件
+  - PROCESS-NAME,com.google.android.googlequicksearchbox,🚀 故障转移SG # Google应用
+  - geosite,spotify,🚀 故障转移JP
+  - geosite,tiktok,🚀 故障转移US
+
+## ----------------广告拦截组--------------------- REJECT-DROP 拒绝连接并静默丢弃
+  - or,((geosite,tracker),(geosite,category-public-tracker)),🆎 追踪拦截
+  - or,((geosite,category-ads-all),(geoip,ad)),🆎 广告拦截
+  - PROCESS-NAME,com.samsung.android.packageinstaller,🆎 广告拦截
+
+## ----------------直连功能组---------------------
+  - RULE-SET,自用代理规则,🌐 自用代理
+  - RULE-SET,自用直连规则,🇨🇳 自用直连
+  - RULE-SET,自用代理软件,🖥️ 代理软件
+  - RULE-SET,自用直连软件,🖥️ 直连软件
+  - geosite,ookla-speedtest,📈 测速地址
+  - geosite,apple,🍎 Apple
+  - geosite,category-games-cn,🎮 game@CN
+  - geosite,googlefcm,🇬 谷歌@CN
+  - geosite,google@cn,🇬 谷歌@CN
+  - or,((geosite,cn),(geoip,cn)),🇨🇳 直连域名
+
+## ----------------分流功能组---------------------
+  #- AND,((DST-PORT,443),(NETWORK,UDP)),REJECT # http3
+  - or,((geosite,openai),(geosite,google-gemini),(geosite,category-ai-!cn)),🤖 AI
+  - geosite,paypal,💶 PayPal
+  - geosite,github,👨🏿‍💻 GitHub
+  - geosite,onedrive,🪟 OneDrive
+  - geosite,Bing,🪟 Bing
+  - or,((geosite,youtube),(geosite,twitter),(geosite,netflix),(geosite,twitch),(geosite,vk),(geosite,disney),(geosite,biliintl),(geosite,category-porn)),📹 视频平台
+  - geosite,telegram,📲 Telegram
+  - geosite,microsoft,🪟 Microsoft
+  - geosite,google,🇬 谷歌
+
+## ----------------代理组---------------------
+  - geosite,gfw,🪜 代理域名
+  - geosite,geolocation-!cn,🪜 代理域名
+
+## ----------------兜底组---------------------
+  - geosite,cloudflare,🖥️ 代理服务
+
+## ----------------ip组---------------------  
+  - geoip,telegram,📲 Telegram
+  - geoip,google,🇬 谷歌
+  - geoip,cloudflare,🖥️ 代理服务
+  - geoip,cloudfront,🖥️ 代理服务
+
+  - MATCH,🐟 漏网之鱼
+
+# ==========================================================
+## ----------------规则组定义锚---------------------# (定义规则提供者的模板锚点)
+rule-anchor:
+  ip: &ip {type: http, interval: 86400, behavior: ipcidr, format: mrs} # ipcidr: IP段规则
+  domain: &domain {type: http, interval: 86400, behavior: domain, format: mrs} # domain: 域名规则
+  class: &class {type: http, interval: 86400, behavior: classical, format: text} # classical: 传统关键字/域名后缀规则
+  class-yaml: &class-yaml {type: http, interval: 86400, behavior: classical, format: yaml} # classical: 传统关键字/域名后缀规则
+  yaml-domain: &yaml-domain {type: http, interval: 86400, behavior: domain, format: yaml} 
+  text-domain: &text-domain {type: http, interval: 86400, behavior: domain, format: text} 
+
+# ==========================================================
+## ----------------规则提供者---------------------#自定义规则，替换为你自己的订阅规则，注意格式和语法
+rule-providers:
+## ----------------class规则提供者---------------------
+  自用直连规则: {!!merge <<: *class, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/1/zlgz.list"}
+  自用代理规则: {!!merge <<: *class, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/1/dlgz.list"}
+  自用直连软件: {!!merge <<: *class, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/1/zlrj.list"}
+  自用代理软件: {!!merge <<: *class, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/1/dlrj.list"}
+  #直连推送软件: {!!merge <<: *class, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/1/tsrj.list"}
+## ----------------广告拦截规则提供者---------------------
+  #广告拦截BanAD: {!!merge <<: *class, url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/refs/heads/master/Clash/BanAD.list"}
+  #广告拦截BanEasyList: {!!merge <<: *class, url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/refs/heads/master/Clash/BanEasyList.list"}
+  #广告拦截BanEasyPrivacy: {!!merge <<: *class, url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/refs/heads/master/Clash/BanEasyPrivacy.list"}
+  #广告拦截BanEasyListChina: {!!merge <<: *class, url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/refs/heads/master/Clash/BanEasyListChina.list"}
+  #广告拦截BanProgramAD: {!!merge <<: *class, url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/refs/heads/master/Clash/BanProgramAD.list"}
+## ----------------domain域名规则提供者---------------------
+  #fake_ip_filter_DustinWin: {!!merge <<: *domain, url: "https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/fakeip-filter.mrs"}
+  自用fake-ip-filter: {!!merge <<: *text-domain, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/2/fkip.list"}
+  #抖快书定位: {!!merge <<: *domain, url: "https://github.com/666OS/rules/raw/release/mihomo/domain/LocationDKS.mrs"}
+## ----------------ip规则提供者---------------------  
