@@ -196,6 +196,8 @@ dns:
     "geosite:google,youtube":
       - https://dns.google/dns-query
     "geosite:geolocation-!cn,gfw": *dns_guowai
+  fallback:
+    - https://dns.google/dns-query
 
 ## ----------------  地理数据 ----------------
 geox-url: # 数据库下载地址
