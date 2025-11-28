@@ -97,7 +97,7 @@ socks-port: 7891 # SOCKS5代理端口
 #tproxy-port: 7894  # TProxy透明代理端口 (Linux)
 mixed-port: 7893 # 混合代理端口 (同时支持HTTP和SOCKS5)
 ipv6: true # 允许处理IPv6流量
-allow-lan: true # 允许局域网设备连接此代理
+allow-lan: false # 允许局域网设备连接此代理
 unified-delay: true # 对所有类型节点使用统一的延迟计算标准
 tcp-concurrent: true # 尝试与多个IP建立TCP连接，提高响应速度
 external-controller: 127.0.0.1:9090 # 外部UI控制器的访问地址和端口，'0.0.0.0'表示任何IP都可访问
