@@ -328,12 +328,6 @@ proxy-groups:
   - {name: 🇺🇸 美国均衡-轮询,  <<: *BaseCR, include-all: true, filter: *FilterUS, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Round_Robin.png}
   - {name: 🇪🇺 欧盟均衡-轮询,  <<: *BaseCR, include-all: true, filter: *FilterEU, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Round_Robin.png}
 
-  # ---------------- 中转服务层 ---------------- # 提供中转服务提升连通性，选用一个或多个服务商做中转，比如 优质服务商，可通过正则表达式，过滤掉不需要的节点，使用时请修改
-  #- {name: ♻️ 链式代理,     type: relay, proxies: [♻️ 中转机, ♻️ 落地机], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/TIDAL_1.png}
-  #- {name: ♻️ 中转服务,     <<: [*BaseSL, *direct], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Rocket.png}
-  #- {name: ♻️ 落地服务,     <<: [*BaseSL, *direct], include-all: true, filter: *FilterAL, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Domestic.png}
-  #- {name: ♻️ 中转服务,     <<: *BaseCH, include-all: true, filter: *FilterHK, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Round_Robin.png}
-
 
 # ==========================================================
 ## ----------------规则---------------------# (规则决定流量走向，从上到下逐条匹配，匹配即停止)
