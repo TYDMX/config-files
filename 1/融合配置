@@ -170,7 +170,7 @@ dns:
   cache-algorithm: arc
   use-hosts: false
   use-system-hosts: false
-  listen: 0.0.0.0:1053
+  listen: 127.0.0.1:1053 #（仅本机，网关设置0.0.0.0:1053）
   ipv6: true  
   prefer-h3: true
   respect-rules: true  
