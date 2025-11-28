@@ -100,7 +100,7 @@ ipv6: true # 允许处理IPv6流量
 allow-lan: true # 允许局域网设备连接此代理
 unified-delay: true # 对所有类型节点使用统一的延迟计算标准
 tcp-concurrent: true # 尝试与多个IP建立TCP连接，提高响应速度
-external-controller: 127.0.0.1/9090 # 外部UI控制器的访问地址和端口，'0.0.0.0'表示任何IP都可访问
+external-controller: 127.0.0.1:9090 # 外部UI控制器的访问地址和端口，'0.0.0.0'表示任何IP都可访问
 secret: "12345678" # 连接外部控制器时所需密码
 #external-ui: "/etc/mihomo/run/ui" # 外部UI(Dashboard)的静态文件存放目录
 #external-ui-name: zashboard # 使用的UI面板名
