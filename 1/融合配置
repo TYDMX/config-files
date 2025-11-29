@@ -179,10 +179,10 @@ dns:
 ## ---------------- # DNS锚点 #h3=true ----------------
   国内dns锚点: &dns_guonei
     - https://dns.alidns.com/dns-query
-    - https://doh.pub/dns-query
+    #- https://doh.pub/dns-query
   国外dns锚点: &dns_guowai
     - https://dns.cloudflare.com/dns-query
-    - https://dns.google/dns-query
+    #- https://dns.google/dns-query
 ## ---------------- # DNS配置 ----------------
   default-nameserver:
     - tls://223.5.5.5
