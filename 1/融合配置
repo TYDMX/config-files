@@ -213,6 +213,8 @@ proxies:
     udp: true
   - name: "🈚️ 假节点"
     type: reject
+  - name: "🚫 阻止"
+    type: reject
 
 # ==========================================================
 ## ---------------- 策略组类型模板 --------------------------------
@@ -246,53 +248,50 @@ proxies:
 默认日本: &JP {proxies: [🇯🇵 日本策略, 🇺🇸 美国策略, 🇸🇬 狮城策略, 🇭🇰 香港策略]}
 默认直连: &direct {proxies: [🎯 全球直连, 🇭🇰 香港策略, 🇸🇬 狮城策略, 🇯🇵 日本策略, 🇺🇸 美国策略, 🌐 冷门自选, 🌐 全部节点]}
 
-## ---------------- 代理组模板锚点 --------------------------------
-稳定: &wd {<<: [*BaseFB, proxies: [🚀 故障转移]]}
-代理: &dl {<<: [*BaseFB, proxies: [🚀 节点选择]]}
-直连: &zl {<<: [*BaseFB, proxies: [🎯 全球直连]]}
-自选: &zx {<<: [*BaseSL, *JD]}
-自选故转: &gz {<<: [*BaseSL, *GZ]}
-广告: &ad {<<: [*BaseFB, proxies: [REJECT]]}
 
 # ==================== 代理策略组 ====================
 proxy-groups:
   # ---------------- 主要策略组 ----------------
-  - {name: 🚀 节点选择,       <<: *zx, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Static.png}
-  - {name: 🚀 故障转移,       <<: *gz, hidden: false, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/ULB.png}
+  - {name: 🚀 节点选择,       <<: [*BaseSL, *JD], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Static.png}
+  - {name: 🚀 故障转移,       <<: [*BaseSL, *GZ], hidden: false, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/ULB.png}
   - {name: 🚀 故障转移HK,     <<: [*BaseFB, *HK], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/ULB.png}
   - {name: 🚀 故障转移SG,     <<: [*BaseFB, *SG], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/ULB.png}
   - {name: 🚀 故障转移US,     <<: [*BaseFB, *US], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/ULB.png}
   - {name: 🚀 故障转移JP,     <<: [*BaseFB, *JP], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/ULB.png}
-  - {name: 🪜 代理域名,       <<: *dl, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Static.png}
-  - {name: 🌐 自用代理,       <<: *dl, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Static.png}
-  - {name: 🇨🇳 自用直连,       <<: *zl}
-  - {name: 🇨🇳 直连域名,       <<: *zl}
-  - {name: 🔒 私有网络,       <<: *zl}
-  - {name: 🐟 漏网之鱼,       <<: *dl, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Final.png}
+  - {name: 🪜 代理域名,       <<: [*BaseFB, proxies: [🚀 节点选择]], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Static.png}
+  - {name: 🌐 自用代理,       <<: [*BaseFB, proxies: [🚀 节点选择]], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Static.png}
+  - {name: 🇨🇳 自用直连,       <<: [*BaseFB, proxies: [🎯 全球直连]]}
+  - {name: 🇨🇳 直连域名,       <<: [*BaseFB, proxies: [🎯 全球直连]]}
+  - {name: 🔒 私有网络,       <<: [*BaseFB, proxies: [🎯 全球直连]]}
+  - {name: 🐟 漏网之鱼,       <<: [*BaseFB, proxies: [🚀 节点选择]], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Final.png}
   # ---------------- 功能策略组 ----------------
-  - {name: 📈 测速地址,       <<: *zl, include-all: true, filter: *FilterAL, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Speedtest.png}
-  - {name: 🖥️ 直连软件,       <<: *zl}
-  - {name: 🖥️ 代理软件,       <<: *wd}
-  - {name: 🖥️ 直连服务,       <<: *zl}
-  - {name: 🖥️ 代理服务,       <<: *wd}  
-  - {name: 🆎 广告拦截,       <<: *ad} 
-  - {name: 🆎 追踪拦截,       <<: *ad} 
+  - {name: 📈 测速地址,       <<: [*BaseFB, proxies: [🎯 全球直连]], include-all: true, filter: *FilterAL, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Speedtest.png}
+  - {name: 🖥️ 直连软件,       <<: [*BaseFB, proxies: [🎯 全球直连]]}
+  - {name: 🖥️ 代理软件,       <<: [*BaseFB, proxies: [🚀 故障转移]]}
+  - {name: 🖥️ 直连服务,       <<: [*BaseFB, proxies: [🎯 全球直连]]}
+  - {name: 🖥️ 代理服务,       <<: [*BaseFB, proxies: [🚀 故障转移]]}  
+  - {name: 🚫 广告拦截,       <<: [*BaseFB, proxies: [🚫 阻止]]} 
+  - {name: 🚫 追踪拦截,       <<: [*BaseFB, proxies: [🚫 阻止]]} 
   # ---------------- 媒体服务 ----------------
-  - {name: 📹 视频平台,       <<: *gz, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/YouTube.png}
+  - {name: 📹 视频平台,       <<: [*BaseSL, *GZ], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/YouTube.png}
   # ---------------- 社交平台 ----------------
-  - {name: 📲 Telegram,      <<: *gz, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Telegram_X.png}
+  - {name: 📲 Telegram,      <<: [*BaseSL, *GZ], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Telegram_X.png}
   # ---------------- 商业服务 ----------------
   - {name: 🤖 AI,            <<: [*BaseFB, *SG], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/AI.png}
-  - {name: 💶 PayPal,        <<: *wd, icon: https://git.imee.me/https://raw.githubusercontent.com/Orz-3/mini/master/Alpha/Bitcloud.png}
-  - {name: 🎮 game@CN,       <<: *zl, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Game.png}
-  - {name: 👨🏿‍💻 GitHub,        <<: *dl, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Microsoft.png}
+  - {name: 💶 PayPal,        <<: [*BaseFB, proxies: [🚀 故障转移]], icon: https://git.imee.me/https://raw.githubusercontent.com/Orz-3/mini/master/Alpha/Bitcloud.png}
+  - {name: 🎮 game@CN,       <<: [*BaseFB, proxies: [🎯 全球直连]], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Game.png}
+  - {name: 👨🏿‍💻 GitHub,        <<: [*BaseFB, proxies: [🚀 节点选择]], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Microsoft.png}
   - {name: 🪟 OneDrive,      <<: [*BaseFB, *US], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/OneDrive.png}
-  - {name: 🪟 Bing,          <<: *dl, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Microsoft.png}
+  - {name: 🪟 Bing,          <<: [*BaseFB, proxies: [🚀 节点选择]], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Microsoft.png}
   - {name: 🪟 Microsoft,     <<: [*BaseSL, *direct], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Microsoft.png}
   - {name: 🇬 谷歌,            <<: [*BaseFB, *HK], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Google_Search.png}
-  - {name: 🇬 谷歌@CN,         <<: *zl, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Google_Search.png}
-  - {name: 🍎 Apple,         <<: *zl, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Apple.png}
-  # ---------------- 地区策略组 ----------------
+  - {name: 🇬 谷歌@CN,         <<: [*BaseFB, proxies: [🎯 全球直连]], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Google_Search.png}
+  - {name: 🍎 Apple,         <<: [*BaseFB, proxies: [🎯 全球直连]], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Apple.png}
+  # ---------------- 其他策略组 ----------------
+  - {name: 🌐 冷门自选,     type: select, include-all: true, filter: *FilterOT, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Europe_Map.png}
+  - {name: 🌐 全部节点,     type: select, include-all: true, filter: *FilterAL, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Clubhouse.png}
+
+  # ==================== 地区策略组 ====================
   - {name: 🇭🇰 香港策略,     type: select, proxies: [🇭🇰 香港自动, 🇭🇰 香港均衡-散列, 🇭🇰 香港均衡-轮询], include-all: true, filter: *HKall, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Hong_Kong.png}
   - {name: 🇹🇼 台湾策略,     type: select, proxies: [🇹🇼 台湾自动, 🇹🇼 台湾均衡-散列, 🇹🇼 台湾均衡-轮询], include-all: true, filter: *FilterTW, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Taiwan.png}
   - {name: 🇸🇬 狮城策略,     type: select, proxies: [🇸🇬 狮城自动, 🇸🇬 狮城均衡-散列, 🇸🇬 狮城均衡-轮询], include-all: true, filter: *SGall, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Singapore.png}
@@ -300,9 +299,6 @@ proxy-groups:
   - {name: 🇰🇷 韩国策略,     type: select, proxies: [🇰🇷 韩国自动, 🇰🇷 韩国均衡-散列, 🇰🇷 韩国均衡-轮询], include-all: true, filter: *FilterKR, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Korea.png}
   - {name: 🇺🇸 美国策略,     type: select, proxies: [🇺🇸 美国自动, 🇺🇸 美国均衡-散列, 🇺🇸 美国均衡-轮询], include-all: true, filter: *USall, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/United_States.png}
   - {name: 🇪🇺 欧盟策略,     type: select, proxies: [🇪🇺 欧盟自动, 🇪🇺 欧盟均衡-散列, 🇪🇺 欧盟均衡-轮询], include-all: true, filter: *EUall, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/European_Union.png}
-  # ---------------- 其他策略组 ----------------
-  - {name: 🌐 冷门自选,     type: select, include-all: true, filter: *FilterOT, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Europe_Map.png}
-  - {name: 🌐 全部节点,     type: select, include-all: true, filter: *FilterAL, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Clubhouse.png}
   # ---------------- 自动测速组 ----------------
   - {name: 🇭🇰 香港自动,      <<: *BaseUT, include-all: true, filter: *FilterHK, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Auto.png}
   - {name: 🇹🇼 台湾自动,      <<: *BaseUT, include-all: true, filter: *FilterTW, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Auto.png}
@@ -341,9 +337,9 @@ rules:
   - geosite,tiktok,🚀 故障转移US
 
 ## ----------------广告拦截组--------------------- REJECT-DROP 拒绝连接并静默丢弃
-  - or,((geosite,tracker),(geosite,category-public-tracker)),🆎 追踪拦截
-  - or,((geosite,category-ads-all),(geoip,ad)),🆎 广告拦截
-  - PROCESS-NAME,com.samsung.android.packageinstaller,🆎 广告拦截
+  - or,((geosite,tracker),(geosite,category-public-tracker)),🚫 追踪拦截
+  - or,((geosite,category-ads-all),(geoip,ad)),🚫 广告拦截
+  - PROCESS-NAME,com.samsung.android.packageinstaller,🚫 广告拦截
 
 ## ----------------直连功能组---------------------
   - RULE-SET,自用代理规则,🌐 自用代理
