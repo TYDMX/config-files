@@ -73,7 +73,6 @@ proxy-providers:
     override:
       additional-prefix: "💧 "
       #additional-suffix: " 💧"
-
       
   Clash Verge 💧:
     <<: *template
