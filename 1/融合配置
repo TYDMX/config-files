@@ -67,6 +67,14 @@ proxy-providers:
       additional-prefix: "💧 "
       #additional-suffix: " 💧"
       
+  FlyClash smart 💧:
+    <<: *template
+    url: "https://9.nfsqttt.us/nfsq/?token=ao6i1gJAAbHuKIgCO9w8P7mgf-b9gcUF"
+    override:
+      additional-prefix: "💧 "
+      #additional-suffix: " 💧"
+
+      
   Clash Verge 💧:
     <<: *template
     url: "https://1.nfsqttt.us/nfsq/?token=vIW9ao2HtgbpfTdG4WYtbSQF67ns5GW_"
