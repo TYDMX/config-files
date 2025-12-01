@@ -231,6 +231,7 @@ proxies:
 哈希散列: &BaseCH {type: load-balance, interval: 333, strategy: consistent-hashing, hidden: true, lazy: true}
 轮询: &BaseCR {type: load-balance, interval: 366, strategy: round-robin, hidden: true, lazy: true}
 测速: &BaseUT {type: url-test, tolerance: 50, interval: 399, hidden: true, lazy: true}
+#smart测速: &BaseUT {type: smart, tolerance: 50, interval: 399, hidden: true, lazy: true}
 选择: &BaseSL {type: select}
 
 ## ---------------- 节点筛选正则表达式 --------------------------------
