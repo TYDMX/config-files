@@ -30,7 +30,7 @@
     max-connections: 32 # 同一客户端允许的最大物理连接数（抗阻塞能力，不止一个 TCP）
     max-streams: 128 # 每个连接可承载的逻辑流数量，并发性能
     statistic: false # 记录 smux 的统计信息（连接/流量）
-    only-tcp: true # 是否只在 TCP 上启用smux，是否可以在 QUIC/XTLS 上也启用
+    only-tcp: false # 是否只在 TCP 上启用smux，是否可以在 QUIC/XTLS 上也启用
   #proxies: select1 # 使用此提供者为select1中转
   #proxy: select1 # 更新用的代理组
     override:
@@ -347,8 +347,8 @@ rules:
   - geosite,tiktok,🚀 故障转移US
 
 ## ----------------广告拦截组--------------------- REJECT-DROP 拒绝连接并静默丢弃
-  - or,((geosite,tracker),(geosite,category-public-tracker)),🚫 追踪拦截
-  - or,((geosite,category-ads-all),(geoip,ad)),🚫 广告拦截
+  #- or,((geosite,tracker),(geosite,category-public-tracker)),🚫 追踪拦截
+  #- or,((geosite,category-ads-all),(geoip,ad)),🚫 广告拦截
   - PROCESS-NAME,com.samsung.android.packageinstaller,🚫 广告拦截
 
 ## ----------------直连功能组---------------------
