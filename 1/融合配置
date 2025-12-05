@@ -286,7 +286,7 @@ proxy-groups:
   - {name: 📹 视频平台,       <<: [*BaseSL, *GZ], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/YouTube.png}
   # ---------------- 社交平台 ----------------
   - {name: 📲 Telegram,      <<: [*BaseSL, *GZ], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Telegram_X.png}
-  # ---------------- 商业服务 ----------------
+  # ---------------- 分流服务 ----------------
   - {name: 🤖 AI,            <<: [*BaseFB, *SG], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/AI.png}
   - {name: 💶 PayPal,        <<: [*BaseFB, proxies: [🚀 故障转移]], icon: https://git.imee.me/https://raw.githubusercontent.com/Orz-3/mini/master/Alpha/Bitcloud.png}
   - {name: 🎮 game@CN,       <<: [*BaseFB, proxies: [🎯 全球直连]], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Game.png}
@@ -339,11 +339,11 @@ proxy-groups:
 ## ----------------规则---------------------# (规则决定流量走向，从上到下逐条匹配，匹配即停止)
 rules:
   - or,((geosite,private),(geoip,private)),🔒 私有网络
-## ----------------广告拦截组--------------------- REJECT-DROP 拒绝连接并静默丢弃
+## ----------------拦截组--------------------- REJECT-DROP 拒绝连接并静默丢弃
   #- RULE-SET,直连推送软件,🖥️ 直连软件
   - or,((geosite,tracker),(geosite,category-public-tracker)),🚫 追踪拦截
   - or,((geosite,category-ads-all),(geoip,ad)),🚫 广告拦截
-## ----------------前置规则组---------------------
+## ----------------前置组---------------------
   - PROCESS-NAME,com.samsung.android.packageinstaller,🚫 广告拦截
   - PROCESS-NAME,com.google.android.googlequicksearchbox,🚀 故障转移SG # Google应用
   - geosite,spotify,🚀 故障转移JP
@@ -352,26 +352,24 @@ rules:
   - RULE-SET,自用直连规则,🇨🇳 自用直连
   - RULE-SET,自用代理软件,🖥️ 代理软件
   - RULE-SET,自用直连软件,🖥️ 直连软件
-
-## ----------------直连功能组---------------------
+## ----------------直连组---------------------
   - geosite,ookla-speedtest,📈 测速地址
   - geosite,apple,🍎 Apple
   - geosite,category-games-cn,🎮 game@CN
   - or,((geosite,google@cn),(geosite,googlefcm)),🇬 谷歌@CN
-
-## ----------------分流功能组---------------------
+## ----------------分流组---------------------
   #- AND,((DST-PORT,443),(NETWORK,UDP)),REJECT # http3
   - or,((geosite,openai),(geosite,google-gemini),(geosite,category-ai-!cn)),🤖 AI
-  - or,((geosite,google),(geoip,google)),🇬 谷歌
   - geosite,paypal,💶 PayPal
   - geosite,github,👨🏿‍💻 GitHub
   - geosite,onedrive,🪟 OneDrive
   - geosite,Bing,🪟 Bing
-  - geosite,microsoft,🪟 Microsoft
-  - or,((geosite,cloudflare),(geoip,cloudflare),(geoip,cloudfront)),🖥️ 代理服务
   - or,((geosite,telegram),(geoip,telegram)),📲 Telegram
   - or,((geosite,youtube),(geosite,twitter),(geosite,netflix),(geosite,twitch),(geosite,vk),(geosite,disney),(geosite,biliintl),(geosite,category-porn)),📹 视频平台
-
+## ----------------功能组---------------------
+  - geosite,microsoft,🪟 Microsoft
+  - or,((geosite,google),(geoip,google)),🇬 谷歌
+  - or,((geosite,cloudflare),(geoip,cloudflare),(geoip,cloudfront)),🖥️ 代理服务
 ## ----------------兜底组---------------------
   #- geosite,gfw,🪜 代理域名
   #- geosite,geolocation-!cn,🪜 代理域名
