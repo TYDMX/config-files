@@ -285,7 +285,7 @@ proxy-groups:
   # ---------------- 媒体服务 ----------------
   - {name: 📹 视频平台,       <<: [*BaseSL, *GZ], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/YouTube.png}
   # ---------------- 社交平台 ----------------
-  - {name: 📲 Telegram,      <<: [*BaseSL, *GZ], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Telegram_X.png}
+  - {name: 📲 社交平台,       <<: [*BaseSL, *GZ], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Telegram_X.png}
   # ---------------- 分流服务 ----------------
   - {name: 🤖 AI,            <<: [*BaseFB, *SG], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/AI.png}
   - {name: 💶 PayPal,        <<: [*BaseFB, proxies: [🚀 故障转移]], icon: https://git.imee.me/https://raw.githubusercontent.com/Orz-3/mini/master/Alpha/Bitcloud.png}
@@ -364,8 +364,8 @@ rules:
   - geosite,github,👨🏿‍💻 GitHub
   - geosite,onedrive,🪟 OneDrive
   - geosite,Bing,🪟 Bing
-  - or,((geosite,telegram),(geoip,telegram)),📲 Telegram
-  - or,((geosite,youtube),(geosite,twitter),(geosite,netflix),(geosite,twitch),(geosite,vk),(geosite,disney),(geosite,biliintl),(geosite,category-porn)),📹 视频平台
+  - or,((geosite,telegram),(geoip,telegram),(geosite,twitter)),📲 社交平台
+  - or,((geosite,youtube),(geosite,netflix),(geosite,twitch),(geosite,vk),(geosite,disney),(geosite,biliintl),(geosite,category-porn)),📹 视频平台
 ## ----------------功能组---------------------
   - geosite,microsoft,🪟 Microsoft
   - or,((geosite,google),(geoip,google)),🇬 谷歌
