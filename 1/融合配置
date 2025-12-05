@@ -27,8 +27,9 @@
     padding: false # 增加随机数据
     protocol: smux4 # 使用的复用协议类型 smux，Yamux, h2mux, smux4
     #mode: auto
-    max-connections: 32 # 同一客户端允许的最大物理连接数（抗阻塞能力，不止一个 TCP）
-    max-streams: 128 # 每个连接可承载的逻辑流数量，并发性能
+    max-connections: 16 # 同一客户端允许的最大物理连接数（抗阻塞能力，不止一个 TCP）
+    max-streams: 64 # 每个连接可承载的逻辑流数量，并发性能
+    min-streams: 16
     statistic: false # 记录 smux 的统计信息（连接/流量）
     only-tcp: false # 是否只在 TCP 上启用smux，是否可以在 QUIC/XTLS 上也启用
   #proxies: select1 # 使用此提供者为select1中转
