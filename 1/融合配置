@@ -179,7 +179,7 @@ dns:
   fake-ip-filter-mode: blacklist
   fake-ip-filter:
     - "geosite:connectivity-check"
-    - "geosite:private,cn,geolocation-cn"
+    #- "geosite:private,cn,geolocation-cn"
     - "geosite:Google@CN,googlefcm"
     - "rule-set:自用fake-ip-filter"
     - WORKGROUP
@@ -361,7 +361,6 @@ rules:
   - geosite,category-games-cn,🎮 game@CN
   - geosite,googlefcm,🇬 谷歌@CN
   - geosite,google@cn,🇬 谷歌@CN
-  - or,((geosite,cn),(geoip,cn)),🇨🇳 直连域名
 
 ## ----------------分流功能组---------------------
   #- AND,((DST-PORT,443),(NETWORK,UDP)),REJECT # http3
@@ -374,20 +373,20 @@ rules:
   - geosite,telegram,📲 Telegram
   - geosite,microsoft,🪟 Microsoft
   - geosite,google,🇬 谷歌
+  - geoip,google,🇬 谷歌
 
 ## ----------------代理组---------------------
-  - geosite,gfw,🪜 代理域名
-  - geosite,geolocation-!cn,🪜 代理域名
-
-## ----------------兜底组---------------------
+  #- geosite,gfw,🪜 代理域名
+  #- geosite,geolocation-!cn,🪜 代理域名
   - geosite,cloudflare,🖥️ 代理服务
 
 ## ----------------ip组---------------------  
   - geoip,telegram,📲 Telegram
-  - geoip,google,🇬 谷歌
   - geoip,cloudflare,🖥️ 代理服务
   - geoip,cloudfront,🖥️ 代理服务
 
+## ----------------兜底组---------------------
+  - or,((geosite,cn),(geoip,cn)),🇨🇳 直连域名
   - MATCH,🐟 漏网之鱼
 
 # ==========================================================
