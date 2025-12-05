@@ -362,15 +362,15 @@ rules:
 ## ----------------分流功能组---------------------
   #- AND,((DST-PORT,443),(NETWORK,UDP)),REJECT # http3
   - or,((geosite,openai),(geosite,google-gemini),(geosite,category-ai-!cn)),🤖 AI
+  - or,((geosite,google),(geoip,google)),🇬 谷歌
   - geosite,paypal,💶 PayPal
   - geosite,github,👨🏿‍💻 GitHub
   - geosite,onedrive,🪟 OneDrive
   - geosite,Bing,🪟 Bing
-  - or,((geosite,youtube),(geosite,twitter),(geosite,netflix),(geosite,twitch),(geosite,vk),(geosite,disney),(geosite,biliintl),(geosite,category-porn)),📹 视频平台
-  - or,((geosite,telegram),(geoip,telegram)),📲 Telegram
   - geosite,microsoft,🪟 Microsoft
-  - or,((geosite,google),(geoip,google)),🇬 谷歌
   - or,((geosite,cloudflare),(geoip,cloudflare),(geoip,cloudfront)),🖥️ 代理服务
+  - or,((geosite,telegram),(geoip,telegram)),📲 Telegram
+  - or,((geosite,youtube),(geosite,twitter),(geosite,netflix),(geosite,twitch),(geosite,vk),(geosite,disney),(geosite,biliintl),(geosite,category-porn)),📹 视频平台
 
 ## ----------------兜底组---------------------
   #- geosite,gfw,🪜 代理域名
