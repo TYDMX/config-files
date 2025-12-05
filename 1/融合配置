@@ -226,14 +226,6 @@ proxies:
     type: reject
 
 # ==========================================================
-## ---------------- 策略组类型模板 --------------------------------
-故转: &BaseFB {type: fallback, interval: 300, hidden: true, lazy: true}
-哈希散列: &BaseCH {type: load-balance, interval: 333, strategy: consistent-hashing, hidden: true, lazy: true}
-轮询: &BaseCR {type: load-balance, interval: 366, strategy: round-robin, hidden: true, lazy: true}
-测速: &BaseUT {type: url-test, tolerance: 50, interval: 399, hidden: true, lazy: true}
-#smart测速: &BaseUT {type: smart, tolerance: 50, interval: 399, hidden: true, lazy: true}
-选择: &BaseSL {type: select}
-
 ## ---------------- 节点筛选正则表达式 --------------------------------
 香港: &FilterHK '^(?=.*(?i)(假|港|🇭🇰|HK|Hong|HKG))(?=.*💧)(?!.*(住|5x)).*$'
 香港全部: &HKall '^(?=.*(?i)(假|港|🇭🇰|HK|Hong|HKG))(?!.*(5x)).*$'
@@ -248,6 +240,14 @@ proxies:
 欧盟全部: &EUall '^(?=.*(?i)(假|奥|比|保|克罗地亚|塞|捷|丹|爱沙|芬|法|德|希|匈|爱尔|意|拉|立|卢|马其它|荷|波|葡|罗|斯洛伐|斯洛文|西|瑞|英|🇧🇪|🇨🇿|🇩🇰|🇫🇮|🇫🇷|🇩🇪|🇮🇪|🇮🇹|🇱🇹|🇱🇺|🇳🇱|🇵🇱|🇸🇪|🇬🇧|CDG|FRA|AMS|MAD|BCN|FCO|MUC|BRU))(?!.*(美|马来|印度|5x)).*$'
 冷门: &FilterOT '^(?!.*(?i)(DIRECT|ali|china|tencent|维护|可用|🎯 全球直连|美|港|坡|台|新|日|韩|奥|比|保|克罗地亚|塞|捷|丹|爱沙|芬|法|德|希|匈|爱尔|意|拉|立|卢|马其它|荷|波|葡|罗|斯洛伐|斯洛文|西|瑞|英|🇭🇰|🇹🇼|🇸🇬|🇯🇵|🇰🇷|🇺🇸|🇬🇧|🇦🇹|🇧🇪|🇨🇿|🇩🇰|🇫🇮|🇫🇷|🇩🇪|🇮🇪|🇮🇹|🇱🇹|🇱🇺|🇳🇱|🇵🇱|🇸🇪|HK|TW|SG|JP|KR|US|GB|CDG|FRA|AMS|MAD|BCN|FCO|MUC|BRU|HKG|TPE|TSA|KHH|SIN|XSP|NRT|HND|KIX|CTS|FUK|JFK|LAX|ORD|ATL|DFW|SFO|MIA|SEA|IAD|LHR|LGW))'
 全球: &FilterAL '^(?!.*(?i)(DIRECT|ali|china|tencent|维护|可用|🎯 全球直连|群|邀请|返利|循环|官网|客服|网站|网址|获取|订阅|流量|到期|机场|下次|版本|官址|备用|过期|已用|联系|邮箱|工单|贩卖|通知|倒卖|防止|国内|地址|频道|无法|说明|使用|提示|特别|访问|支持|教程|关注|更新|作者|加入|USE|USED|TOTAL|EXPIRE|EMAIL|Panel|Channel|Author))'
+
+## ---------------- 策略组类型模板 --------------------------------
+故转: &BaseFB {type: fallback, interval: 300, hidden: true, lazy: true}
+哈希散列: &BaseCH {type: load-balance, interval: 333, strategy: consistent-hashing, hidden: true, lazy: true}
+轮询: &BaseCR {type: load-balance, interval: 366, strategy: round-robin, hidden: true, lazy: true}
+测速: &BaseUT {type: url-test, tolerance: 50, interval: 399, hidden: true, lazy: true}
+#smart测速: &BaseUT {type: smart, tolerance: 50, interval: 399, hidden: true, lazy: true}
+选择: &BaseSL {type: select}
 
 ## ---------------- 策略组代理列表模板 --------------------------------
 默认节点: &JD {proxies: [🚀 故障转移, 🇭🇰 香港策略, 🇸🇬 狮城策略, 🇯🇵 日本策略, 🇰🇷 韩国策略, 🇺🇸 美国策略, 🇹🇼 台湾策略, 🇪🇺 欧盟策略, 🌐 冷门自选, 🌐 全部节点, 🎯 全球直连]}
