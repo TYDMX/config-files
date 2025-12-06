@@ -23,7 +23,7 @@
     lazy: true
     method: HEAD  # 使用 HTTP HEAD 方法进行健康检查，仅请求头部信息，减少数据使用量
   smux: # smux 连接复用
-    enabled: true
+    enabled: false
     padding: false # 增加随机数据
     protocol: smux4 # 使用的复用协议类型 smux，Yamux, h2mux, smux4
     #mode: auto
