@@ -199,10 +199,10 @@ dns:
   proxy-server-nameserver: *dns_guonei
   direct-nameserver: *dns_guonei
   nameserver: *dns_guowai
-
   nameserver-policy:
     "geosite:private": *dns_guonei
     "geosite:cn,geolocation-cn,Google@CN,googlefcm": *dns_guonei
+    "ruel-set:自用直连规则,自用直连软件,自用fake-ip-filter": *dns_guonei
     "geosite:geolocation-!cn,gfw": *dns_guowai
 
 ## ----------------  地理数据 ----------------
@@ -349,10 +349,10 @@ rules:
   - PROCESS-NAME,com.google.android.googlequicksearchbox,🚀 故障转移SG # Google应用
   - geosite,spotify,🚀 故障转移JP
   - geosite,tiktok,🚀 故障转移US
-  - RULE-SET,自用代理规则,🌐 自用代理
-  - RULE-SET,自用直连规则,🇨🇳 自用直连
-  - RULE-SET,自用代理软件,🖥️ 代理软件
-  - RULE-SET,自用直连软件,🖥️ 直连软件
+  - rule-set,自用代理规则,🌐 自用代理
+  - rule-set,自用直连规则,🇨🇳 自用直连
+  - rule-set,自用代理软件,🖥️ 代理软件
+  - rule-set,自用直连软件,🖥️ 直连软件
 ## ----------------直连组---------------------
   - geosite,ookla-speedtest,📈 测速地址
   - geosite,apple,🍎 Apple
