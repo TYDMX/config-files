@@ -180,8 +180,8 @@ dns:
   fake-ip-filter-mode: blacklist
   fake-ip-filter:
     - "geosite:connectivity-check"
-    - "geosite:private,cn,geolocation-cn"
-    #- "geosite:Google@CN,googlefcm"
+    #- "geosite:private,cn,geolocation-cn"
+    - "geosite:Google@CN,googlefcm"
     - "rule-set:自用fake-ip-filter"
     - WORKGROUP
 ## ---------------- # DNS锚点 #h3=true ----------------
