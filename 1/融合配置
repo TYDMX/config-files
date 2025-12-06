@@ -198,12 +198,12 @@ dns:
     - tls://119.29.29.29
   proxy-server-nameserver: *dns_guonei
   direct-nameserver: *dns_guonei
-  nameserver: *dns_guonei
+  nameserver: *dns_guowai
 
-  #nameserver-policy:
-    #"geosite:private": *dns_guonei
-    #"geosite:cn,geolocation-cn,Google@CN,googlefcm": *dns_guonei
-    #"geosite:geolocation-!cn,gfw": *dns_guowai
+  nameserver-policy:
+    "geosite:private": *dns_guonei
+    "geosite:cn,geolocation-cn,Google@CN,googlefcm": *dns_guonei
+    "geosite:geolocation-!cn,gfw": *dns_guowai
 
 ## ----------------  地理数据 ----------------
 geox-url: # 数据库下载地址
