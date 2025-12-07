@@ -67,10 +67,15 @@ proxy-providers:
     override:
       additional-prefix: "💧 "
       #additional-suffix: " 💧"
-      
   FlyClash smart 💧:
     <<: *template
     url: "https://9.nfsqttt.us/nfsq/?token=ao6i1gJAAbHuKIgCO9w8P7mgf-b9gcUF"
+    override:
+      additional-prefix: "💧 "
+      #additional-suffix: " 💧"      
+  FlyClash PC 💧:
+    <<: *template
+    url: "https://9.nfsqttt.us/nfsq/?token=171zgUBmRyumqsJ0KYWtqIIZfWZQuKNO"
     override:
       additional-prefix: "💧 "
       #additional-suffix: " 💧"
