@@ -348,7 +348,7 @@ proxy-groups:
 rules:
   - or,((geosite,private),(geoip,private)),🔒 私有网络
 ## ----------------拦截组--------------------- REJECT-DROP 拒绝连接并静默丢弃
-  #- RULE-SET,直连推送软件,🖥️ 直连软件
+  #- RULE-SET,前置直连规则,🖥️ 直连软件
   - or,((geosite,tracker),(geosite,category-public-tracker)),🚫 追踪拦截
   - or,((geosite,category-ads-all),(geoip,ad)),🚫 广告拦截
 ## ----------------前置组---------------------
@@ -397,11 +397,11 @@ rule-anchor:
 ## ----------------规则提供者---------------------#自定义规则，替换为你自己的订阅规则，注意格式和语法
 rule-providers:
 ## ----------------class规则提供者---------------------
-  自用直连规则: { <<: *class, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/1/zlgz.list"}
-  自用代理规则: { <<: *class, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/1/dlgz.list"}
-  自用直连软件: { <<: *class, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/1/zlrj.list"}
-  自用代理软件: { <<: *class, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/1/dlrj.list"}
-  #直连推送软件: { <<: *class, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/1/tsrj.list"}
+  自用直连规则: { <<: *class, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/1/直连规则"}
+  自用代理规则: { <<: *class, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/1/代理规则"}
+  自用直连软件: { <<: *class, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/1/直连软件"}
+  自用代理软件: { <<: *class, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/1/代理软件"}
+  #前置规则: { <<: *class, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/1/前置直连规则"}
 ## ----------------广告拦截规则提供者--------------------
 ## ----------------domain域名规则提供者---------------
   自用fake-ip-filter: { <<: *text-domain, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/2/fkip.list"}
