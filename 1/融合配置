@@ -136,6 +136,7 @@ sniffer:
     - "geosite:Google@CN,googlefcm"
   skip-domain: # 跳过嗅探这些域名
     - "geosite:private,cn,geolocation-cn"
+    - "geoip:cn"
     - "+.push.apple.com"
   skip-ipcidr:
     - 1.0.0.0/8
