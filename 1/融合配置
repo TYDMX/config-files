@@ -46,7 +46,6 @@ proxy-providers:
     override:
       additional-prefix: "💧 "
       #additional-suffix: " 💧"
-
   Flclash电脑 💧:
     <<: *template
     url: "https://7.nfsqttt.us/nfsq/?token=uUCT5bm2fQcqly4283FA2cAAFgESPJfL"
@@ -70,12 +69,6 @@ proxy-providers:
   FlyClash smart 💧:
     <<: *template
     url: "https://9.nfsqttt.us/nfsq/?token=ao6i1gJAAbHuKIgCO9w8P7mgf-b9gcUF"
-    override:
-      additional-prefix: "💧 "
-      #additional-suffix: " 💧"      
-  FlyClash PC 💧:
-    <<: *template
-    url: "https://9.nfsqttt.us/nfsq/?token=171zgUBmRyumqsJ0KYWtqIIZfWZQuKNO"
     override:
       additional-prefix: "💧 "
       #additional-suffix: " 💧"
