@@ -401,7 +401,7 @@ rule-providers:
   自用代理规则: { <<: *class, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/1/代理规则"}
   自用直连软件: { <<: *class, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/1/直连软件"}
   自用代理软件: { <<: *class, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/1/代理软件"}
-  #前置规则: { <<: *class, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/1/前置直连规则"}
+  #前置直连规则: { <<: *class, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/1/前置直连规则"}
 ## ----------------广告拦截规则提供者--------------------
 ## ----------------domain域名规则提供者---------------
   自用fake-ip-filter: { <<: *text-domain, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/2/fkip.list"}
