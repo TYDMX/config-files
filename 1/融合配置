@@ -158,10 +158,11 @@ tun:
   auto-route: true # 自动设置系统路由表，将流量导向TUN网卡
   auto-redirect: true # 自动重定向流量
   auto-detect-interface: true # 自动检测出口网络接口
+  strict-route: true #严格的路由规则
   mtu: 1400 # 减少 MTU 问题，如网页无法打开、测速慢
   gso: true # 启用通用分段卸载（提升性能）
   gso-max-size: 65536
-  udp-timeout: 3600 # UDP 会话保持时间
+  udp-timeout: 300 # UDP 会话保持时间
   bypass:
     - 192.168.0.0/16
     - 10.0.0.0/8
