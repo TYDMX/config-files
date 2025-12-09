@@ -151,7 +151,7 @@ sniffer:
 ## ---------------- TUN ----------------
 tun:
   enable: true
-  stack: mixed # 网络协议栈类型 (gVisor和System混合)
+  stack: gvisor # 网络协议栈类型 (gVisor,System和mixed混合)
   dns-hijack:
   - "any:53"
   - "tcp://any:53"
