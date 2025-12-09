@@ -239,9 +239,10 @@ proxies:
 ## ---------------- 节点筛选正则表达式 --------------------------------
 香港: &FilterHK '^(?=.*(?i)(假|港|🇭🇰|HK|Hong|HKG))(?=.*💧)(?!.*(住|5x)).*$'
 香港全部: &HKall '^(?=.*(?i)(假|港|🇭🇰|HK|Hong|HKG))(?!.*(5x)).*$'
-新加坡: &FilterSG '^(?=.*(?i)(假|坡|🇸🇬|SG|Sing|SIN|XSP))(?=.*💧)(?!.*(中国|5x)).*$'
+新加坡: &FilterSG '^(?=.*(?i)(假|坡|🇸🇬|SG|Sing|SIN|XSP))(?=.*💧)(?!.*(住|中国|5x)).*$'
 新加坡全部: &SGall '^(?=.*(?i)(假|坡|🇸🇬|SG|Sing|SIN|XSP))(?!.*(中国|5x)).*$'
-日本: &FilterJP '^(?=.*(?i)(假|日|🇯🇵|JP|Japan|NRT|HND|KIX|CTS|FUK))(?!.*(5x)).*$'
+日本: &FilterJP '^(?=.*(?i)(假|日|🇯🇵|JP|Japan|NRT|HND|KIX|CTS|FUK))(?=.*💧)(?!.*(住|中国|5x)).*$'
+日本全部: &JPall '^(?=.*(?i)(假|日|🇯🇵|JP|Japan|NRT|HND|KIX|CTS|FUK))(?!.*(5x)).*$'
 韩国: &FilterKR '^(?=.*(?i)(假|韩|🇰🇷|韓|首尔|南朝鲜|KR|KOR|Korea|South))(?!.*(5x)).*$'
 美国: &FilterUS '^(?=.*(?i)(假|美|🇺🇸|US|USA|JFK|LAX|ORD|ATL|DFW|SFO|MIA|SEA|IAD))(?=.*🌏)(?!.*(印度|5x)).*$'
 美国全部: &USall '^(?=.*(?i)(假|美|🇺🇸|US|USA|JFK|LAX|ORD|ATL|DFW|SFO|MIA|SEA|IAD))(?!.*(印度|5x)).*$'
