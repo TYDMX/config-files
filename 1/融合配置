@@ -159,6 +159,7 @@ tun:
   auto-redirect: true # 自动重定向流量
   auto-detect-interface: true # 自动检测出口网络接口
   strict-route: true #严格的路由规则
+  disable-icmp-forwarding: true
   mtu: 1400 # 减少 MTU 问题，如网页无法打开、测速慢
   gso: true # 启用通用分段卸载（提升性能）
   gso-max-size: 65536
