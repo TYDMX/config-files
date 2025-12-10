@@ -28,8 +28,8 @@ DOMAIN-KEYWORD,client-stats.warthunder.com
 
 
 #三星
-#DOMAIN-KEYWORD,samsung
-#DOMAIN-KEYWORD,galaxyappstore
+DOMAIN-KEYWORD,samsung
+DOMAIN-KEYWORD,galaxyappstore
 
 # steam
 ##下载
