@@ -138,6 +138,7 @@ sniffer:
     - "geosite:private,cn,geolocation-cn"
     - "geoip:cn"
     - "+.push.apple.com"
+    - Mijia Cloud
   skip-src-address: # 对于来源ip跳过嗅探
     - 192.168.0.3/32
   skip-dst-address: # 对于目标ip跳过嗅探
@@ -198,7 +199,7 @@ dns:
     - "geosite:connectivity-check,private"
     #- "geosite:cn,geolocation-cn"
     - "geosite:Google@CN,googlefcm"
-    - "geosite:fakeip-filter"
+    #- "geosite:fakeip-filter"
     - "rule-set:自用fake-ip-filter"
     - WORKGROUP
 ## ---------------- # DNS锚点 #h3=true ----------------
