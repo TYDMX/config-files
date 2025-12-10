@@ -138,6 +138,10 @@ sniffer:
     - "geosite:private,cn,geolocation-cn"
     - "geoip:cn"
     - "+.push.apple.com"
+  skip-src-address: # 对于来源ip跳过嗅探
+    - 192.168.0.3/32
+  skip-dst-address: # 对于目标ip跳过嗅探
+    - 192.168.0.3/32
   skip-ipcidr:
     - 1.0.0.0/8
     - 10.0.0.0/8
@@ -155,12 +159,13 @@ tun:
   dns-hijack:
   - "any:53"
   - "tcp://any:53"
+  - 0.0.0.0:443
   auto-route: true # 自动设置系统路由表，将流量导向TUN网卡
-  auto-redirect: true # 自动重定向流量
+  auto-redirect: true # 自动重定向流量 仅支持 Linux
   auto-detect-interface: true # 自动检测出口网络接口
-  strict-route: true #严格的路由规则
-  disable-icmp-forwarding: true
-  mtu: 1400 # 减少 MTU 问题，如网页无法打开、测速慢
+  strict-route: true # 将所有连接路由到 tun 来防止泄漏，但你的设备将无法其他设备被访问
+  disable-icmp-forwarding: true # 禁用 ICMP 转发，防止某些情况下的 ICMP 环回问题，ping 将不会显示真实的延迟
+  mtu: 9000 # 减少 MTU 问题，如网页无法打开、测速慢
   gso: true # 启用通用分段卸载（提升性能）
   gso-max-size: 65536
   udp-timeout: 300 # UDP 会话保持时间
@@ -183,15 +188,17 @@ dns:
   listen: 127.0.0.1:1053 #（仅本机，网关设置0.0.0.0:1053）
   ipv6: true  
   prefer-h3: true
-  respect-rules: true  
+  respect-rules: false  
   enhanced-mode: fake-ip
-  fake-ip-range: 198.18.0.0/16
+  fake-ip-range: 198.18.0.1/16
+  fake-ip-range6: fdfe:dcba:9876::1/64
   fake-ip-filter-mode: blacklist
+  fake-ip-ttl: 1
   fake-ip-filter:
-    - "geosite:connectivity-check"
-    - "geosite:private,cn,geolocation-cn"
-    - "geoip:cn"
+    - "geosite:connectivity-check,private"
+    #- "geosite:cn,geolocation-cn"
     - "geosite:Google@CN,googlefcm"
+    - "geosite:fakeip-filter"
     - "rule-set:自用fake-ip-filter"
     - WORKGROUP
 ## ---------------- # DNS锚点 #h3=true ----------------
