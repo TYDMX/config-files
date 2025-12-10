@@ -272,12 +272,12 @@ proxies:
 ## ---------------- 策略组代理列表模板 ----------------
 默认节点: &JD {proxies: [🚀 故障转移, 🇭🇰 香港策略, 🇸🇬 狮城策略, 🇯🇵 日本策略, 🇰🇷 韩国策略, 🇺🇸 美国策略, 🇹🇼 台湾策略, 🇪🇺 欧盟策略, 🌐 冷门自选, 🌐 全部节点, 🎯 全球直连]}
 故转节点: &GZ {proxies: [🚀 故障转移HK, 🚀 故障转移US, 🚀 故障转移SG, 🚀 故障转移JP, 🎯 全球直连]}
+默认直连: &direct {proxies: [🎯 全球直连,🚀 故障转移HK, 🚀 故障转移US, 🚀 故障转移SG, 🚀 故障转移JP]}
 
 默认香港: &HK {proxies: [🇭🇰 香港策略, 🇭🇰 香港自动, 🇸🇬 狮城策略, 🇯🇵 日本策略, 🇺🇸 美国策略, 🇪🇺 欧盟策略]}
 默认新加坡: &SG {proxies: [🇸🇬 狮城策略, 🇸🇬 狮城自动, 🇭🇰 香港策略, 🇯🇵 日本策略, 🇺🇸 美国策略, 🇪🇺 欧盟策略]}
 默认美国: &US {proxies: [🇺🇸 美国策略, 🇺🇸 美国自动, 🇪🇺 欧盟策略, 🇭🇰 香港策略, 🇸🇬 狮城策略, 🇯🇵 日本策略]}
 默认日本: &JP {proxies: [🇯🇵 日本策略, 🇯🇵 日本自动, 🇺🇸 美国策略, 🇪🇺 欧盟策略, 🇭🇰 香港策略, 🇸🇬 狮城策略]}
-默认直连: &direct {proxies: [🎯 全球直连,🚀 故障转移HK, 🚀 故障转移US, 🚀 故障转移SG, 🚀 故障转移JP]}
 
 # ==================== 代理策略组 ====================
 proxy-groups:
@@ -314,7 +314,7 @@ proxy-groups:
   - {name: 🪟 OneDrive,      <<: [*BaseFB, *US], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/OneDrive.png}
   - {name: 🪟 Bing,          <<: [*BaseFB, proxies: [🚀 节点选择]], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Microsoft.png}
   - {name: 🪟 Microsoft,     <<: [*BaseSL, *direct], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Microsoft.png}
-  - {name: 🇬 谷歌,            <<: [*BaseFB, *HK], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Google_Search.png}
+  - {name: 🇬 谷歌,            <<: [*BaseSL, *GZ], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Google_Search.png}
   - {name: 🇬 谷歌@CN,         <<: [*BaseFB, proxies: [🎯 全球直连]], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Google_Search.png}
   - {name: 🍎 Apple,         <<: [*BaseFB, proxies: [🎯 全球直连]], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Apple.png}
   # ---------------- 其他策略组 ----------------
