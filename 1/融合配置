@@ -252,11 +252,13 @@ proxies:
 新加坡全部: &SGall '^(?=.*(?i)(假|坡|🇸🇬|SG|Sing|SIN|XSP))(?!.*(中国|5x)).*$'
 日本: &FilterJP '^(?=.*(?i)(假|日|🇯🇵|JP|Japan|NRT|HND|KIX|CTS|FUK))(?=.*💧)(?!.*(住|中国|5x)).*$'
 日本全部: &JPall '^(?=.*(?i)(假|日|🇯🇵|JP|Japan|NRT|HND|KIX|CTS|FUK))(?!.*(5x)).*$'
-韩国: &FilterKR '^(?=.*(?i)(假|韩|🇰🇷|韓|首尔|南朝鲜|KR|KOR|Korea|South))(?!.*(5x)).*$'
+韩国: &FilterKR '^(?=.*(?i)(假|韩|🇰🇷|韓|首尔|南朝鲜|KR|KOR|Korea|South))(?!.*(住|5x)).*$'
+韩国全部: &KRall '^(?=.*(?i)(假|韩|🇰🇷|韓|首尔|南朝鲜|KR|KOR|Korea|South))(?!.*(5x)).*$'
 美国: &FilterUS '^(?=.*(?i)(假|美|🇺🇸|US|USA|JFK|LAX|ORD|ATL|DFW|SFO|MIA|SEA|IAD))(?=.*🌏)(?!.*(印度|5x)).*$'
 美国全部: &USall '^(?=.*(?i)(假|美|🇺🇸|US|USA|JFK|LAX|ORD|ATL|DFW|SFO|MIA|SEA|IAD))(?!.*(印度|5x)).*$'
-台湾: &FilterTW '^(?=.*(?i)(假|台|🇹🇼|TW|tai|TPE|TSA|KHH))(?!.*(?i)(china|network|5x)).*$'
-欧盟: &FilterEU '^(?=.*(?i)(假|奥|比|保|克罗地亚|塞|捷|丹|爱沙|芬|法|德|希|匈|爱尔|意|拉|立|卢|马其它|荷|波|葡|罗|斯洛伐|斯洛文|西|瑞|英|🇧🇪|🇨🇿|🇩🇰|🇫🇮|🇫🇷|🇩🇪|🇮🇪|🇮🇹|🇱🇹|🇱🇺|🇳🇱|🇵🇱|🇸🇪|🇬🇧|CDG|FRA|AMS|MAD|BCN|FCO|MUC|BRU))(?=.*🌏)(?!.*(美|马来|印度|5x)).*$'
+台湾: &FilterTW '^(?=.*(?i)(假|台|🇹🇼|TW|tai|TPE|TSA|KHH))(?!.*(?i)(china|network|住|5x)).*$'
+台湾全部: &TWall '^(?=.*(?i)(假|台|🇹🇼|TW|tai|TPE|TSA|KHH))(?!.*(?i)(china|network|5x)).*$'
+欧盟: &FilterEU '^(?=.*(?i)(假|奥|比|保|克罗地亚|塞|捷|丹|爱沙|芬|法|德|希|匈|爱尔|意|拉|立|卢|马其它|荷|波|葡|罗|斯洛伐|斯洛文|西|瑞|英|🇧🇪|🇨🇿|🇩🇰|🇫🇮|🇫🇷|🇩🇪|🇮🇪|🇮🇹|🇱🇹|🇱🇺|🇳🇱|🇵🇱|🇸🇪|🇬🇧|CDG|FRA|AMS|MAD|BCN|FCO|MUC|BRU))(?=.*🌏)(?!.*(住|美|马来|印度|5x)).*$'
 欧盟全部: &EUall '^(?=.*(?i)(假|奥|比|保|克罗地亚|塞|捷|丹|爱沙|芬|法|德|希|匈|爱尔|意|拉|立|卢|马其它|荷|波|葡|罗|斯洛伐|斯洛文|西|瑞|英|🇧🇪|🇨🇿|🇩🇰|🇫🇮|🇫🇷|🇩🇪|🇮🇪|🇮🇹|🇱🇹|🇱🇺|🇳🇱|🇵🇱|🇸🇪|🇬🇧|CDG|FRA|AMS|MAD|BCN|FCO|MUC|BRU))(?!.*(美|马来|印度|5x)).*$'
 冷门: &FilterOT '^(?!.*(?i)(DIRECT|ali|china|tencent|维护|可用|🎯 全球直连|美|港|坡|台|新|日|韩|奥|比|保|克罗地亚|塞|捷|丹|爱沙|芬|法|德|希|匈|爱尔|意|拉|立|卢|马其它|荷|波|葡|罗|斯洛伐|斯洛文|西|瑞|英|🇭🇰|🇹🇼|🇸🇬|🇯🇵|🇰🇷|🇺🇸|🇬🇧|🇦🇹|🇧🇪|🇨🇿|🇩🇰|🇫🇮|🇫🇷|🇩🇪|🇮🇪|🇮🇹|🇱🇹|🇱🇺|🇳🇱|🇵🇱|🇸🇪|HK|TW|SG|JP|KR|US|GB|CDG|FRA|AMS|MAD|BCN|FCO|MUC|BRU|HKG|TPE|TSA|KHH|SIN|XSP|NRT|HND|KIX|CTS|FUK|JFK|LAX|ORD|ATL|DFW|SFO|MIA|SEA|IAD|LHR|LGW))'
 全球: &FilterAL '^(?!.*(?i)(DIRECT|ali|china|tencent|维护|可用|🎯 全球直连|群|邀请|返利|循环|官网|客服|网站|网址|获取|订阅|流量|到期|机场|下次|版本|官址|备用|过期|已用|联系|邮箱|工单|贩卖|通知|倒卖|防止|国内|地址|频道|无法|说明|使用|提示|特别|访问|支持|教程|关注|更新|作者|加入|USE|USED|TOTAL|EXPIRE|EMAIL|Panel|Channel|Author))'
@@ -323,10 +325,10 @@ proxy-groups:
 
   # ==================== 地区策略组 ====================
   - {name: 🇭🇰 香港策略,     type: select, proxies: [🇭🇰 香港自动, 🇭🇰 香港均衡-散列, 🇭🇰 香港均衡-轮询], include-all: true, filter: *HKall, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Hong_Kong.png}
-  - {name: 🇹🇼 台湾策略,     type: select, proxies: [🇹🇼 台湾自动, 🇹🇼 台湾均衡-散列, 🇹🇼 台湾均衡-轮询], include-all: true, filter: *FilterTW, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Taiwan.png}
+  - {name: 🇹🇼 台湾策略,     type: select, proxies: [🇹🇼 台湾自动, 🇹🇼 台湾均衡-散列, 🇹🇼 台湾均衡-轮询], include-all: true, filter: *TWall, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Taiwan.png}
   - {name: 🇸🇬 狮城策略,     type: select, proxies: [🇸🇬 狮城自动, 🇸🇬 狮城均衡-散列, 🇸🇬 狮城均衡-轮询], include-all: true, filter: *SGall, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Singapore.png}
   - {name: 🇯🇵 日本策略,     type: select, proxies: [🇯🇵 日本自动, 🇯🇵 日本均衡-散列, 🇯🇵 日本均衡-轮询], include-all: true, filter: *JPall, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Japan.png}
-  - {name: 🇰🇷 韩国策略,     type: select, proxies: [🇰🇷 韩国自动, 🇰🇷 韩国均衡-散列, 🇰🇷 韩国均衡-轮询], include-all: true, filter: *FilterKR, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Korea.png}
+  - {name: 🇰🇷 韩国策略,     type: select, proxies: [🇰🇷 韩国自动, 🇰🇷 韩国均衡-散列, 🇰🇷 韩国均衡-轮询], include-all: true, filter: *KRall, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Korea.png}
   - {name: 🇺🇸 美国策略,     type: select, proxies: [🇺🇸 美国自动, 🇺🇸 美国均衡-散列, 🇺🇸 美国均衡-轮询], include-all: true, filter: *USall, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/United_States.png}
   - {name: 🇪🇺 欧盟策略,     type: select, proxies: [🇪🇺 欧盟自动, 🇪🇺 欧盟均衡-散列, 🇪🇺 欧盟均衡-轮询], include-all: true, filter: *EUall, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/European_Union.png}
   # ---------------- 自动测速组 ----------------
