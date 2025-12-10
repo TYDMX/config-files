@@ -160,7 +160,7 @@ tun:
   dns-hijack:
   - "any:53"
   - "tcp://any:53"
-  #- 0.0.0.0:443
+  - 0.0.0.0:443
   auto-route: true # 自动设置系统路由表，将流量导向TUN网卡
   auto-redirect: true # 自动重定向流量 仅支持 Linux
   auto-detect-interface: true # 自动检测出口网络接口
