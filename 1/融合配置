@@ -307,7 +307,7 @@ proxy-groups:
   # ---------------- 社交平台 ----------------
   - {name: 📲 社交平台,       <<: [*BaseSL, *GZ], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Telegram_X.png}
   # ---------------- 分流服务 ----------------
-  - {name: 🤖 AI,            <<: [*BaseFB, *SG], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/AI.png}
+  - {name: 🤖 AI,            <<: [*BaseSL, *GZ], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/AI.png}
   - {name: 💶 PayPal,        <<: [*BaseFB, proxies: [🚀 故障转移]], icon: https://git.imee.me/https://raw.githubusercontent.com/Orz-3/mini/master/Alpha/Bitcloud.png}
   - {name: 🎮 game@CN,       <<: [*BaseFB, proxies: [🎯 全球直连]], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Game.png}
   - {name: 👨🏿‍💻 GitHub,        <<: [*BaseFB, proxies: [🚀 节点选择]], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Microsoft.png}
@@ -365,7 +365,7 @@ rules:
   - or,((geosite,category-ads-all),(geoip,ad)),🚫 广告拦截
 ## ---------------- 前置组 ---------------------
   - PROCESS-NAME,com.samsung.android.packageinstaller,🚫 广告拦截
-  - PROCESS-NAME,com.google.android.googlequicksearchbox,🚀 故障转移SG # Google应用
+  - PROCESS-NAME,com.google.android.googlequicksearchbox,🤖 AI # Google应用
   - geosite,spotify,🚀 故障转移JP
   - geosite,tiktok,🚀 故障转移US
   - rule-set,自用代理规则,🌐 自用代理
