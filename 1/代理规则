@@ -9,7 +9,9 @@ DOMAIN-KEYWORD,proxy.social.supercell
 # OneDrive
 #观看地址
 DOMAIN-KEYWORD,-mediap.svc.ms
-
+# WT
+DOMAIN-KEYWORD,forum.warthunder.com
+DOMAIN-WILDCARD,forum-*-cdn.warthunder.com
 
 # ph xv等
 #DOMAIN-SUFFIX,ev-h.phncdn.com
