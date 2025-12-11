@@ -120,7 +120,7 @@ experimental:
 # ==========================================================
 ## ---------------- 流量嗅探 ----------------
 sniffer:
-  enable: false
+  enable: true
   force-dns-mapping: true # 强制DNS映射。当嗅探到一个IP流量时，会尝试为其创建临时的域名-IP映射，以确保后续的规则匹配能正常进行。
   parse-pure-ip: true # 嗅探所有“纯IP”流量。
   sniff:
@@ -134,14 +134,13 @@ sniffer:
   force-domain:
     - "+.v2ex.com"
     - "geosite:Google@CN,googlefcm"
-  skip-domain: # 跳过嗅探这些域名
+  skip-domain:
     - "geosite:private,cn,geolocation-cn"
-    - "geoip:cn"
     - "+.push.apple.com"
     - Mijia Cloud
-  skip-src-address: # 对于来源ip跳过嗅探
+  skip-src-address:
     - 192.168.0.3/32
-  skip-dst-address: # 对于目标ip跳过嗅探
+  skip-dst-address:
     - 192.168.0.3/32
   skip-ipcidr:
     - 1.0.0.0/8
@@ -156,28 +155,21 @@ sniffer:
 ## ---------------- TUN ----------------
 tun:
   enable: true
-  stack: gvisor # 网络协议栈类型 (gVisor,System和mixed混合)
+  stack: mixed # 网络协议栈类型 (gVisor,System和mixed混合)
   dns-hijack:
   - "any:53"
+  - "udp://any:53"
   - "tcp://any:53"
-  - 0.0.0.0:443
+  #- 0.0.0.0:443
   auto-route: true # 自动设置系统路由表，将流量导向TUN网卡
-  auto-redirect: true # 自动重定向流量 仅支持 Linux
+  #auto-redirect: true # 自动重定向流量 仅支持 Linux
   auto-detect-interface: true # 自动检测出口网络接口
-  strict-route: true # 将所有连接路由到 tun 来防止泄漏，但你的设备将无法其他设备被访问
+  #strict-route: true # 将所有连接路由到 tun 来防止泄漏，但你的设备将无法其他设备被访问
   disable-icmp-forwarding: true # 禁用 ICMP 转发，防止某些情况下的 ICMP 环回问题，ping 将不会显示真实的延迟
-  mtu: 9000 # 减少 MTU 问题，如网页无法打开、测速慢
-  gso: true # 启用通用分段卸载（提升性能）
-  gso-max-size: 65536
+  mtu: 1500 # 减少 MTU 问题，如网页无法打开、测速慢
+  #gso: true # 启用通用分段卸载（提升性能）
+  #gso-max-size: 65536
   udp-timeout: 300 # UDP 会话保持时间
-  bypass:
-    - 192.168.0.0/16
-    - 10.0.0.0/8
-    - 172.16.0.0/12
-    - 127.0.0.1/8
-    - ::1/128
-    - ::ffff:0:0/96
-    #- PROCESS-NAME,svchost.exe
 
 # ==========================================================
 ## ---------------- DNS ----------------
@@ -186,10 +178,10 @@ dns:
   cache-algorithm: arc
   use-hosts: false
   use-system-hosts: false
-  listen: 127.0.0.1:1053 #（仅本机，网关设置0.0.0.0:1053）
+  listen: 0.0.0.0:1053 #（仅本机127.0.0.1:1053，网关设置0.0.0.0:1053）
   ipv6: true  
   prefer-h3: true
-  respect-rules: false  
+  respect-rules: true  
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
   fake-ip-range6: fdfe:dcba:9876::1/64
@@ -197,9 +189,8 @@ dns:
   fake-ip-ttl: 1
   fake-ip-filter:
     - "geosite:connectivity-check,private"
-    #- "geosite:cn,geolocation-cn"
+    - "geosite:cn,geolocation-cn"
     - "geosite:Google@CN,googlefcm"
-    #- "geosite:fakeip-filter"
     - "rule-set:自用fake-ip-filter"
     - WORKGROUP
 ## ---------------- # DNS锚点 #h3=true ----------------
@@ -217,11 +208,11 @@ dns:
   proxy-server-nameserver: *dns_guonei
   direct-nameserver: *dns_guonei
   nameserver: *dns_guonei
-  #nameserver-policy:
-    #"geosite:private": *dns_guonei
-    #"geosite:cn,geolocation-cn,Google@CN,googlefcm": *dns_guonei
-    #"ruel-set:自用直连规则,自用直连软件,自用fake-ip-filter": *dns_guonei
-    #"geosite:geolocation-!cn,gfw": *dns_guowai
+  nameserver-policy:
+    "geosite:private,Google@CN,googlefcm": *dns_guonei
+    "geosite:cn,geolocation-cn": *dns_guonei
+    "ruel-set:自用直连规则": *dns_guonei
+    "geosite:geolocation-!cn,gfw": *dns_guowai
 
 ## ----------------  地理数据 ----------------
 geox-url: # 数据库下载地址
