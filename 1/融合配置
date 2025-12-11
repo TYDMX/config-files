@@ -120,7 +120,7 @@ experimental:
 # ==========================================================
 ## ---------------- 流量嗅探 ----------------
 sniffer:
-  enable: true
+  enable: false
   force-dns-mapping: true # 强制DNS映射。当嗅探到一个IP流量时，会尝试为其创建临时的域名-IP映射，以确保后续的规则匹配能正常进行。
   parse-pure-ip: true # 嗅探所有“纯IP”流量。
   sniff:
@@ -181,18 +181,19 @@ dns:
   listen: 0.0.0.0:1053 #（仅本机127.0.0.1:1053，网关设置0.0.0.0:1053）
   ipv6: true  
   prefer-h3: true
-  respect-rules: true  
+  respect-rules: false  
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
   fake-ip-range6: fdfe:dcba:9876::1/64
-  fake-ip-filter-mode: blacklist
+  fake-ip-filter-mode: whitelist # blacklist
   fake-ip-ttl: 1
   fake-ip-filter:
-    - "geosite:connectivity-check,private"
-    - "geosite:cn,geolocation-cn"
-    - "geosite:Google@CN,googlefcm"
-    - "rule-set:自用fake-ip-filter"
-    - WORKGROUP
+    - "geosite:gfw,geolocation-!cn"
+    #- "geosite:connectivity-check,private"
+    #- "geosite:cn,geolocation-cn"
+    #- "geosite:Google@CN,googlefcm"
+    #- "rule-set:自用fake-ip-filter"
+    #- WORKGROUP
 ## ---------------- # DNS锚点 #h3=true ----------------
   国内dns锚点: &dns_guonei
     - https://dns.alidns.com/dns-query
