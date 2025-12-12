@@ -185,15 +185,15 @@ dns:
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
   fake-ip-range6: fdfe:dcba:9876::1/64
-  fake-ip-filter-mode: whitelist # blacklist
+  fake-ip-filter-mode: blacklist # blacklist,whitelist
   fake-ip-ttl: 1
   fake-ip-filter:
-    - "geosite:gfw,geolocation-!cn"
-    #- "geosite:connectivity-check,private"
-    #- "geosite:cn,geolocation-cn"
-    #- "geosite:Google@CN,googlefcm"
-    #- "rule-set:自用fake-ip-filter"
-    #- WORKGROUP
+    - "rule-set:自用fake-ip-filter"
+    - "geosite:connectivity-check,private"
+    - "geosite:Google@CN,googlefcm,category-games-cn,ookla-speedtest,apple,microsoft"
+    - "geosite:cn,geolocation-cn"
+    #- "geosite:gfw,geolocation-!cn"
+    - WORKGROUP
 ## ---------------- # DNS锚点 #h3=true ----------------
   国内dns锚点: &dns_guonei
     - https://dns.alidns.com/dns-query
