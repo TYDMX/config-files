@@ -34,7 +34,9 @@ PROCESS-NAME,OneDrive.exe
 #商店
 PROCESS-NAME,com.sec.android.app.samsungapps
 #提醒
-#PROCESS-NAME,com.samsung.android.app.reminder
+PROCESS-NAME,com.samsung.android.app.reminder
+#天气
+PROCESS-NAME,com.sec.android.daemonapp
 #PROCESS-NAME,com.samsung.android.sskds (1000),SelectGroup
 
 # 设备
