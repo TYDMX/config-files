@@ -120,7 +120,7 @@ experimental:
 # ==========================================================
 ## ---------------- 流量嗅探 ----------------
 sniffer:
-  enable: false
+  enable: true
   force-dns-mapping: true # 强制DNS映射。当嗅探到一个IP流量时，会尝试为其创建临时的域名-IP映射，以确保后续的规则匹配能正常进行。
   parse-pure-ip: true # 嗅探所有“纯IP”流量。
   sniff:
@@ -135,7 +135,7 @@ sniffer:
     - "+.v2ex.com"
     - "geosite:Google@CN,googlefcm"
   skip-domain:
-    - "geosite:private,cn,geolocation-cn"
+    #- "geosite:private,cn,geolocation-cn"
     - "+.push.apple.com"
     - Mijia Cloud
   skip-src-address:
