@@ -378,7 +378,7 @@ rules:
   - geosite,github,👨🏿‍💻 GitHub
   - geosite,onedrive,🪟 OneDrive
   - geosite,Bing,🪟 Bing
-  - or,((geosite,telegram),(geoip,telegram),(geosite,twitter)),📲 社交平台
+  - or,((geosite,telegram),(geoip,telegram),(geosite,twitter),(geoip,Reddit),(geoip,discord)),📲 社交平台
   - or,((geosite,youtube),(geosite,netflix),(geosite,twitch),(geosite,vk),(geosite,disney),(geosite,biliintl),(geosite,category-porn)),📹 视频平台
 ## ---------------- 功能组 ---------------------
   - geosite,microsoft,🪟 Microsoft
