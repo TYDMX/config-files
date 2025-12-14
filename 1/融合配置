@@ -199,7 +199,9 @@ dns:
   国内dns锚点: &dns_guonei
     - https://dns.alidns.com/dns-query
     - https://doh.pub/dns-query
-  #国外dns锚点: &dns_guowai
+  国外dns锚点: &dns_guowai
+    - https://dns.alidns.com/dns-query
+    - https://doh.pub/dns-query
     - https://dns.cloudflare.com/dns-query
     - https://dns.google/dns-query
 ## ---------------- # DNS配置 ----------------
@@ -209,7 +211,7 @@ dns:
     - tls://119.29.29.29
   proxy-server-nameserver: *dns_guonei
   direct-nameserver: *dns_guonei
-  nameserver: *dns_guonei
+  nameserver: *dns_guowai
   #nameserver-policy:
     #"geosite:private,Google@CN,googlefcm": *dns_guonei
     #"geosite:cn,geolocation-cn": *dns_guonei
