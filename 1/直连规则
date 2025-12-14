@@ -45,6 +45,9 @@ DOMAIN-KEYWORD,download.epicgames
 #DOMAIN-KEYWORD,account.battle.net
 #DOMAIN-KEYWORD,battle.net
 #DOMAIN-KEYWORD,ingest.gdp.blizzard.com
+##下载
+#DOMAIN-KEYWORD,kr.cdn.blizzard.com
+#DOMAIN-KEYWORD,level3.blizzard.com
 
 # onedrive
 #DOMAIN-KEYWORD,live.com
