@@ -198,15 +198,15 @@ dns:
 ## ---------------- # DNS锚点 #h3=true ----------------
   国内dns锚点: &dns_guonei
     - https://dns.alidns.com/dns-query
-    #- https://doh.pub/dns-query
+    - https://doh.pub/dns-query
   国外dns锚点: &dns_guowai
     - https://dns.cloudflare.com/dns-query
-    #- https://dns.google/dns-query
+    - https://dns.google/dns-query
 ## ---------------- # DNS配置 ----------------
   default-nameserver:
     - tls://223.5.5.5
-    #- tls://223.6.6.6
-    #- tls://119.29.29.29
+    - tls://223.6.6.6
+    - tls://119.29.29.29
   proxy-server-nameserver: *dns_guonei
   direct-nameserver: *dns_guonei
   nameserver: *dns_guonei
@@ -239,8 +239,8 @@ proxies:
 
 # ==========================================================
 ## ---------------- 节点筛选正则表达式 ----------------
-香港: &FilterHK '^(?=.*(?i)(港|🇭🇰|HK|Hong|HKG))(?=.*💧)(?!.*(住|5x)).*$'
-香港全部: &HKall '^(?=.*(?i)(假|港|🇭🇰|HK|Hong|HKG))(?!.*(5x)).*$'
+香港: &FilterHK '^(?=.*(?i)(港|🇭🇰|HK|Hong|HKG))(?=.*💧)(?!.*(住|🇺🇸|5x)).*$'
+香港全部: &HKall '^(?=.*(?i)(假|港|🇭🇰|HK|Hong|HKG))(?!.*(🇺🇸|5x)).*$'
 新加坡: &FilterSG '^(?=.*(?i)(坡|🇸🇬|SG|Sing|SIN|XSP))(?=.*💧)(?!.*(住|中国|5x)).*$'
 新加坡全部: &SGall '^(?=.*(?i)(假|坡|🇸🇬|SG|Sing|SIN|XSP))(?!.*(中国|5x)).*$'
 日本: &FilterJP '^(?=.*(?i)(日|🇯🇵|JP|Japan|NRT|HND|KIX|CTS|FUK))(?=.*💧)(?!.*(住|中国|5x)).*$'
