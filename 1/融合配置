@@ -107,7 +107,7 @@ secret: "12345678" # 连接外部控制器时所需密码
 find-process-mode: strict # 进程名匹配模式
 global-client-fingerprint: chrome # 伪装TLS指纹为随机random
 keep-alive-idle: 120 # TCP长连接空闲时间
-keep-alive-interval: 30
+keep-alive-interval: 75
 keep-alive-probes: 5
 disable-keep-alive: false
 
