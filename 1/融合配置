@@ -377,7 +377,7 @@ rules:
   - or,((geosite,google@cn),(geosite,googlefcm)),🇬 谷歌@CN
 ## ---------------- 分流组 ---------------------
   #- AND,((DST-PORT,443),(NETWORK,UDP)),REJECT # http3
-  - geosite,category-games-cn-!cn,🎮 game
+  - geosite,category-games-!cn,🎮 game
   - or,((geosite,openai),(geosite,google-gemini),(geosite,category-ai-!cn)),🤖 AI
   - geosite,paypal,💶 PayPal
   - geosite,github,👨🏿‍💻 GitHub
