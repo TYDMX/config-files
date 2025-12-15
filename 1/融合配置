@@ -307,6 +307,7 @@ proxy-groups:
   - {name: 🤖 AI,            <<: [*BaseSL, *GZ], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/AI.png}
   - {name: 💶 PayPal,        <<: [*BaseFB, proxies: [🚀 故障转移]], icon: https://git.imee.me/https://raw.githubusercontent.com/Orz-3/mini/master/Alpha/Bitcloud.png}
   - {name: 🎮 game@CN,       <<: [*BaseFB, proxies: [🎯 全球直连]], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Game.png}
+  - {name: 🎮 game,          <<: [*BaseSL, *direct], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Game.png}
   - {name: 👨🏿‍💻 GitHub,        <<: [*BaseFB, proxies: [🚀 节点选择]], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Microsoft.png}
   - {name: 🪟 OneDrive,      <<: [*BaseFB, *US], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/OneDrive.png}
   - {name: 🪟 Bing,          <<: [*BaseFB, proxies: [🚀 节点选择]], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Microsoft.png}
@@ -376,6 +377,7 @@ rules:
   - or,((geosite,google@cn),(geosite,googlefcm)),🇬 谷歌@CN
 ## ---------------- 分流组 ---------------------
   #- AND,((DST-PORT,443),(NETWORK,UDP)),REJECT # http3
+  - geosite,category-games-cn-!cn,🎮 game
   - or,((geosite,openai),(geosite,google-gemini),(geosite,category-ai-!cn)),🤖 AI
   - geosite,paypal,💶 PayPal
   - geosite,github,👨🏿‍💻 GitHub
