@@ -297,7 +297,7 @@ proxy-groups:
   - {name: 🖥️ 直连软件,       <<: [*BaseFB, proxies: [🎯 全球直连]]}
   - {name: 🖥️ 代理软件,       <<: [*BaseFB, proxies: [🚀 故障转移]]}
   - {name: 🖥️ 直连服务,       <<: [*BaseFB, proxies: [🎯 全球直连]]}
-  - {name: 🖥️ 代理服务,       <<: [*BaseFB, proxies: [🚀 故障转移]]}  
+  - {name: 🖥️ 代理服务,       <<: [*BaseFB, proxies: [🚀 节点选择]]}  
   - {name: 🚫 广告拦截,       <<: [*BaseFB, proxies: [🚫 阻止]]} 
   - {name: 🚫 追踪拦截,       <<: [*BaseFB, proxies: [🚫 阻止]]} 
   # ---------------- 媒体服务 ----------------
