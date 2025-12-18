@@ -306,7 +306,7 @@ proxy-groups:
   - {name: 📲 社交平台,       <<: [*BaseSL, *GZ], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Telegram_X.png}
   # ---------------- 分流服务 ----------------
   - {name: 🤖 AI,            <<: [*BaseSL, *GZ], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/AI.png}
-  - {name: 💶 PayPal,        <<: [*BaseFB, proxies: [🚀 故障转移]], icon: https://git.imee.me/https://raw.githubusercontent.com/Orz-3/mini/master/Alpha/Bitcloud.png}
+  - {name: 💶 PayPal,        <<: [*BaseFB, proxies: [🚀 节点选择]], icon: https://git.imee.me/https://raw.githubusercontent.com/Orz-3/mini/master/Alpha/Bitcloud.png}
   - {name: 🎮 game@CN,       <<: [*BaseFB, proxies: [🎯 全球直连]], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Game.png}
   - {name: 🎮 game,          <<: [*BaseSL, *direct], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Game.png}
   - {name: 👨🏿‍💻 GitHub,        <<: [*BaseFB, proxies: [🚀 节点选择]], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Microsoft.png}
@@ -366,7 +366,6 @@ rules:
   - PROCESS-NAME,com.samsung.android.packageinstaller,🚫 广告拦截
   - PROCESS-NAME,com.google.android.googlequicksearchbox,🤖 AI # Google应用
   - geosite,spotify,🚀 故障转移JP
-  - geosite,tiktok,🚀 故障转移US
   - rule-set,自用代理规则,🌐 自用代理
   - rule-set,自用直连规则,🇨🇳 自用直连
   - rule-set,自用代理软件,🖥️ 代理软件
@@ -384,7 +383,7 @@ rules:
   - geosite,github,👨🏿‍💻 GitHub
   - geosite,onedrive,🪟 OneDrive
   - geosite,Bing,🪟 Bing
-  - or,((geosite,telegram),(geoip,telegram),(geosite,twitter),(geosite,Reddit),(geosite,discord)),📲 社交平台
+  - or,((geosite,telegram),(geoip,telegram),(geosite,twitter),(geosite,tiktok),(geosite,Reddit),(geosite,discord)),📲 社交平台
   - or,((geosite,youtube),(geosite,netflix),(geosite,twitch),(geosite,vk),(geosite,disney),(geosite,biliintl),(geosite,category-porn)),📹 视频平台
 ## ---------------- 功能组 ---------------------
   - geosite,microsoft,🪟 Microsoft
