@@ -75,7 +75,7 @@ proxy-providers:
       
   Clash Verge 💧:
     <<: *template
-    url: "https://1.nfsqttt.us/nfsq/?token=vIW9ao2HtgbpfTdG4WYtbSQF67ns5GW_"
+    url: "https://1.nfsqttt.us/nfsq/?token=edzcd8iG2EiV0vU-3g0setqOU0K4rFWm"
     override:
       additional-prefix: "💧 "
       #additional-suffix: " 💧"
