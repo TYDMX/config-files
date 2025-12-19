@@ -158,13 +158,10 @@ tun:
   stack: mixed # 网络协议栈类型 (gVisor,System和mixed混合)
   dns-hijack:
   - "any:53"
-  - "udp://any:53"
-  - "tcp://any:53"
-  #- 0.0.0.0:443
   auto-route: true # 自动设置系统路由表，将流量导向TUN网卡
   #auto-redirect: true # 自动重定向流量 仅支持 Linux
   auto-detect-interface: true # 自动检测出口网络接口
-  #strict-route: true # 将所有连接路由到 tun 来防止泄漏，但你的设备将无法其他设备被访问
+  strict-route: true # 将所有连接路由到 tun 来防止泄漏，但你的设备将无法其他设备被访问
   #disable-icmp-forwarding: true # 禁用 ICMP 转发，防止某些情况下的 ICMP 环回问题，ping 将不会显示真实的延迟
   mtu: 1400 # 减少 MTU 问题，如网页无法打开、测速慢
   #gso: true # 启用通用分段卸载（提升性能）
