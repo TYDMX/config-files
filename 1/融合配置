@@ -194,7 +194,7 @@ dns:
     #- "geosite:category-games-cn,ookla-speedtest,apple,microsoft"
     #- "geosite:cn,geolocation-cn"
     #- "geosite:gfw,geolocation-!cn"
-    - WORKGROUP
+    #- WORKGROUP
 ## ---------------- # DNS锚点 #h3=true ----------------
   国内dns锚点: &dns_guonei
     - https://dns.alidns.com/dns-query
@@ -206,13 +206,13 @@ dns:
     - https://dns.cloudflare.com/dns-query
     #- https://dns.google/dns-query
 ## ---------------- # DNS配置 ----------------
-  default-nameserver:
-    - tls://223.5.5.5
+  #default-nameserver:
+    #- tls://223.5.5.5
     #- tls://223.6.6.6
     #- tls://119.29.29.29
-  proxy-server-nameserver: *dns_guonei
-  direct-nameserver: *dns_guonei
-  nameserver: *dns_guowai
+  #proxy-server-nameserver: *dns_guonei
+  #direct-nameserver: *dns_guonei
+  #nameserver: *dns_guowai
   #nameserver-policy:
     #"geosite:private,Google@CN,googlefcm": *dns_guonei
     #"geosite:cn,geolocation-cn": *dns_guonei
