@@ -9,7 +9,7 @@ DOMAIN-KEYWORD,download.nvidia.com
 DOMAIN-KEYWORD,tpb.proxyninja
 DOMAIN-KEYWORD,nfsq
 DOMAIN-KEYWORD,git.imee.me
-DOMAIN-KEYWORD,test-ipv6
+DOMAIN-KEYWORD,ipv6
 
 # 战雷
 DOMAIN-WILDCARD,chat*.warthunder.com
