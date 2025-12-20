@@ -93,27 +93,26 @@ proxy-providers:
 # ==========================================================
 ## ---------------- 全局配置 ----------------
 collectdata: false
-port: 7890 # HTTP代理端口
-socks-port: 7891 # SOCKS5代理端口
+port: 7890
+socks-port: 7891
 #redir-port: 7892 # 透明代理端口 (Linux/macOS)
 #tproxy-port: 7894  # TProxy透明代理端口 (Linux)
-mixed-port: 7893 # 混合代理端口 (同时支持HTTP和SOCKS5)
-ipv6: true # 允许处理IPv6流量
-allow-lan: false # 允许局域网设备连接此代理
-unified-delay: true # 对所有类型节点使用统一的延迟计算标准
-tcp-concurrent: true # 尝试与多个IP建立TCP连接，提高响应速度
+mixed-port: 7893
+ipv6: true
+allow-lan: false # 允许局域网连接
+unified-delay: true # 统一延迟
+tcp-concurrent: true # 尝试与多个IP建立TCP连接
 external-controller: 127.0.0.1:9090 # 外部UI控制器的访问地址和端口，'0.0.0.0'表示任何IP都可访问
-secret: "12345678" # 连接外部控制器时所需密码
-find-process-mode: strict # 进程名匹配模式
-global-client-fingerprint: chrome # 伪装TLS指纹为随机random
-keep-alive-idle: 120 # TCP长连接空闲时间
+secret: "12345678" # 外部密码
+find-process-mode: strict # 进程名匹配
+global-client-fingerprint: chrome # TLS指纹random
+keep-alive-idle: 120 # 长连接空闲时间
 keep-alive-interval: 75
 keep-alive-probes: 5
 disable-keep-alive: false
-
 profile:
-  store-selected: true # 保存策略组的最后选择
-  store-fake-ip: true # 保存Fake-IP的映射关系
+  store-selected: true # 保存策略组选择
+  store-fake-ip: true # 保存映射关系
 experimental:
   quic-go-disable-gso: true # 禁用网卡分段卸载技术
 
@@ -121,12 +120,12 @@ experimental:
 ## ---------------- 流量嗅探 ----------------
 sniffer:
   enable: true
-  force-dns-mapping: true # 强制DNS映射。当嗅探到一个IP流量时，会尝试为其创建临时的域名-IP映射，以确保后续的规则匹配能正常进行。
-  parse-pure-ip: true # 嗅探所有“纯IP”流量。
+  force-dns-mapping: true # 强制DNS映射
+  parse-pure-ip: true
   sniff:
     HTTP:
       ports: [80, 8080-8880]
-      override-destination: true # 嗅探到域名后，使用域名进行规则匹配
+      override-destination: true # 使用域名进行规则匹配
     TLS:
       ports: [443, 5228, 8443]
     QUIC:
@@ -138,24 +137,16 @@ sniffer:
     #- "geosite:private,cn,geolocation-cn"
     - "+.push.apple.com"
     - Mijia Cloud
-  #skip-src-address:
-    #- 192.168.0.3/32
-  #skip-dst-address:
-    #- 192.168.0.3/32
-  #skip-ipcidr:
-    #- 1.0.0.0/8
-    #- 10.0.0.0/8
-    #- 100.64.0.0/10
-    #- 172.16.0.0/12
-    #- 192.168.0.0/16
-    #- 127.0.0.0/8
-    #- 224.0.0.0/4
+  skip-src-address:
+    - 192.168.0.3/32
+  skip-dst-address:
+    - 192.168.0.3/32
 
 # ==========================================================
 ## ---------------- TUN ----------------
 tun:
   enable: true
-  stack: mixed # 网络协议栈类型 (gVisor,System和mixed混合)
+  stack: System # 网络协议栈类型 (gVisor,System 和 mixed 混合)
   dns-hijack:
   - "any:53"
   - tcp://any:53
@@ -164,9 +155,9 @@ tun:
   auto-detect-interface: true # 自动检测出口网络接口
   strict-route: true # 将所有连接路由到 tun 来防止泄漏，但你的设备将无法其他设备被访问
   #disable-icmp-forwarding: true # 禁用 ICMP 转发，防止某些情况下的 ICMP 环回问题，ping 将不会显示真实的延迟
-  mtu: 1400 # 减少 MTU 问题，如网页无法打开、测速慢
-  #gso: true # 启用通用分段卸载（提升性能）
-  #gso-max-size: 65536
+  mtu: 9000 # 减少 MTU 问题，如网页无法打开、测速慢
+  gso: true # 启用通用分段卸载（提升性能）
+  gso-max-size: 65536
   udp-timeout: 300 # UDP 会话保持时间
 
 # ==========================================================
@@ -183,15 +174,13 @@ dns:
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
   fake-ip-range6: fdfe:dcba:9876::1/64
-  fake-ip-filter-mode: blacklist # blacklist,whitelist
+  fake-ip-filter-mode: blacklist
   fake-ip-ttl: 1
   fake-ip-filter:
     - "rule-set:自用fake-ip-filter"
-    #- "geosite:connectivity-check,private"
-    #- "geosite:Google@CN,googlefcm"
-    #- "geosite:category-games-cn,ookla-speedtest,apple,microsoft"
+    - "geosite:connectivity-check,private"
+    - "geosite:Google@CN,googlefcm"
     #- "geosite:cn,geolocation-cn"
-    #- "geosite:gfw,geolocation-!cn"
     #- WORKGROUP
 ## ---------------- # DNS锚点 #h3=true ----------------
   国内dns锚点: &dns_guonei
@@ -201,23 +190,21 @@ dns:
     #- https://doh.pub/dns-query
     #- system
   国外dns锚点: &dns_guowai
-    - 'https://dns.alidns.com/dns-query'
-    - 'https://[2400:3200::1]/dns-query'
-    - 'https://[2400:3200:baba::1]/dns-query'
     - 'https://dns.cloudflare.com/dns-query'
-    - '2606:4700:4700::1111'
-    #- 'https://doh.pub/dns-query'
-    #- 'https://dns.google/dns-query'
+    - 'https://[2606:4700:4700::1111]/dns-query'
+    - 'https://[2606:4700:4700::1001]/dns-query'
+    - 'https://dns.google/dns-query'
+    - 'https://[2001:4860:4860::8888]/dns-query'
+    - 'https://[2001:4860:4860::8844]/dns-query'
 ## ---------------- # DNS配置 ----------------
   default-nameserver:
     - 'tls://223.5.5.5'
     - 'tls://223.6.6.6'
     - '2400:3200::1'
     - '2400:3200:baba::1'
-    #- 'tls://119.29.29.29'
-  proxy-server-nameserver: *dns_guonei
   direct-nameserver-follow-policy: true
   direct-nameserver: *dns_guonei
+  proxy-server-nameserver: *dns_guowai
   nameserver: *dns_guonei
   nameserver-policy:
     "geosite:private,Google@CN,googlefcm": *dns_guonei
