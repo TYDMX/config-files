@@ -134,7 +134,7 @@ sniffer:
     - "+.v2ex.com"
     - "geosite:Google@CN,googlefcm"
   skip-domain:
-    - "geosite:private,cn,geolocation-cn"
+    #- "geosite:private,cn,geolocation-cn"
     - "+.push.apple.com"
     - Mijia Cloud
   skip-src-address:
