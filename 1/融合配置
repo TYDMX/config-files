@@ -175,7 +175,7 @@ dns:
   fake-ip-range: 198.18.0.1/16
   fake-ip-range6: fdfe:dcba:9876::1/64
   fake-ip-filter-mode: blacklist
-  fake-ip-ttl: 1
+  #fake-ip-ttl: 1
   fake-ip-filter:
     - "rule-set:自用fake-ip-filter"
     - "geosite:connectivity-check,private"
