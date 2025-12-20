@@ -158,6 +158,7 @@ tun:
   stack: mixed # 网络协议栈类型 (gVisor,System和mixed混合)
   dns-hijack:
   - "any:53"
+  - tcp://any:53
   auto-route: true # 自动设置系统路由表，将流量导向TUN网卡
   #auto-redirect: true # 自动重定向流量 仅支持 Linux
   auto-detect-interface: true # 自动检测出口网络接口
@@ -173,12 +174,12 @@ tun:
 dns:
   enable: true
   cache-algorithm: arc
-  use-hosts: false
-  use-system-hosts: false
-  listen: 0.0.0.0:1053 #（仅本机127.0.0.1:1053，网关设置0.0.0.0:1053）
+  use-hosts: true
+  use-system-hosts: true
+  listen: ':53' #（仅本机127.0.0.1:1053，网关设置0.0.0.0:1053）
   ipv6: true  
   prefer-h3: true
-  respect-rules: false  
+  respect-rules: true  
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
   fake-ip-range6: fdfe:dcba:9876::1/64
@@ -186,35 +187,53 @@ dns:
   fake-ip-ttl: 1
   fake-ip-filter:
     - "rule-set:自用fake-ip-filter"
-    - "geosite:connectivity-check,private"
-    - "geosite:Google@CN,googlefcm"
+    #- "geosite:connectivity-check,private"
+    #- "geosite:Google@CN,googlefcm"
     #- "geosite:category-games-cn,ookla-speedtest,apple,microsoft"
     #- "geosite:cn,geolocation-cn"
     #- "geosite:gfw,geolocation-!cn"
     #- WORKGROUP
 ## ---------------- # DNS锚点 #h3=true ----------------
   国内dns锚点: &dns_guonei
-    - https://dns.alidns.com/dns-query
+    - 'https://dns.alidns.com/dns-query'
+    - 'https://[2400:3200::1]/dns-query'
+    - 'https://[2400:3200:baba::1]/dns-query'
     #- https://doh.pub/dns-query
     #- system
   国外dns锚点: &dns_guowai
-    - https://dns.alidns.com/dns-query
-    #- https://doh.pub/dns-query
-    - https://dns.cloudflare.com/dns-query
-    #- https://dns.google/dns-query
+    - 'https://dns.alidns.com/dns-query'
+    - 'https://[2400:3200::1]/dns-query'
+    - 'https://[2400:3200:baba::1]/dns-query'
+    - 'https://dns.cloudflare.com/dns-query'
+    - '2606:4700:4700::1111'
+    #- 'https://doh.pub/dns-query'
+    #- 'https://dns.google/dns-query'
 ## ---------------- # DNS配置 ----------------
-  #default-nameserver:
-    #- tls://223.5.5.5
-    #- tls://223.6.6.6
-    #- tls://119.29.29.29
-  #proxy-server-nameserver: *dns_guonei
-  #direct-nameserver: *dns_guonei
-  #nameserver: *dns_guowai
-  #nameserver-policy:
-    #"geosite:private,Google@CN,googlefcm": *dns_guonei
-    #"geosite:cn,geolocation-cn": *dns_guonei
-    #"ruel-set:自用直连规则": *dns_guonei
+  default-nameserver:
+    - 'tls://223.5.5.5'
+    - 'tls://223.6.6.6'
+    - '2400:3200::1'
+    - '2400:3200:baba::1'
+    #- 'tls://119.29.29.29'
+  proxy-server-nameserver: *dns_guonei
+  direct-nameserver-follow-policy: true
+  direct-nameserver: *dns_guonei
+  nameserver: *dns_guonei
+  nameserver-policy:
+    "geosite:private,Google@CN,googlefcm": *dns_guonei
+    "geosite:cn,geolocation-cn": *dns_guonei
     #"geosite:geolocation-!cn,gfw": *dns_guowai
+  fallback: *dns_guowai
+  fallback-filter:
+    geoip: true
+    geoip-code: 'CN'
+    ipcidr:
+      - '240.0.0.0/4'
+      - '0.0.0.0/32'
+    domain:
+      - '+.google.com'
+      - '+.facebook.com'
+      - '+.youtube.com'
 
 ## ----------------  地理数据 ----------------
 geox-url: # 数据库下载地址
