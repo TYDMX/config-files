@@ -11,8 +11,8 @@
   type: http # 订阅类型
 #  interval: 604800 # 自动更新的秒数
   tfo: true # 启用 TCP Fast Open（TFO），可以减少 TCP 握手时间
-  #filter: *filter  # 引用白名单锚点
-  exclude-filter: *exclude-filter  # 引用黑名单锚点
+  #filter: *filter
+  exclude-filter: *exclude-filter
   exclude-type: "http|ss"
   health-check:
     enable: true
@@ -21,11 +21,11 @@
     timeout: 5000
     consecutive-failures: 3
     lazy: true
-    method: HEAD  # 使用 HTTP HEAD 方法进行健康检查，仅请求头部信息，减少数据使用量
-  smux: # smux 连接复用
+    method: HEAD  # 使用 HTTP HEAD 方法进行健康检查，仅请求头部信息
+  smux: # 连接复用
     enabled: false
     padding: false # 增加随机数据
-    protocol: smux4 # 使用的复用协议类型 smux，Yamux, h2mux, smux4
+    protocol: smux4 # 协议类型 smux，Yamux, h2mux, smux4
     #mode: auto
     max-connections: 32 # 同一客户端允许的最大物理连接数（抗阻塞能力，不止一个 TCP）
     max-streams: 64 # 每个连接可承载的逻辑流数量，并发性能
@@ -146,11 +146,11 @@ sniffer:
 ## ---------------- TUN ----------------
 tun:
   enable: true
-  stack: System # 网络协议栈类型 (gVisor,System 和 mixed 混合)
+  stack: System # 栈类型 (gVisor,System,mixed)
   dns-hijack:
   - "any:53"
   - tcp://any:53
-  auto-route: true # 自动设置系统路由表，将流量导向TUN网卡
+  auto-route: true # 自动设置系统路由表
   #auto-redirect: true # 自动重定向流量 仅支持 Linux
   auto-detect-interface: true # 自动检测出口网络接口
   strict-route: true # 将所有连接路由到 tun 来防止泄漏，但你的设备将无法其他设备被访问
@@ -204,8 +204,8 @@ dns:
     - '2400:3200:baba::1'
   direct-nameserver-follow-policy: true
   direct-nameserver: *dns_guonei
-  proxy-server-nameserver: *dns_guowai
-  nameserver: *dns_guonei
+  proxy-server-nameserver: *dns_guonei
+  nameserver: *dns_guowai
   nameserver-policy:
     "geosite:private,Google@CN,googlefcm": *dns_guonei
     "geosite:cn,geolocation-cn": *dns_guonei
@@ -221,14 +221,14 @@ dns:
       - '+.facebook.com'
       - '+.youtube.com'
 
-## ----------------  地理数据 ----------------
-geox-url: # 数据库下载地址
+## ---------------- 地理数据 ----------------
+geox-url:
   geosite: https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geosite.dat
   mmdb: https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip.metadb
   geoip: https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip.dat
   asn: https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/GeoLite2-ASN.mmdb
-geo-auto-update: true # 自动更新Geo数据库
-geo-update-interval: 168 # 更新间隔小时数 (7天)
+geo-auto-update: true
+geo-update-interval: 168
 
 
 # ==========================================================
@@ -400,10 +400,10 @@ rules:
 # ==========================================================
 ## ---------------- 规则组定义锚 ---------------------
 rule-anchor:
-  ip: &ip {type: http, interval: 86400, behavior: ipcidr, format: mrs} # ipcidr: IP段规则
-  domain: &domain {type: http, interval: 86400, behavior: domain, format: mrs} # domain: 域名规则
-  class: &class {type: http, interval: 86400, behavior: classical, format: text} # classical: 传统关键字/域名后缀规则
-  class-yaml: &class-yaml {type: http, interval: 86400, behavior: classical, format: yaml} # classical: 传统关键字/域名后缀规则
+  ip: &ip {type: http, interval: 86400, behavior: ipcidr, format: mrs}
+  domain: &domain {type: http, interval: 86400, behavior: domain, format: mrs}
+  class: &class {type: http, interval: 86400, behavior: classical, format: text}
+  class-yaml: &class-yaml {type: http, interval: 86400, behavior: classical, format: yaml}
   yaml-domain: &yaml-domain {type: http, interval: 86400, behavior: domain, format: yaml} 
   text-domain: &text-domain {type: http, interval: 86400, behavior: domain, format: text} 
 # ==========================================================
