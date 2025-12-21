@@ -180,7 +180,7 @@ dns:
     - "rule-set:自用fake-ip-filter"
     - "geosite:connectivity-check,private"
     - "geosite:Google@CN,googlefcm"
-    #- "geosite:cn,geolocation-cn"
+    - "geosite:cn,geolocation-cn"
     #- WORKGROUP
 ## ---------------- # DNS锚点 #h3=true ----------------
   国内dns锚点: &dns_guonei
