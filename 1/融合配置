@@ -4,7 +4,6 @@
 #|美|us|🇺🇸|🇺🇲|英|🇬🇧|法|🇫🇷|意|🇮🇹|荷|🇳🇱|土|🇹🇷|印|🇮🇳|加|🇨🇦|德|🇩🇪|奥|🇦🇹|西|
 关键字黑名单: &exclude-filter "(?i)China|🇨🇳|高倍|×10|10M|节点|过滤|剩余|流量|距离|下次|重置|重新|订阅|导入|套餐|到期|跳转|域名|请勿|邀请|好友|关注|频道|收费|就说明|被骗|续费|更新|地址|官网|下载|群组|永久|长期|中继|更换|协议|软件|教程|Lite|ali"
 关键字白名单: &filter "(?i)住|宅|家|home|美|us|🇺🇸|🇺🇲|港|hk|🇭🇰|台|臺|tw|🇹🇼|日|JP|🇯🇵|韩|🇰🇷|英|🇬🇧|新|🇸🇬|越|🇻🇳"
-
 # ==========================================================
 ## ---------------- 代理提供者模板锚点 ------------------
 代理提供者模板: &template
@@ -52,14 +51,12 @@ proxy-providers:
     override:
       additional-prefix: "💧 "
       #additional-suffix: " 💧"
-
   Clash Meta 💧:
     <<: *template
     url: "https://1.nfsqttt.us/nfsq/?token=59btQtBUZq7w5FY0PW_gxoTzeuFEc_GZ"
     override:
       additional-prefix: "💧 "
       #additional-suffix: " 💧"
-      
   FlyClash 💧:
     <<: *template
     url: "https://7.nfsqttt.us/nfsq/?token=G79Sr_wQlOsNJcrx43p2wpX-CwO3i-iT"
@@ -72,14 +69,12 @@ proxy-providers:
     override:
       additional-prefix: "💧 "
       #additional-suffix: " 💧"
-      
   Clash Verge 💧:
     <<: *template
     url: "https://1.nfsqttt.us/nfsq/?token=edzcd8iG2EiV0vU-3g0setqOU0K4rFWm"
     override:
       additional-prefix: "💧 "
-      #additional-suffix: " 💧"
-      
+      #additional-suffix: " 💧"   
       
   订阅分享中心 🌏:
     <<: *template
@@ -88,7 +83,6 @@ proxy-providers:
     override:
       additional-prefix: "🌏 "
       #additional-suffix: " 🌏"
-
 
 # ==========================================================
 ## ---------------- 全局配置 ----------------
