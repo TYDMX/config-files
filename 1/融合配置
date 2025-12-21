@@ -183,19 +183,36 @@ dns:
     - "geosite:cn,geolocation-cn"
     #- WORKGROUP
 ## ---------------- # DNS锚点 #h3=true ----------------
+hosts:
+  'dns.google':
+    - 8.8.8.8
+    - 8.8.4.4
+    - '2001:4860:4860::8888'
+    - '2001:4860:4860::8844'
+  'dns.cloudflare.com':
+    - 1.1.1.1
+    - 1.0.0.1
+    - '2606:4700:4700::1111'
+    - '2606:4700:4700::1001'
+  'dns.alidns.com':
+    - 223.5.5.5
+    - 223.6.6.6
+    - '2400:3200::1'
+    - '2400:3200:baba::1'
+
   国内dns锚点: &dns_guonei
     - 'https://dns.alidns.com/dns-query'
-    - 'https://[2400:3200::1]/dns-query'
-    - 'https://[2400:3200:baba::1]/dns-query'
+    #- 'https://[2400:3200::1]/dns-query'
+    #- 'https://[2400:3200:baba::1]/dns-query'
     #- https://doh.pub/dns-query
     #- system
   国外dns锚点: &dns_guowai
     - 'https://dns.cloudflare.com/dns-query'
-    - 'https://[2606:4700:4700::1111]/dns-query'
-    - 'https://[2606:4700:4700::1001]/dns-query'
+    #- 'https://[2606:4700:4700::1111]/dns-query'
+    #- 'https://[2606:4700:4700::1001]/dns-query'
     - 'https://dns.google/dns-query'
-    - 'https://[2001:4860:4860::8888]/dns-query'
-    - 'https://[2001:4860:4860::8844]/dns-query'
+    #- 'https://[2001:4860:4860::8888]/dns-query'
+    #- 'https://[2001:4860:4860::8844]/dns-query'
 ## ---------------- # DNS配置 ----------------
   default-nameserver:
     - 'tls://223.5.5.5'
