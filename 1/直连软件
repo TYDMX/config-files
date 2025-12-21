@@ -3,7 +3,7 @@
 #dlrj
 #   zlrj
 
-## ----------------程序功能组---------------------
+#腾讯
 PROCESS-NAME,com.tencent.mobileqq
 PROCESS-NAME,QQ.exe
 
@@ -11,14 +11,11 @@ PROCESS-NAME,QQ.exe
 #PROCESS-NAME,aces.exe
 #PROCESS-NAME,aces_BE.exe
 #PROCESS-NAME,BEService.exe
-#  BEService.exe
-#  beac_wt_mlauncher.exe
 
 # 暴雪
 #PROCESS-NAME,com.blizzard.arc
 #PROCESS-NAME,WarcraftRumble.exe
 #PROCESS-NAME,Wow.exe
-#  Agent.exe
 
 # 微软
 #PROCESS-NAME,svchost.exe
