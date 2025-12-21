@@ -225,7 +225,7 @@ hosts:
   nameserver: *dns_guowai
   nameserver-policy:
     "geosite:private,Google@CN,googlefcm": *dns_guonei
-    "geosite:cn,geolocation-cn": *dns_guone     
+    "geosite:cn,geolocation-cn": *dns_guonei
     "geosite:Google@CN,googlefcm": *dns_guowai
     "geosite:geolocation-!cn,gfw": *dns_guowai
 
