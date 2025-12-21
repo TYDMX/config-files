@@ -163,7 +163,7 @@ dns:
   use-system-hosts: true
   listen: ':53' #（仅本机127.0.0.1:1053，网关设置0.0.0.0:1053）
   ipv6: true
-  ipv6-timeout: 300
+  ipv6-timeout: 3000
   prefer-h3: true
   respect-rules: true
   enhanced-mode: fake-ip
