@@ -276,13 +276,13 @@ proxy-groups:
   - {name: 🇨🇳 自用直连,       <<: [*BaseFB, proxies: [🎯 全球直连]]}
   - {name: 🇨🇳 直连域名,       <<: [*BaseFB, proxies: [🎯 全球直连]]}
   - {name: 🔒 私有网络,       <<: [*BaseFB, proxies: [🎯 全球直连]]}
-  - {name: 🐟 漏网之鱼,       <<: [*BaseFB, proxies: [🚀 节点选择]], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Final.png}
+  - {name: 🐟 漏网之鱼,       <<: [*BaseSL, proxies: [🎯 全球直连. 🚀 节点选择]], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Final.png}
   # ---------------- 功能策略组 ----------------
   - {name: 📈 测速地址,       <<: [*BaseFB, proxies: [🎯 全球直连]], include-all: true, filter: *FilterAL, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Speedtest.png}
   - {name: 🖥️ 直连软件,       <<: [*BaseFB, proxies: [🎯 全球直连]]}
   - {name: 🖥️ 代理软件,       <<: [*BaseFB, proxies: [🚀 故障转移]]}
   - {name: 🖥️ 直连服务,       <<: [*BaseFB, proxies: [🎯 全球直连]]}
-  - {name: 🖥️ 代理服务,       <<: [*BaseFB, proxies: [🚀 节点选择]]}  
+  - {name: 🖥️ 代理服务,       <<: [*BaseFB, proxies: [🚀 故障转移]]}  
   - {name: 🚫 广告拦截,       <<: [*BaseFB, proxies: [🚫 阻止]]} 
   - {name: 🚫 追踪拦截,       <<: [*BaseFB, proxies: [🚫 阻止]]} 
   # ---------------- 媒体服务 ----------------
@@ -291,10 +291,10 @@ proxy-groups:
   - {name: 📲 社交平台,       <<: [*BaseSL, *GZ], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Telegram_X.png}
   # ---------------- 分流服务 ----------------
   - {name: 🤖 AI,            <<: [*BaseSL, *GZ], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/AI.png}
-  - {name: 💶 PayPal,        <<: [*BaseFB, proxies: [🚀 节点选择]], icon: https://git.imee.me/https://raw.githubusercontent.com/Orz-3/mini/master/Alpha/Bitcloud.png}
+  - {name: 💶 PayPal,        <<: [*BaseFB, proxies: [🚀 故障转移]], icon: https://git.imee.me/https://raw.githubusercontent.com/Orz-3/mini/master/Alpha/Bitcloud.png}
   - {name: 🎮 game@CN,       <<: [*BaseFB, proxies: [🎯 全球直连]], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Game.png}
   - {name: 🎮 game,          <<: [*BaseSL, *direct], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Game.png}
-  - {name: 👨🏿‍💻 GitHub,        <<: [*BaseFB, proxies: [🚀 节点选择]], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Microsoft.png}
+  - {name: 👨🏿‍💻 GitHub,        <<: [*BaseFB, proxies: [🚀 故障转移]], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Microsoft.png}
   - {name: 🪟 OneDrive,      <<: [*BaseFB, *US], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/OneDrive.png}
   - {name: 🪟 Bing,          <<: [*BaseFB, proxies: [🚀 节点选择]], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Microsoft.png}
   - {name: 🪟 Microsoft,     <<: [*BaseSL, *direct], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Microsoft.png}
