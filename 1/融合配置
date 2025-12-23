@@ -20,7 +20,7 @@
     timeout: 5000
     consecutive-failures: 3
     lazy: true
-    #method: HEAD  # 使用 HTTP HEAD 方法进行健康检查，仅请求头部信息
+    method: HEAD  # 使用 HTTP HEAD 方法进行健康检查，仅请求头部信息
   smux: # 连接复用
     enabled: false
     padding: false # 增加随机数据
