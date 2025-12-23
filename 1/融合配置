@@ -370,8 +370,8 @@ rules:
   - or,((geosite,google),(geoip,google)),🇬 谷歌
   - or,((geosite,cloudflare),(geoip,cloudflare),(geoip,cloudfront)),🖥️ 代理服务
 ## ---------------- 兜底组 ---------------------
-  #- geosite,gfw,🪜 代理域名
-  #- geosite,geolocation-!cn,🪜 代理域名
+  - geosite,gfw,🪜 代理域名
+  - geosite,geolocation-!cn,🪜 代理域名
   - or,((geosite,cn),(geoip,cn)),🇨🇳 直连域名
   - MATCH,🐟 漏网之鱼
 
