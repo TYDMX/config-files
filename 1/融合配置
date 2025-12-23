@@ -184,14 +184,15 @@ dns:
     'dns.alidns.com': [223.5.5.5, 223.6.6.6, '2400:3200::1', '2400:3200:baba::1']
     'dns.pub': [119.29.29.29, 182.254.116.116, '2402:4e00::', '2402:4e00:1::']
 
-
   国内dns锚点: &dns_guonei
     - 'https://dns.alidns.com/dns-query'
+    - 'https://doh.pub/dns-query'
   国外dns锚点: &dns_guowai
     - 'https://dns.cloudflare.com/dns-query'
     - 'https://dns.google/dns-query'
 ## ---------------- # DNS配置 ----------------
-  default-nameserver: ['tls://223.5.5.5', 'tls://223.6.6.6', '2400:3200::1', '2400:3200:baba::1']
+  #default-nameserver: ['tls://223.5.5.5', 'tls://223.6.6.6', '2400:3200::1', '2400:3200:baba::1']
+  default-nameserver: ['tls://223.5.5.5', 'tls://223.6.6.6', 'tls://119.29.29.29', 'tls://182.254.116.116', '2400:3200::1', '2400:3200:baba::1', '2402:4e00::', '2402:4e00:1::']
   direct-nameserver-follow-policy: true
   direct-nameserver: *dns_guonei
   proxy-server-nameserver: *dns_guonei
