@@ -47,7 +47,7 @@ proxy-providers:
       #additional-suffix: " 💧"
   Flclash电脑 💧:
     <<: *template
-    url: "https://3.nfsqttt.us/nfsq/?token=F8dS1kfjEVYmNuWZyZhUmJDkV176S6ue"
+    url: "https://9.nfsqttt.us/nfsq/?token=qR1Kvjm69jcL6QJpVo4-k8O3LxiJpxl5"
     override:
       additional-prefix: "💧 "
       #additional-suffix: " 💧"
