@@ -275,8 +275,8 @@ proxy-groups:
   - {name: 🚀 故障转移JP,     <<: [*BaseFB, *JP], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/ULB.png}
   - {name: 🪜 代理域名,       <<: [type: url-test, proxies: [🚀 节点选择]], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Static.png}
   - {name: 🌐 自用代理,       <<: [type: url-test, proxies: [🚀 节点选择]], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Static.png}
-  - {name: 🇨🇳 自用直连,       <<: [type: url-test, proxies: [🎯 全球直连]]}
-  - {name: 🇨🇳 直连域名,       <<: [type: url-test, proxies: [🎯 全球直连]]}
+  - {name: ⬆️ 自用直连,       <<: [type: url-test, proxies: [🎯 全球直连]]}
+  - {name: ⬆️ 直连域名,       <<: [type: url-test, proxies: [🎯 全球直连]]}
   - {name: 🔒 私有网络,       <<: [type: load-balance, proxies: [🎯 全球直连]]}
   # ---------------- 功能策略组 ----------------
   - {name: 📈 测速地址,       <<: [type: url-test, proxies: [🎯 全球直连]], include-all: true, filter: *FilterAL, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Speedtest.png}
@@ -351,7 +351,7 @@ rules:
   - PROCESS-NAME,com.google.android.googlequicksearchbox,🤖 AI # Google应用
   - geosite,spotify,🚀 故障转移JP
   - rule-set,自用代理规则,🌐 自用代理
-  - rule-set,自用直连规则,🇨🇳 自用直连
+  - rule-set,自用直连规则,⬆️ 自用直连
   - rule-set,自用代理软件,🖥️ 代理软件
   - rule-set,自用直连软件,🖥️ 直连软件
 ## ---------------- 直连组 ---------------------
@@ -375,7 +375,7 @@ rules:
 ## ---------------- 兜底组 ---------------------
   - geosite,gfw,🪜 代理域名
   - geosite,geolocation-!cn,🪜 代理域名
-  - or,((geosite,cn),(geoip,cn)),🇨🇳 直连域名
+  - or,((geosite,cn),(geoip,cn)),⬆️ 直连域名
   - MATCH,🐟 漏网之鱼
 
 # ==========================================================
