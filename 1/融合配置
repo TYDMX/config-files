@@ -55,7 +55,7 @@ proxy-providers:
       #additional-suffix: " 💧"
   Clash Meta 💧:
     <<: *template
-    url: "https://1.nfsqttt.us/nfsq/?token=59btQtBUZq7w5FY0PW_gxoTzeuFEc_GZ"
+    url: "https://7.nfsqttt.us/nfsq/?token=kE_Qf1uUJVJqYSRPiRANadYBq5AMUzOU"
     override:
       additional-prefix: "💧 "
       #additional-suffix: " 💧"
