@@ -47,7 +47,7 @@ proxy-providers:
       #additional-suffix: " 💧"
   Flclash电脑 💧:
     <<: *template
-    url: "https://9.nfsqttt.us/nfsq/?token=qR1Kvjm69jcL6QJpVo4-k8O3LxiJpxl5"
+    url: "https://5.nfsqttt.us/nfsq/?token=dRqhofYkSgvZg9C7q8eu90p_vElrlETN"
     override:
       additional-prefix: "💧 "
       #additional-suffix: " 💧"
@@ -276,7 +276,6 @@ proxy-groups:
   - {name: 🇨🇳 自用直连,       <<: [*BaseFB, proxies: [🎯 全球直连]]}
   - {name: 🇨🇳 直连域名,       <<: [*BaseFB, proxies: [🎯 全球直连]]}
   - {name: 🔒 私有网络,       <<: [*BaseFB, proxies: [🎯 全球直连]]}
-  - {name: 🐟 漏网之鱼,       <<: [*BaseSL, proxies: [🚀 节点选择, 🎯 全球直连]], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Final.png}
   # ---------------- 功能策略组 ----------------
   - {name: 📈 测速地址,       <<: [*BaseFB, proxies: [🎯 全球直连]], include-all: true, filter: *FilterAL, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Speedtest.png}
   - {name: 🖥️ 直连软件,       <<: [*BaseFB, proxies: [🎯 全球直连]]}
@@ -302,40 +301,41 @@ proxy-groups:
   - {name: 🇬 谷歌@CN,         <<: [*BaseFB, proxies: [🎯 全球直连]], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Google_Search.png}
   - {name: 🍎 Apple,         <<: [*BaseFB, proxies: [🎯 全球直连]], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Apple.png}
   # ---------------- 其他策略组 ----------------
-  - {name: 🌐 冷门自选,     type: select, include-all: true, filter: *FilterOT, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Europe_Map.png}
-  - {name: 🌐 全部节点,     type: select, include-all: true, filter: *FilterAL, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Clubhouse.png}
+  - {name: 🌐 冷门自选,       type: select, include-all: true, filter: *FilterOT, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Europe_Map.png}
+  - {name: 🌐 全部节点,       type: select, include-all: true, filter: *FilterAL, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Clubhouse.png}
+  - {name: 🐟 漏网之鱼,       <<: [*BaseSL, proxies: [🚀 节点选择, 🎯 全球直连]], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Final.png}
   # ==================== 地区策略组 ====================
-  - {name: 🇭🇰 香港策略,     type: select, proxies: [🇭🇰 香港自动, 🇭🇰 香港均衡-散列, 🇭🇰 香港均衡-轮询], include-all: true, filter: *HKall, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Hong_Kong.png}
-  - {name: 🇸🇬 狮城策略,     type: select, proxies: [🇸🇬 狮城自动, 🇸🇬 狮城均衡-散列, 🇸🇬 狮城均衡-轮询], include-all: true, filter: *SGall, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Singapore.png}
-  - {name: 🇯🇵 日本策略,     type: select, proxies: [🇯🇵 日本自动, 🇯🇵 日本均衡-散列, 🇯🇵 日本均衡-轮询], include-all: true, filter: *JPall, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Japan.png}
-  - {name: 🇺🇸 美国策略,     type: select, proxies: [🇺🇸 美国自动, 🇺🇸 美国均衡-散列, 🇺🇸 美国均衡-轮询], include-all: true, filter: *USall, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/United_States.png}
-  - {name: 🇹🇼 台湾策略,     type: select, proxies: [🇹🇼 台湾自动, 🇹🇼 台湾均衡-散列, 🇹🇼 台湾均衡-轮询], include-all: true, filter: *TWall, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Taiwan.png}
-  - {name: 🇰🇷 韩国策略,     type: select, proxies: [🇰🇷 韩国自动, 🇰🇷 韩国均衡-散列, 🇰🇷 韩国均衡-轮询], include-all: true, filter: *KRall, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Korea.png}
-  - {name: 🇪🇺 欧盟策略,     type: select, proxies: [🇪🇺 欧盟自动, 🇪🇺 欧盟均衡-散列, 🇪🇺 欧盟均衡-轮询], include-all: true, filter: *EUall, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/European_Union.png}
+  - {name: 🇭🇰 香港策略, type: select, proxies: [🇭🇰 香港自动, 🇭🇰 香港均衡-散列, 🇭🇰 香港均衡-轮询], include-all: true, filter: *HKall, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Hong_Kong.png}
+  - {name: 🇸🇬 狮城策略, type: select, proxies: [🇸🇬 狮城自动, 🇸🇬 狮城均衡-散列, 🇸🇬 狮城均衡-轮询], include-all: true, filter: *SGall, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Singapore.png}
+  - {name: 🇯🇵 日本策略, type: select, proxies: [🇯🇵 日本自动, 🇯🇵 日本均衡-散列, 🇯🇵 日本均衡-轮询], include-all: true, filter: *JPall, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Japan.png}
+  - {name: 🇺🇸 美国策略, type: select, proxies: [🇺🇸 美国自动, 🇺🇸 美国均衡-散列, 🇺🇸 美国均衡-轮询], include-all: true, filter: *USall, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/United_States.png}
+  - {name: 🇹🇼 台湾策略, type: select, proxies: [🇹🇼 台湾自动, 🇹🇼 台湾均衡-散列, 🇹🇼 台湾均衡-轮询], include-all: true, filter: *TWall, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Taiwan.png}
+  - {name: 🇰🇷 韩国策略, type: select, proxies: [🇰🇷 韩国自动, 🇰🇷 韩国均衡-散列, 🇰🇷 韩国均衡-轮询], include-all: true, filter: *KRall, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Korea.png}
+  - {name: 🇪🇺 欧盟策略, type: select, proxies: [🇪🇺 欧盟自动, 🇪🇺 欧盟均衡-散列, 🇪🇺 欧盟均衡-轮询], include-all: true, filter: *EUall, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/European_Union.png}
   # ---------------- 自动测速组 ----------------
-  - {name: 🇭🇰 香港自动,      <<: *BaseUT, include-all: true, filter: *FilterHK, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Auto.png}
-  - {name: 🇸🇬 狮城自动,      <<: *BaseUT, include-all: true, filter: *FilterSG, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Auto.png}
-  - {name: 🇯🇵 日本自动,      <<: *BaseUT, include-all: true, filter: *FilterJP, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Auto.png}
-  - {name: 🇺🇸 美国自动,      <<: *BaseUT, include-all: true, filter: *FilterUS, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Auto.png}
-  - {name: 🇹🇼 台湾自动,      <<: *BaseUT, include-all: true, filter: *FilterTW, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Auto.png}
-  - {name: 🇰🇷 韩国自动,      <<: *BaseUT, include-all: true, filter: *FilterKR, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Auto.png}
-  - {name: 🇪🇺 欧盟自动,      <<: *BaseUT, include-all: true, filter: *FilterEU, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Auto.png}
+  - {name: 🇭🇰 香港自动, <<: *BaseUT, include-all: true, filter: *FilterHK, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Auto.png}
+  - {name: 🇸🇬 狮城自动, <<: *BaseUT, include-all: true, filter: *FilterSG, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Auto.png}
+  - {name: 🇯🇵 日本自动, <<: *BaseUT, include-all: true, filter: *FilterJP, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Auto.png}
+  - {name: 🇺🇸 美国自动, <<: *BaseUT, include-all: true, filter: *FilterUS, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Auto.png}
+  - {name: 🇹🇼 台湾自动, <<: *BaseUT, include-all: true, filter: *FilterTW, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Auto.png}
+  - {name: 🇰🇷 韩国自动, <<: *BaseUT, include-all: true, filter: *FilterKR, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Auto.png}
+  - {name: 🇪🇺 欧盟自动, <<: *BaseUT, include-all: true, filter: *FilterEU, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Auto.png}
   # ---------------- 负载均衡-散列 ----------------
-  - {name: 🇭🇰 香港均衡-散列,  <<: *BaseCH, include-all: true, filter: *FilterHK, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Round_Robin_1.png}
-  - {name: 🇸🇬 狮城均衡-散列,  <<: *BaseCH, include-all: true, filter: *FilterSG, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Round_Robin_1.png}
-  - {name: 🇯🇵 日本均衡-散列,  <<: *BaseCH, include-all: true, filter: *FilterJP, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Round_Robin_1.png}
-  - {name: 🇺🇸 美国均衡-散列,  <<: *BaseCH, include-all: true, filter: *FilterUS, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Round_Robin_1.png}
-  - {name: 🇹🇼 台湾均衡-散列,  <<: *BaseCH, include-all: true, filter: *FilterTW, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Round_Robin_1.png}
-  - {name: 🇰🇷 韩国均衡-散列,  <<: *BaseCH, include-all: true, filter: *FilterKR, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Round_Robin_1.png}
-  - {name: 🇪🇺 欧盟均衡-散列,  <<: *BaseCH, include-all: true, filter: *FilterEU, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Round_Robin_1.png}
+  - {name: 🇭🇰 香港均衡-散列, <<: *BaseCH, include-all: true, filter: *FilterHK, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Round_Robin_1.png}
+  - {name: 🇸🇬 狮城均衡-散列, <<: *BaseCH, include-all: true, filter: *FilterSG, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Round_Robin_1.png}
+  - {name: 🇯🇵 日本均衡-散列, <<: *BaseCH, include-all: true, filter: *FilterJP, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Round_Robin_1.png}
+  - {name: 🇺🇸 美国均衡-散列, <<: *BaseCH, include-all: true, filter: *FilterUS, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Round_Robin_1.png}
+  - {name: 🇹🇼 台湾均衡-散列, <<: *BaseCH, include-all: true, filter: *FilterTW, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Round_Robin_1.png}
+  - {name: 🇰🇷 韩国均衡-散列, <<: *BaseCH, include-all: true, filter: *FilterKR, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Round_Robin_1.png}
+  - {name: 🇪🇺 欧盟均衡-散列, <<: *BaseCH, include-all: true, filter: *FilterEU, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Round_Robin_1.png}
   # ---------------- 负载均衡-轮询 ----------------
-  - {name: 🇭🇰 香港均衡-轮询,  <<: *BaseCR, include-all: true, filter: *FilterHK, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Round_Robin.png}
-  - {name: 🇸🇬 狮城均衡-轮询,  <<: *BaseCR, include-all: true, filter: *FilterSG, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Round_Robin.png}
-  - {name: 🇯🇵 日本均衡-轮询,  <<: *BaseCR, include-all: true, filter: *FilterJP, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Round_Robin.png}
-  - {name: 🇺🇸 美国均衡-轮询,  <<: *BaseCR, include-all: true, filter: *FilterUS, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Round_Robin.png}
-  - {name: 🇹🇼 台湾均衡-轮询,  <<: *BaseCR, include-all: true, filter: *FilterTW, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Round_Robin.png}
-  - {name: 🇰🇷 韩国均衡-轮询,  <<: *BaseCR, include-all: true, filter: *FilterKR, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Round_Robin.png}
-  - {name: 🇪🇺 欧盟均衡-轮询,  <<: *BaseCR, include-all: true, filter: *FilterEU, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Round_Robin.png}
+  - {name: 🇭🇰 香港均衡-轮询, <<: *BaseCR, include-all: true, filter: *FilterHK, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Round_Robin.png}
+  - {name: 🇸🇬 狮城均衡-轮询, <<: *BaseCR, include-all: true, filter: *FilterSG, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Round_Robin.png}
+  - {name: 🇯🇵 日本均衡-轮询, <<: *BaseCR, include-all: true, filter: *FilterJP, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Round_Robin.png}
+  - {name: 🇺🇸 美国均衡-轮询, <<: *BaseCR, include-all: true, filter: *FilterUS, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Round_Robin.png}
+  - {name: 🇹🇼 台湾均衡-轮询, <<: *BaseCR, include-all: true, filter: *FilterTW, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Round_Robin.png}
+  - {name: 🇰🇷 韩国均衡-轮询, <<: *BaseCR, include-all: true, filter: *FilterKR, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Round_Robin.png}
+  - {name: 🇪🇺 欧盟均衡-轮询, <<: *BaseCR, include-all: true, filter: *FilterEU, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Round_Robin.png}
 
 # ==========================================================
 ## ---------------- 规则 ---------------------
