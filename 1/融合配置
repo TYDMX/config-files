@@ -164,7 +164,7 @@ dns:
   use-hosts: true
   use-system-hosts: true
   listen: '127.0.0.1:1053' #（仅本机127.0.0.1:1053，网关设置0.0.0.0:1053, :53）
-  ipv6: true
+  ipv6: false
   #ipv6-timeout: 300
   prefer-h3: true
   respect-rules: true
