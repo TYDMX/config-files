@@ -161,7 +161,7 @@ tun:
 dns:
   enable: true
   cache-algorithm: arc
-  use-hosts: true
+  use-hosts: false
   use-system-hosts: true
   listen: '127.0.0.1:1053' #（仅本机127.0.0.1:1053，网关设置0.0.0.0:1053, :53）
   ipv6: false
@@ -180,11 +180,11 @@ dns:
     - "geosite:cn,geolocation-cn"
     #- WORKGROUP
 ## ---------------- # DNS锚点 #h3=true ----------------
-  hosts:
-    'dns.google': [8.8.8.8, 8.8.4.4, '2001:4860:4860::8888', '2001:4860:4860::8844']
-    'dns.cloudflare.com': [1.1.1.1, 1.0.0.1, '2606:4700:4700::1111', '2606:4700:4700::1001']
-    'dns.alidns.com': [223.5.5.5, 223.6.6.6, '2400:3200::1', '2400:3200:baba::1']
-    'dns.pub': [119.29.29.29, 182.254.116.116, '2402:4e00::', '2402:4e00:1::']
+  #hosts:
+    #'dns.google': [8.8.8.8, 8.8.4.4, '2001:4860:4860::8888', '2001:4860:4860::8844']
+    #'dns.cloudflare.com': [1.1.1.1, 1.0.0.1, '2606:4700:4700::1111', '2606:4700:4700::1001']
+    #'dns.alidns.com': [223.5.5.5, 223.6.6.6, '2400:3200::1', '2400:3200:baba::1']
+    #'dns.pub': [119.29.29.29, 182.254.116.116, '2402:4e00::', '2402:4e00:1::']
 
   国内dns锚点: &dns_guonei
     - 'https://dns.alidns.com/dns-query'
@@ -193,8 +193,8 @@ dns:
     - 'https://dns.cloudflare.com/dns-query'
     - 'https://dns.google/dns-query'
 ## ---------------- # DNS配置 ----------------
-  #default-nameserver: ['tls://223.5.5.5', 'tls://223.6.6.6', '2400:3200::1', '2400:3200:baba::1']
-  default-nameserver: ['tls://223.5.5.5', 'tls://223.6.6.6', 'tls://119.29.29.29', 'tls://182.254.116.116', '2400:3200::1', '2400:3200:baba::1', '2402:4e00::', '2402:4e00:1::']
+  default-nameserver: ['tls://223.5.5.5', 'tls://223.6.6.6', 'tls://119.29.29.29', 'tls://182.254.116.116']
+  #default-nameserver: ['tls://223.5.5.5', 'tls://223.6.6.6', 'tls://119.29.29.29', 'tls://182.254.116.116', '2400:3200::1', '2400:3200:baba::1', '2402:4e00::', '2402:4e00:1::']
   direct-nameserver-follow-policy: true
   direct-nameserver: *dns_guonei
   proxy-server-nameserver: *dns_guonei
