@@ -94,7 +94,7 @@ socks-port: 7891
 #redir-port: 7892 # 透明代理端口 (Linux/macOS)
 #tproxy-port: 7894  # TProxy透明代理端口 (Linux)
 mixed-port: 7893
-ipv6: false
+ipv6: true
 allow-lan: false # 允许局域网连接
 unified-delay: true # 统一延迟
 tcp-concurrent: true # 尝试与多个IP建立TCP连接
@@ -164,7 +164,7 @@ dns:
   use-hosts: false
   use-system-hosts: true
   listen: '127.0.0.1:1053' #（仅本机127.0.0.1:1053，网关设置0.0.0.0:1053, :53）
-  ipv6: false
+  ipv6: true
   #ipv6-timeout: 300
   prefer-h3: true
   respect-rules: true
@@ -185,7 +185,6 @@ dns:
     #'dns.cloudflare.com': [1.1.1.1, 1.0.0.1, '2606:4700:4700::1111', '2606:4700:4700::1001']
     #'dns.alidns.com': [223.5.5.5, 223.6.6.6, '2400:3200::1', '2400:3200:baba::1']
     #'dns.pub': [119.29.29.29, 182.254.116.116, '2402:4e00::', '2402:4e00:1::']
-
   国内dns锚点: &dns_guonei
     - 'https://dns.alidns.com/dns-query'
     - 'https://doh.pub/dns-query'
@@ -195,7 +194,7 @@ dns:
 ## ---------------- # DNS配置 ----------------
   default-nameserver: ['tls://223.5.5.5', 'tls://223.6.6.6', 'tls://119.29.29.29', 'tls://182.254.116.116']
   #default-nameserver: ['tls://223.5.5.5', 'tls://223.6.6.6', 'tls://119.29.29.29', 'tls://182.254.116.116', '2400:3200::1', '2400:3200:baba::1', '2402:4e00::', '2402:4e00:1::']
-  direct-nameserver-follow-policy: true
+  #direct-nameserver-follow-policy: true
   direct-nameserver: *dns_guonei
   proxy-server-nameserver: *dns_guonei
   nameserver: *dns_guowai
