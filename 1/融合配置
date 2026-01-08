@@ -94,7 +94,7 @@ socks-port: 7891
 #redir-port: 7892 # 透明代理端口 (Linux/macOS)
 #tproxy-port: 7894  # TProxy透明代理端口 (Linux)
 mixed-port: 7893
-ipv6: true
+ipv6: false
 allow-lan: false # 允许局域网连接
 unified-delay: true # 统一延迟
 tcp-concurrent: true # 尝试与多个IP建立TCP连接
