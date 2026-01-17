@@ -49,7 +49,7 @@ proxy-providers:
       #additional-suffix: " 💧"
   Flclash电脑 💧:
     <<: *template
-    url: "https://5.nfsqttt.us/nfsq/?token=dRqhofYkSgvZg9C7q8eu90p_vElrlETN"
+    url: "https://3.nfsqttt.us/nfsq/?token=78_YqbR5ld1etSU1nT8jJrHmyP_e2B6B"
     override:
       additional-prefix: "💧 "
       #additional-suffix: " 💧"
@@ -147,7 +147,6 @@ tun:
   - "any:53"
   - tcp://any:53
   auto-route: true # 自动设置系统路由表
-  #auto-redirect: true # 自动重定向流量 仅支持 Linux
   auto-detect-interface: true # 自动检测出口网络接口
   strict-route: true # 将所有连接路由到 tun 来防止泄漏，但你的设备将无法其他设备被访问
   #disable-icmp-forwarding: true # 禁用 ICMP 转发，防止某些情况下的 ICMP 环回问题，ping 将不会显示真实的延迟
@@ -178,13 +177,13 @@ dns:
     - "geosite:connectivity-check,private"
     - "geosite:Google@CN,googlefcm"
     - "geosite:cn,geolocation-cn"
-    #- WORKGROUP
 ## ---------------- # DNS锚点 #h3=true ----------------
   #hosts:
     #'dns.google': [8.8.8.8, 8.8.4.4, '2001:4860:4860::8888', '2001:4860:4860::8844']
     #'dns.cloudflare.com': [1.1.1.1, 1.0.0.1, '2606:4700:4700::1111', '2606:4700:4700::1001']
     #'dns.alidns.com': [223.5.5.5, 223.6.6.6, '2400:3200::1', '2400:3200:baba::1']
     #'dns.pub': [119.29.29.29, 182.254.116.116, '2402:4e00::', '2402:4e00:1::']
+
   国内dns锚点: &dns_guonei
     - 'https://dns.alidns.com/dns-query'
     - 'https://doh.pub/dns-query'
@@ -193,7 +192,6 @@ dns:
     - 'https://dns.google/dns-query'
 ## ---------------- # DNS配置 ----------------
   default-nameserver: ['tls://223.5.5.5', 'tls://223.6.6.6', 'tls://119.29.29.29', 'tls://182.254.116.116']
-  #default-nameserver: ['tls://223.5.5.5', 'tls://223.6.6.6', 'tls://119.29.29.29', 'tls://182.254.116.116', '2400:3200::1', '2400:3200:baba::1', '2402:4e00::', '2402:4e00:1::']
   #direct-nameserver-follow-policy: true
   direct-nameserver: *dns_guonei
   proxy-server-nameserver: *dns_guonei
@@ -277,6 +275,7 @@ proxy-groups:
   - {name: 🚀 故障转移SG,     <<: [*BaseFB, *SG], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/ULB.png}
   - {name: 🚀 故障转移US,     <<: [*BaseFB, *US], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/ULB.png}
   - {name: 🚀 故障转移JP,     <<: [*BaseFB, *JP], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/ULB.png}
+  # ---------------- 代理策略组 ----------------
   - {name: 🪜 代理域名,       <<: [*BaseCR, proxies: [🚀 节点选择]], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Static.png}
   - {name: 🌐 自用代理,       <<: [*BaseCR, proxies: [🚀 节点选择]], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Static.png}
   - {name: ⬆️ 自用直连,       <<: [*BaseCR, proxies: [🎯 全球直连]]}
@@ -285,8 +284,8 @@ proxy-groups:
   # ---------------- 功能策略组 ----------------
   - {name: 📈 测速地址,       <<: [*BaseCR, proxies: [🎯 全球直连]], include-all: true, filter: *FilterAL, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Speedtest.png}
   - {name: 🖥️ 直连软件,       <<: [*BaseCR, proxies: [🎯 全球直连]]}
-  - {name: 🖥️ 代理软件,       <<: [*BaseCR, proxies: [🚀 故障转移]]}
   - {name: 🖥️ 直连服务,       <<: [*BaseCR, proxies: [🎯 全球直连]]}
+  - {name: 🖥️ 代理软件,       <<: [*BaseCR, proxies: [🚀 故障转移]]}
   - {name: 🖥️ 代理服务,       <<: [*BaseCR, proxies: [🚀 故障转移]]}  
   - {name: 🚫 广告拦截,       <<: [*BaseCR, proxies: [🚫 阻止]]} 
   - {name: 🚫 追踪拦截,       <<: [*BaseCR, proxies: [🚫 阻止]]} 
@@ -296,10 +295,10 @@ proxy-groups:
   - {name: 📲 社交平台,       <<: [*BaseSL, *GZ], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Telegram_X.png}
   # ---------------- 分流服务 ----------------
   - {name: 🤖 AI,            <<: [*BaseSL, *GZ], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/AI.png}
-  - {name: 💶 PayPal,        <<: [*BaseCR, proxies: [🚀 故障转移]], icon: https://git.imee.me/https://raw.githubusercontent.com/Orz-3/mini/master/Alpha/Bitcloud.png}
-  - {name: 🎮 game@CN,       <<: [*BaseCR, proxies: [🎯 全球直连]], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Game.png}
-  - {name: 🎮 game,          <<: [*BaseSL, *GZ], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Game.png}
   - {name: 👨🏿‍💻 GitHub,        <<: [*BaseCR, proxies: [🚀 故障转移]], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Microsoft.png}
+  - {name: 💶 PayPal,        <<: [*BaseCR, proxies: [🚀 故障转移]], icon: https://git.imee.me/https://raw.githubusercontent.com/Orz-3/mini/master/Alpha/Bitcloud.png}
+  - {name: 🎮 game,          <<: [*BaseSL, *GZ], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Game.png}
+  - {name: 🎮 game@CN,       <<: [*BaseCR, proxies: [🎯 全球直连]], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Game.png}
   - {name: 🪟 Bing,          <<: [*BaseCR, proxies: [🚀 节点选择]], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Microsoft.png}
   - {name: 🪟 Microsoft,     <<: [*BaseSL, *direct], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Microsoft.png}
   - {name: 🇬 谷歌,            <<: [*BaseSL, *GZ], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Google_Search.png}
