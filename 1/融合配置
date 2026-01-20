@@ -24,7 +24,7 @@ cfw-latency-url: https://cp.cloudflare.com/generate_204
     lazy: true
     method: HEAD  # 使用 HTTP HEAD 方法进行健康检查，仅请求头部信息
   smux: # 连接复用
-    enabled: false
+    enabled: true
     padding: false # 增加随机数据
     protocol: smux4 # 协议类型 smux，Yamux, h2mux, smux4
     #mode: auto
@@ -43,7 +43,7 @@ proxy-providers:
 
   Flclash手机 💧:
     <<: *template
-    url: "https://9.nfsqttt.us/nfsq/?token=_25DexA8iYWdUGgiWmQmQxh1xL--O9Vf"
+    url: "https://9.nfsqttt.us/nfsq/?token=9B0fAHhaNURK2pXAl3oYy5w5sVsEoJXP"
     override:
       additional-prefix: "💧 "
       #additional-suffix: " 💧"
@@ -292,7 +292,8 @@ proxy-groups:
   # ---------------- 媒体服务 ----------------
   - {name: 📹 视频平台,       <<: [*BaseSL, *GZ], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/YouTube.png}
   # ---------------- 社交平台 ----------------
-  - {name: 📲 社交平台,       <<: [*BaseSL, *GZ], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Telegram_X.png}
+  - {name: 📲 社交平台,       <<: [*BaseSL, *GZ], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Twitter.png}
+  - {name: 📲 电报平台,       <<: [*BaseSL, *GZ], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Telegram_X.png}
   # ---------------- 分流服务 ----------------
   - {name: 🤖 AI,            <<: [*BaseSL, *GZ], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/AI.png}
   - {name: 👨🏿‍💻 GitHub,        <<: [*BaseCR, proxies: [🚀 故障转移]], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Microsoft.png}
@@ -370,6 +371,7 @@ rules:
   - geosite,github,👨🏿‍💻 GitHub
   - geosite,Bing,🪟 Bing
   - or,((geosite,telegram),(geoip,telegram),(geosite,twitter),(geosite,tiktok),(geosite,Reddit),(geosite,discord)),📲 社交平台
+  - or,((geosite,telegram),(geoip,telegram)),📲 电报平台
   - or,((geosite,youtube),(geosite,netflix),(geosite,onedrive),(geosite,twitch),(geosite,vk),(geosite,disney),(geosite,biliintl),(geosite,category-porn)),📹 视频平台
 ## ---------------- 功能组 ---------------------
   - geosite,microsoft,🪟 Microsoft
