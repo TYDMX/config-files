@@ -43,7 +43,7 @@ proxy-providers:
 
   Flclash手机 💧:
     <<: *template
-    url: "https://9.nfsqttt.us/nfsq/?token=9B0fAHhaNURK2pXAl3oYy5w5sVsEoJXP"
+    url: "https://5.nfsqttt.us/nfsq/?token=pX5h5Dmb4xjMeocOD1S_tc7Zr4zRKY5E"
     override:
       additional-prefix: "💧 "
       #additional-suffix: " 💧"
