@@ -81,7 +81,7 @@ proxy-providers:
   订阅分享中心 🌏:
     <<: *template
     interval: 86400
-    url: "https://sub.dmit.dpdns.org/share/file/dingyue_Center_zijian?token=18IEhJpqdajz0Wwbbn0Fo"
+    url: "https://sub.dmit.dpdns.org/share/sub/dingyue_Center_zijian_auto?token=xgy1nCsG7xgerdecv4QRn"
     override:
       additional-prefix: "🌏 "
       #additional-suffix: " 🌏"
