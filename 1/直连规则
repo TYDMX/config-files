@@ -77,7 +77,7 @@ DOMAIN-KEYWORD,my.microsoftpersonalcontent.com
 
 #twitter
 #DOMAIN-KEYWORD,abs.twimg.com
-DOMAIN-KEYWORD,abs-0.twimg.com
+#DOMAIN-KEYWORD,abs-0.twimg.com
 DOMAIN-KEYWORD,video.twimg.com
 DOMAIN-KEYWORD,video-ft.twimg.com
 DOMAIN-KEYWORD,ton.twimg.com
