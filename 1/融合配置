@@ -85,6 +85,14 @@ proxy-providers:
     override:
       additional-prefix: "🌏 "
       #additional-suffix: " 🌏"
+      
+  公益订阅分享 🔮:
+    <<: *template
+    interval: 86400
+    url: "https://raw.githubusercontent.com/go4sharing/sub/main/clash.yaml"
+    override:
+      additional-prefix: "🔮 "
+      #additional-suffix: " 🔮"
 
 # ==========================================================
 ## ---------------- 全局配置 ----------------
