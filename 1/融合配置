@@ -10,7 +10,7 @@ cfw-latency-url: https://cp.cloudflare.com/generate_204
 ## ---------------- 代理提供者模板锚点 ------------------
 代理提供者模板: &template
   type: http # 订阅类型
-#  interval: 604800 # 自动更新的秒数
+#  interval: 604800
   tfo: true # 启用 TCP Fast Open（TFO），可以减少 TCP 握手时间
   #filter: *filter
   exclude-filter: *exclude-filter
@@ -22,21 +22,21 @@ cfw-latency-url: https://cp.cloudflare.com/generate_204
     timeout: 5000
     consecutive-failures: 3
     lazy: true
-    method: HEAD  # 使用 HTTP HEAD 方法进行健康检查，仅请求头部信息
-  smux: # 连接复用
+    method: HEAD
+  smux:
     enabled: true
-    padding: false # 增加随机数据
+    padding: false
     protocol: smux4 # 协议类型 smux，Yamux, h2mux, smux4
     #mode: auto
-    max-connections: 32 # 同一客户端允许的最大物理连接数（抗阻塞能力，不止一个 TCP）
-    max-streams: 64 # 每个连接可承载的逻辑流数量，并发性能
-    min-streams: 16  # 防止单链路挤满，适合分流
-    statistic: false # 记录 smux 的统计信息（连接/流量）
-    only-tcp: false # 是否只在 TCP 上启用smux，是否可以在 QUIC/XTLS 上也启用
+    max-connections: 32
+    max-streams: 64
+    min-streams: 16
+    statistic: false
+    only-tcp: true
   #proxies: select1 # 使用此提供者为select1中转
   #proxy: select1 # 更新用的代理组
     override:
-      #dialer-proxy: ♻️ 中转服务 # 通过中转服务中转
+      #dialer-proxy: ♻️ 中转服务
 
 ## ---------------- 代理提供者 ----------------
 proxy-providers:
@@ -99,37 +99,37 @@ proxy-providers:
 collectdata: false
 port: 7890
 socks-port: 7891
-#redir-port: 7892 # 透明代理端口 (Linux/macOS)
-#tproxy-port: 7894  # TProxy透明代理端口 (Linux)
+#redir-port: 7892
+#tproxy-port: 7894
 mixed-port: 7893
 ipv6: true
-allow-lan: false # 允许局域网连接
-unified-delay: true # 统一延迟
+allow-lan: false
+unified-delay: true
 tcp-concurrent: true # 尝试与多个IP建立TCP连接
 external-controller: 127.0.0.1:9090 # 外部UI控制器的访问地址和端口，'0.0.0.0'表示任何IP都可访问
-secret: "12345678" # 外部密码
-find-process-mode: strict # 进程名匹配
-global-client-fingerprint: chrome # TLS指纹random
-keep-alive-idle: 120 # 长连接空闲时间
+secret: "12345678"
+find-process-mode: strict
+global-client-fingerprint: chrome
+keep-alive-idle: 120
 keep-alive-interval: 75
 keep-alive-probes: 5
 disable-keep-alive: false
 profile:
-  store-selected: true # 保存策略组选择
-  store-fake-ip: true # 保存映射关系
+  store-selected: true
+  store-fake-ip: true
 experimental:
-  quic-go-disable-gso: true # 禁用网卡分段卸载技术
+  quic-go-disable-gso: true
 
 # ==========================================================
 ## ---------------- 流量嗅探 ----------------
 sniffer:
   enable: true
-  force-dns-mapping: true # 强制DNS映射
+  force-dns-mapping: true
   parse-pure-ip: true
   sniff:
     HTTP:
       ports: [80, 8080-8880]
-      override-destination: true # 使用域名进行规则匹配
+      override-destination: true
     TLS:
       ports: [443, 5228, 8443]
     QUIC:
@@ -156,12 +156,12 @@ tun:
   - tcp://any:53
   auto-route: true # 自动设置系统路由表
   auto-detect-interface: true # 自动检测出口网络接口
-  strict-route: true # 将所有连接路由到 tun 来防止泄漏，但你的设备将无法其他设备被访问
-  #disable-icmp-forwarding: true # 禁用 ICMP 转发，防止某些情况下的 ICMP 环回问题，ping 将不会显示真实的延迟
-  mtu: 9000 # 减少 MTU 问题，如网页无法打开、测速慢
-  gso: true # 启用通用分段卸载（提升性能）
+  strict-route: true # 将所有连接路由到 tun 来防止泄漏
+  #disable-icmp-forwarding: true # 禁用 ICMP 转发，防止环回
+  mtu: 9000
+  gso: true # 启用通用分段卸载
   gso-max-size: 65536
-  udp-timeout: 300 # UDP 会话保持时间
+  udp-timeout: 300
 
 # ==========================================================
 ## ---------------- DNS ----------------
