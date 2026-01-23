@@ -75,9 +75,13 @@ DOMAIN-KEYWORD,my.microsoftpersonalcontent.com
 #DOMAIN-KEYWORD,abs.hls.ttvnw.net
 #DOMAIN-KEYWORD,hls.ttvnw.net
 
-#twitch
-##多媒体流
-DOMAIN-KEYWORD,twimg.com
+#twitter
+DOMAIN-KEYWORD,abs.twimg.com
+DOMAIN-KEYWORD,abs-0.twimg.com
+DOMAIN-KEYWORD,video.twimg.com
+DOMAIN-KEYWORD,video-ft.twimg.com
+DOMAIN-KEYWORD,ton.twimg.com
+
 
 # vk
 #DOMAIN-KEYWORD,sun9
