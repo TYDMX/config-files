@@ -313,10 +313,6 @@ proxy-groups:
   - {name: 🇬 谷歌,            <<: [*BaseSL, *GZ], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Google_Search.png}
   - {name: 🇬 谷歌@CN,         <<: [*BaseCR, proxies: [🎯 全球直连]], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Google_Search.png}
   - {name: 🍎 Apple,         <<: [*BaseCR, proxies: [🎯 全球直连]], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Apple.png}
-  # ---------------- 其他策略组 ----------------
-  - {name: 🌐 冷门自选,       <<: [*BaseSL, include-all: true, filter: *FilterOT], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Europe_Map.png}
-  - {name: 🌐 全部节点,       <<: [*BaseSL, include-all: true, filter: *FilterAL], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Clubhouse.png}
-  - {name: 🐟 漏网之鱼,       <<: [*BaseSL, proxies: [🚀 节点选择, 🎯 全球直连]], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Final.png}
   # ==================== 地区策略组 ====================
   - {name: 🇭🇰 香港策略, type: select, proxies: [🇭🇰 香港自动, 🇭🇰 香港均衡-散列, 🇭🇰 香港均衡-轮询], include-all: true, filter: *HKall, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Hong_Kong.png}
   - {name: 🇸🇬 狮城策略, type: select, proxies: [🇸🇬 狮城自动, 🇸🇬 狮城均衡-散列, 🇸🇬 狮城均衡-轮询], include-all: true, filter: *SGall, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Singapore.png}
@@ -349,7 +345,10 @@ proxy-groups:
   - {name: 🇹🇼 台湾均衡-轮询, <<: *BaseCR, include-all: true, filter: *FilterTW, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Round_Robin.png}
   - {name: 🇰🇷 韩国均衡-轮询, <<: *BaseCR, include-all: true, filter: *FilterKR, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Round_Robin.png}
   - {name: 🇪🇺 欧盟均衡-轮询, <<: *BaseCR, include-all: true, filter: *FilterEU, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Round_Robin.png}
-
+  # ---------------- 其他策略组 ----------------
+  - {name: 🌐 冷门自选,       <<: [*BaseSL, include-all: true, filter: *FilterOT], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Europe_Map.png}
+  - {name: 🌐 全部节点,       <<: [*BaseSL, include-all: true, filter: *FilterAL], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Clubhouse.png}
+  - {name: 🐟 漏网之鱼,       <<: [*BaseSL, proxies: [🚀 节点选择, 🎯 全球直连]], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Final.png}
 # ==========================================================
 ## ---------------- 规则 ---------------------
 rules:
