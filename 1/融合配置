@@ -32,7 +32,7 @@ cfw-latency-url: https://cp.cloudflare.com/generate_204
     max-streams: 64
     min-streams: 16
     statistic: false
-    only-tcp: false
+    only-tcp: true
   #proxies: select1 # 使用此提供者为select1中转
   #proxy: select1 # 更新用的代理组
     override:
