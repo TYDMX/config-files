@@ -354,7 +354,7 @@ proxy-groups:
 rules:
   - or,((geosite,private),(geoip,private)),🔒 私有网络
 ## ---------------- 拦截组 --------------------- REJECT-DROP 拒绝连接并静默丢弃
-  - rule-set,前置直连规则,🖥️ 直连软件
+  #- rule-set,前置直连规则,🖥️ 直连软件
   - or,((geosite,tracker),(geosite,category-public-tracker)),🚫 追踪拦截
   - or,((geosite,category-ads-all),(geoip,ad)),🚫 广告拦截
   - PROCESS-NAME,com.samsung.android.packageinstaller,🚫 广告拦截
@@ -407,7 +407,7 @@ rule-providers:
   自用代理规则: { <<: *class, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/1/代理规则"}
   自用直连软件: { <<: *class, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/1/直连软件"}
   自用代理软件: { <<: *class, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/1/代理软件"}
-  前置直连规则: { <<: *class, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/1/前置直连规则"}
+  #前置直连规则: { <<: *class, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/1/前置直连规则"}
 ## ---------------- 广告拦截规则提供者 --------------------
 ## ---------------- domain域名规则提供者 ---------------
   自用fake-ip-filter: { <<: *text-domain, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/2/fkip.list"}
