@@ -200,7 +200,7 @@ dns:
     - 'https://dns.cloudflare.com/dns-query'
     - 'https://dns.google/dns-query'
 ## ---------------- # DNS配置 ----------------
-  default-nameserver: ['tls://223.5.5.5', 'tls://223.6.6.6', 'tls://119.29.29.29', 'tls://182.254.116.116']
+  default-nameserver: ['tls://223.5.5.5', 'tls://223.6.6.6', 'tls://119.29.29.29', 'tls://182.254.116.116', 'system']
   #direct-nameserver-follow-policy: true
   direct-nameserver: *dns_guonei
   proxy-server-nameserver: *dns_guonei
