@@ -49,7 +49,7 @@ proxy-providers:
       #additional-suffix: " 💧"
   Flclash电脑 💧:
     <<: *template
-    url: "https://1.nfsqttt.us/nfsq/?token=BoCCTRbyD7upJ9acczS5Us0YbGeKechk"
+    url: "https://1.nfsqttt.us/nfsq/?token=QgvsBrfBojr63n4gXCUndn0mC5AlFcjj"
     override:
       additional-prefix: "💧 "
       #additional-suffix: " 💧"
@@ -206,8 +206,8 @@ dns:
   proxy-server-nameserver: *dns_guonei
   nameserver: *dns_guowai
   nameserver-policy:
-    "geosite:private,Google@CN,googlefcm": *dns_guonei
-    "geosite:cn,geolocation-cn": *dns_guonei
+    #"geosite:private,Google@CN,googlefcm": *dns_guonei
+    #"geosite:cn,geolocation-cn": *dns_guonei
     "geosite:Google@CN,googlefcm": *dns_guowai
     "geosite:category-games-!cn": *dns_guowai
     "geosite:geolocation-!cn,gfw": *dns_guowai
