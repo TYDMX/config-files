@@ -217,7 +217,7 @@ function main(config) {
 
     "GEOSITE,microsoft,🪟 Microsoft",
     "OR,((GEOSITE,google),(GEOIP,google)),🇬 谷歌",
-    "OR,((geosite,cloudflare),(geoip,cloudflare),(geoip,cloudfront)),🖥️ 代理服务",
+    "OR,((GEOSITE,cloudflare),(GEOIP,cloudflare),(GEOIP,cloudfront)),🖥️ 代理服务",
 
     "GEOSITE,gfw,🪜 代理域名",
     "GEOSITE,geolocation-!cn,🪜 代理域名",
