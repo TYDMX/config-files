@@ -95,7 +95,7 @@ function main(config) {
       "geosite:Google@CN": dns_guowai,
       "geosite:googlefcm": dns_guowai,
       "geosite:category-games-!cn": dns_guowai,
-      "geosite:gfw": dns_guowai
+      "geosite:gfw": dns_guowai,
       "geosite:geolocation-!cn": dns_guowai
     }
   };
