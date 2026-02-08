@@ -223,9 +223,6 @@ function main(config) {
     "MATCH,🐟 漏网之鱼"
   ];
 
-  return config;
-}
-
 
 function createRegion(name, icon, allFilter, pureFilter, providers, iconPath) {
   return [
@@ -241,4 +238,6 @@ function createRegion(name, icon, allFilter, pureFilter, providers, iconPath) {
     { name: `${name}均衡-散列`, type: "load-balance", strategy: "consistent-hashing", use: providers, filter: pureFilter, interval: 366, hidden: true },
     { name: `${name}均衡-轮询`, type: "load-balance", strategy: "round-robin", use: providers, filter: pureFilter, interval: 90, hidden: true }
   ];
+}
+  return config;
 }
