@@ -4,30 +4,117 @@ function main(config) {
   const guonei = ["https://dns.alidns.com/dns-query", "https://doh.pub/dns-query"];
   const guowai = ["https://dns.cloudflare.com/dns-query", "https://dns.google/dns-query"];
 
+function main(config) {
+  // --- 【1. 全局基础配置】 ---
+  config["collectdata"] = false;
+  config["port"] = 7890;
+  config["socks-port"] = 7891;
+  config["mixed-port"] = 7893;
+  config["ipv6"] = true;
+  config["allow-lan"] = false;
+  config["unified-delay"] = true;
+  config["tcp-concurrent"] = true;
+  config["external-controller"] = "127.0.0.1:9090";
+  config["secret"] = "12345678";
+  config["find-process-mode"] = "strict";
+  config["global-client-fingerprint"] = "chrome";
+  config["keep-alive-idle"] = 120;
+  config["keep-alive-interval"] = 75;
+  config["keep-alive-probes"] = 5;
+  
+  config["profile"] = {
+    "store-selected": true,
+    "store-fake-ip": true
+  };
+  
+  config["experimental"] = {
+    "quic-go-disable-gso": true
+  };
+
+  // --- 【2. 流量嗅探 (Sniffer)】 ---
+  config["sniffer"] = {
+    "enable": true,
+    "force-dns-mapping": true,
+    "parse-pure-ip": true,
+    "sniff": {
+      "HTTP": { "ports": [80, "8080-8880"], "override-destination": true },
+      "TLS": { "ports": [443, 5228, 8443] },
+      "QUIC": { "ports": [443, 5228, 8443] }
+    },
+    "force-domain": ["+.v2ex.com", "geosite:Google@CN,googlefcm"],
+    "skip-domain": ["+.push.apple.com", "Mijia Cloud"],
+    "skip-src-address": ["192.168.0.3/32"],
+    "skip-dst-address": ["192.168.0.3/32"]
+  };
+
+  // --- 【3. TUN 模式配置】 ---
+  config["tun"] = {
+    "enable": true,
+    "stack": "System",
+    "dns-hijack": ["any:53", "tcp://any:53"],
+    "auto-route": true,
+    "auto-detect-interface": true,
+    "strict-route": true,
+    "mtu": 9000,
+    "gso": true,
+    "gso-max-size": 65536,
+    "udp-timeout": 300
+  };
+
+
+  // --- 【4. DNS 模式配置】 ---
   config["dns"] = {
     "enable": true,
     "cache-algorithm": "arc",
+    "use-hosts": false,
+    "use-system-hosts": true,
+    "listen": "127.0.0.1:1053",
+    "ipv6": true,
+    "prefer-h3": true,
+    "respect-rules": true,
     "enhanced-mode": "fake-ip",
     "fake-ip-range": "198.18.0.1/16",
-    "respect-rules": true,
-    "ipv6": true,
-    "default-nameserver": ["223.5.5.5", "119.29.29.29", "system"],
-    "nameserver": guowai,
-    "direct-nameserver": guonei,
-    "proxy-server-nameserver": guonei,
+    "fake-ip-range6": "fdfe:dcba:9876::1/64",
+    "fake-ip-filter-mode": "blacklist",
     "fake-ip-filter": [
       "rule-set:自用fake-ip-filter",
       "geosite:connectivity-check,private",
       "geosite:Google@CN,googlefcm",
-      "geosite:cn",
-      "geosite:geolocation-cn"
+      "geosite:cn,geolocation-cn"
     ],
+    "default-nameserver": ["tls://223.5.5.5", "tls://223.6.6.6", "tls://119.29.29.29", "tls://182.254.116.116", "system"],
+    "direct-nameserver": dns_guonei,
+    "proxy-server-nameserver": dns_guonei,
+    "nameserver": dns_guowai,
     "nameserver-policy": {
-      "geosite:Google@CN,googlefcm": guowai,
-      "geosite:category-games-!cn": guowai,
-      "geosite:geolocation-!cn,gfw": guowai
+      "geosite:Google@CN,googlefcm": dns_guowai,
+      "geosite:category-games-!cn": dns_guowai,
+      "geosite:geolocation-!cn,gfw": dns_guowai
     }
   };
+
+  // --- 【5. 地理数据与 Smart 模型】 ---
+  config["geox-url"] = {
+    "geosite": "https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geosite.dat",
+    "mmdb": "https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip.metadb",
+    "geoip": "https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip.dat",
+    "asn": "https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/GeoLite2-ASN.mmdb"
+  };
+  config["geo-auto-update"] = true;
+  config["geo-update-interval"] = 168;
+
+  config["lgbm-auto-update"] = true;
+  config["lgbm-update-interval"] = 72;
+  config["lgbm-url"] = "https://v6.gh-proxy.com/https://github.com/vernesong/mihomo/releases/download/LightGBM-Model/Model-large.bin";
+
+  // --- 【后续接你之前的策略组逻辑】 ---
+  const icons = "https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/";
+  const allProviders = Object.keys(config["proxy-providers"] || {});
+  
+  // ... 此处继续你之前的策略组定义 createRegion 等逻辑
+  
+  return config;
+}
 
 
   const jd_proxies = ["🚀 故障转移", "🚀 故障转移🇭🇰", "🚀 故障转移🇸🇬", "🚀 故障转移🇯🇵", "🚀 故障转移🇺🇸", "🇹🇼 台湾策略", "🇰🇷 韩国策略", "🇪🇺 欧盟策略", "🌐 冷门自选", "🌐 全部节点", "🎯 全球直连"];
