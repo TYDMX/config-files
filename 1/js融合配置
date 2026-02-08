@@ -1,0 +1,146 @@
+function main(config) {
+  const icons = "https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/";
+  const allProviders = Object.keys(config["proxy-providers"] || {});
+  const guonei = ["https://dns.alidns.com/dns-query", "https://doh.pub/dns-query"];
+  const guowai = ["https://dns.cloudflare.com/dns-query", "https://dns.google/dns-query"];
+
+  config["dns"] = {
+    "enable": true,
+    "cache-algorithm": "arc",
+    "enhanced-mode": "fake-ip",
+    "fake-ip-range": "198.18.0.1/16",
+    "respect-rules": true,
+    "ipv6": true,
+    "default-nameserver": ["223.5.5.5", "119.29.29.29", "system"],
+    "nameserver": guowai,
+    "direct-nameserver": guonei,
+    "proxy-server-nameserver": guonei,
+    "fake-ip-filter": [
+      "rule-set:自用fake-ip-filter",
+      "geosite:connectivity-check,private",
+      "geosite:Google@CN,googlefcm",
+      "geosite:cn",
+      "geosite:geolocation-cn"
+    ],
+    "nameserver-policy": {
+      "geosite:Google@CN,googlefcm": guowai,
+      "geosite:category-games-!cn": guowai,
+      "geosite:geolocation-!cn,gfw": guowai
+    }
+  };
+
+
+  const jd_proxies = ["🚀 故障转移", "🚀 故障转移🇭🇰", "🚀 故障转移🇸🇬", "🚀 故障转移🇯🇵", "🚀 故障转移🇺🇸", "🇹🇼 台湾策略", "🇰🇷 韩国策略", "🇪🇺 欧盟策略", "🌐 冷门自选", "🌐 全部节点", "🎯 全球直连"];
+  const biz_proxies = ["🚀 故障转移🇭🇰", "🚀 故障转移🇺🇸", "🚀 故障转移🇸🇬", "🚀 故障转移🇯🇵", "🌐 全部节点", "🎯 全球直连"];
+  const fallback_hk = ["🇭🇰 香港策略", "🇭🇰 香港自动", "🇸🇬 狮城策略", "🇯🇵 日本策略", "🇺🇸 美国策略", "🇪🇺 欧盟策略"];
+  const fallback_sg = ["🇸🇬 狮城策略", "🇸🇬 狮城自动", "🇭🇰 香港策略", "🇯🇵 日本策略", "🇺🇸 美国策略", "🇪🇺 欧盟策略"];
+  const fallback_us = ["🇺🇸 美国策略", "🇺🇸 美国自动", "🇪🇺 欧盟策略", "🇭🇰 香港策略", "🇸🇬 狮城策略", "🇯🇵 日本策略"];
+  const fallback_jp = ["🇯🇵 日本策略", "🇯🇵 日本自动", "🇺🇸 美国策略", "🇪🇺 欧盟策略", "🇭🇰 香港策略", "🇸🇬 狮城策略"];
+
+
+  config["proxy-groups"] = [
+    { name: "🚀 节点选择", type: "select", proxies: jd_proxies, icon: icons + "Static.png" },
+    { name: "🚀 故障转移", type: "select", proxies: biz_proxies, icon: icons + "ULB.png" },
+
+    { name: "🚀 故障转移🇭🇰", type: "fallback", proxies: fallback_hk, hidden: true, interval: 333, lazy: true },
+    { name: "🚀 故障转移🇸🇬", type: "fallback", proxies: fallback_sg, hidden: true, interval: 333, lazy: true },
+    { name: "🚀 故障转移🇺🇸", type: "fallback", proxies: fallback_us, hidden: true, interval: 333, lazy: true },
+    { name: "🚀 故障转移🇯🇵", type: "fallback", proxies: fallback_jp, hidden: true, interval: 333, lazy: true },
+
+    { name: "📹 视频平台", type: "select", proxies: biz_proxies, icon: icons + "YouTube.png" },
+    { name: "📲 社交平台", type: "select", proxies: biz_proxies, icon: icons + "Twitter.png" },
+    { name: "📲 电报平台", type: "select", proxies: biz_proxies, icon: icons + "Telegram_X.png" },
+    { name: "🤖 AI", type: "select", proxies: biz_proxies, icon: icons + "AI.png" },
+    { name: "🎮 game", type: "select", proxies: ["🚀 故障转移", "🎯 全球直连"], icon: icons + "Game.png" },
+    { name: "🪟 Microsoft", type: "select", proxies: ["🎯 全球直连", ...biz_proxies], icon: icons + "Microsoft.png" },
+    { name: "🇬 谷歌", type: "select", proxies: ["🚀 故障转移"], icon: icons + "Google_Search.png" },
+
+    { name: "👨🏿‍💻 GitHub", type: "load-balance", strategy: "round-robin", proxies: ["🚀 故障转移"], icon: icons + "GitHub.png", interval: 90, hidden: true },
+    { name: "💶 PayPal", type: "load-balance", strategy: "round-robin", proxies: ["🚀 故障转移"], icon: icons + "PayPal.png", interval: 90, hidden: true },
+    { name: "🍎 Apple", type: "load-balance", strategy: "round-robin", proxies: ["🎯 全球直连"], icon: icons + "Apple.png", interval: 90, hidden: true },
+    
+    { name: "🪜 代理域名", type: "load-balance", strategy: "round-robin", proxies: ["🚀 节点选择"], hidden: true },
+    { name: "🌐 自用代理", type: "load-balance", strategy: "round-robin", proxies: ["🚀 节点选择"], hidden: true },
+    { name: "⬆️ 自用直连", type: "load-balance", strategy: "round-robin", proxies: ["🎯 全球直连"], hidden: true },
+    { name: "⬆️ 直连域名", type: "load-balance", strategy: "round-robin", proxies: ["🎯 全球直连"], hidden: true },
+    { name: "🔒 私有网络", type: "load-balance", strategy: "round-robin", proxies: ["🎯 全球直连"], hidden: true },
+    { name: "📈 测速地址", type: "load-balance", strategy: "round-robin", use: allProviders, proxies: ["🎯 全球直连"], hidden: true, icon: icons + "Speedtest.png" },
+    { name: "🖥️ 直连软件", type: "load-balance", strategy: "round-robin", proxies: ["🎯 全球直连"], hidden: true },
+    { name: "🖥️ 直连服务", type: "load-balance", strategy: "round-robin", proxies: ["🎯 全球直连"], hidden: true },
+    { name: "🖥️ 代理软件", type: "load-balance", strategy: "round-robin", proxies: ["🚀 故障转移"], hidden: true },
+    { name: "🚫 广告拦截", type: "load-balance", strategy: "round-robin", proxies: ["🚫 阻止"], hidden: true },
+    { name: "🚫 追踪拦截", type: "load-balance", strategy: "round-robin", proxies: ["🚫 阻止"], hidden: true },
+    { name: "🎮 game@CN", type: "load-balance", strategy: "round-robin", proxies: ["🎯 全球直连"], hidden: true },
+    { name: "🇬 谷歌@CN", type: "load-balance", strategy: "round-robin", proxies: ["🎯 全球直连"], hidden: true },
+    { name: "🪟 Bing", type: "load-balance", strategy: "round-robin", proxies: ["🚀 节点选择"], hidden: true },
+
+    ...createRegion("🇭🇰 香港", "Hong_Kong.png", '^(?=.*(?i)(港|🇭🇰|HK))', '^(?=.*(?i)(港|🇭🇰|HK))(?=.*💧)', allProviders, icons),
+    ...createRegion("🇸🇬 狮城", "Singapore.png", '^(?=.*(?i)(坡|🇸🇬|SG))', '^(?=.*(?i)(坡|🇸🇬|SG))(?=.*💧)', allProviders, icons),
+    ...createRegion("🇯🇵 日本", "Japan.png", '^(?=.*(?i)(日|🇯🇵|JP))', '^(?=.*(?i)(日|🇯🇵|JP))(?=.*💧)', allProviders, icons),
+    ...createRegion("🇺🇸 美国", "United_States.png", '^(?=.*(?i)(美|🇺🇸|US))', '^(?=.*(?i)(美|🇺🇸|US))(?!.*💧)', allProviders, icons),
+    ...createRegion("🇹🇼 台湾", "Taiwan.png", '^(?=.*(?i)(台|🇹🇼|TW))', '^(?=.*(?i)(台|🇹🇼|TW))', allProviders, icons),
+    ...createRegion("🇰🇷 韩国", "Korea.png", '^(?=.*(?i)(韩|🇰🇷|KR))', '^(?=.*(?i)(韩|🇰🇷|KR))', allProviders, icons),
+    ...createRegion("🇪🇺 欧盟", "European_Union.png", '^(?=.*(?i)(德|法|英|🇪🇺))', '^(?=.*(?i)(德|法|英|🇪🇺))', allProviders, icons),
+
+    { name: "🌐 冷门自选", type: "select", use: allProviders, filter: '^(?!.*(?i)(DIRECT|ali|china|tencent|维护|可用|直连|阻止|美|港|坡|台|新|日|韩|奥|比|保|克罗地亚|塞|捷|丹|爱沙|芬|法|德|希|匈|爱尔|意|拉|立|卢|马其它|荷|波|葡|罗|斯洛伐|斯洛文|西|瑞|英|🇭🇰|🇹🇼|🇸🇬|🇯🇵|🇰🇷|🇺🇸|🇬🇧|🇦🇹|🇧🇪|🇨🇿|🇩🇰|🇫🇮|🇫🇷|🇩🇪|🇮🇪|🇮🇹|🇱🇹|🇱🇺|🇳🇱|🇵🇱|🇸🇪|HK|TW|SG|JP|KR|US|GB|CDG|FRA|AMS|MAD|BCN|FCO|MUC|BRU|HKG|TPE|TSA|KHH|SIN|XSP|NRT|HND|KIX|CTS|FUK|JFK|LAX|ORD|ATL|DFW|SFO|MIA|SEA|IAD|LHR|LGW))', proxies: ["🈚️ 假节点"], icon: icons + "Europe_Map.png" },
+    { name: "🌐 全部节点", type: "select", use: allProviders, filter: '^(?!.*(?i)(DIRECT|ali|china))', proxies: ["🈚️ 假节点"], icon: icons + "Clubhouse.png" },
+    { name: "🐟 漏网之鱼", type: "select", proxies: ["🚀 节点选择", "🎯 全球直连"], icon: icons + "Final.png" }
+  ];
+
+  config["proxies"] = [
+    { name: "🎯 全球直连", type: "direct", udp: true },
+    { name: "🈚️ 假节点", type: "reject" },
+    { name: "🚫 阻止", type: "reject" }
+  ];
+
+
+  config["rules"] = [
+    "OR,((GEOSITE,private),(GEOIP,private)),🔒 私有网络",
+    "OR,((GEOSITE,tracker),(GEOSITE,category-public-tracker)),🚫 追踪拦截",
+    "OR,((GEOSITE,category-ads-all),(GEOIP,ad)),🚫 广告拦截",
+    "PROCESS-NAME,com.samsung.android.packageinstaller,🚫 广告拦截",
+    "PROCESS-NAME,com.google.android.googlequicksearchbox,🤖 AI",
+    "RULE-SET,自用代理规则,🌐 自用代理",
+    "RULE-SET,自用直连规则,⬆️ 自用直连",
+    "RULE-SET,自用代理软件,🖥️ 代理软件",
+    "RULE-SET,自用直连软件,🖥️ 直连软件",
+    "GEOSITE,ookla-speedtest,📈 测速地址",
+    "GEOSITE,apple,🍎 Apple",
+    "GEOSITE,category-games-cn,🎮 game@CN",
+    "OR,((GEOSITE,google@cn),(GEOSITE,googlefcm)),🇬 谷歌@CN",
+    "GEOSITE,category-games-!cn,🎮 game",
+    "OR,((GEOSITE,openai),(GEOSITE,google-gemini),(GEOSITE,category-ai-!cn)),🤖 AI",
+    "GEOSITE,spotify,🚀 故障转移🇯🇵",
+    "GEOSITE,paypal,💶 PayPal",
+    "GEOSITE,github,👨🏿‍💻 GitHub",
+    "GEOSITE,Bing,🪟 Bing",
+    "OR,((GEOSITE,twitter),(GEOSITE,tiktok),(GEOSITE,Reddit),(GEOSITE,discord)),📲 社交平台",
+    "OR,((GEOSITE,telegram),(GEOIP,telegram)),📲 电报平台",
+    "OR,((GEOSITE,youtube),(GEOSITE,netflix),(GEOSITE,onedrive),(GEOSITE,twitch),(GEOSITE,vk),(GEOSITE,disney),(GEOSITE,biliintl),(GEOSITE,category-porn)),📹 视频平台",
+    "GEOSITE,microsoft,🪟 Microsoft",
+    "OR,((GEOSITE,google),(GEOIP,google)),🇬 谷歌",
+    "GEOSITE,gfw,🪜 代理域名",
+    "GEOSITE,geolocation-!cn,🪜 代理域名",
+    "OR,((GEOSITE,cn),(GEOIP,cn)),⬆️ 直连域名",
+    "MATCH,🐟 漏网之鱼"
+  ];
+
+  return config;
+}
+
+
+function createRegion(name, icon, allFilter, pureFilter, providers, iconPath) {
+  return [
+    { 
+      name: `${name}策略`, 
+      type: "select", 
+      use: providers, 
+      filter: allFilter, 
+      proxies: [`${name}自动`, `${name}均衡-散列`, `${name}均衡-轮询`, "🈚️ 假节点"], 
+      icon: iconPath + icon 
+    },
+    { name: `${name}自动`, type: "url-test", use: providers, filter: pureFilter, interval: 333, tolerance: 5, hidden: true },
+    { name: `${name}均衡-散列`, type: "load-balance", strategy: "consistent-hashing", use: providers, filter: pureFilter, interval: 366, hidden: true },
+    { name: `${name}均衡-轮询`, type: "load-balance", strategy: "round-robin", use: providers, filter: pureFilter, interval: 90, hidden: true }
+  ];
+}
