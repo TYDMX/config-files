@@ -10,7 +10,6 @@ function main(config) {
   const yaml_domain = { type: "http", interval: 86400, behavior: "domain", format: "yaml" };
   const text_domain = { type: "http", interval: 86400, behavior: "domain", format: "text" };
 
-function main(config) {
   // --- 【1. 全局基础配置】 ---
   config["collectdata"] = false;
   config["port"] = 7890;
@@ -112,11 +111,6 @@ function main(config) {
   config["lgbm-auto-update"] = true;
   config["lgbm-update-interval"] = 72;
   config["lgbm-url"] = "https://v6.gh-proxy.com/https://github.com/vernesong/mihomo/releases/download/LightGBM-Model/Model-large.bin";
-
-
-  
-  return config;
-}
 
 
   const jd_proxies = ["🚀 故障转移", "🚀 故障转移🇭🇰", "🚀 故障转移🇸🇬", "🚀 故障转移🇯🇵", "🚀 故障转移🇺🇸", "🇹🇼 台湾策略", "🇰🇷 韩国策略", "🇪🇺 欧盟策略", "🌐 冷门自选", "🌐 全部节点", "🎯 全球直连"];
