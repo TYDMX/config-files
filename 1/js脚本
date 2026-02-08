@@ -138,9 +138,9 @@ function main(config) {
     { name: "📲 社交平台", type: "select", proxies: biz_proxies, icon: icons + "Twitter.png" },
     { name: "📲 电报平台", type: "select", proxies: biz_proxies, icon: icons + "Telegram_X.png" },
     { name: "🤖 AI", type: "select", proxies: biz_proxies, icon: icons + "AI.png" },
-    { name: "🎮 game", type: "select", proxies: ["🚀 故障转移", "🎯 全球直连"], icon: icons + "Game.png" },
+    { name: "🎮 game", type: "select", proxies: biz_proxies, icon: icons + "Game.png" },
     { name: "🪟 Microsoft", type: "select", proxies: ["🎯 全球直连", ...biz_proxies], icon: icons + "Microsoft.png" },
-    { name: "🇬 谷歌", type: "select", proxies: ["🚀 故障转移"], icon: icons + "Google_Search.png" },
+    { name: "🇬 谷歌", type: "select", proxies: biz_proxies, icon: icons + "Google_Search.png" },
 
     { name: "👨🏿‍💻 GitHub", type: "load-balance", strategy: "round-robin", proxies: ["🚀 故障转移"], icon: icons + "GitHub.png", interval: 90, hidden: true },
     { name: "💶 PayPal", type: "load-balance", strategy: "round-robin", proxies: ["🚀 故障转移"], icon: icons + "PayPal.png", interval: 90, hidden: true },
@@ -155,6 +155,7 @@ function main(config) {
     { name: "🖥️ 直连软件", type: "load-balance", strategy: "round-robin", proxies: ["🎯 全球直连"], hidden: true },
     { name: "🖥️ 直连服务", type: "load-balance", strategy: "round-robin", proxies: ["🎯 全球直连"], hidden: true },
     { name: "🖥️ 代理软件", type: "load-balance", strategy: "round-robin", proxies: ["🚀 故障转移"], hidden: true },
+    { name: "🖥️ 代理服务", type: "load-balance", strategy: "round-robin", proxies: ["🚀 故障转移"], hidden: true },
     { name: "🚫 广告拦截", type: "load-balance", strategy: "round-robin", proxies: ["🚫 阻止"], hidden: true },
     { name: "🚫 追踪拦截", type: "load-balance", strategy: "round-robin", proxies: ["🚫 阻止"], hidden: true },
     { name: "🎮 game@CN", type: "load-balance", strategy: "round-robin", proxies: ["🎯 全球直连"], hidden: true },
@@ -183,18 +184,22 @@ function main(config) {
 
   config["rules"] = [
     "OR,((GEOSITE,private),(GEOIP,private)),🔒 私有网络",
+
     "OR,((GEOSITE,tracker),(GEOSITE,category-public-tracker)),🚫 追踪拦截",
     "OR,((GEOSITE,category-ads-all),(GEOIP,ad)),🚫 广告拦截",
     "PROCESS-NAME,com.samsung.android.packageinstaller,🚫 广告拦截",
+
     "PROCESS-NAME,com.google.android.googlequicksearchbox,🤖 AI",
     "RULE-SET,自用代理规则,🌐 自用代理",
     "RULE-SET,自用直连规则,⬆️ 自用直连",
     "RULE-SET,自用代理软件,🖥️ 代理软件",
     "RULE-SET,自用直连软件,🖥️ 直连软件",
+
     "GEOSITE,ookla-speedtest,📈 测速地址",
     "GEOSITE,apple,🍎 Apple",
     "GEOSITE,category-games-cn,🎮 game@CN",
     "OR,((GEOSITE,google@cn),(GEOSITE,googlefcm)),🇬 谷歌@CN",
+
     "GEOSITE,category-games-!cn,🎮 game",
     "OR,((GEOSITE,openai),(GEOSITE,google-gemini),(GEOSITE,category-ai-!cn)),🤖 AI",
     "GEOSITE,spotify,🚀 故障转移🇯🇵",
@@ -204,8 +209,11 @@ function main(config) {
     "OR,((GEOSITE,twitter),(GEOSITE,tiktok),(GEOSITE,Reddit),(GEOSITE,discord)),📲 社交平台",
     "OR,((GEOSITE,telegram),(GEOIP,telegram)),📲 电报平台",
     "OR,((GEOSITE,youtube),(GEOSITE,netflix),(GEOSITE,onedrive),(GEOSITE,twitch),(GEOSITE,vk),(GEOSITE,disney),(GEOSITE,biliintl),(GEOSITE,category-porn)),📹 视频平台",
+
     "GEOSITE,microsoft,🪟 Microsoft",
     "OR,((GEOSITE,google),(GEOIP,google)),🇬 谷歌",
+    "or,((geosite,cloudflare),(geoip,cloudflare),(geoip,cloudfront)),🖥️ 代理服务",
+
     "GEOSITE,gfw,🪜 代理域名",
     "GEOSITE,geolocation-!cn,🪜 代理域名",
     "OR,((GEOSITE,cn),(GEOIP,cn)),⬆️ 直连域名",
