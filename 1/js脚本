@@ -11,7 +11,7 @@ function main(config) {
   const text_domain = { type: "http", interval: 86400, behavior: "domain", format: "text" };
 
   // --- 【1. 全局基础配置】 ---
-  config["collectdata"] = false;
+  config["collect-data"] = false;
   config["port"] = 7890;
   config["socks-port"] = 7891;
   config["mixed-port"] = 7893;
@@ -55,7 +55,7 @@ function main(config) {
   // --- 【3. TUN 模式配置】 ---
   config["tun"] = {
     "enable": true,
-    "stack": "System",
+    "stack": "system",
     "dns-hijack": ["any:53", "tcp://any:53"],
     "auto-route": true,
     "auto-detect-interface": true,
@@ -79,7 +79,7 @@ function main(config) {
     "respect-rules": true,
     "enhanced-mode": "fake-ip",
     "fake-ip-range": "198.18.0.1/16",
-    "fake-ip-range6": "fdfe:dcba:9876::1/64",
+    "fake-ip-range6": "fdfe:dcba:9876::/64",
     "fake-ip-filter-mode": "blacklist",
     "fake-ip-filter": [
       "rule-set:自用fake-ip-filter",
@@ -94,9 +94,11 @@ function main(config) {
     "proxy-server-nameserver": dns_guonei,
     "nameserver": dns_guowai,
     "nameserver-policy": {
-      "geosite:Google@CN,googlefcm": dns_guowai,
+      "geosite:Google@CN": dns_guowai,
+      "geosite:googlefcm": dns_guowai,
       "geosite:category-games-!cn": dns_guowai,
-      "geosite:geolocation-!cn,gfw": dns_guowai
+      "geosite:gfw": dns_guowai
+      "geosite:geolocation-!cn": dns_guowai
     }
   };
 
