@@ -61,7 +61,7 @@ function main(config) {
     "auto-route": true,
     "auto-detect-interface": true,
     "strict-route": true,
-    "mtu": 9000,
+    "mtu": 1500,
     "gso": true,
     "gso-max-size": 65536,
     "udp-timeout": 300
