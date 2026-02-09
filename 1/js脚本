@@ -93,9 +93,6 @@ function main(config) {
     "proxy-server-nameserver": [...dns_guonei, ...dns_guowai],
     "direct-nameserver": dns_guonei,
     "nameserver-policy": {
-      "geosite:Google@CN": dns_guowai,
-      "geosite:googlefcm": dns_guowai,
-      "geosite:category-games-!cn": dns_guowai,
       "geosite:gfw": dns_guowai,
       "geosite:geolocation-!cn": dns_guowai,
     "nameserver": dns_guowai
@@ -206,7 +203,7 @@ function main(config) {
     "GEOSITE,ookla-speedtest,📈 测速地址",
     "GEOSITE,apple,🍎 Apple",
     "GEOSITE,category-games-cn,🎮 game@CN",
-    "OR,((GEOSITE,google@cn),(GEOSITE,googlefcm)),🇬 谷歌@CN",
+    "GEOSITE,googlefcm,🇬 谷歌@CN",
 
     "GEOSITE,category-games-!cn,🎮 game",
     "OR,((GEOSITE,openai),(GEOSITE,google-gemini),(GEOSITE,category-ai-!cn)),🤖 AI",
