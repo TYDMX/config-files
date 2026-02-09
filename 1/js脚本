@@ -47,7 +47,7 @@ function main(config) {
       "TLS": { "ports": [443, 5228, 8443] },
       "QUIC": { "ports": [443, 5228, 8443] }
     },
-    "force-domain": ["+.v2ex.com", "geosite:Google@CN,googlefcm"],
+    "force-domain": ["+.v2ex.com", "geosite:Google@CN", "geosite:googlefcm"],
     "skip-domain": ["+.push.apple.com", "Mijia Cloud"],
     "skip-src-address": ["192.168.0.3/32"],
     "skip-dst-address": ["192.168.0.3/32"]
