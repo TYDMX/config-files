@@ -90,15 +90,15 @@ function main(config) {
       "geosite:googlefcm"
       ],
     "default-nameserver": ["tls://223.5.5.5", "tls://223.6.6.6", "tls://119.29.29.29", "tls://182.254.116.116", "system"],
+    "proxy-server-nameserver": [...dns_guonei, ...dns_guowai],
     "direct-nameserver": dns_guonei,
-    "proxy-server-nameserver": dns_guonei,
-    "nameserver": dns_guowai,
     "nameserver-policy": {
       "geosite:Google@CN": dns_guowai,
       "geosite:googlefcm": dns_guowai,
       "geosite:category-games-!cn": dns_guowai,
       "geosite:gfw": dns_guowai,
       "geosite:geolocation-!cn": dns_guowai
+    "nameserver": dns_guowai,
     }
   };
 
