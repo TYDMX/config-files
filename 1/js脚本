@@ -23,7 +23,7 @@ function main(config) {
   config["external-controller"] = "127.0.0.1:9090";
   config["secret"] = "12345678";
   config["find-process-mode"] = "strict";
-  config["disable-keep-alive"]: true
+  config["disable-keep-alive"] = true;
   config["keep-alive-interval"] = 75;
   config["keep-alive-idle"] = 120;
   config["keep-alive-probes"] = 5;
@@ -97,8 +97,8 @@ function main(config) {
       "geosite:googlefcm": dns_guowai,
       "geosite:category-games-!cn": dns_guowai,
       "geosite:gfw": dns_guowai,
-      "geosite:geolocation-!cn": dns_guowai
-    "nameserver": dns_guowai,
+      "geosite:geolocation-!cn": dns_guowai,
+    "nameserver": dns_guowai
     }
   };
 
