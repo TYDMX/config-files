@@ -229,17 +229,10 @@ function main(config) {
 
 function createRegion(name, icon, allFilter, pureFilter, providers, iconPath) {
   return [
-    { 
-      name: `${name}策略`, 
-      type: "select", 
-      use: providers, 
-      filter: allFilter, 
-      proxies: [`${name}自动`, `${name}均衡-散列`, `${name}均衡-轮询`, "🈚️ 假节点"], 
-      icon: iconPath + icon 
-    },
-    { name: `${name}自动`, type: "url-test", use: providers, filter: pureFilter, interval: 333, tolerance: 5, hidden: true },
-    { name: `${name}均衡-散列`, type: "load-balance", strategy: "consistent-hashing", use: providers, filter: pureFilter, interval: 366, hidden: true },
-    { name: `${name}均衡-轮询`, type: "load-balance", strategy: "round-robin", use: providers, filter: pureFilter, interval: 90, hidden: true }
+    { name: `${name}策略`, type: "select", use: providers, filter: allFilter, proxies: [`${name}自动`, `${name}均衡-散列`, `${name}均衡-轮询`, "🈚️ 假节点"], icon: iconPath + icon },
+    { name: `${name}自动`, type: "url-test", use: providers, filter: pureFilter, interval: 333, tolerance: 5, hidden: true, icon: iconPath + icon },
+    { name: `${name}均衡-散列`, type: "load-balance", strategy: "consistent-hashing", use: providers, filter: pureFilter, interval: 366, hidden: true, icon: iconPath + icon },
+    { name: `${name}均衡-轮询`, type: "load-balance", strategy: "round-robin", use: providers, filter: pureFilter, interval: 90, hidden: true, icon: iconPath + icon }
   ];
 }
   return config;
