@@ -116,30 +116,31 @@ function main(config) {
   config["lgbm-url"] = "https://v6.gh-proxy.com/https://github.com/vernesong/mihomo/releases/download/LightGBM-Model/Model-large.bin";
 
 
-  const jd_proxies = ["🚀 故障转移", "🚀 故障转移🇭🇰", "🚀 故障转移🇸🇬", "🚀 故障转移🇯🇵", "🚀 故障转移🇺🇸", "🇹🇼 台湾策略", "🇰🇷 韩国策略", "🇪🇺 欧盟策略", "🌐 冷门自选", "🌐 全部节点", "🎯 全球直连"];
-  const biz_proxies = ["🚀 故障转移🇭🇰", "🚀 故障转移🇺🇸", "🚀 故障转移🇸🇬", "🚀 故障转移🇯🇵", "🌐 全部节点", "🎯 全球直连"];
-  const fallback_hk = ["🇭🇰 香港策略", "🇭🇰 香港自动", "🇸🇬 狮城策略", "🇯🇵 日本策略", "🇺🇸 美国策略", "🇪🇺 欧盟策略"];
-  const fallback_sg = ["🇸🇬 狮城策略", "🇸🇬 狮城自动", "🇭🇰 香港策略", "🇯🇵 日本策略", "🇺🇸 美国策略", "🇪🇺 欧盟策略"];
-  const fallback_us = ["🇺🇸 美国策略", "🇺🇸 美国自动", "🇪🇺 欧盟策略", "🇭🇰 香港策略", "🇸🇬 狮城策略", "🇯🇵 日本策略"];
-  const fallback_jp = ["🇯🇵 日本策略", "🇯🇵 日本自动", "🇺🇸 美国策略", "🇪🇺 欧盟策略", "🇭🇰 香港策略", "🇸🇬 狮城策略"];
+  const 节点选择 = ["🚀 故障转移", "🚀 故障转移🇭🇰", "🚀 故障转移🇸🇬", "🚀 故障转移🇯🇵", "🚀 故障转移🇺🇸", "🇹🇼 台湾策略", "🇰🇷 韩国策略", "🇪🇺 欧盟策略", "🌐 冷门自选", "🌐 全部节点", "🎯 全球直连"];
+  const 故转节点 = ["🚀 故障转移🇭🇰", "🚀 故障转移🇺🇸", "🚀 故障转移🇸🇬", "🚀 故障转移🇯🇵", "🌐 全部节点", "🎯 全球直连"];
+  const 默认直连 = ["🎯 全球直连", "🚀 故障转移🇭🇰", "🚀 故障转移🇺🇸", "🚀 故障转移🇸🇬", "🚀 故障转移🇯🇵", "🌐 全部节点"];
+  const 香港故转 = ["🇭🇰 香港策略", "🇭🇰 香港自动", "🇸🇬 狮城策略", "🇯🇵 日本策略", "🇺🇸 美国策略", "🇪🇺 欧盟策略"];
+  const 新加坡故转 = ["🇸🇬 狮城策略", "🇸🇬 狮城自动", "🇭🇰 香港策略", "🇯🇵 日本策略", "🇺🇸 美国策略", "🇪🇺 欧盟策略"];
+  const 美国故转 = ["🇺🇸 美国策略", "🇺🇸 美国自动", "🇪🇺 欧盟策略", "🇭🇰 香港策略", "🇸🇬 狮城策略", "🇯🇵 日本策略"];
+  const 日本故转 = ["🇯🇵 日本策略", "🇯🇵 日本自动", "🇺🇸 美国策略", "🇪🇺 欧盟策略", "🇭🇰 香港策略", "🇸🇬 狮城策略"];
 
 
   config["proxy-groups"] = [
-    { name: "🚀 节点选择", type: "select", proxies: jd_proxies, icon: icons + "Static.png" },
-    { name: "🚀 故障转移", type: "select", proxies: biz_proxies, icon: icons + "ULB.png" },
+    { name: "🚀 节点选择", type: "select", proxies: 节点选择, icon: icons + "Static.png" },
+    { name: "🚀 故障转移", type: "select", proxies: 故转节点, icon: icons + "ULB.png" },
 
-    { name: "🚀 故障转移🇭🇰", type: "fallback", proxies: fallback_hk, hidden: true, interval: 333, lazy: true },
-    { name: "🚀 故障转移🇸🇬", type: "fallback", proxies: fallback_sg, hidden: true, interval: 333, lazy: true },
-    { name: "🚀 故障转移🇺🇸", type: "fallback", proxies: fallback_us, hidden: true, interval: 333, lazy: true },
-    { name: "🚀 故障转移🇯🇵", type: "fallback", proxies: fallback_jp, hidden: true, interval: 333, lazy: true },
+    { name: "🚀 故障转移🇭🇰", type: "fallback", proxies: 香港故转, hidden: true, interval: 333, lazy: true },
+    { name: "🚀 故障转移🇸🇬", type: "fallback", proxies: 新加坡故转, hidden: true, interval: 333, lazy: true },
+    { name: "🚀 故障转移🇺🇸", type: "fallback", proxies: 美国故转, hidden: true, interval: 333, lazy: true },
+    { name: "🚀 故障转移🇯🇵", type: "fallback", proxies: 日本故转, hidden: true, interval: 333, lazy: true },
 
-    { name: "📹 视频平台", type: "select", proxies: biz_proxies, icon: icons + "YouTube.png" },
-    { name: "📲 社交平台", type: "select", proxies: biz_proxies, icon: icons + "Twitter.png" },
-    { name: "📲 电报平台", type: "select", proxies: biz_proxies, icon: icons + "Telegram_X.png" },
-    { name: "🤖 AI", type: "select", proxies: biz_proxies, icon: icons + "AI.png" },
-    { name: "🎮 game", type: "select", proxies: biz_proxies, icon: icons + "Game.png" },
-    { name: "🪟 Microsoft", type: "select", proxies: ["🎯 全球直连", ...biz_proxies], icon: icons + "Microsoft.png" },
-    { name: "🇬 谷歌", type: "select", proxies: biz_proxies, icon: icons + "Google_Search.png" },
+    { name: "📹 视频平台", type: "select", proxies: 故转节点, icon: icons + "YouTube.png" },
+    { name: "📲 社交平台", type: "select", proxies: 故转节点, icon: icons + "Twitter.png" },
+    { name: "📲 电报平台", type: "select", proxies: 故转节点, icon: icons + "Telegram_X.png" },
+    { name: "🤖 AI", type: "select", proxies: 故转节点, icon: icons + "AI.png" },
+    { name: "🎮 game", type: "select", proxies: 故转节点, icon: icons + "Game.png" },
+    { name: "🪟 Microsoft", type: "select", proxies: 默认直连, icon: icons + "Microsoft.png" },
+    { name: "🇬 谷歌", type: "select", proxies: 故转节点, icon: icons + "Google_Search.png" },
 
     { name: "👨🏿‍💻 GitHub", type: "load-balance", strategy: "round-robin", proxies: ["🚀 故障转移"], icon: icons + "GitHub.png", interval: 90, hidden: true },
     { name: "💶 PayPal", type: "load-balance", strategy: "round-robin", proxies: ["🚀 故障转移"], icon: icons + "PayPal.png", interval: 90, hidden: true },
@@ -161,13 +162,13 @@ function main(config) {
     { name: "🇬 谷歌@CN", type: "load-balance", strategy: "round-robin", proxies: ["🎯 全球直连"], hidden: true },
     { name: "🪟 Bing", type: "load-balance", strategy: "round-robin", proxies: ["🚀 节点选择"], hidden: true },
 
-    ...createRegion("🇭🇰 香港", "Hong_Kong.png", '^(?=.*(?i)(港|🇭🇰|HK))', '^(?=.*(?i)(港|🇭🇰|HK))(?=.*💧)(?!.*(?i)住宅)', allProviders, icons),
-    ...createRegion("🇸🇬 狮城", "Singapore.png", '^(?=.*(?i)(坡|🇸🇬|SG))', '^(?=.*(?i)(坡|🇸🇬|SG))(?=.*💧)', allProviders, icons),
-    ...createRegion("🇯🇵 日本", "Japan.png", '^(?=.*(?i)(日|🇯🇵|JP))', '^(?=.*(?i)(日|🇯🇵|JP))(?=.*💧)', allProviders, icons),
-    ...createRegion("🇺🇸 美国", "United_States.png", '^(?=.*(?i)(美|🇺🇸|US))', '^(?=.*(?i)(美|🇺🇸|US))(?!.*💧)', allProviders, icons),
-    ...createRegion("🇹🇼 台湾", "Taiwan.png", '^(?=.*(?i)(台|🇹🇼|TW))', '^(?=.*(?i)(台|🇹🇼|TW))', allProviders, icons),
-    ...createRegion("🇰🇷 韩国", "Korea.png", '^(?=.*(?i)(韩|🇰🇷|KR))', '^(?=.*(?i)(韩|🇰🇷|KR))', allProviders, icons),
-    ...createRegion("🇪🇺 欧盟", "European_Union.png", '^(?=.*(?i)(德|法|英|🇪🇺))', '^(?=.*(?i)(德|法|英|🇪🇺))', allProviders, icons),
+    ...createRegion("🇭🇰 香港", "Hong_Kong.png", '^(?=.*(?i)(港|🇭🇰|HK|Hong|HKG))', '^(?=.*(?i)(港|🇭🇰|HK|Hong|HKG))(?=.*💧)(?!.*(?i)住宅)', allProviders, icons),
+    ...createRegion("🇸🇬 狮城", "Singapore.png", '^(?=.*(?i)(坡|🇸🇬|SG|Sing|SIN|XSP))', '^(?=.*(?i)(坡|🇸🇬|SG|Sing|SIN|XSP))(?=.*💧)', allProviders, icons),
+    ...createRegion("🇯🇵 日本", "Japan.png", '^(?=.*(?i)(日|🇯🇵|JP|Japan|NRT|HND|KIX|CTS|FUK))', '^(?=.*(?i)(日|🇯🇵|JP|Japan|NRT|HND|KIX|CTS|FUK))(?=.*💧)', allProviders, icons),
+    ...createRegion("🇺🇸 美国", "United_States.png", '^(?=.*(?i)(美|🇺🇸|US|USA|JFK|LAX|ORD|ATL|DFW|SFO|MIA|SEA|IAD))', '^(?=.*(?i)(美|🇺🇸|US|USA|JFK|LAX|ORD|ATL|DFW|SFO|MIA|SEA|IAD))(?!.*💧)', allProviders, icons),
+    ...createRegion("🇹🇼 台湾", "Taiwan.png", '^(?=.*(?i)(台|🇹🇼|TW|tai|TPE|TSA|KHH))', '^(?=.*(?i)(台|🇹🇼|TW|tai|TPE|TSA|KHH))', allProviders, icons),
+    ...createRegion("🇰🇷 韩国", "Korea.png", '^(?=.*(?i)(韩|🇰🇷|韓|首尔|南朝鲜|KR|KOR|Korea|South))', '^(?=.*(?i)(韩|🇰🇷|韓|首尔|南朝鲜|KR|KOR|Korea|South))', allProviders, icons),
+    ...createRegion("🇪🇺 欧盟", "European_Union.png", '^(?=.*(?i)(奥|比|保|克罗地亚|塞|捷|丹|爱沙|芬|法|德|希|匈|爱尔|意|拉|立|卢|马其它|荷|波|葡|罗|斯洛伐|斯洛文|西|瑞|英|🇧🇪|🇨🇿|🇩🇰|🇫🇮|🇫🇷|🇩🇪|🇮🇪|🇮🇹|🇱🇹|🇱🇺|🇳🇱|🇵🇱|🇸🇪|🇬🇧|CDG|FRA|AMS|MAD|BCN|FCO|MUC|BRU))', '^(?=.*(?i)(奥|比|保|克罗地亚|塞|捷|丹|爱沙|芬|法|德|希|匈|爱尔|意|拉|立|卢|马其它|荷|波|葡|罗|斯洛伐|斯洛文|西|瑞|英|🇧🇪|🇨🇿|🇩🇰|🇫🇮|🇫🇷|🇩🇪|🇮🇪|🇮🇹|🇱🇹|🇱🇺|🇳🇱|🇵🇱|🇸🇪|🇬🇧|CDG|FRA|AMS|MAD|BCN|FCO|MUC|BRU))(?!.*💧)', allProviders, icons),
 
     { name: "🌐 冷门自选", type: "select", use: allProviders, filter: '^(?!.*(?i)(DIRECT|ali|china|tencent|维护|可用|直连|阻止|美|港|坡|台|新|日|韩|奥|比|保|克罗地亚|塞|捷|丹|爱沙|芬|法|德|希|匈|爱尔|意|拉|立|卢|马其它|荷|波|葡|罗|斯洛伐|斯洛文|西|瑞|英|🇭🇰|🇹🇼|🇸🇬|🇯🇵|🇰🇷|🇺🇸|🇬🇧|🇦🇹|🇧🇪|🇨🇿|🇩🇰|🇫🇮|🇫🇷|🇩🇪|🇮🇪|🇮🇹|🇱🇹|🇱🇺|🇳🇱|🇵🇱|🇸🇪|HK|TW|SG|JP|KR|US|GB|CDG|FRA|AMS|MAD|BCN|FCO|MUC|BRU|HKG|TPE|TSA|KHH|SIN|XSP|NRT|HND|KIX|CTS|FUK|JFK|LAX|ORD|ATL|DFW|SFO|MIA|SEA|IAD|LHR|LGW))', proxies: ["🈚️ 假节点"], icon: icons + "Europe_Map.png" },
     { name: "🌐 全部节点", type: "select", use: allProviders, filter: '^(?!.*(?i)(DIRECT|ali|china))', proxies: ["🈚️ 假节点"], icon: icons + "Clubhouse.png" },
@@ -232,8 +233,9 @@ function createRegion(name, icon, allFilter, pureFilter, providers, iconPath) {
     { name: `${name}策略`, type: "select", use: providers, filter: allFilter, proxies: [`${name}自动`, `${name}均衡-散列`, `${name}均衡-轮询`, "🈚️ 假节点"], icon: iconPath + icon },
     { name: `${name}自动`, type: "url-test", use: providers, filter: pureFilter, interval: 333, tolerance: 5, hidden: true, icon: iconPath + icon },
     { name: `${name}均衡-散列`, type: "load-balance", strategy: "consistent-hashing", use: providers, filter: pureFilter, interval: 366, hidden: true, icon: iconPath + icon },
-    { name: `${name}均衡-轮询`, type: "load-balance", strategy: "round-robin", use: providers, filter: pureFilter, interval: 90, hidden: true, icon: iconPath + icon }
+    { name: `${name}均衡-轮询`, type: "load-balance", strategy: "round-robin", use: providers, filter: pureFilter, interval: 90, hidden: true, icon: iconPath + icon }       
   ];
-}
+  }
+  
   return config;
 }
