@@ -165,13 +165,13 @@ function main(config) {
     { name: "🇬 谷歌@CN", type: "load-balance", strategy: "round-robin", proxies: ["🎯 全球直连"], hidden: true },
     { name: "🪟 Bing", type: "load-balance", strategy: "round-robin", proxies: ["🚀 节点选择"], hidden: true },
 
-    ...createRegion("🇭🇰 香港", "Hong_Kong.png", '^(?=.*(?i)(港|🇭🇰|HK|Hong|HKG))', '^(?=.*(?i)(港|🇭🇰|HK|Hong|HKG))(?=.*💧)(?!.*(?i)住宅)', allProviders, icons),
-    ...createRegion("🇸🇬 狮城", "Singapore.png", '^(?=.*(?i)(坡|🇸🇬|SG|Sing|SIN|XSP))', '^(?=.*(?i)(坡|🇸🇬|SG|Sing|SIN|XSP))(?=.*💧)', allProviders, icons),
-    ...createRegion("🇯🇵 日本", "Japan.png", '^(?=.*(?i)(日|🇯🇵|JP|Japan|NRT|HND|KIX|CTS|FUK))', '^(?=.*(?i)(日|🇯🇵|JP|Japan|NRT|HND|KIX|CTS|FUK))(?=.*💧)', allProviders, icons),
-    ...createRegion("🇺🇸 美国", "United_States.png", '^(?=.*(?i)(美|🇺🇸|US|USA|JFK|LAX|ORD|ATL|DFW|SFO|MIA|SEA|IAD))', '^(?=.*(?i)(美|🇺🇸|US|USA|JFK|LAX|ORD|ATL|DFW|SFO|MIA|SEA|IAD))(?!.*💧)', allProviders, icons),
-    ...createRegion("🇹🇼 台湾", "Taiwan.png", '^(?=.*(?i)(台|🇹🇼|TW|tai|TPE|TSA|KHH))', '^(?=.*(?i)(台|🇹🇼|TW|tai|TPE|TSA|KHH))', allProviders, icons),
-    ...createRegion("🇰🇷 韩国", "Korea.png", '^(?=.*(?i)(韩|🇰🇷|韓|首尔|南朝鲜|KR|KOR|Korea|South))', '^(?=.*(?i)(韩|🇰🇷|韓|首尔|南朝鲜|KR|KOR|Korea|South))', allProviders, icons),
-    ...createRegion("🇪🇺 欧盟", "European_Union.png", '^(?=.*(?i)(奥|比|保|克罗地亚|塞|捷|丹|爱沙|芬|法|德|希|匈|爱尔|意|拉|立|卢|马其它|荷|波|葡|罗|斯洛伐|斯洛文|西|瑞|英|🇧🇪|🇨🇿|🇩🇰|🇫🇮|🇫🇷|🇩🇪|🇮🇪|🇮🇹|🇱🇹|🇱🇺|🇳🇱|🇵🇱|🇸🇪|🇬🇧|CDG|FRA|AMS|MAD|BCN|FCO|MUC|BRU))', '^(?=.*(?i)(奥|比|保|克罗地亚|塞|捷|丹|爱沙|芬|法|德|希|匈|爱尔|意|拉|立|卢|马其它|荷|波|葡|罗|斯洛伐|斯洛文|西|瑞|英|🇧🇪|🇨🇿|🇩🇰|🇫🇮|🇫🇷|🇩🇪|🇮🇪|🇮🇹|🇱🇹|🇱🇺|🇳🇱|🇵🇱|🇸🇪|🇬🇧|CDG|FRA|AMS|MAD|BCN|FCO|MUC|BRU))(?!.*💧)', allProviders, icons),
+    ...createRegion("🇭🇰 香港", "Hong_Kong.png", '^(?=.*(?i)(港|🇭🇰|HK|Hong|HKG))', '^(?=.*(?i)(港|🇭🇰|HK|Hong|HKG))(?=.*💧)(?!.*(?i)住宅)', allProviders),
+    ...createRegion("🇸🇬 狮城", "Singapore.png", '^(?=.*(?i)(坡|🇸🇬|SG|Sing|SIN|XSP))', '^(?=.*(?i)(坡|🇸🇬|SG|Sing|SIN|XSP))(?=.*💧)', allProviders),
+    ...createRegion("🇯🇵 日本", "Japan.png", '^(?=.*(?i)(日|🇯🇵|JP|Japan|NRT|HND|KIX|CTS|FUK))', '^(?=.*(?i)(日|🇯🇵|JP|Japan|NRT|HND|KIX|CTS|FUK))(?=.*💧)', allProviders),
+    ...createRegion("🇺🇸 美国", "United_States.png", '^(?=.*(?i)(美|🇺🇸|US|USA|JFK|LAX|ORD|ATL|DFW|SFO|MIA|SEA|IAD))', '^(?=.*(?i)(美|🇺🇸|US|USA|JFK|LAX|ORD|ATL|DFW|SFO|MIA|SEA|IAD))(?!.*💧)', allProviders),
+    ...createRegion("🇹🇼 台湾", "Taiwan.png", '^(?=.*(?i)(台|🇹🇼|TW|tai|TPE|TSA|KHH))', '^(?=.*(?i)(台|🇹🇼|TW|tai|TPE|TSA|KHH))', allProviders),
+    ...createRegion("🇰🇷 韩国", "Korea.png", '^(?=.*(?i)(韩|🇰🇷|韓|首尔|南朝鲜|KR|KOR|Korea|South))', '^(?=.*(?i)(韩|🇰🇷|韓|首尔|南朝鲜|KR|KOR|Korea|South))', allProviders),
+    ...createRegion("🇪🇺 欧盟", "European_Union.png", '^(?=.*(?i)(奥|比|保|克罗地亚|塞|捷|丹|爱沙|芬|法|德|希|匈|爱尔|意|拉|立|卢|马其它|荷|波|葡|罗|斯洛伐|斯洛文|西|瑞|英|🇧🇪|🇨🇿|🇩🇰|🇫🇮|🇫🇷|🇩🇪|🇮🇪|🇮🇹|🇱🇹|🇱🇺|🇳🇱|🇵🇱|🇸🇪|🇬🇧|CDG|FRA|AMS|MAD|BCN|FCO|MUC|BRU))', '^(?=.*(?i)(奥|比|保|克罗地亚|塞|捷|丹|爱沙|芬|法|德|希|匈|爱尔|意|拉|立|卢|马其它|荷|波|葡|罗|斯洛伐|斯洛文|西|瑞|英|🇧🇪|🇨🇿|🇩🇰|🇫🇮|🇫🇷|🇩🇪|🇮🇪|🇮🇹|🇱🇹|🇱🇺|🇳🇱|🇵🇱|🇸🇪|🇬🇧|CDG|FRA|AMS|MAD|BCN|FCO|MUC|BRU))(?!.*💧)', allProviders),
 
     { name: "🌐 冷门自选", type: "select", use: allProviders, filter: '^(?!.*(?i)(DIRECT|ali|china|tencent|维护|可用|直连|阻止|美|港|坡|台|新|日|韩|奥|比|保|克罗地亚|塞|捷|丹|爱沙|芬|法|德|希|匈|爱尔|意|拉|立|卢|马其它|荷|波|葡|罗|斯洛伐|斯洛文|西|瑞|英|🇭🇰|🇹🇼|🇸🇬|🇯🇵|🇰🇷|🇺🇸|🇬🇧|🇦🇹|🇧🇪|🇨🇿|🇩🇰|🇫🇮|🇫🇷|🇩🇪|🇮🇪|🇮🇹|🇱🇹|🇱🇺|🇳🇱|🇵🇱|🇸🇪|HK|TW|SG|JP|KR|US|GB|CDG|FRA|AMS|MAD|BCN|FCO|MUC|BRU|HKG|TPE|TSA|KHH|SIN|XSP|NRT|HND|KIX|CTS|FUK|JFK|LAX|ORD|ATL|DFW|SFO|MIA|SEA|IAD|LHR|LGW))', proxies: ["🈚️ 假节点"], icon: icons + "Europe_Map.png" },
     { name: "🌐 全部节点", type: "select", use: allProviders, filter: '^(?!.*(?i)(DIRECT|ali|china))', proxies: ["🈚️ 假节点"], icon: icons + "Clubhouse.png" },
@@ -231,12 +231,12 @@ function main(config) {
   ];
 
 
-function createRegion(name, icon, allFilter, pureFilter, providers, iconPath) {
+function createRegion(name, icon, allFilter, pureFilter, providers) {
   return [
-    { name: `${name}策略`, type: "select", use: providers, filter: allFilter, proxies: [`${name}自动`, `${name}均衡-散列`, `${name}均衡-轮询`, "🈚️ 假节点"], icon: iconPath + icon },
-    { name: `${name}自动`, type: "url-test", use: providers, filter: pureFilter, interval: 333, tolerance: 5, hidden: true, icon: iconPath + icon },
-    { name: `${name}均衡-散列`, type: "load-balance", strategy: "consistent-hashing", use: providers, filter: pureFilter, interval: 366, hidden: true, icon: iconPath + icon },
-    { name: `${name}均衡-轮询`, type: "load-balance", strategy: "round-robin", use: providers, filter: pureFilter, interval: 90, hidden: true, icon: iconPath + icon }       
+    { name: `${name}策略`, type: "select", use: providers, filter: allFilter, proxies: [`${name}自动`, `${name}均衡-散列`, `${name}均衡-轮询`, "🈚️ 假节点"], icon: icons + icon },
+    { name: `${name}自动`, type: "url-test", use: providers, filter: pureFilter, interval: 333, tolerance: 5, hidden: true, icon: icons + icon },
+    { name: `${name}均衡-散列`, type: "load-balance", strategy: "consistent-hashing", use: providers, filter: pureFilter, interval: 366, hidden: true, icon: icons + icon },
+    { name: `${name}均衡-轮询`, type: "load-balance", strategy: "round-robin", use: providers, filter: pureFilter, interval: 90, hidden: true, icon: icons + icon }       
   ];
   }
   
