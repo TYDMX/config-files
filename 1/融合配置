@@ -84,7 +84,15 @@ proxy-providers:
     url: "https://sub.dmit.dpdns.org/share/sub/dingyue_Center_zijian_auto?token=xgy1nCsG7xgerdecv4QRn"
     override:
       additional-prefix: "🌏 "
-      #additional-suffix: " 🌏"
+      #additional-suffix: " 🌏"   
+   
+  订阅分享中心 🪩:
+    <<: *template
+    interval: 86400
+    url: "https://proxypool.dmit.dpdns.org/clash/proxies?nstream=netflix,disney&nc=CA&type=ss,vmess,vless"
+    override:
+      additional-prefix: "🪩 "
+      #additional-suffix: " 🪩"
       
   公益订阅分享 🔮:
     <<: *template
