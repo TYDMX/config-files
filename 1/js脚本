@@ -190,40 +190,35 @@ function main(config) {
         { name: "🚫 阻止", type: "reject" }
     ];
 
-    const ip = { type: "http", interval: 86400, behavior: "ipcidr", format: "mrs" };
-    const domain = { type: "http", interval: 86400, behavior: "domain", format: "mrs" };
-    const _class = { type: "http", interval: 86400, behavior: "classical", format: "text" };
-    const class_yaml = { type: "http", interval: 86400, behavior: "classical", format: "yaml" };
-    const yaml_domain = { type: "http", interval: 86400, behavior: "domain", format: "yaml" };
-    const text_domain = { type: "http", interval: 86400, behavior: "domain", format: "text" };
-
+    const ip_mrs = { type: "http", interval: 86400, behavior: "ipcidr", format: "mrs" };
+    const classical_text = { type: "http", interval: 86400, behavior: "classical", format: "text" };
+    const classical_yaml = { type: "http", interval: 86400, behavior: "classical", format: "yaml" };
+    const domain_mrs = { type: "http", interval: 86400, behavior: "domain", format: "mrs" };
+    const domain_yaml = { type: "http", interval: 86400, behavior: "domain", format: "yaml" };
+    const domain_text = { type: "http", interval: 86400, behavior: "domain", format: "text" };
 
     config["rule-providers"] = {
-        "自用直连规则": { ..._class, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/1/直连规则" },
-        "自用代理规则": { ..._class, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/1/代理规则" },
-        "自用直连软件": { ..._class, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/1/直连软件" },
-        "自用代理软件": { ..._class, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/1/代理软件" },
-        "自用fake-ip-filter": { ...text_domain, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/2/fkip.list" }
+        "自用直连规则": { ...classical_text, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/1/直连规则" },
+        "自用代理规则": { ...classical_text, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/1/代理规则" },
+        "自用直连软件": { ...classical_text, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/1/直连软件" },
+        "自用代理软件": { ...classical_text, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/1/代理软件" },
+        "自用fake-ip-filter": { ...domain_text, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/2/fkip.list" }
     };
 
     config["rules"] = [
         "OR,((GEOSITE,private),(GEOIP,private)),🔒 私有网络",
-
         "OR,((GEOSITE,tracker),(GEOSITE,category-public-tracker)),🚫 追踪拦截",
         "OR,((GEOSITE,category-ads-all),(GEOIP,ad)),🚫 广告拦截",
         "PROCESS-NAME,com.samsung.android.packageinstaller,🚫 广告拦截",
-
         "PROCESS-NAME,com.google.android.googlequicksearchbox,🤖 AI",
         "RULE-SET,自用代理规则,🌐 自用代理",
         "RULE-SET,自用直连规则,⬆️ 自用直连",
         "RULE-SET,自用代理软件,🖥️ 代理软件",
         "RULE-SET,自用直连软件,🖥️ 直连软件",
-
         "GEOSITE,ookla-speedtest,📈 测速地址",
         "GEOSITE,apple,🍎 Apple",
         "GEOSITE,category-games-cn,🎮 game@CN",
         "GEOSITE,googlefcm,🇬 谷歌@CN",
-
         "GEOSITE,category-games-!cn,🎮 game",
         "OR,((GEOSITE,openai),(GEOSITE,google-gemini),(GEOSITE,category-ai-!cn)),🤖 AI",
         "GEOSITE,spotify,🇯🇵 日本故转",
@@ -233,11 +228,9 @@ function main(config) {
         "OR,((GEOSITE,twitter),(GEOSITE,tiktok),(GEOSITE,Reddit),(GEOSITE,discord)),📲 社交平台",
         "OR,((GEOSITE,telegram),(GEOIP,telegram)),📲 电报平台",
         "OR,((GEOSITE,youtube),(GEOSITE,netflix),(GEOSITE,onedrive),(GEOSITE,twitch),(GEOSITE,vk),(GEOSITE,disney),(GEOSITE,biliintl),(GEOSITE,category-porn)),📹 视频平台",
-
         "GEOSITE,microsoft,🪟 Microsoft",
         "OR,((GEOSITE,google),(GEOIP,google)),🇬 谷歌",
         "OR,((GEOSITE,cloudflare),(GEOIP,cloudflare),(GEOIP,cloudfront)),🖥️ 代理服务",
-
         "GEOSITE,gfw,🪜 代理域名",
         "GEOSITE,geolocation-!cn,🪜 代理域名",
         "OR,((GEOSITE,cn),(GEOIP,cn)),⬆️ 直连域名",
