@@ -62,13 +62,13 @@ function main(config) {
     // --- 【3. TUN 模式配置】 ---
     config["tun"] = {
         "enable": true,
-        "stack": "system",
+        "stack": "mixed",
         "dns-hijack": ["any:53", "tcp://any:53"],
         "auto-route": true,
         "auto-detect-interface": true,
         "strict-route": true,
-        "mtu": 1500,
-        "gso": false,
+        "mtu": 1400,
+        "gso": true,
         "gso-max-size": 65536,
         "udp-timeout": 300
     };
@@ -113,7 +113,8 @@ function main(config) {
             "dns.google": [...谷歌IP],
             "dns.cloudflare.com": [...cloudflare_IP],
             "dns.alidns.com": [...阿里IP],
-            "doh.pub": [...腾讯IP]
+            "doh.pub": [...腾讯IP],
+            "dot.pub": [...腾讯IP]
         },
         "default-nameserver": [...阿里DOT, ...腾讯DOT, "system"],
         "proxy-server-nameserver": [...DNS国内, ...DNS国外],
