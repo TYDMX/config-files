@@ -8,17 +8,11 @@ function main(config) {
                     "type": "http",
                     "url": 原订阅.url,
                     "interval": 648000,
+                    "tfo": true,
+                    "exclude-type": "http|ss",
                     "path": `./proxies/${name}.yaml`,
-                    "health-check": {
-                        "enable": true,
-                        "url": "https://cp.cloudflare.com/generate_204",
-                        "interval": 21600,
-                        "consecutive-failures": 3,
-                        "lazy": true,
-                        "method": "HEAD",
-                        "timeout": 5000
-                    },
-                    ...原订阅,
+                    "health-check": {"enable": true,"url": "https://cp.cloudflare.com/generate_204","interval": 21600,"consecutive-failures": 3,"lazy": true,"method": "HEAD","timeout": 5000},
+                    "smux": {"enabled": true,"padding": false,"protocol": "smux4","max-connections": 32,"max-streams": 64,"min-streams": 16,"statistic": false,"only-tcp": true,},...原订阅
                 };
             }
         }
