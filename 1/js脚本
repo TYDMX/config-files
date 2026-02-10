@@ -1,4 +1,3 @@
-
 function main(config) {
     if (config["proxy-providers"]) {
         for (let name in config["proxy-providers"]) {
