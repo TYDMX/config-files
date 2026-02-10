@@ -1,4 +1,29 @@
+
 function main(config) {
+    if (config["proxy-providers"]) {
+        for (let name in config["proxy-providers"]) {
+            let 原订阅 = config["proxy-providers"][name];
+            if (原订阅.url) {
+                config["proxy-providers"][name] = 
+                    {
+                    "type": "http",
+                    "url": 原订阅.url,
+                    "interval": 648000,
+                    "path": `./proxies/${name}.yaml`,
+                    "health-check": {
+                        "enable": true,
+                        "url": "https://cp.cloudflare.com/generate_204",
+                        "interval": 21600,
+                        "consecutive-failures": 3,
+                        "lazy": true,
+                        "method": "HEAD",
+                        "timeout": 5000
+                    },
+                    ...原订阅,
+                };
+            }
+        }
+    }
     const icons = "https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/";
     const allProviders = Object.keys(config["proxy-providers"] || {});
     const dns_guonei = ["https://dns.alidns.com/dns-query", "https://doh.pub/dns-query"];
