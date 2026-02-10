@@ -35,7 +35,7 @@ cfw-latency-url: https://cp.cloudflare.com/generate_204
     only-tcp: true
   #proxies: select1 # 使用此提供者为select1中转
   #proxy: select1 # 更新用的代理组
-    override:
+  override:
       #dialer-proxy: ♻️ 中转服务
 
 ## ---------------- 代理提供者 ----------------
