@@ -363,7 +363,7 @@ proxy-groups:
 rules:
   - or,((geosite,private),(geoip,private)),🔒 私有网络
 ## ---------------- 拦截组 --------------------- REJECT-DROP 拒绝连接并静默丢弃
-  #- rule-set,前置直连规则,🖥️ 直连软件
+  - rule-set,前置直连规则,🖥️ 直连软件
   - or,((geosite,tracker),(geosite,category-public-tracker)),🚫 追踪拦截
   - or,((geosite,category-ads-all),(geoip,ad)),🚫 广告拦截
   - PROCESS-NAME,com.samsung.android.packageinstaller,🚫 广告拦截
@@ -402,22 +402,22 @@ rules:
 # ==========================================================
 ## ---------------- 规则组定义锚 ---------------------
 rule-anchor:
-  ip: &ip {type: http, interval: 86400, behavior: ipcidr, format: mrs}
-  domain: &domain {type: http, interval: 86400, behavior: domain, format: mrs}
-  class: &class {type: http, interval: 86400, behavior: classical, format: text}
+  ip-mrs: &ip {type: http, interval: 86400, behavior: ipcidr, format: mrs}
+  class-text: &class {type: http, interval: 86400, behavior: classical, format: text}
   class-yaml: &class-yaml {type: http, interval: 86400, behavior: classical, format: yaml}
-  yaml-domain: &yaml-domain {type: http, interval: 86400, behavior: domain, format: yaml} 
-  text-domain: &text-domain {type: http, interval: 86400, behavior: domain, format: text} 
+  domain-mrs: &domain {type: http, interval: 86400, behavior: domain, format: mrs}
+  domain-yaml: &yaml-domain {type: http, interval: 86400, behavior: domain, format: yaml} 
+  domain-text: &text-domain {type: http, interval: 86400, behavior: domain, format: text} 
 # ==========================================================
 ## ---------------- 规则提供者 ---------------------
 rule-providers:
 ## ---------------- class规则提供者 ---------------------
-  自用直连规则: { <<: *class, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/1/直连规则"}
-  自用代理规则: { <<: *class, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/1/代理规则"}
-  自用直连软件: { <<: *class, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/1/直连软件"}
-  自用代理软件: { <<: *class, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/1/代理软件"}
-  #前置直连规则: { <<: *class, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/1/前置直连规则"}
+  自用直连规则: { <<: *class-text, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/1/直连规则"}
+  自用代理规则: { <<: *class-text, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/1/代理规则"}
+  自用直连软件: { <<: *class-text, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/1/直连软件"}
+  自用代理软件: { <<: *class-text, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/1/代理软件"}
+  前置直连规则: { <<: *class-text, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/1/前置直连规则"}
 ## ---------------- 广告拦截规则提供者 --------------------
 ## ---------------- domain域名规则提供者 ---------------
-  自用fake-ip-filter: { <<: *text-domain, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/2/fkip.list"}
+  自用fake-ip-filter: { <<: *domain-text, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/2/fkip.list"}
 ## ---------------- ip规则提供者 ---------------------  
