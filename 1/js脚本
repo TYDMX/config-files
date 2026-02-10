@@ -17,10 +17,6 @@ function main(config) {
             }
         }
     }
-    const icons = "https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/";
-    const allProviders = Object.keys(config["proxy-providers"] || {});
-    const DNS国内 = ["https://dns.alidns.com/dns-query", "https://doh.pub/dns-query"];
-    const DNS国外 = ["https://dns.cloudflare.com/dns-query", "https://dns.google/dns-query"];
 
     // --- 【1. 全局基础配置】 ---
     config["collect-data"] = false;
@@ -77,6 +73,33 @@ function main(config) {
         "udp-timeout": 300
     };
 
+
+    const 谷歌IP = ["8.8.8.8","8.8.4.4","2001:4860:4860::8888", "2001:4860:4860::8844"];
+    const 谷歌DOT = ["tls://8.8.8.8"];
+    const 谷歌DOH = ["https://dns.google/dns-query", "https://8.8.8.8/dns-query"];
+    const 谷歌DOH3 = ["h3://dns.google/dns-query", "h3://8.8.8.8/dns-query"];
+    const 谷歌QUIC = ["quic://dns.google", "quic://8.8.8.8"];
+    
+    const cloudflare_IP = ["1.1.1.1","1.0.0.1", "2606:4700:4700::1111", "2606:4700:4700::1001"];
+    const cloudflare_DOT = ["tls://1.1.1.1"];
+    const cloudflare_DOH = ["https://cloudflare-dns.com/dns-query", "https://1.1.1.1/dns-query"];
+    const cloudflare_DOH3 = ["h3://cloudflare-dns.com/dns-query", "h3://1.1.1.1/dns-query"];
+    
+    const 阿里IP = ["223.5.5.5", "223.6.6.6", "2400:3200::1", "2400:3200:baba::1"];
+    const 阿里DOT = ["tls://223.5.5.5", "tls://223.6.6.6"];
+    const 阿里DOH = ["https://dns.alidns.com/dns-query", "https://223.5.5.5/dns-query"];
+    const 阿里DOH3 = ["h3://dns.alidns.com/dns-query", "h3://223.5.5.5/dns-query"];
+    const 阿里QUIC = ["quic://dns.alidns.com", "quic://223.5.5.5"];
+    
+    const 腾讯IP = ["119.29.29.29", "182.254.116.116", "2402:4e00::", "2402:4e00:1::"];
+    const 腾讯DOT = ["tls://119.29.29.29", "tls://182.254.116.116"];
+    const 腾讯DOH = ["https://doh.pub/dns-query", "https://119.29.29.29/dns-query"];
+    const 腾讯DOH3 = ["h3://doh.pub/dns-query", "h3://119.29.29.29/dns-query"];
+    const 腾讯QUIC = ["quic://dot.pub", "quic://119.29.29.29"];
+    
+    const DNS国内 = [...阿里DOH, ...阿里QUIC, ...腾讯DOH, ...腾讯QUIC];
+    const DNS国外 = [...谷歌DOH, ...谷歌QUIC, ...cloudflare_DOH];
+    
     // --- 【4. DNS 模式配置】 ---
     config["dns"] = {
         "enable": true,
@@ -85,7 +108,7 @@ function main(config) {
         "use-system-hosts": false,
         "listen": "127.0.0.1:1053",
         "ipv6": true,
-        "prefer-h3": false,
+        "prefer-h3": true,
         "respect-rules": true,
         "enhanced-mode": "fake-ip",
         "fake-ip-range": "198.18.0.1/16",
@@ -97,12 +120,12 @@ function main(config) {
             "geosite:connectivity-check"
         ],
         "hosts": {
-            "dns.google": ["8.8.8.8","8.8.4.4","2001:4860:4860::8888","2001:4860:4860::8844"],
-            "dns.cloudflare.com": ["1.1.1.1","1.0.0.1","2606:4700:4700::1111","2606:4700:4700::1001"],
-            "dns.alidns.com": ["223.5.5.5","223.6.6.6","2400:3200::1","2400:3200:baba::1"],
-            "dns.pub": ["119.29.29.29","182.254.116.116","2402:4e00::","2402:4e00:1::"]
+            "dns.google": [...谷歌IP],
+            "dns.cloudflare.com": [...cloudflare_IP],
+            "dns.alidns.com": [...阿里IP],
+            "doh.pub": [...腾讯IP]
         },
-        "default-nameserver": ["tls://223.5.5.5", "tls://223.6.6.6", "tls://119.29.29.29", "tls://182.254.116.116", "system"],
+        "default-nameserver": [...阿里DOT, ...腾讯DOT, "system"],
         "proxy-server-nameserver": [...DNS国内, ...DNS国外],
         "direct-nameserver": DNS国内,
         "nameserver-policy": {
@@ -125,6 +148,9 @@ function main(config) {
     config["lgbm-update-interval"] = 72;
     config["lgbm-url"] = "https://v6.gh-proxy.com/https://github.com/vernesong/mihomo/releases/download/LightGBM-Model/Model-large.bin";
 
+    const icons = "https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/";
+    const allProviders = Object.keys(config["proxy-providers"] || {});
+    
     const 节点选择 = ["🚀 故障转移", "🇭🇰 香港故转", "🇸🇬 狮城故转", "🇺🇸 美国故转", "🇯🇵 日本故转", "🇹🇼 台湾节点", "🇰🇷 韩国节点", "🇪🇺 欧盟节点", "🌐 冷门自选", "🌐 全部节点", "🎯 全球直连"];
     const 故转节点 = ["🇭🇰 香港故转", "🇺🇸 美国故转", "🇸🇬 狮城故转", "🇯🇵 日本故转", "🌐 全部节点", "🎯 全球直连"];
     const 默认直连 = ["🎯 全球直连", "🇭🇰 香港故转", "🇸🇬 狮城故转", "🇺🇸 美国故转", "🇯🇵 日本故转", "🌐 全部节点"];
