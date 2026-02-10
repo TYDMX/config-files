@@ -202,11 +202,13 @@ function main(config) {
         "自用代理规则": { ...classical_text, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/1/代理规则" },
         "自用直连软件": { ...classical_text, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/1/直连软件" },
         "自用代理软件": { ...classical_text, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/1/代理软件" },
+        "前置直连规则": { ...classical_text, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/1/前置直连规则" },
         "自用fake-ip-filter": { ...domain_text, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/2/fkip.list" }
     };
 
     config["rules"] = [
         "OR,((GEOSITE,private),(GEOIP,private)),🔒 私有网络",
+        "rule-set,前置直连规则,🖥️ 直连软件",
         "OR,((GEOSITE,tracker),(GEOSITE,category-public-tracker)),🚫 追踪拦截",
         "OR,((GEOSITE,category-ads-all),(GEOIP,ad)),🚫 广告拦截",
         "PROCESS-NAME,com.samsung.android.packageinstaller,🚫 广告拦截",
