@@ -402,21 +402,21 @@ rules:
 # ==========================================================
 ## ---------------- 规则组定义锚 ---------------------
 rule-anchor:
-  ip-mrs: &ip {type: http, interval: 86400, behavior: ipcidr, format: mrs}
-  class-text: &class {type: http, interval: 86400, behavior: classical, format: text}
-  class-yaml: &class-yaml {type: http, interval: 86400, behavior: classical, format: yaml}
-  domain-mrs: &domain {type: http, interval: 86400, behavior: domain, format: mrs}
-  domain-yaml: &yaml-domain {type: http, interval: 86400, behavior: domain, format: yaml} 
-  domain-text: &text-domain {type: http, interval: 86400, behavior: domain, format: text} 
+  ip-mrs: &ip-mrs {type: http, interval: 86400, behavior: ipcidr, format: mrs}
+  classical-text: &classical-text {type: http, interval: 86400, behavior: classical, format: text}
+  classical-yaml: &classical-yaml {type: http, interval: 86400, behavior: classical, format: yaml}
+  domain-mrs: &domain-mrs {type: http, interval: 86400, behavior: domain, format: mrs}
+  domain-yaml: &domain-yaml {type: http, interval: 86400, behavior: domain, format: yaml} 
+  domain-text: &domain-text {type: http, interval: 86400, behavior: domain, format: text} 
 # ==========================================================
 ## ---------------- 规则提供者 ---------------------
 rule-providers:
 ## ---------------- class规则提供者 ---------------------
-  自用直连规则: { <<: *class-text, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/1/直连规则"}
-  自用代理规则: { <<: *class-text, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/1/代理规则"}
-  自用直连软件: { <<: *class-text, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/1/直连软件"}
-  自用代理软件: { <<: *class-text, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/1/代理软件"}
-  前置直连规则: { <<: *class-text, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/1/前置直连规则"}
+  自用直连规则: { <<: *classical-text, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/1/直连规则"}
+  自用代理规则: { <<: *classical-text, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/1/代理规则"}
+  自用直连软件: { <<: *classical-text, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/1/直连软件"}
+  自用代理软件: { <<: *classical-text, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/1/代理软件"}
+  前置直连规则: { <<: *classical-text, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/1/前置直连规则"}
 ## ---------------- 广告拦截规则提供者 --------------------
 ## ---------------- domain域名规则提供者 ---------------
   自用fake-ip-filter: { <<: *domain-text, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/2/fkip.list"}
