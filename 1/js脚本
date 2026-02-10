@@ -45,12 +45,10 @@ function main(config) {
     config["keep-alive-interval"] = 75;
     config["keep-alive-idle"] = 120;
     config["keep-alive-probes"] = 5;
-    
-    config["profile"] = {
-        "store-selected": true,
+    config["profile"] = { 
+        "store-selected": true, 
         "store-fake-ip": true
     };
-    
     config["experimental"] = {
         "quic-go-disable-gso": true
     };
@@ -65,7 +63,7 @@ function main(config) {
             "TLS": { "ports": [443, 5228, 8443] },
             "QUIC": { "ports": [443, 5228, 8443] }
         },
-        "force-domain": ["+.v2ex.com", "geosite:googlefcm"],
+        "force-domain": ["+.v2ex.com"],
         "skip-domain": ["+.push.apple.com", "Mijia Cloud"],
         "skip-src-address": ["192.168.0.3/32"],
         "skip-dst-address": ["192.168.0.3/32"]
@@ -102,8 +100,7 @@ function main(config) {
         "fake-ip-filter": [
             "rule-set:自用fake-ip-filter",
             "geosite:private",
-            "geosite:connectivity-check",
-            "geosite:googlefcm"
+            "geosite:connectivity-check"
         ],
         "hosts": {
             "dns.google": ["8.8.8.8","8.8.4.4","2001:4860:4860::8888","2001:4860:4860::8844"],
@@ -130,7 +127,6 @@ function main(config) {
     };
     config["geo-auto-update"] = true;
     config["geo-update-interval"] = 168;
-
     config["lgbm-auto-update"] = true;
     config["lgbm-update-interval"] = 72;
     config["lgbm-url"] = "https://v6.gh-proxy.com/https://github.com/vernesong/mihomo/releases/download/LightGBM-Model/Model-large.bin";
