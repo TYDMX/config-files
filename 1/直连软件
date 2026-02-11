@@ -4,8 +4,8 @@
 #   zlrj
 
 #腾讯
-PROCESS-NAME,com.tencent.mobileqq
-PROCESS-NAME,QQ.exe
+#PROCESS-NAME,com.tencent.mobileqq
+#PROCESS-NAME,QQ.exe
 
 # 战雷
 #PROCESS-NAME,aces.exe
@@ -19,35 +19,35 @@ PROCESS-NAME,QQ.exe
 
 # 微软
 #PROCESS-NAME,svchost.exe
-PROCESS-NAME,PhoneExperienceHost.exe
-PROCESS-NAME,CrossDeviceService.exe
 #连接至windows
-PROCESS-NAME,com.microsoft.appmanager
+#PROCESS-NAME,PhoneExperienceHost.exe
+#PROCESS-NAME,CrossDeviceService.exe
+#PROCESS-NAME,com.microsoft.appmanager
 #OneDrive
 PROCESS-NAME,OneDrive.exe
 #PROCESS-NAME,com.microsoft.skydrive
 
 #  三星
 #商店
-PROCESS-NAME,com.sec.android.app.samsungapps
+#PROCESS-NAME,com.sec.android.app.samsungapps
 #提醒
-PROCESS-NAME,com.samsung.android.app.reminder
+#PROCESS-NAME,com.samsung.android.app.reminder
 #天气
-PROCESS-NAME,com.sec.android.daemonapp
+#PROCESS-NAME,com.sec.android.daemonapp
 #PROCESS-NAME,com.samsung.android.sskds (1000),SelectGroup
 
 # 设备
-PROCESS-NAME,com.xiaomi.smarthome
-PROCESS-NAME,com.tplink.ipc
-PROCESS-NAME,nvcontainer.exe
-PROCESS-NAME,GamingCenter3_Cross.exe
+#PROCESS-NAME,com.xiaomi.smarthome
+#PROCESS-NAME,com.tplink.ipc
+#PROCESS-NAME,nvcontainer.exe
+#PROCESS-NAME,GamingCenter3_Cross.exe
 
 # 视频软件
 PROCESS-NAME,DownloadSDKServer.exe
-PROCESS-NAME,Thunder.exe
-PROCESS-NAME,cbox.exe
-PROCESS-NAME,douyin.exe
-PROCESS-NAME,GamePP.exe
+#PROCESS-NAME,Thunder.exe
+#PROCESS-NAME,cbox.exe
+#PROCESS-NAME,douyin.exe
+#PROCESS-NAME,GamePP.exe
 
 PROCESS-NAME,com.jingdong.app.mall
 
