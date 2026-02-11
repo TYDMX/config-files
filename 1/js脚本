@@ -1,18 +1,18 @@
 function main(config) {
     if (config["proxy-providers"]) {
-        for (let name in config["proxy-providers"]) {
-            let 原订阅 = config["proxy-providers"][name];
+        for (let 机场名 in config["proxy-providers"]) {
+            let 原订阅 = config["proxy-providers"][机场名];
             if (原订阅.url) {
-                config["proxy-providers"][name] = 
-                    {
+                config["proxy-providers"][机场名] = 
+                    {...原订阅,
                     "type": "http",
                     "url": 原订阅.url,
                     "interval": 648000,
                     "tfo": true,
                     "exclude-type": "http|ss",
-                    "path": `./proxies/${name}.yaml`,
-                    "health-check": {"enable": true,"url": "https://cp.cloudflare.com/generate_204","interval": 21600,"consecutive-failures": 3,"lazy": true,"method": "HEAD","timeout": 5000},
-                    "smux": {"enabled": true,"padding": false,"protocol": "smux4","max-connections": 32,"max-streams": 64,"min-streams": 16,"statistic": false,"only-tcp": true,},...原订阅
+                    "path": `./proxies/${机场名}.yaml`,
+                    "health-check": { "enable": true, "url": "https://cp.cloudflare.com/generate_204", "interval": 21600, "consecutive-failures": 2, "lazy": true, "method": "HEAD", "timeout": 5000 },
+                    "smux": { "enabled": true, "padding": true, "protocol": "smux4", "max-connections": 8, "max-streams": 64, "min-streams": 4, "statistic": false, "only-tcp": true, },
                 };
             }
         }
@@ -89,8 +89,8 @@ function main(config) {
     const 腾讯DOT = ["tls://119.29.29.29", "tls://182.254.116.116"];
     const 腾讯DOH = ["https://doh.pub/dns-query", "https://119.29.29.29/dns-query"];
     const 腾讯QUIC = ["quic://dot.pub", "quic://119.29.29.29"];
-    const DNS国内 = [...阿里DOH, ...阿里QUIC, ...腾讯DOH, ...腾讯QUIC];
-    const DNS国外 = [...谷歌DOH, ...谷歌QUIC, ...cloudflare_DOH];
+    const DNS国外 = [...谷歌QUIC, ...谷歌DOH,...cloudflare_DOH];
+    
     config["dns"] = {
         "enable": true,
         "cache-algorithm": "arc",
@@ -109,16 +109,18 @@ function main(config) {
             "geosite:private",
             "geosite:connectivity-check"
         ],
+        "lookup-strategy": "fastest-ip",
         "hosts": {
             "dns.google": [...谷歌IP],
             "dns.cloudflare.com": [...cloudflare_IP],
             "dns.alidns.com": [...阿里IP],
             "doh.pub": [...腾讯IP],
-            "dot.pub": [...腾讯IP]
+            "dot.pub": [...腾讯IP],
+            "pub": [...腾讯IP]
         },
-        "default-nameserver": [...阿里DOT, ...腾讯DOT, "system"],
-        "proxy-server-nameserver": [...DNS国内, ...DNS国外],
-        "direct-nameserver": DNS国内,
+        "default-nameserver": [...阿里IP],
+        "proxy-server-nameserver": [...阿里DOH, ...阿里QUIC],
+        "direct-nameserver": [...阿里IP, ...阿里QUIC, ...阿里DOH, ...腾讯IP, ...腾讯QUIC, ...腾讯DOH],
         "nameserver-policy": {
             "geosite:gfw": DNS国外,
             "geosite:geolocation-!cn": DNS国外
@@ -139,8 +141,8 @@ function main(config) {
     config["lgbm-update-interval"] = 72;
     config["lgbm-url"] = "https://v6.gh-proxy.com/https://github.com/vernesong/mihomo/releases/download/LightGBM-Model/Model-large.bin";
 
-    const icons = "https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/";
-    const allProviders = Object.keys(config["proxy-providers"] || {});
+    const 图标库 = "https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/";
+    const 全部订阅 = Object.keys(config["proxy-providers"] || {});
     
     const 节点选择 = ["🚀 故障转移", "🇭🇰 香港故转", "🇸🇬 狮城故转", "🇺🇸 美国故转", "🇯🇵 日本故转", "🇹🇼 台湾节点", "🇰🇷 韩国节点", "🇪🇺 欧盟节点", "🌐 冷门自选", "🌐 全部节点", "🎯 全球直连"];
     const 故转节点 = ["🇭🇰 香港故转", "🇺🇸 美国故转", "🇸🇬 狮城故转", "🇯🇵 日本故转", "🌐 全部节点", "🎯 全球直连"];
@@ -152,32 +154,32 @@ function main(config) {
     const 日本故转 = ["🇯🇵 日本节点", "🇯🇵 日本自动", "🇰🇷 韩国节点", "🇺🇸 美国节点", "🇪🇺 欧盟节点", "🇭🇰 香港节点", "🇸🇬 狮城节点"];
 
     config["proxy-groups"] = [
-        { name: "🚀 节点选择", type: "select", proxies: 节点选择, icon: icons + "Static.png" },
-        { name: "🚀 故障转移", type: "select", proxies: 故转节点, icon: icons + "ULB.png" },
+        { name: "🚀 节点选择", type: "select", proxies: 节点选择, icon: 图标库 + "Static.png" },
+        { name: "🚀 故障转移", type: "select", proxies: 故转节点, icon: 图标库 + "ULB.png" },
 
         { name: "🇭🇰 香港故转", type: "fallback", proxies: 香港故转, hidden: true, interval: 333, lazy: true },
         { name: "🇸🇬 狮城故转", type: "fallback", proxies: 狮城故转, hidden: true, interval: 333, lazy: true },
         { name: "🇺🇸 美国故转", type: "fallback", proxies: 美国故转, hidden: true, interval: 333, lazy: true },
         { name: "🇯🇵 日本故转", type: "fallback", proxies: 日本故转, hidden: true, interval: 333, lazy: true },
 
-        { name: "📹 视频平台", type: "select", proxies: 故转节点, icon: icons + "YouTube.png" },
-        { name: "📲 社交平台", type: "select", proxies: 故转节点, icon: icons + "Twitter.png" },
-        { name: "📲 电报平台", type: "select", proxies: 节点选择, icon: icons + "Telegram_X.png" },
-        { name: "🤖 AI", type: "select", proxies: 故转节点, icon: icons + "AI.png" },
-        { name: "🎮 game", type: "select", proxies: 故转节点, icon: icons + "Game.png" },
-        { name: "🪟 Microsoft", type: "select", proxies: 默认直连, icon: icons + "Microsoft.png" },
-        { name: "🇬 谷歌", type: "select", proxies: 故转节点, icon: icons + "Google_Search.png" },
+        { name: "📹 视频平台", type: "select", proxies: 故转节点, icon: 图标库 + "YouTube.png" },
+        { name: "📲 社交平台", type: "select", proxies: 故转节点, icon: 图标库 + "Twitter.png" },
+        { name: "📲 电报平台", type: "select", proxies: 节点选择, icon: 图标库 + "Telegram_X.png" },
+        { name: "🤖 AI", type: "select", proxies: 故转节点, icon: 图标库 + "AI.png" },
+        { name: "🎮 game", type: "select", proxies: 故转节点, icon: 图标库 + "Game.png" },
+        { name: "🪟 Microsoft", type: "select", proxies: 默认直连, icon: 图标库 + "Microsoft.png" },
+        { name: "🇬 谷歌", type: "select", proxies: 故转节点, icon: 图标库 + "Google_Search.png" },
 
-        { name: "👨🏿‍💻 GitHub", type: "load-balance", strategy: "round-robin", proxies: ["🚀 故障转移"], icon: icons + "GitHub.png", interval: 90, hidden: true },
-        { name: "💶 PayPal", type: "load-balance", strategy: "round-robin", proxies: ["🚀 故障转移"], icon: icons + "PayPal.png", interval: 90, hidden: true },
-        { name: "🍎 Apple", type: "load-balance", strategy: "round-robin", proxies: ["🎯 全球直连"], icon: icons + "Apple.png", interval: 90, hidden: true },
+        { name: "👨🏿‍💻 GitHub", type: "load-balance", strategy: "round-robin", proxies: ["🚀 故障转移"], icon: 图标库 + "GitHub.png", interval: 90, hidden: true },
+        { name: "💶 PayPal", type: "load-balance", strategy: "round-robin", proxies: ["🚀 故障转移"], icon: 图标库 + "PayPal.png", interval: 90, hidden: true },
+        { name: "🍎 Apple", type: "load-balance", strategy: "round-robin", proxies: ["🎯 全球直连"], icon: 图标库 + "Apple.png", interval: 90, hidden: true },
         
         { name: "🪜 代理域名", type: "load-balance", strategy: "round-robin", proxies: ["🚀 节点选择"], hidden: true },
         { name: "🌐 自用代理", type: "load-balance", strategy: "round-robin", proxies: ["🚀 节点选择"], hidden: true },
         { name: "⬆️ 自用直连", type: "load-balance", strategy: "round-robin", proxies: ["🎯 全球直连"], hidden: true },
         { name: "⬆️ 直连域名", type: "load-balance", strategy: "round-robin", proxies: ["🎯 全球直连"], hidden: true },
         { name: "🔒 私有网络", type: "load-balance", strategy: "round-robin", proxies: ["🎯 全球直连"], hidden: true },
-        { name: "📈 测速地址", type: "load-balance", strategy: "round-robin", use: allProviders, proxies: ["🎯 全球直连"], hidden: true, icon: icons + "Speedtest.png" },
+        { name: "📈 测速地址", type: "load-balance", strategy: "round-robin", use: 全部订阅, proxies: ["🎯 全球直连"], hidden: true, icon: 图标库 + "Speedtest.png" },
         { name: "🖥️ 直连软件", type: "load-balance", strategy: "round-robin", proxies: ["🎯 全球直连"], hidden: true },
         { name: "🖥️ 直连服务", type: "load-balance", strategy: "round-robin", proxies: ["🎯 全球直连"], hidden: true },
         { name: "🖥️ 代理软件", type: "load-balance", strategy: "round-robin", proxies: ["🚀 故障转移"], hidden: true },
@@ -188,17 +190,17 @@ function main(config) {
         { name: "🇬 谷歌@CN", type: "load-balance", strategy: "round-robin", proxies: ["🎯 全球直连"], hidden: true },
         { name: "🪟 Bing", type: "load-balance", strategy: "round-robin", proxies: ["🚀 节点选择"], hidden: true },
 
-        ...创建地区分组("🇭🇰 香港", "Hong_Kong.png", '^(?=.*(?i)(港|🇭🇰|HK|Hong|HKG))', '^(?=.*(?i)(港|🇭🇰|HK|Hong|HKG))(?=.*💧)(?!.*(?i)排除)', allProviders),
-        ...创建地区分组("🇸🇬 狮城", "Singapore.png", '^(?=.*(?i)(坡|🇸🇬|SG|Sing|SIN|XSP))', '^(?=.*(?i)(坡|🇸🇬|SG|Sing|SIN|XSP))(?=.*💧)', allProviders),
-        ...创建地区分组("🇺🇸 美国", "United_States.png", '^(?=.*(?i)(美|🇺🇸|US|USA|JFK|LAX|ORD|ATL|DFW|SFO|MIA|SEA|IAD))', '^(?=.*(?i)(美|🇺🇸|US|USA|JFK|LAX|ORD|ATL|DFW|SFO|MIA|SEA|IAD))(?!.*💧)', allProviders),
-        ...创建地区分组("🇯🇵 日本", "Japan.png", '^(?=.*(?i)(日|🇯🇵|JP|Japan|NRT|HND|KIX|CTS|FUK))', '^(?=.*(?i)(日|🇯🇵|JP|Japan|NRT|HND|KIX|CTS|FUK))(?=.*💧)', allProviders),
-        ...创建地区分组("🇹🇼 台湾", "Taiwan.png", '^(?=.*(?i)(台|🇹🇼|TW|tai|TPE|TSA|KHH))', '^(?=.*(?i)(台|🇹🇼|TW|tai|TPE|TSA|KHH))', allProviders),
-        ...创建地区分组("🇰🇷 韩国", "Korea.png", '^(?=.*(?i)(韩|🇰🇷|韓|首尔|南朝鲜|KR|KOR|Korea|South))', '^(?=.*(?i)(韩|🇰🇷|韓|首尔|南朝鲜|KR|KOR|Korea|South))', allProviders),
-        ...创建地区分组("🇪🇺 欧盟", "European_Union.png", '^(?=.*(?i)(奥|比|保|克罗地亚|塞|捷|丹|爱沙|芬|法|德|希|匈|爱尔|意|拉|立|卢|马其它|荷|波|葡|罗|斯洛伐|斯洛文|西|瑞|英|🇧🇪|🇨🇿|🇩🇰|🇫🇮|🇫🇷|🇩🇪|🇮🇪|🇮🇹|🇱🇹|🇱🇺|🇳🇱|🇵🇱|🇸🇪|🇬🇧|CDG|FRA|AMS|MAD|BCN|FCO|MUC|BRU))', '^(?=.*(?i)(奥|比|保|克罗地亚|塞|捷|丹|爱沙|芬|法|德|希|匈|爱尔|意|拉|立|卢|马其它|荷|波|葡|罗|斯洛伐|斯洛文|西|瑞|英|🇧🇪|🇨🇿|🇩🇰|🇫🇮|🇫🇷|🇩🇪|🇮🇪|🇮🇹|🇱🇹|🇱🇺|🇳🇱|🇵🇱|🇸🇪|🇬🇧|CDG|FRA|AMS|MAD|BCN|FCO|MUC|BRU))(?!.*💧)', allProviders),
+        ...创建地区分组("🇭🇰 香港", "Hong_Kong.png", '^(?=.*(?i)(港|🇭🇰|HK|Hong|HKG))', '^(?=.*(?i)(港|🇭🇰|HK|Hong|HKG))(?=.*💧)(?!.*(?i)排除)', 全部订阅),
+        ...创建地区分组("🇸🇬 狮城", "Singapore.png", '^(?=.*(?i)(坡|🇸🇬|SG|Sing|SIN|XSP))', '^(?=.*(?i)(坡|🇸🇬|SG|Sing|SIN|XSP))(?=.*💧)', 全部订阅),
+        ...创建地区分组("🇺🇸 美国", "United_States.png", '^(?=.*(?i)(美|🇺🇸|US|USA|JFK|LAX|ORD|ATL|DFW|SFO|MIA|SEA|IAD))', '^(?=.*(?i)(美|🇺🇸|US|USA|JFK|LAX|ORD|ATL|DFW|SFO|MIA|SEA|IAD))(?!.*💧)', 全部订阅),
+        ...创建地区分组("🇯🇵 日本", "Japan.png", '^(?=.*(?i)(日|🇯🇵|JP|Japan|NRT|HND|KIX|CTS|FUK))', '^(?=.*(?i)(日|🇯🇵|JP|Japan|NRT|HND|KIX|CTS|FUK))(?=.*💧)', 全部订阅),
+        ...创建地区分组("🇹🇼 台湾", "Taiwan.png", '^(?=.*(?i)(台|🇹🇼|TW|tai|TPE|TSA|KHH))', '^(?=.*(?i)(台|🇹🇼|TW|tai|TPE|TSA|KHH))', 全部订阅),
+        ...创建地区分组("🇰🇷 韩国", "Korea.png", '^(?=.*(?i)(韩|🇰🇷|韓|首尔|南朝鲜|KR|KOR|Korea|South))', '^(?=.*(?i)(韩|🇰🇷|韓|首尔|南朝鲜|KR|KOR|Korea|South))', 全部订阅),
+        ...创建地区分组("🇪🇺 欧盟", "European_Union.png", '^(?=.*(?i)(奥|比|保|克罗地亚|塞|捷|丹|爱沙|芬|法|德|希|匈|爱尔|意|拉|立|卢|马其它|荷|波|葡|罗|斯洛伐|斯洛文|西|瑞|英|🇧🇪|🇨🇿|🇩🇰|🇫🇮|🇫🇷|🇩🇪|🇮🇪|🇮🇹|🇱🇹|🇱🇺|🇳🇱|🇵🇱|🇸🇪|🇬🇧|CDG|FRA|AMS|MAD|BCN|FCO|MUC|BRU))', '^(?=.*(?i)(奥|比|保|克罗地亚|塞|捷|丹|爱沙|芬|法|德|希|匈|爱尔|意|拉|立|卢|马其它|荷|波|葡|罗|斯洛伐|斯洛文|西|瑞|英|🇧🇪|🇨🇿|🇩🇰|🇫🇮|🇫🇷|🇩🇪|🇮🇪|🇮🇹|🇱🇹|🇱🇺|🇳🇱|🇵🇱|🇸🇪|🇬🇧|CDG|FRA|AMS|MAD|BCN|FCO|MUC|BRU))(?!.*💧)', 全部订阅),
 
-        { name: "🌐 冷门自选", type: "select", use: allProviders, filter: '^(?!.*(?i)(DIRECT|ali|china|tencent|维护|可用|直连|阻止|美|港|坡|台|新|日|韩|奥|比|保|克罗地亚|塞|捷|丹|爱沙|芬|法|德|希|匈|爱尔|意|拉|立|卢|马其它|荷|波|葡|罗|斯洛伐|斯洛文|西|瑞|英|🇭🇰|🇹🇼|🇸🇬|🇯🇵|🇰🇷|🇺🇸|🇬🇧|🇦🇹|🇧🇪|🇨🇿|🇩🇰|🇫🇮|🇫🇷|🇩🇪|🇮🇪|🇮🇹|🇱🇹|🇱🇺|🇳🇱|🇵🇱|🇸🇪|HK|TW|SG|JP|KR|US|GB|CDG|FRA|AMS|MAD|BCN|FCO|MUC|BRU|HKG|TPE|TSA|KHH|SIN|XSP|NRT|HND|KIX|CTS|FUK|JFK|LAX|ORD|ATL|DFW|SFO|MIA|SEA|IAD|LHR|LGW))', proxies: ["🈚️ 假节点"], icon: icons + "Europe_Map.png" },
-        { name: "🌐 全部节点", type: "select", use: allProviders, filter: '^(?!.*(?i)(DIRECT|ali|china))', proxies: ["🈚️ 假节点"], icon: icons + "Clubhouse.png" },
-        { name: "🐟 漏网之鱼", type: "select", proxies: ["🚀 节点选择", "🎯 全球直连"], icon: icons + "Final.png" }
+        { name: "🌐 冷门自选", type: "select", use: 全部订阅, filter: '^(?!.*(?i)(DIRECT|ali|china|tencent|维护|可用|直连|阻止|美|港|坡|台|新|日|韩|奥|比|保|克罗地亚|塞|捷|丹|爱沙|芬|法|德|希|匈|爱尔|意|拉|立|卢|马其它|荷|波|葡|罗|斯洛伐|斯洛文|西|瑞|英|🇭🇰|🇹🇼|🇸🇬|🇯🇵|🇰🇷|🇺🇸|🇬🇧|🇦🇹|🇧🇪|🇨🇿|🇩🇰|🇫🇮|🇫🇷|🇩🇪|🇮🇪|🇮🇹|🇱🇹|🇱🇺|🇳🇱|🇵🇱|🇸🇪|HK|TW|SG|JP|KR|US|GB|CDG|FRA|AMS|MAD|BCN|FCO|MUC|BRU|HKG|TPE|TSA|KHH|SIN|XSP|NRT|HND|KIX|CTS|FUK|JFK|LAX|ORD|ATL|DFW|SFO|MIA|SEA|IAD|LHR|LGW))', proxies: ["🈚️ 假节点"], icon: 图标库 + "Europe_Map.png" },
+        { name: "🌐 全部节点", type: "select", use: 全部订阅, filter: '^(?!.*(?i)(DIRECT|ali|china))', proxies: ["🈚️ 假节点"], icon: 图标库 + "Clubhouse.png" },
+        { name: "🐟 漏网之鱼", type: "select", proxies: ["🚀 节点选择", "🎯 全球直连"], icon: 图标库 + "Final.png" }
     ];
 
     config["proxies"] = [
@@ -258,10 +260,10 @@ function main(config) {
 
     function 创建地区分组(地区名, 地区图标, 地区节点池, 地区自动选择, 地区机场组) {
         return [
-            { name: `${地区名}节点`, type: "select", use: 地区机场组, filter: 地区节点池, proxies: [`${地区名}自动`, `${地区名}均衡-散列`, `${地区名}均衡-轮询`, "🈚️ 假节点"], icon: icons + 地区图标 },
-            { name: `${地区名}自动`, type: "url-test", use: 地区机场组, filter: 地区自动选择, interval: 333, tolerance: 5, hidden: true, icon: icons + 地区图标 },
-            { name: `${地区名}均衡-散列`, type: "load-balance", strategy: "consistent-hashing", use: 地区机场组, filter: 地区自动选择, interval: 366, hidden: true, icon: icons + 地区图标 },
-            { name: `${地区名}均衡-轮询`, type: "load-balance", strategy: "round-robin", use: 地区机场组, filter: 地区自动选择, interval: 90, hidden: true, icon: icons + 地区图标 }
+            { name: `${地区名}节点`, type: "select", use: 地区机场组, filter: 地区节点池, proxies: [`${地区名}自动`, `${地区名}均衡-散列`, `${地区名}均衡-轮询`, "🈚️ 假节点"], icon: 图标库 + 地区图标 },
+            { name: `${地区名}自动`, type: "url-test", use: 地区机场组, filter: 地区自动选择, interval: 333, tolerance: 5, hidden: true, icon: 图标库 + 地区图标 },
+            { name: `${地区名}均衡-散列`, type: "load-balance", strategy: "consistent-hashing", use: 地区机场组, filter: 地区自动选择, interval: 366, hidden: true, icon: 图标库 + 地区图标 },
+            { name: `${地区名}均衡-轮询`, type: "load-balance", strategy: "round-robin", use: 地区机场组, filter: 地区自动选择, interval: 90, hidden: true, icon: 图标库 + 地区图标 }
         ];
     }
     
