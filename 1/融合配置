@@ -101,15 +101,7 @@ proxy-providers:
     override:
       additional-prefix: "🪩 "
       #additional-suffix: " 🪩"
-      
-  dmit节点池 🪩:
-    <<: *template
-    interval: 86400
-    url: "https://proxypool.dmit.dpdns.org/clash/proxies?nstream=netflix,disney&nc=CA&type=ss,vmess,vless"
-    override:
-      additional-prefix: "🪩 "
-      #additional-suffix: " 🪩"
-        
+     
   公益订阅分享 🔮:
     <<: *template
     interval: 86400
