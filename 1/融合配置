@@ -78,7 +78,7 @@ proxy-providers:
       additional-prefix: "💧 "
       #additional-suffix: " 💧"   
       
-  订阅分享中心 🌏:
+  订阅分享中心自建 🌏:
     <<: *template
     interval: 86400
     url: "https://sub.dmit.dpdns.org/share/sub/dingyue_Center_zijian_auto?token=xgy1nCsG7xgerdecv4QRn"
@@ -86,10 +86,26 @@ proxy-providers:
       additional-prefix: "🌏 "
       #additional-suffix: " 🌏"   
   
+  订阅分享中心节点池 🪩:
+    <<: *template
+    interval: 86400
+    url: "https://proxypool.dmit.dpdns.org/clash/proxies?nstream=netflix,disney&nc=CA&type=ss,vmess,vless"
+    override:
+      additional-prefix: "🪩 "
+      #additional-suffix: " 🪩"
+        
   dmit节点池 🪩:
     <<: *template
     interval: 86400
-    url: "https://proxypool.dmit.dpdns.org/clash/config"
+    url: "https://proxypool.dmit.dpdns.org/clash/proxies?nstream=netflix,disney&ntype=ss,ssr,vmess,trojan"
+    override:
+      additional-prefix: "🪩 "
+      #additional-suffix: " 🪩"
+      
+  dmit节点池 🪩:
+    <<: *template
+    interval: 86400
+    url: "https://proxypool.dmit.dpdns.org/clash/proxies?nstream=netflix,disney&nc=CA&type=ss,vmess,vless"
     override:
       additional-prefix: "🪩 "
       #additional-suffix: " 🪩"
