@@ -119,7 +119,7 @@ function main(config) {
             "pub": [...腾讯IP]
         },
         "default-nameserver": [...阿里IP],
-        "proxy-server-nameserver": [...阿里DOH, ...阿里QUIC],
+        "proxy-server-nameserver": [...阿里DOT, ...谷歌DOT, ...cloudflare_DOT],
         "direct-nameserver": [...阿里IP, ...阿里QUIC, ...阿里DOH, ...腾讯IP, ...腾讯QUIC, ...腾讯DOH],
         "nameserver-policy": {
             "geosite:gfw": DNS国外,
