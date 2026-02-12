@@ -7,7 +7,7 @@ function main(config) {
                     {...原订阅,
                     "type": "http",
                     "url": 原订阅.url,
-                    "interval": 648000,
+                    //"interval": 648000,
                     "tfo": true,
                     "exclude-type": "http|ss",
                     "path": `./proxies/${机场名}.yaml`,
