@@ -85,15 +85,7 @@ proxy-providers:
     override:
       additional-prefix: "🌏 "
       #additional-suffix: " 🌏"   
-  
-  订阅分享中心节点池 🪩:
-    <<: *template
-    interval: 86400
-    url: "https://proxypool.dmit.dpdns.org/clash/proxies?nstream=netflix,disney&nc=CA&type=ss,vmess,vless"
-    override:
-      additional-prefix: "🪩 "
-      #additional-suffix: " 🪩"
-        
+
   dmit节点池 🪩:
     <<: *template
     interval: 86400
@@ -102,12 +94,12 @@ proxy-providers:
       additional-prefix: "🪩 "
       #additional-suffix: " 🪩"
      
-  公益订阅分享 🔮:
-    <<: *template
-    interval: 86400
-    url: "https://raw.githubusercontent.com/go4sharing/sub/main/clash.yaml"
-    override:
-      additional-prefix: "🔮 "
+  #公益订阅分享 🔮:
+    #<<: *template
+    #interval: 86400
+    #url: "https://raw.githubusercontent.com/go4sharing/sub/main/clash.yaml"
+    #override:
+      #additional-prefix: "🔮 "
       #additional-suffix: " 🔮"
 
 # ==========================================================
