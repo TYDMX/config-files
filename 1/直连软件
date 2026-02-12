@@ -20,9 +20,10 @@
 # 微软
 #PROCESS-NAME,svchost.exe
 #连接至windows
-#PROCESS-NAME,PhoneExperienceHost.exe
-#PROCESS-NAME,CrossDeviceService.exe
-#PROCESS-NAME,com.microsoft.appmanager
+PROCESS-NAME,PhoneExperienceHost.exe
+PROCESS-NAME,CrossDeviceService.exe
+PROCESS-NAME,com.microsoft.appmanager
+PROCESS-NAME,samsung.android.mdx
 #OneDrive
 PROCESS-NAME,OneDrive.exe
 #PROCESS-NAME,com.microsoft.skydrive
