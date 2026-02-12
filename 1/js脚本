@@ -1,3 +1,4 @@
+//https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/1/js脚本
 function main(config) {
     if (config["proxy-providers"]) {
         for (let 机场名 in config["proxy-providers"]) {
@@ -89,7 +90,7 @@ function main(config) {
     const 腾讯DOT = ["tls://119.29.29.29", "tls://182.254.116.116"];
     const 腾讯DOH = ["https://doh.pub/dns-query", "https://119.29.29.29/dns-query"];
     const 腾讯QUIC = ["quic://dot.pub", "quic://119.29.29.29"];
-    const DNS国外 = [...谷歌QUIC, ...谷歌DOH,...cloudflare_DOH];
+    const DNS国外 = [...谷歌DOH,...cloudflare_DOH];
     
     config["dns"] = {
         "enable": true,
@@ -120,7 +121,7 @@ function main(config) {
         },
         "default-nameserver": [...阿里IP],
         "proxy-server-nameserver": [...阿里DOT, ...谷歌DOT, ...cloudflare_DOT],
-        "direct-nameserver": [...阿里IP, ...阿里QUIC, ...阿里DOH, ...腾讯IP, ...腾讯QUIC, ...腾讯DOH],
+        "direct-nameserver": [...阿里IP, ...阿里DOH, ...腾讯IP, ...腾讯DOH],
         "nameserver-policy": {
             "geosite:gfw": DNS国外,
             "geosite:geolocation-!cn": DNS国外
