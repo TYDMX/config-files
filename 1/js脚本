@@ -162,7 +162,7 @@ function main(config) {
         { name: "📹 视频平台", type: "select", proxies: 故转节点, icon: 图标库 + "YouTube.png" },
         { name: "📲 社交平台", type: "select", proxies: 故转节点, icon: 图标库 + "Twitter.png" },
         { name: "📲 电报飞机", type: "select", proxies: 节点选择, icon: 图标库 + "Telegram_X.png" },
-        { name: "🤖 AI", type: "select", proxies: 故转节点, icon: 图标库 + "AI.png" },
+        { name: "🤖 AI", type: "select", proxies: 故转节点, icon: 图标库 + "ChatGPT.png" },
         { name: "🎮 game", type: "select", proxies: 故转节点, icon: 图标库 + "Game.png" },
         { name: "🪟 Microsoft", type: "select", proxies: 默认直连, icon: 图标库 + "Microsoft.png" },
         { name: "🇬 谷歌", type: "select", proxies: 故转节点, icon: 图标库 + "Google_Search.png" },
