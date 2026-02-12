@@ -143,11 +143,9 @@ function main(config) {
 
     const 图标库 = "https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/";
     const 全部订阅 = Object.keys(config["proxy-providers"] || {});
-    
     const 节点选择 = ["🚀 故障转移", "🇭🇰 香港故转", "🇸🇬 狮城故转", "🇺🇸 美国故转", "🇯🇵 日本故转", "🇹🇼 台湾节点", "🇰🇷 韩国节点", "🇪🇺 欧盟节点", "🌐 冷门自选", "🌐 全部节点", "🎯 全球直连"];
     const 故转节点 = ["🇭🇰 香港故转", "🇺🇸 美国故转", "🇸🇬 狮城故转", "🇯🇵 日本故转", "🌐 全部节点", "🎯 全球直连"];
     const 默认直连 = ["🎯 全球直连", "🇭🇰 香港故转", "🇸🇬 狮城故转", "🇺🇸 美国故转", "🇯🇵 日本故转", "🌐 全部节点"];
-
     const 香港故转 = ["🇭🇰 香港节点", "🇭🇰 香港自动", "🇸🇬 狮城节点", "🇯🇵 日本节点", "🇰🇷 韩国节点", "🇺🇸 美国节点", "🇪🇺 欧盟节点"];
     const 狮城故转 = ["🇸🇬 狮城节点", "🇸🇬 狮城自动", "🇭🇰 香港节点", "🇯🇵 日本节点", "🇰🇷 韩国节点", "🇺🇸 美国节点", "🇪🇺 欧盟节点"];
     const 美国故转 = ["🇺🇸 美国节点", "🇺🇸 美国自动", "🇰🇷 韩国节点", "🇪🇺 欧盟节点", "🇭🇰 香港节点", "🇸🇬 狮城节点", "🇯🇵 日本节点"];
@@ -156,7 +154,6 @@ function main(config) {
     config["proxy-groups"] = [
         { name: "🚀 节点选择", type: "select", proxies: 节点选择, icon: 图标库 + "Static.png" },
         { name: "🚀 故障转移", type: "select", proxies: 故转节点, icon: 图标库 + "ULB.png" },
-
         { name: "🇭🇰 香港故转", type: "fallback", proxies: 香港故转, hidden: true, interval: 333, lazy: true },
         { name: "🇸🇬 狮城故转", type: "fallback", proxies: 狮城故转, hidden: true, interval: 333, lazy: true },
         { name: "🇺🇸 美国故转", type: "fallback", proxies: 美国故转, hidden: true, interval: 333, lazy: true },
@@ -164,16 +161,15 @@ function main(config) {
 
         { name: "📹 视频平台", type: "select", proxies: 故转节点, icon: 图标库 + "YouTube.png" },
         { name: "📲 社交平台", type: "select", proxies: 故转节点, icon: 图标库 + "Twitter.png" },
-        { name: "📲 电报平台", type: "select", proxies: 节点选择, icon: 图标库 + "Telegram_X.png" },
+        { name: "📲 电报飞机", type: "select", proxies: 节点选择, icon: 图标库 + "Telegram_X.png" },
         { name: "🤖 AI", type: "select", proxies: 故转节点, icon: 图标库 + "AI.png" },
         { name: "🎮 game", type: "select", proxies: 故转节点, icon: 图标库 + "Game.png" },
         { name: "🪟 Microsoft", type: "select", proxies: 默认直连, icon: 图标库 + "Microsoft.png" },
         { name: "🇬 谷歌", type: "select", proxies: 故转节点, icon: 图标库 + "Google_Search.png" },
 
         { name: "👨🏿‍💻 GitHub", type: "load-balance", strategy: "round-robin", proxies: ["🚀 故障转移"], icon: 图标库 + "GitHub.png", interval: 90, hidden: true },
-        { name: "💶 PayPal", type: "load-balance", strategy: "round-robin", proxies: ["🚀 故障转移"], icon: 图标库 + "PayPal.png", interval: 90, hidden: true },
-        { name: "🍎 Apple", type: "load-balance", strategy: "round-robin", proxies: ["🎯 全球直连"], icon: 图标库 + "Apple.png", interval: 90, hidden: true },
-        
+        //{ name: "💶 PayPal", type: "load-balance", strategy: "round-robin", proxies: ["🚀 故障转移"], icon: 图标库 + "PayPal.png", interval: 90, hidden: true },
+        //{ name: "🍎 Apple", type: "load-balance", strategy: "round-robin", proxies: ["🎯 全球直连"], icon: 图标库 + "Apple.png", interval: 90, hidden: true },
         { name: "🪜 代理域名", type: "load-balance", strategy: "round-robin", proxies: ["🚀 节点选择"], hidden: true },
         { name: "🌐 自用代理", type: "load-balance", strategy: "round-robin", proxies: ["🚀 节点选择"], hidden: true },
         { name: "⬆️ 自用直连", type: "load-balance", strategy: "round-robin", proxies: ["🎯 全球直连"], hidden: true },
@@ -230,24 +226,25 @@ function main(config) {
         "rule-set,前置直连规则,🖥️ 直连软件",
         "OR,((GEOSITE,tracker),(GEOSITE,category-public-tracker)),🚫 追踪拦截",
         "OR,((GEOSITE,category-ads-all),(GEOIP,ad)),🚫 广告拦截",
-        "PROCESS-NAME,com.samsung.android.packageinstaller,🚫 广告拦截",
-        "PROCESS-NAME,com.google.android.googlequicksearchbox,🤖 AI",
+        //"PROCESS-NAME,com.samsung.android.packageinstaller,🚫 广告拦截",
+        //"PROCESS-NAME,com.google.android.googlequicksearchbox,🤖 AI",
         "RULE-SET,自用代理规则,🌐 自用代理",
         "RULE-SET,自用直连规则,⬆️ 自用直连",
         "RULE-SET,自用代理软件,🖥️ 代理软件",
         "RULE-SET,自用直连软件,🖥️ 直连软件",
         "GEOSITE,ookla-speedtest,📈 测速地址",
-        "GEOSITE,apple,🍎 Apple",
+        //"GEOSITE,apple,🍎 Apple",
         "GEOSITE,category-games-cn,🎮 game@CN",
         "GEOSITE,googlefcm,🇬 谷歌@CN",
+
         "GEOSITE,category-games-!cn,🎮 game",
         "OR,((GEOSITE,openai),(GEOSITE,google-gemini),(GEOSITE,category-ai-!cn)),🤖 AI",
         "GEOSITE,spotify,🇯🇵 日本故转",
-        "GEOSITE,paypal,💶 PayPal",
+        //"GEOSITE,paypal,💶 PayPal",
         "GEOSITE,github,👨🏿‍💻 GitHub",
         "GEOSITE,bing,🪟 Bing",
         "OR,((GEOSITE,twitter),(GEOSITE,tiktok),(GEOSITE,Reddit),(GEOSITE,discord)),📲 社交平台",
-        "OR,((GEOSITE,telegram),(GEOIP,telegram)),📲 电报平台",
+        "OR,((GEOSITE,telegram),(GEOIP,telegram)),📲 电报飞机",
         "OR,((GEOSITE,youtube),(GEOSITE,netflix),(GEOSITE,onedrive),(GEOSITE,twitch),(GEOSITE,vk),(GEOSITE,disney),(GEOSITE,biliintl),(GEOSITE,category-porn)),📹 视频平台",
         "GEOSITE,microsoft,🪟 Microsoft",
         "OR,((GEOSITE,google),(GEOIP,google)),🇬 谷歌",
