@@ -298,7 +298,7 @@ proxy-groups:
   - {name: ⬆️ 直连域名,       <<: [*BaseCR, proxies: [🎯 全球直连]]}
   - {name: 🔒 私有网络,       <<: [*BaseCR, proxies: [🎯 全球直连]]}
   # ---------------- 功能策略组 ----------------
-  - {name: 📈 测速地址,       <<: [*BaseCR, proxies: [🎯 全球直连]], include-all: true, filter: *FilterAL, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Speedtest.png}
+  - {name: 📈 测速地址,       <<: [*BaseFB, proxies: [🎯 全球直连]], include-all: true, filter: *FilterAL, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Speedtest.png}
   - {name: 🖥️ 直连软件,       <<: [*BaseCR, proxies: [🎯 全球直连]]}
   - {name: 🖥️ 直连服务,       <<: [*BaseCR, proxies: [🎯 全球直连]]}
   - {name: 🖥️ 代理软件,       <<: [*BaseCR, proxies: [🚀 故障转移]]}
