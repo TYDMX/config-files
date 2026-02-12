@@ -28,13 +28,13 @@ PROCESS-NAME,OneDrive.exe
 #PROCESS-NAME,com.microsoft.skydrive
 
 #  三星
+PROCESS-NAME,com.samsung.android.sskds (1000)
 #商店
 #PROCESS-NAME,com.sec.android.app.samsungapps
 #提醒
 #PROCESS-NAME,com.samsung.android.app.reminder
 #天气
 #PROCESS-NAME,com.sec.android.daemonapp
-#PROCESS-NAME,com.samsung.android.sskds (1000),SelectGroup
 
 # 设备
 #PROCESS-NAME,com.xiaomi.smarthome
