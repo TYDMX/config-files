@@ -171,13 +171,13 @@ function main(config) {
         // --- 【主要策略组】 ---
         { name: "🚀 节点选择", type: "select", proxies: ["🚀 故转节点", ...节点选择池, "🎯 全球直连"], icon: 图标库 + "Static.png" },
         { name: "🚀 故转节点", type: "select", proxies: [...故转节点池, ...节点选择池, "🎯 全球直连"], icon: 图标库 + "ULB.png" },
-        { name: "🇭🇰 香港故转", type: "fallback", proxies: 香港故转池, hidden: true, interval: 333, lazy: true },
-        { name: "🇸🇬 狮城故转", type: "fallback", proxies: 狮城故转池, hidden: true, interval: 333, lazy: true },
-        { name: "🇺🇸 美国故转", type: "fallback", proxies: 美国故转池, hidden: true, interval: 333, lazy: true },
-        { name: "🇯🇵 日本故转", type: "fallback", proxies: 日本故转池, hidden: true, interval: 333, lazy: true },
+        { name: "🇭🇰 香港故转", type: "fallback", proxies: 香港故转池, hidden: true, interval: 60, lazy: true },
+        { name: "🇸🇬 狮城故转", type: "fallback", proxies: 狮城故转池, hidden: true, interval: 60, lazy: true },
+        { name: "🇺🇸 美国故转", type: "fallback", proxies: 美国故转池, hidden: true, interval: 60, lazy: true },
+        { name: "🇯🇵 日本故转", type: "fallback", proxies: 日本故转池, hidden: true, interval: 60, lazy: true },
         // --- 【社媒平台】 ---
         { name: "📹 视频平台", type: "select", proxies: ["🚀 节点选择", "🚀 故转节点", ...节点选择池, "🎯 全球直连"], icon: 图标库 + "YouTube.png" },
-        { name: "📲 社交平台", type: "select", proxies: ["🚀 节点选择", "🚀 故转节点", ...节点选择池, "🎯 全球直连"], icon: 图标库 + "Twitter.png" },
+        { name: "📲 社交媒体", type: "select", proxies: ["🚀 节点选择", "🚀 故转节点", ...节点选择池, "🎯 全球直连"], icon: 图标库 + "Twitter.png" },
         { name: "📲 电报飞机", type: "select", proxies: ["🚀 节点选择", "🚀 故转节点", ...节点选择池, "🎯 全球直连"], icon: 图标库 + "Telegram_X.png" },
         // --- 【分流服务】 ---
         { name: "🤖 AI", type: "select", proxies: ["🚀 节点选择", "🚀 故转节点", ...节点选择池, "🎯 全球直连"], icon: 图标库 + "ChatGPT.png" },
@@ -263,7 +263,7 @@ function main(config) {
         "GEOSITE,paypal,💶 PayPal",
         "GEOSITE,github,👨🏿‍💻 GitHub",
         "GEOSITE,bing,🪟 Bing",
-        "OR,((GEOSITE,twitter),(GEOSITE,tiktok),(GEOSITE,Reddit),(GEOSITE,discord)),📲 社交平台",
+        "OR,((GEOSITE,twitter),(GEOSITE,tiktok),(GEOSITE,Reddit),(GEOSITE,discord)),📲 社交媒体",
         "OR,((GEOSITE,telegram),(GEOIP,telegram)),📲 电报飞机",
         "OR,((GEOSITE,youtube),(GEOSITE,netflix),(GEOSITE,onedrive),(GEOSITE,twitch),(GEOSITE,vk),(GEOSITE,disney),(GEOSITE,biliintl),(GEOSITE,category-porn)),📹 视频平台",
         "GEOSITE,microsoft,🪟 Microsoft",
