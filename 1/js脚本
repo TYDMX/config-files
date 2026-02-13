@@ -183,7 +183,7 @@ function main(config) {
         { name: "🤖 人工智能", type: "select", proxies: ["🚀 节点选择", "🚀 故转节点", ...自选节点池, "🎯 全球直连"], icon: 图标库 + "ChatGPT.png" },
         { name: "🎮 game", type: "select", proxies: ["🚀 节点选择", "🚀 故转节点", ...自选节点池, "🎯 全球直连"], icon: 图标库 + "Game.png" },
         { name: "🇬 谷歌", type: "select", proxies: ["🚀 节点选择", "🚀 故转节点", ...自选节点池, "🎯 全球直连"], icon: 图标库 + "Google_Search.png" },
-        { name: "🪟 Microsoft", type: "select", proxies: ["🎯 全球直连", "🚀 故转节点", ...自选节点池], icon: 图标库 + "Microsoft.png" },
+        { name: "🪟 Microsoft", type: "select", proxies: ["🎯 全球直连","🚀 节点选择", "🚀 故转节点", ...自选节点池], icon: 图标库 + "Microsoft.png" },
         // --- 【固定分流组】 ---
         { name: "👨🏿‍💻 GitHub", type: "fallback", proxies: ["🚀 故转节点"], icon: 图标库 + "GitHub.png", hidden: true },
         { name: "💶 PayPal", type: "fallback", proxies: ["🚀 故转节点"], icon: 图标库 + "PayPal.png", hidden: true },
