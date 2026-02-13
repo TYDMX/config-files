@@ -171,7 +171,7 @@ function main(config) {
     config["proxy-groups"] = [
         // --- 【主要策略组】 ---
         { name: "🚀 节点选择", type: "select", proxies: ["🚀 故转节点", ...自选节点池, "🎯 全球直连"], icon: 图标库 + "Static.png" },
-        { name: "🚀 故转节点", type: "select", proxies: [...故转节点池, "🎯 全球直连"], icon: 图标库 + "ULB.png" },
+        { name: "🚀 故转节点", type: "select", proxies: [...故转节点池"], icon: 图标库 + "ULB.png" },
         { name: "🇭🇰 香港故转", type: "fallback", proxies: 香港故转池, hidden: true, interval: 60, lazy: true },
         { name: "🇸🇬 狮城故转", type: "fallback", proxies: 狮城故转池, hidden: true, interval: 60, lazy: true },
         { name: "🇺🇸 美国故转", type: "fallback", proxies: 美国故转池, hidden: true, interval: 60, lazy: true },
@@ -202,7 +202,7 @@ function main(config) {
         { name: "🖥️ 直连软件", type: "fallback", proxies: ["🎯 全球直连"], hidden: true },
         { name: "🖥️ 直连服务", type: "fallback", proxies: ["🎯 全球直连"], hidden: true },
         { name: "🖥️ 代理软件", type: "fallback", proxies: ["🚀 故转节点"], hidden: true },
-        { name: "🖥️ 代理服务", type: "fallback proxies: ["🚀 故转节点"], hidden: true },
+        { name: "🖥️ 代理服务", type: "fallback", proxies: ["🚀 故转节点"], hidden: true },
         { name: "🚫 广告拦截", type: "fallback", proxies: ["🚫 阻止"], hidden: true },
         { name: "🚫 追踪拦截", type: "fallback", proxies: ["🚫 阻止"], hidden: true },
         // --- 【生成地区组】 ---
