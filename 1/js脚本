@@ -179,14 +179,6 @@ function main(config) {
         { name: "📹 视频平台", type: "select", proxies: ["🚀 节点选择", "🚀 故转节点", ...节点选择池, "🎯 全球直连"], icon: 图标库 + "YouTube.png" },
         { name: "📲 社交平台", type: "select", proxies: ["🚀 节点选择", "🚀 故转节点", ...节点选择池, "🎯 全球直连"], icon: 图标库 + "Twitter.png" },
         { name: "📲 电报飞机", type: "select", proxies: ["🚀 节点选择", "🚀 故转节点", ...节点选择池, "🎯 全球直连"], icon: 图标库 + "Telegram_X.png" },
-        // --- 【功能策略组】 ---
-        { name: "📈 测速地址", type: "fallback", use: 全部订阅, proxies: ["🎯 全球直连"], hidden: true, icon: 图标库 + "Speedtest.png" },
-        { name: "🖥️ 直连软件", type: "load-balance", strategy: "round-robin", proxies: ["🎯 全球直连"], hidden: true },
-        { name: "🖥️ 直连服务", type: "load-balance", strategy: "round-robin", proxies: ["🎯 全球直连"], hidden: true },
-        { name: "🖥️ 代理软件", type: "load-balance", strategy: "round-robin", proxies: ["🚀 故转节点"], hidden: true },
-        { name: "🖥️ 代理服务", type: "load-balance", strategy: "round-robin", proxies: ["🚀 故转节点"], hidden: true },
-        { name: "🚫 广告拦截", type: "load-balance", strategy: "round-robin", proxies: ["🚫 阻止"], hidden: true },
-        { name: "🚫 追踪拦截", type: "load-balance", strategy: "round-robin", proxies: ["🚫 阻止"], hidden: true },
         // --- 【分流服务】 ---
         { name: "🤖 AI", type: "select", proxies: ["🚀 节点选择", "🚀 故转节点", ...节点选择池, "🎯 全球直连"], icon: 图标库 + "ChatGPT.png" },
         { name: "👨🏿‍💻 GitHub", type: "load-balance", strategy: "round-robin", proxies: ["🚀 故转节点"], icon: 图标库 + "GitHub.png", interval: 90, hidden: true },
@@ -197,13 +189,21 @@ function main(config) {
         { name: "🇬 谷歌@CN", type: "load-balance", strategy: "round-robin", proxies: ["🎯 全球直连"], hidden: true },
         { name: "🍎 Apple", type: "load-balance", strategy: "round-robin", proxies: ["🎯 全球直连"], icon: 图标库 + "Apple.png", interval: 90, hidden: true },
         // --- 【代理策略组】 ---
-        { name: "🇬 谷歌", type: "select", proxies: ["🚀 节点选择", "🚀 故转节点", ...节点选择池, "🎯 全球直连"], icon: 图标库 + "Google_Search.png" },
-        { name: "🪟 Microsoft", type: "select", proxies: ["🎯 全球直连", "🚀 故转节点", ...节点选择池], icon: 图标库 + "Microsoft.png" },
         { name: "🪜 代理域名", type: "load-balance", proxies: ["🚀 节点选择"], hidden: true },
         { name: "🌐 自用代理", type: "load-balance", proxies: ["🚀 节点选择"], hidden: true },
         { name: "⬆️ 自用直连", type: "load-balance", proxies: ["🎯 全球直连"], hidden: true },
         { name: "⬆️ 直连域名", type: "load-balance", proxies: ["🎯 全球直连"], hidden: true },
         { name: "🔒 私有网络", type: "load-balance", proxies: ["🎯 全球直连"], hidden: true },
+        // --- 【功能策略组】 ---
+        { name: "🇬 谷歌", type: "select", proxies: ["🚀 节点选择", "🚀 故转节点", ...节点选择池, "🎯 全球直连"], icon: 图标库 + "Google_Search.png" },
+        { name: "🪟 Microsoft", type: "select", proxies: ["🎯 全球直连", "🚀 故转节点", ...节点选择池], icon: 图标库 + "Microsoft.png" },
+        { name: "📈 测速地址", type: "fallback", use: 全部订阅, proxies: ["🎯 全球直连"], hidden: true, icon: 图标库 + "Speedtest.png" },
+        { name: "🖥️ 直连软件", type: "load-balance", strategy: "round-robin", proxies: ["🎯 全球直连"], hidden: true },
+        { name: "🖥️ 直连服务", type: "load-balance", strategy: "round-robin", proxies: ["🎯 全球直连"], hidden: true },
+        { name: "🖥️ 代理软件", type: "load-balance", strategy: "round-robin", proxies: ["🚀 故转节点"], hidden: true },
+        { name: "🖥️ 代理服务", type: "load-balance", strategy: "round-robin", proxies: ["🚀 故转节点"], hidden: true },
+        { name: "🚫 广告拦截", type: "load-balance", strategy: "round-robin", proxies: ["🚫 阻止"], hidden: true },
+        { name: "🚫 追踪拦截", type: "load-balance", strategy: "round-robin", proxies: ["🚫 阻止"], hidden: true },
         // --- 【生成地区组】 ---
         ...创建地区分组("🇭🇰 香港", "Hong_Kong.png", `^${香港筛选}`, `^${香港筛选}(?=.*💧)(?!.*(?i)住)`, 全部订阅),
         ...创建地区分组("🇸🇬 狮城", "Singapore.png", `^${狮城筛选}`, `^${狮城筛选}(?=.*💧)`, 全部订阅),
