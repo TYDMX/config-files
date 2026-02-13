@@ -78,11 +78,11 @@ proxy-providers:
       additional-prefix: "💧 "
       #additional-suffix: " 💧"   
       
-  订阅分享中心自建 🌏:
-    <<: *template
-    url: "https://sub.dmit.dpdns.org/share/sub/dingyue_Center_zijian_auto?token=xgy1nCsG7xgerdecv4QRn"
-    override:
-      additional-prefix: "🌏 "
+  #订阅分享中心自建 🌏:
+    #<<: *template
+    #url: "https://sub.dmit.dpdns.org/share/sub/dingyue_Center_zijian_auto?token=xgy1nCsG7xgerdecv4QRn"
+    #override:
+      #additional-prefix: "🌏 "
       #additional-suffix: " 🌏"
 
   dmit节点池 🪩:
