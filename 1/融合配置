@@ -88,18 +88,11 @@ proxy-providers:
   dmit节点池 🪩:
     <<: *template
     interval: 3600
-    url: "https://proxypool.dmit.dpdns.org/clash/proxies?type=vmess,hysteria2&speed=100"
+    url: "https://proxypool.dmit.dpdns.org/clash/proxies?speed=50&type=vmess"
     override:
       additional-prefix: "🪩 "
       #additional-suffix: " 🪩"
      
-  #公益订阅分享 🔮:
-    #<<: *template
-    #interval: 3600
-    #url: "https://raw.githubusercontent.com/go4sharing/sub/main/clash.yaml"
-    #override:
-      #additional-prefix: "🔮 "
-      #additional-suffix: " 🔮"
 
 # ==========================================================
 ## ---------------- 全局配置 ----------------
