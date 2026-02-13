@@ -181,7 +181,7 @@ function main(config) {
         { name: "📲 电报飞机", type: "select", proxies: ["🚀 节点选择", "🚀 故转节点", ...故转节点池, ...节点选择池, "🎯 全球直连"], icon: 图标库 + "Telegram_X.png" },
         { name: "🤖 AI", type: "select", proxies: ["🚀 节点选择", "🚀 故转节点", ...故转节点池, ...节点选择池, "🎯 全球直连"], icon: 图标库 + "ChatGPT.png" },
         { name: "🎮 game", type: "select", proxies: ["🚀 节点选择", "🚀 故转节点", ...故转节点池, ...节点选择池, "🎯 全球直连"], icon: 图标库 + "Game.png" },
-        { name: "🇬 谷歌", type: "select", proxies: ["🚀 节点选择", "🚀 故转节点", ...节点选择池, "🎯 全球直连"], icon: 图标库 + "Google_Search.png" },
+        { name: "🇬 谷歌", type: "select", proxies: ["🚀 节点选择", "🚀 故转节点", ...故转节点池, ...节点选择池, "🎯 全球直连"], icon: 图标库 + "Google_Search.png" },
         { name: "🪟 Microsoft", type: "select", proxies: ["🎯 全球直连", "🚀 故转节点", ...故转节点池, ...节点选择池], icon: 图标库 + "Microsoft.png" },
         // --- 【固定分流组】 ---
         { name: "👨🏿‍💻 GitHub", type: "load-balance", strategy: "round-robin", proxies: ["🚀 故转节点"], icon: 图标库 + "GitHub.png", interval: 90, hidden: true },
