@@ -88,7 +88,7 @@ proxy-providers:
   dmit节点池 🪩:
     <<: *template
     interval: 3600
-    url: "https://proxypool.dmit.dpdns.org/clash/proxies?type=vmess&speed=100"
+    url: "https://proxypool.dmit.dpdns.org/clash/proxies?type=vmess,hysteria2&speed=100"
     override:
       additional-prefix: "🪩 "
       #additional-suffix: " 🪩"
