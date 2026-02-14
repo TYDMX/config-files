@@ -1,6 +1,4 @@
-# 前置规则
-
-DOMAIN-KEYWORD,collector.github
+# 前置直连规则
 
 #三星推送软件
 #PROCESS-NAME,com.sec.factory.camera
