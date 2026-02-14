@@ -170,23 +170,23 @@ function main(config) {
     // --- 【策略组】 ---
     config["proxy-groups"] = [
         // --- 【主要策略组】 ---
-        { name: "🚀 节点选择", type: "select", proxies: ["🚀 故转节点", ...自选节点池, "🎯 全球直连"], icon: 图标库 + "Static.png" },
-        { name: "🚀 故转节点", type: "select", proxies: 故转节点池, icon: 图标库 + "ULB.png" },
-        { name: "🇭🇰 香港故转", type: "fallback", proxies: 香港故转池, hidden: true, interval: 60, lazy: true },
-        { name: "🇸🇬 狮城故转", type: "fallback", proxies: 狮城故转池, hidden: true, interval: 60, lazy: true },
-        { name: "🇺🇸 美国故转", type: "fallback", proxies: 美国故转池, hidden: true, interval: 60, lazy: true },
-        { name: "🇯🇵 日本故转", type: "fallback", proxies: 日本故转池, hidden: true, interval: 60, lazy: true },
+        { name: "🚀 节点选择", type: "select", proxies: ["🖥️ 服务节点", "🎯 全球直连", ...自选节点池], icon: 图标库 + "Static.png" },
+        { name: "🖥️ 服务节点", type: "select", proxies: 故转节点池, icon: 图标库 + "ULB.png" },
+        { name: "🇭🇰 香港故转", type: "fallback", proxies: 香港故转池, hidden: true, interval: 60, icon: 图标库 + "Hong_Kong.png", lazy: true },
+        { name: "🇸🇬 狮城故转", type: "fallback", proxies: 狮城故转池, hidden: true, interval: 60, icon: 图标库 + "Singapore.png", lazy: true },
+        { name: "🇺🇸 美国故转", type: "fallback", proxies: 美国故转池, hidden: true, interval: 60, icon: 图标库 + "United_States.png", lazy: true },
+        { name: "🇯🇵 日本故转", type: "fallback", proxies: 日本故转池, hidden: true, interval: 60, icon: 图标库 + "Japan.png", lazy: true },
         // --- 【自选策略组】 ---
-        { name: "📹 视频平台", type: "select", proxies: ["🚀 节点选择", "🚀 故转节点", ...自选节点池, "🎯 全球直连"], icon: 图标库 + "YouTube.png" },
-        { name: "📲 社交媒体", type: "select", proxies: ["🚀 节点选择", "🚀 故转节点", ...自选节点池, "🎯 全球直连"], icon: 图标库 + "Twitter.png" },
-        { name: "📲 电报飞机", type: "select", proxies: ["🚀 节点选择", "🚀 故转节点", ...自选节点池, "🎯 全球直连"], icon: 图标库 + "Telegram_X.png" },
-        { name: "🤖 人工智能", type: "select", proxies: ["🚀 节点选择", "🚀 故转节点", ...自选节点池, "🎯 全球直连"], icon: 图标库 + "ChatGPT.png" },
-        { name: "🎮 game", type: "select", proxies: ["🚀 节点选择", "🚀 故转节点", ...自选节点池, "🎯 全球直连"], icon: 图标库 + "Game.png" },
-        { name: "🇬 谷歌", type: "select", proxies: ["🚀 节点选择", "🚀 故转节点", ...自选节点池, "🎯 全球直连"], icon: 图标库 + "Google_Search.png" },
-        { name: "🪟 Microsoft", type: "select", proxies: ["🎯 全球直连","🚀 节点选择", "🚀 故转节点", ...自选节点池], icon: 图标库 + "Microsoft.png" },
+        { name: "📹 视频平台", type: "select", proxies: ["🚀 节点选择", "🖥️ 服务节点", ...自选节点池, "🎯 全球直连"], icon: 图标库 + "YouTube.png" },
+        { name: "📲 社交媒体", type: "select", proxies: ["🚀 节点选择", "🖥️ 服务节点", ...自选节点池, "🎯 全球直连"], icon: 图标库 + "Twitter.png" },
+        { name: "📲 电报飞机", type: "select", proxies: ["🚀 节点选择", "🖥️ 服务节点", ...自选节点池, "🎯 全球直连"], icon: 图标库 + "Telegram_X.png" },
+        { name: "🤖 人工智能", type: "select", proxies: ["🚀 节点选择", "🖥️ 服务节点", ...自选节点池, "🎯 全球直连"], icon: 图标库 + "ChatGPT.png" },
+        { name: "🎮 game", type: "select", proxies: ["🚀 节点选择", "🖥️ 服务节点", ...自选节点池, "🎯 全球直连"], icon: 图标库 + "Game.png" },
+        { name: "🇬 谷歌", type: "select", proxies: ["🚀 节点选择", "🖥️ 服务节点", ...自选节点池, "🎯 全球直连"], icon: 图标库 + "Google_Search.png" },
+        { name: "🪟 Microsoft", type: "select", proxies: ["🎯 全球直连","🚀 节点选择", "🖥️ 服务节点", ...自选节点池], icon: 图标库 + "Microsoft.png" },
         // --- 【固定分流组】 ---
-        { name: "👨🏿‍💻 GitHub", type: "fallback", proxies: ["🚀 故转节点"], icon: 图标库 + "GitHub.png", hidden: true },
-        { name: "💶 PayPal", type: "fallback", proxies: ["🚀 故转节点"], icon: 图标库 + "PayPal.png", hidden: true },
+        { name: "👨🏿‍💻 GitHub", type: "fallback", proxies: ["🖥️ 服务节点"], icon: 图标库 + "GitHub.png", hidden: true },
+        { name: "💶 PayPal", type: "fallback", proxies: ["🖥️ 服务节点"], icon: 图标库 + "PayPal.png", hidden: true },
         { name: "🎮 game@CN", type: "fallback", proxies: ["🎯 全球直连"], icon: 图标库 + "Game.png", hidden: true },
         { name: "🪟 Bing", type: "fallback", proxies: ["🚀 节点选择"], icon: 图标库 + "Microsoft.png", hidden: true },
         { name: "🇬 谷歌@CN", type: "fallback", proxies: ["🎯 全球直连"], icon: 图标库 + "Google_Search.png", hidden: true },
@@ -201,8 +201,8 @@ function main(config) {
         { name: "📈 测速地址", type: "fallback", use: 全部订阅, proxies: ["🎯 全球直连"], hidden: true, icon: 图标库 + "Speedtest.png" },
         { name: "🖥️ 直连软件", type: "fallback", proxies: ["🎯 全球直连"], hidden: true },
         { name: "🖥️ 直连服务", type: "fallback", proxies: ["🎯 全球直连"], hidden: true },
-        { name: "🖥️ 代理软件", type: "fallback", proxies: ["🚀 故转节点"], hidden: true },
-        { name: "🖥️ 代理服务", type: "fallback", proxies: ["🚀 故转节点"], hidden: true },
+        { name: "🖥️ 代理软件", type: "fallback", proxies: ["🖥️ 服务节点"], hidden: true },
+        { name: "🖥️ 代理服务", type: "fallback", proxies: ["🖥️ 服务节点"], hidden: true },
         { name: "🚫 广告拦截", type: "fallback", proxies: ["🚫 阻止"], hidden: true },
         { name: "🚫 追踪拦截", type: "fallback", proxies: ["🚫 阻止"], hidden: true },
         // --- 【生成地区组】 ---
@@ -245,7 +245,7 @@ function main(config) {
     // --- 【规则】 ---
     config["rules"] = [
         "OR,((GEOSITE,private),(GEOIP,private)),🔒 私有网络",
-        "rule-set,前置直连规则,🖥️ 直连软件",
+        "rule-set,前置直连规则,⬆️ 自用直连",
         "OR,((GEOSITE,tracker),(GEOSITE,category-public-tracker)),🚫 追踪拦截",
         "OR,((GEOSITE,category-ads-all),(GEOIP,ad)),🚫 广告拦截",
         //"PROCESS-NAME,com.samsung.android.packageinstaller,🚫 广告拦截",
