@@ -134,7 +134,7 @@ function main(config) {
         "proxy-server-nameserver": [...阿里DOT, ...谷歌DOT, ...cloudflare_DOT],
         "direct-nameserver": DNS国内,
         "nameserver-policy": {
-            "geosite:cn,geolocation-cn": DNS国内,
+            "geosite:private,cn,geolocation-cn": DNS国内,
             "geosite:gfw,geolocation-!cn": DNS国外,
         },
         "nameserver": DNS国外,
