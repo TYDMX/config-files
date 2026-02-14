@@ -167,10 +167,10 @@ function main(config) {
     const 节点选择池 = ["🇭🇰 香港节点", "🇺🇸 美国节点", "🇸🇬 狮城节点", "🇯🇵 日本节点", "🇹🇼 台湾节点", "🇰🇷 韩国节点", "🇪🇺 欧盟节点", "🌐 冷门自选", "🌐 全部节点"];
     const 故转节点池 = ["🇭🇰 香港故转", "🇺🇸 美国故转", "🇸🇬 狮城故转", "🇯🇵 日本故转"];
     const 自选节点池 = [...故转节点池, ...节点选择池];
-    const 香港故转池 = ["🇭🇰 香港节点", "🇭🇰 香港自动", "🇸🇬 狮城节点", "🇯🇵 日本节点", "🇰🇷 韩国节点", "🇺🇸 美国节点", "🇪🇺 欧盟节点"];
-    const 狮城故转池 = ["🇸🇬 狮城节点", "🇸🇬 狮城自动", "🇭🇰 香港节点", "🇯🇵 日本节点", "🇰🇷 韩国节点", "🇺🇸 美国节点", "🇪🇺 欧盟节点"];
-    const 美国故转池 = ["🇺🇸 美国节点", "🇺🇸 美国自动", "🇪🇺 欧盟节点", "🇭🇰 香港节点", "🇸🇬 狮城节点", "🇯🇵 日本节点", "🇰🇷 韩国节点"];
-    const 日本故转池 = ["🇯🇵 日本节点", "🇯🇵 日本自动", "🇭🇰 香港节点", "🇸🇬 狮城节点", "🇰🇷 韩国节点", "🇺🇸 美国节点", "🇪🇺 欧盟节点"];
+    const 香港故转池 = ["🇭🇰 香港节点", "🇭🇰 香港自动", "🇸🇬 狮城节点", "🇯🇵 日本节点", "🇺🇸 美国节点", "🇪🇺 欧盟节点"];
+    const 狮城故转池 = ["🇸🇬 狮城节点", "🇸🇬 狮城自动", "🇭🇰 香港节点", "🇯🇵 日本节点", "🇺🇸 美国节点", "🇪🇺 欧盟节点"];
+    const 美国故转池 = ["🇺🇸 美国节点", "🇺🇸 美国自动", "🇪🇺 欧盟节点", "🇭🇰 香港节点", "🇸🇬 狮城节点", "🇯🇵 日本节点"];
+    const 日本故转池 = ["🇯🇵 日本节点", "🇯🇵 日本自动", "🇭🇰 香港节点", "🇸🇬 狮城节点", "🇺🇸 美国节点", "🇪🇺 欧盟节点"];
     // --- 【策略组】 ---
     config["proxy-groups"] = [
         // --- 【主要策略组】 ---
@@ -262,7 +262,6 @@ function main(config) {
         "GEOSITE,apple,🍎 Apple",
         "GEOSITE,category-games-cn,🎮 game@CN",
         "GEOSITE,googlefcm,🇬 谷歌@CN",
-
         "GEOSITE,category-games-!cn,🎮 game",
         "OR,((GEOSITE,openai),(GEOSITE,google-gemini),(GEOSITE,category-ai-!cn)),🤖 人工智能",
         "GEOSITE,spotify,🇯🇵 日本故转",
@@ -284,9 +283,9 @@ function main(config) {
     function 创建地区分组(地区名, 地区图标, 地区节点池, 地区自动选择, 地区机场组) {
         return [
             { name: `${地区名}节点`, type: "select", use: 地区机场组, filter: 地区节点池, proxies: [`${地区名}自动`, `${地区名}均衡-散列`, `${地区名}均衡-轮询`, "🈚️ 假节点"], icon: 图标库 + 地区图标 },
-            { name: `${地区名}自动`, type: "url-test", use: 地区机场组, filter: 地区自动选择, proxies: ["🈚️ 假节点"], interval: 120, tolerance: 5, hidden: true, icon: 图标库 + 地区图标 },
-            { name: `${地区名}均衡-散列`, type: "load-balance", strategy: "consistent-hashing", use: 地区机场组, filter: 地区自动选择, proxies: ["🈚️ 假节点"], interval: 300, hidden: true, icon: 图标库 + 地区图标 },
-            { name: `${地区名}均衡-轮询`, type: "load-balance", strategy: "round-robin", use: 地区机场组, filter: 地区自动选择, proxies: ["🈚️ 假节点"], interval: 180, hidden: true, icon: 图标库 + 地区图标 }
+            { name: `${地区名}自动`, type: "url-test", use: 地区机场组, filter: 地区自动选择, interval: 120, tolerance: 5, hidden: true, icon: 图标库 + 地区图标 },
+            { name: `${地区名}均衡-散列`, type: "load-balance", strategy: "consistent-hashing", use: 地区机场组, filter: 地区自动选择, interval: 300, hidden: true, icon: 图标库 + 地区图标 },
+            { name: `${地区名}均衡-轮询`, type: "load-balance", strategy: "round-robin", use: 地区机场组, filter: 地区自动选择, interval: 180, hidden: true, icon: 图标库 + 地区图标 }
         ];
     }
     
