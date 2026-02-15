@@ -7,7 +7,7 @@
 DOMAIN-KEYWORD,challenges.cloudflare
 DOMAIN-KEYWORD,download.nvidia.com
 DOMAIN-KEYWORD,tpb.proxyninja
-#DOMAIN-KEYWORD,nfsq
+DOMAIN-KEYWORD,nfsq
 DOMAIN-KEYWORD,git.imee.me
 #DOMAIN-KEYWORD,ipv6
 
