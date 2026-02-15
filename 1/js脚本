@@ -287,8 +287,8 @@ function main(config) {
         return [
             { name: `${地区名}节点`, type: "fallback", use: 地区机场组, filter: 地区节点池, proxies: [`${地区名}自动`, `${地区名}均衡-散列`, `${地区名}均衡-轮询`, "🈚️ 假节点"], interval: 90, icon: 图标库 + 地区图标 },
             { name: `${地区名}自动`, type: "url-test", use: 地区机场组, filter: 地区自动选择, interval: 120, tolerance: 5, hidden: true, icon: 图标库 + 地区图标 },
-            { name: `${地区名}均衡-散列`, type: "load-balance", strategy: "consistent-hashing", use: 地区机场组, filter: 地区自动选择, interval: 300, hidden: true, icon: 图标库 + 地区图标 },
-            { name: `${地区名}均衡-轮询`, type: "load-balance", strategy: "round-robin", use: 地区机场组, filter: 地区自动选择, interval: 180, hidden: true, icon: 图标库 + 地区图标 }
+            { name: `${地区名}均衡-散列`, type: "load-balance", strategy: "consistent-hashing", use: 地区机场组, filter: 地区自动选择, proxies: ["🈚️ 假节点"], interval: 300, hidden: true, icon: 图标库 + 地区图标 },
+            { name: `${地区名}均衡-轮询`, type: "load-balance", strategy: "round-robin", use: 地区机场组, filter: 地区自动选择, proxies: ["🈚️ 假节点"], interval: 180, hidden: true, icon: 图标库 + 地区图标 }
         ];
     }
     
