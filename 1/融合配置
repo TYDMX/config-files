@@ -204,6 +204,8 @@ dns:
   #direct-nameserver-follow-policy: true
   direct-nameserver: *dns_guonei
   proxy-server-nameserver: *dns_guonei
+  proxy-server-nameserver-policy:
+    "DOMAIN-KEYWORD,nfsq": *dns_guonei
   nameserver: *dns_guowai
   nameserver-policy:
     #"geosite:private,Google@CN,googlefcm": *dns_guonei
