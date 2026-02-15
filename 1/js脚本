@@ -76,7 +76,7 @@ function main(config) {
         "auto-route": true,
         "auto-detect-interface": true,
         "strict-route": true,
-        "disable-icmp-forwarding": true,
+        "disable-icmp-forwarding": false,
         "mtu": 1400,
         "gso": true,
         "gso-max-size": 65536,
