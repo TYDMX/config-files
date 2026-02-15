@@ -131,7 +131,7 @@ function main(config) {
             "pub": [...腾讯IP]
         },
         "default-nameserver": [...阿里IP],
-        "proxy-server-nameserver": [...阿里DOT, ...谷歌DOT, ...cloudflare_DOT],
+        "proxy-server-nameserver": [...阿里IP, ...谷歌DOT, ...cloudflare_DOT],
         "proxy-server-nameserver-policy": {
             "DOMAIN-KEYWORD,nfsq": 阿里IP,
         },
