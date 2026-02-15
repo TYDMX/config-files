@@ -132,6 +132,9 @@ function main(config) {
         },
         "default-nameserver": [...阿里IP],
         "proxy-server-nameserver": [...阿里DOT, ...谷歌DOT, ...cloudflare_DOT],
+        "proxy-server-nameserver-policy": {
+            "DOMAIN-KEYWORD,nfsq": 阿里DOT,
+        },
         "direct-nameserver": DNS国内,
         "nameserver-policy": {
             "geosite:private,cn,geolocation-cn": DNS国内,
