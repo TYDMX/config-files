@@ -138,7 +138,8 @@ function main(config) {
         "direct-nameserver": DNS国内,
         "nameserver-policy": {
             "geosite:private,cn,geolocation-cn": DNS国内,
-            "geosite:googlefcm,apple,microsoft": DNS国内,
+            "geosite:googlefcm,google@cn": DNS国内,
+            "geosite:apple,microsoft": DNS国内,
             "RULE-SET,自用直连规则": DNS国内,
             "DOMAIN-KEYWORD,nfsq": 阿里IP,
             "RULE-SET,自用代理规则": DNS国外,
@@ -274,7 +275,7 @@ function main(config) {
         "GEOSITE,ookla-speedtest,📈 测速地址",
         "GEOSITE,apple,🍎 Apple",
         "GEOSITE,category-games-cn,🎮 game@CN",
-        "GEOSITE,googlefcm,🇬 谷歌@CN",
+        "OR,((GEOSITE,google@cn),(GEOSITE,googlefcm)),🇬 谷歌@CN",
 
         "GEOSITE,category-games-!cn,🎮 game",
         "AND,((DST-PORT,443),(NETWORK,UDP)), REJECT",
