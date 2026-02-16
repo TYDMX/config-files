@@ -100,18 +100,16 @@ function main(config) {
     const 腾讯DOH = ["https://doh.pub/dns-query", "https://119.29.29.29/dns-query"];
     const 腾讯QUIC = ["quic://dot.pub", "quic://119.29.29.29"];
     const DNS国外 = [...谷歌DOH,...cloudflare_DOH];
-    const DNS国内 = [...阿里IP, ...阿里DOH, ...腾讯IP, ...腾讯DOH];
+    const DNS国内 = [...阿里IP, ...阿里DOH];
 
     // --- 【4. DNS 模式配置】 ---
     config["dns"] = {
         "enable": true,
-        "cache-algorithm": "arc",
-        "use-hosts": true,
-        "use-system-hosts": false,
-        "listen": "127.0.0.1:1053",
         "ipv6": true,
         "prefer-h3": true,
         "respect-rules": true,
+        "cache-algorithm": "arc",
+        "listen": "127.0.0.1:1053",
         "enhanced-mode": "fake-ip",
         "fake-ip-range": "198.18.0.1/16",
         "fake-ip-range6": "fdfe:dcba:9876::/64",
@@ -121,7 +119,8 @@ function main(config) {
             "geosite:private",
             "geosite:connectivity-check"
         ],
-        "lookup-strategy": "fastest-ip",
+        "use-hosts": true,
+        "use-system-hosts": false,
         "hosts": {
             "dns.google": [...谷歌IP],
             "dns.cloudflare.com": [...cloudflare_IP],
@@ -130,19 +129,29 @@ function main(config) {
             "dot.pub": [...腾讯IP],
             "pub": [...腾讯IP]
         },
-        "default-nameserver": [...阿里IP],
-        "proxy-server-nameserver": [...阿里IP, ...谷歌DOT, ...cloudflare_DOT],
+        "lookup-strategy": "fastest-ip",
+        "default-nameserver": [...阿里IP, ...cloudflare_IP],
+        "proxy-server-nameserver": [...阿里DOH, ...谷歌DOH, ...cloudflare_DOH],
         "proxy-server-nameserver-policy": {
             "DOMAIN-KEYWORD,nfsq": 阿里IP,
         },
         "direct-nameserver": DNS国内,
         "nameserver-policy": {
             "geosite:private,cn,geolocation-cn": DNS国内,
-            "geosite:gfw,geolocation-!cn": DNS国外,
+            "geosite:googlefcm,apple,microsoft": DNS国内,
+            "RULE-SET,自用直连规则": DNS国内,
             "DOMAIN-KEYWORD,nfsq": 阿里IP,
+            "RULE-SET,自用代理规则": DNS国外,
+            "geosite:gfw,geolocation-!cn": DNS国外,
         },
-        "nameserver": DNS国外,
-        "fallback": [...阿里DOH, ...腾讯DOH]
+        "nameserver": DNS国内,
+        "fallback": DNS国外,
+        "fallback-filter": {
+            "geoip": true,
+            "geoip-code": "CN",
+            "ipcidr": ["240.0.0.0/4"],
+            "geosite": ["gfw"]
+        }
     };
 
     // --- 【5. 地理数据与模型】 ---
@@ -253,7 +262,7 @@ function main(config) {
     // --- 【规则】 ---
     config["rules"] = [
         "OR,((GEOSITE,private),(GEOIP,private)),🔒 私有网络",
-        "rule-set,前置直连规则,⬆️ 自用直连",
+        "RULE-SET,前置直连规则,⬆️ 自用直连",
         "RULE-SET,自用代理规则,🌐 自用代理",
         "RULE-SET,自用直连规则,⬆️ 自用直连",
         "OR,((GEOSITE,tracker),(GEOSITE,category-public-tracker)),🚫 追踪拦截",
@@ -266,7 +275,9 @@ function main(config) {
         "GEOSITE,apple,🍎 Apple",
         "GEOSITE,category-games-cn,🎮 game@CN",
         "GEOSITE,googlefcm,🇬 谷歌@CN",
+
         "GEOSITE,category-games-!cn,🎮 game",
+        "AND,((DST-PORT,443),(NETWORK,UDP)), REJECT",
         "OR,((GEOSITE,openai),(GEOSITE,google-gemini),(GEOSITE,category-ai-!cn)),🤖 人工智能",
         "GEOSITE,spotify,🇯🇵 日本故转",
         "GEOSITE,paypal,💶 PayPal",
