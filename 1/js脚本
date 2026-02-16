@@ -100,7 +100,7 @@ function main(config) {
     const 腾讯DOH = ["https://doh.pub/dns-query", "https://119.29.29.29/dns-query"];
     const 腾讯QUIC = ["quic://dot.pub", "quic://119.29.29.29"];
     const DNS国外 = [...谷歌DOH,...cloudflare_DOH];
-    const DNS国内 = [...阿里IP, ...阿里DOH];
+    const DNS国内 = [...阿里IP, ...阿里DOH, ...腾讯DOH];
 
     // --- 【4. DNS 模式配置】 ---
     config["dns"] = {
@@ -131,7 +131,7 @@ function main(config) {
         },
         "lookup-strategy": "fastest-ip",
         "default-nameserver": [...阿里IP, ...cloudflare_IP],
-        "proxy-server-nameserver": [...阿里DOH, ...谷歌DOH, ...cloudflare_DOH],
+        "proxy-server-nameserver": [...阿里DOH, ...cloudflare_DOH],
         "proxy-server-nameserver-policy": {
             "DOMAIN-KEYWORD,nfsq": 阿里IP,
         },
