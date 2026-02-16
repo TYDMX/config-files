@@ -117,7 +117,8 @@ function main(config) {
         "fake-ip-filter": [
             "rule-set:自用fake-ip-filter",
             "geosite:private",
-            "geosite:connectivity-check"
+            "geosite:connectivity-check",
+            "geosite:googlefcm",
         ],
         "use-hosts": true,
         "use-system-hosts": false,
