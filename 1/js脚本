@@ -100,13 +100,13 @@ function main(config) {
     const 腾讯DOH = ["https://doh.pub/dns-query"];
     const 腾讯QUIC = ["quic://dot.pub"];
     const DNS国外 = [...cloudflare_DOH];
-    const DNS国内 = [...阿里IP, ...阿里DOH, ...腾讯DOH];
+    const DNS国内 = [...阿里DOH, ...腾讯DOH];
 
     // --- 【4. DNS 模式配置】 ---
     config["dns"] = {
         "enable": true,
         "ipv6": true,
-        "prefer-h3": true,
+        "prefer-h3": false,
         "respect-rules": true,
         "cache-algorithm": "arc",
         "listen": "127.0.0.1:1053",
@@ -131,15 +131,15 @@ function main(config) {
             "pub": [...腾讯IP]
         },
         "lookup-strategy": "fastest-ip",
-        "default-nameserver": [...阿里IP, ...cloudflare_IP],
-        "proxy-server-nameserver": [...阿里DOH, ...cloudflare_DOH],
+        "default-nameserver": [...阿里IP],
+        "proxy-server-nameserver": [...阿里DOH],
         "proxy-server-nameserver-policy": {
             "DOMAIN-KEYWORD,nfsq": 阿里IP,
         },
         "direct-nameserver": DNS国内,
         "nameserver-policy": {
             "geosite:private,cn,geolocation-cn": DNS国内,
-            //"geosite:googlefcm,google@cn": DNS国内,
+            "geosite:googlefcm,google@cn": DNS国内,
             "geosite:apple,microsoft": DNS国内,
             "RULE-SET,自用直连规则": DNS国内,
             "DOMAIN-KEYWORD,nfsq": 阿里IP,
@@ -279,7 +279,7 @@ function main(config) {
         "OR,((GEOSITE,google@cn),(GEOSITE,googlefcm)),🇬 谷歌@CN",
 
         "GEOSITE,category-games-!cn,🎮 game",
-        "AND,((DST-PORT,443),(NETWORK,UDP)), REJECT",
+        //"AND,((DST-PORT,443),(NETWORK,UDP)), REJECT",
         "OR,((GEOSITE,openai),(GEOSITE,google-gemini),(GEOSITE,category-ai-!cn)),🤖 人工智能",
         "GEOSITE,spotify,🇯🇵 日本故转",
         "GEOSITE,paypal,💶 PayPal",
