@@ -99,7 +99,7 @@ function main(config) {
     const 腾讯DOT = ["tls://119.29.29.29", "tls://182.254.116.116"];
     const 腾讯DOH = ["https://doh.pub/dns-query"];
     const 腾讯QUIC = ["quic://dot.pub"];
-    const DNS国外 = [...cloudflare_DOH];
+    const DNS国外 = [...谷歌DOH, ...cloudflare_DOH];
     const DNS国内 = [...阿里DOH, ...腾讯DOH];
 
     // --- 【4. DNS 模式配置】 ---
@@ -120,7 +120,7 @@ function main(config) {
             "geosite:connectivity-check",
             "geosite:googlefcm",
         ],
-        "use-hosts": true,
+        "use-hosts": false,
         "use-system-hosts": false,
         "hosts": {
             "dns.google": [...谷歌IP],
@@ -131,11 +131,8 @@ function main(config) {
             "pub": [...腾讯IP]
         },
         "lookup-strategy": "fastest-ip",
-        "default-nameserver": [...阿里IP],
-        "proxy-server-nameserver": [...阿里DOH],
-        "proxy-server-nameserver-policy": {
-            "DOMAIN-KEYWORD,nfsq": 阿里IP,
-        },
+        "default-nameserver": 阿里DOT,
+        "proxy-server-nameserver": 阿里DOH,
         "direct-nameserver": DNS国内,
         "nameserver-policy": {
             "geosite:private,cn,geolocation-cn": DNS国内,
