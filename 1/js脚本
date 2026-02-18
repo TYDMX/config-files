@@ -135,7 +135,7 @@ function main(config) {
         "proxy-server-nameserver": 阿里DOH,
         "direct-nameserver": DNS国内,
         "nameserver-policy": {
-            "DOMAIN-KEYWORD,nfsq": 阿里IP,
+            "DOMAIN-KEYWORD,nfsq": 阿里DOT,
             "RULE-SET,自用直连规则": DNS国内,
             "RULE-SET,自用代理规则": DNS国外,
             "geosite:googlefcm,google@cn": DNS国内,
