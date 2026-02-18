@@ -109,7 +109,7 @@ function main(config) {
         "prefer-h3": false,
         "respect-rules": true,
         "cache-algorithm": "arc",
-        "listen": "127.0.0.1:1053",
+        "listen": "0.0.0.0:1053",
         "enhanced-mode": "fake-ip",
         "fake-ip-range": "198.18.0.1/16",
         "fake-ip-range6": "fdfe:dcba:9876::/64",
@@ -131,7 +131,7 @@ function main(config) {
             "pub": [...腾讯IP]
         },
         "lookup-strategy": "fastest-ip",
-        "default-nameserver": 阿里DOT,
+        "default-nameserver": 阿里IP,
         "proxy-server-nameserver": 阿里DOH,
         "direct-nameserver": DNS国内,
         "nameserver-policy": {
