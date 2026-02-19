@@ -40,10 +40,6 @@ function main(config) {
     config["external-controller"] = "127.0.0.1:9090";
     config["secret"] = "12345678";
     config["find-process-mode"] = "strict";
-    config["disable-keep-alive"] = true;
-    config["keep-alive-interval"] = 75;
-    config["keep-alive-idle"] = 120;
-    config["keep-alive-probes"] = 5;
     config["profile"] = { 
         "store-selected": true, 
         "store-fake-ip": true
@@ -138,6 +134,7 @@ function main(config) {
             "DOMAIN-KEYWORD,nfsq": 阿里DOT,
             "RULE-SET,自用直连规则": DNS国内,
             "RULE-SET,自用代理规则": DNS国外,
+            "geosite:category-ads-all": "rcode://success",
             "geosite:googlefcm,google@cn": DNS国内,
             "geosite:apple,microsoft": DNS国内,
             "geosite:private,cn,geolocation-cn": DNS国内,
