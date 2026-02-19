@@ -18,7 +18,14 @@ function main(config) {
                     "exclude-filter": 节点黑名单,
                     "exclude-type": "http|ss",
                     "path": `./proxies/${机场名}.yaml`,
-                    "health-check": { "enable": true, "url": "https://cp.cloudflare.com/generate_204", "interval": 21600, "consecutive-failures": 2, "lazy": true, "method": "HEAD", "timeout": 5000 },
+                    "health-check": { "enable": true, 
+                        //"url": "https://cp.cloudflare.com/generate_204", 
+                        "interval": 21600, 
+                        "consecutive-failures": 2, 
+                        "lazy": true, 
+                        "method": "HEAD", 
+                        "timeout": 5000, 
+                    },
                     "smux": { "enabled": true, "padding": true, "protocol": "smux4", "max-connections": 8, "max-streams": 64, "min-streams": 4, "statistic": false, "only-tcp": true, },
                 };
             }
