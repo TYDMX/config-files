@@ -102,8 +102,8 @@ function main(config) {
     config["dns"] = {
         "enable": true,
         "ipv6": true,
-        "prefer-h3": false,
-        "respect-rules": true,
+        "prefer-h3": true,
+        "respect-rules": false,
         "cache-algorithm": "arc",
         "listen": "0.0.0.0:1053",
         "enhanced-mode": "fake-ip",
@@ -128,7 +128,7 @@ function main(config) {
         },
         "lookup-strategy": "fastest-ip",
         "default-nameserver": 阿里DOT,
-        "proxy-server-nameserver": 阿里DOH,
+        //"proxy-server-nameserver": 阿里DOH,
         "direct-nameserver": DNS国内,
         "nameserver-policy": {
             "DOMAIN-KEYWORD,nfsq": 阿里DOT,
