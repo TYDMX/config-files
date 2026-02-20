@@ -98,11 +98,11 @@ function main(config) {
     const cloudflare_DOT = ["tls://1.1.1.1:853"];
     const cloudflare_DOH = ["https://cloudflare-dns.com/dns-query"];
     const 阿里IP = ["223.5.5.5", "223.6.6.6"];
-    const 阿里DOT = ["tls://223.5.5.5:853", "tls://223.6.6.6:853"];
+    const 阿里DOT = ["tls://223.5.5.5:853"];
     const 阿里DOH = ["https://dns.alidns.com/dns-query"];
     const 阿里QUIC = ["quic://dns.alidns.com:784"];
     const 腾讯IP = ["119.29.29.29", "182.254.116.116"];
-    const 腾讯DOT = ["tls://119.29.29.29:853", "tls://182.254.116.116:853"];
+    const 腾讯DOT = ["tls://119.29.29.29:853"];
     const 腾讯DOH = ["https://doh.pub/dns-query"];
     const 腾讯QUIC = ["quic://dot.pub:784"];
     const DNS国外 = [...cloudflare_DOH];
