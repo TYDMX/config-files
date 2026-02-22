@@ -1,7 +1,7 @@
 //https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/1/js脚本
 
 function main(config) {
-    const 图标库 = "https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/";
+    const 图标库 = "https://github.com/Koolson/Qure/raw/master/IconSet/Color/";
 
     // --- 【配置外部订阅】 ---
     const 节点黑名单 = "(?i)(China|china|CHINA|🇨🇳|高倍|×10|10M|节点|过滤|剩余|流量|距离|下次|重置|重新|订阅|导入|套餐|到期|跳转|域名|请勿|邀请|好友|关注|频道|收费|就说明|被骗|续费|更新|地址|官网|下载|群组|永久|长期|中继|更换|协议|软件|教程|Lite|ali)";
