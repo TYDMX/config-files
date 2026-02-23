@@ -137,7 +137,7 @@ function main(config) {
         "use-system-hosts": false,
         "lookup-strategy": "fastest-ip",
         "default-nameserver": 阿里DOT,
-        "proxy-server-nameserver": 阿里DOT,
+        "proxy-server-nameserver": DNS国内,
         "nameserver-policy": {
             "RULE-SET,自用直连规则": DNS国内,
             "RULE-SET,自用代理规则": DNS国外,
