@@ -92,18 +92,18 @@ function main(config) {
     // --- 【DNS配置模板】 ---
     const 谷歌IP = ["8.8.8.8", "2001:4860:4860::8888"];
     const 谷歌DOT = ["tls://8.8.8.8:853", "tls://[2001:4860:4860::8888]:853"];
-    const 谷歌DOH = ["https://dns.google/dns-query:443"];
+    const 谷歌DOH = ["https://dns.google/dns-query"];
     const 谷歌QUIC = ["quic://dns.google:784"];
     const cloudflare_IP = ["1.1.1.1", "2606:4700:4700::1111"];
     const cloudflare_DOT = ["tls://1.1.1.1:853", "tls://[2606:4700:4700::1111]:853"];
-    const cloudflare_DOH = ["https://cloudflare-dns.com/dns-query:443"];
+    const cloudflare_DOH = ["https://cloudflare-dns.com/dns-query"];
     const 阿里IP = ["223.5.5.5", "2400:3200::1"];
     const 阿里DOT = ["tls://223.5.5.5:853", "tls://[2400:3200::1]:853"];
-    const 阿里DOH = ["https://dns.alidns.com/dns-query:443"];
+    const 阿里DOH = ["https://dns.alidns.com/dns-query"];
     const 阿里QUIC = ["quic://dns.alidns.com:784"];
     const 腾讯IP = ["119.29.29.29", "2402:4e00::"];
     const 腾讯DOT = ["tls://119.29.29.29:853", "tls://[2402:4e00::]:853"];
-    const 腾讯DOH = ["https://doh.pub/dns-query:443"];
+    const 腾讯DOH = ["https://doh.pub/dns-query"];
     const 腾讯QUIC = ["quic://dot.pub:784"];
     const DNS国外 = [...谷歌DOH, ...谷歌QUIC];
     const DNS国内 = [...阿里DOH, ...阿里QUIC];
