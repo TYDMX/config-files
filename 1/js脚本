@@ -43,7 +43,7 @@ function main(config) {
     config["socks-port"] = 7891;
     config["mixed-port"] = 7893;
     config["tproxy-port"] = 7894;
-    config["ipv6"] = true;
+    config["ipv6"] = false;
     config["allow-lan"] = false;
     config["unified-delay"] = true;
     config["tcp-concurrent"] = true;
@@ -103,8 +103,6 @@ function main(config) {
     const 阿里QUIC = ["quic://dns.alidns.com:784"];
     const 腾讯IP = ["119.29.29.29", "2402:4e00::"];
     const 腾讯DOT = ["tls://119.29.29.29:853", "tls://[2402:4e00::]:853"];
-    const 腾讯DOH = ["https://doh.pub/dns-query#h3=true"];
-    const 腾讯QUIC = ["quic://dot.pub:784"];
     const DNS国外 = [...谷歌DOH, ...谷歌QUIC];
     const DNS国内 = [...阿里DOH, ...阿里QUIC];
     config["hosts"] = {
@@ -119,7 +117,7 @@ function main(config) {
     // --- 【4. DNS 模式配置】 ---
     config["dns"] = {
         "enable": true,
-        "ipv6": true,
+        "ipv6": false,
         "prefer-h3": true,
         "respect-rules": true,
         "cache-algorithm": "arc",
