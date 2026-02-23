@@ -120,7 +120,7 @@ function main(config) {
         "enable": true,
         "ipv6": false,
         "prefer-h3": true,
-        "respect-rules": true,
+        "respect-rules": false,
         "cache-algorithm": "arc",
         "listen": "0.0.0.0:1053",
         "enhanced-mode": "fake-ip",
@@ -139,7 +139,6 @@ function main(config) {
         "default-nameserver": 阿里DOT,
         "proxy-server-nameserver": 阿里DOT,
         "nameserver-policy": {
-            "DOMAIN-KEYWORD,nfsq": 阿里DOT,
             "RULE-SET,自用直连规则": DNS国内,
             "RULE-SET,自用代理规则": DNS国外,
             "geosite:googlefcm,google@cn": DNS国内,
