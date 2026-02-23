@@ -107,7 +107,14 @@ function main(config) {
     const 腾讯QUIC = ["quic://dot.pub:784"];
     const DNS国外 = [...谷歌DOH, ...谷歌QUIC];
     const DNS国内 = [...阿里DOH, ...阿里QUIC];
-
+    config["hosts"] = {
+        "dns.google": [...谷歌IP],
+        "dns.cloudflare.com": [...cloudflare_IP],
+        "dns.alidns.com": [...阿里IP],
+        "doh.pub": [...腾讯IP],
+        "dot.pub": [...腾讯IP],
+        "pub": [...腾讯IP]
+    },
     // --- 【4. DNS 模式配置】 ---
     config["dns"] = {
         "enable": true,
@@ -128,14 +135,6 @@ function main(config) {
         ],
         "use-hosts": false,
         "use-system-hosts": false,
-        "hosts": {
-            "dns.google": [...谷歌IP],
-            "dns.cloudflare.com": [...cloudflare_IP],
-            "dns.alidns.com": [...阿里IP],
-            "doh.pub": [...腾讯IP],
-            "dot.pub": [...腾讯IP],
-            "pub": [...腾讯IP]
-        },
         "lookup-strategy": "fastest-ip",
         "default-nameserver": 阿里DOT,
         "nameserver-policy": {
