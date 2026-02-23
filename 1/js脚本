@@ -37,7 +37,7 @@ function main(config) {
     const 全部订阅 = Object.keys(config["proxy-providers"] || {});
 
     // --- 【1. 全局基础配置】 ---
-    config["log-level"] = "debug";
+    config["log-level"] = "info";
     config["collect-data"] = false;
     config["port"] = 7890;
     config["socks-port"] = 7891;
