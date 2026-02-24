@@ -46,7 +46,7 @@ function main(config) {
     config["socks-port"] = 7891;
     config["mixed-port"] = 7893;
     config["tproxy-port"] = 7894;
-    config["ipv6"] = false;
+    config["ipv6"] = true;
     config["allow-lan"] = false;
     config["unified-delay"] = true;
     config["tcp-concurrent"] = true;
@@ -126,7 +126,7 @@ function main(config) {
     // --- 【4. DNS 模式配置】 ---
     config["dns"] = {
         "enable": true,
-        "ipv6": false,
+        "ipv6": true,
         "prefer-h3": true,
         "respect-rules": false,
         "cache-algorithm": "arc",
