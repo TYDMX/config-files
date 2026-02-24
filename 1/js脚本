@@ -26,7 +26,10 @@ function main(config) {
                     "smux": { 
                         "enabled": true, 
                         "padding": true, 
-                        "protocol": "smux4", "max-streams": 16, 
+                        "protocol": "smux4", 
+                        //"max-streams": 16, 
+                        "max-connections": 4,
+                        "min-streams": 4,
                         "statistic": false, 
                         "only-tcp": false, 
                     },
@@ -146,8 +149,8 @@ function main(config) {
         "nameserver-policy": {
             "RULE-SET,自用直连规则": DNS国内,
             "RULE-SET,自用代理规则": DNS国外,
-            "geosite:googlefcm,google@cn": DNS国内,
-            "geosite:apple,microsoft": DNS国内,
+            "geosite:googlefcm,google@cn": DNS国外,
+            "geosite:apple,microsoft": DNS国外,
             "geosite:private,cn,geolocation-cn": DNS国内,
         },
         "nameserver": DNS国外,
