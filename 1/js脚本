@@ -96,7 +96,7 @@ function main(config) {
     const 谷歌IP = ["8.8.8.8", "2001:4860:4860::8888"];
     const 谷歌DOT = ["tls://8.8.8.8", "tls://[2001:4860:4860::8888]"];
     const 谷歌DOH = ["https://dns.google/dns-query#h3=true"];
-    const 谷歌QUIC = ["quic://dns.google:853","quic://dns.google:784"];
+    const 谷歌QUIC = ["quic://dns.google:853"];
 
     const cloudflare_IP = ["1.1.1.1", "2606:4700:4700::1111"];
     const cloudflare_DOT = ["tls://1.1.1.1", "tls://[2606:4700:4700::1111]"];
