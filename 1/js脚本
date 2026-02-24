@@ -130,6 +130,7 @@ function main(config) {
         "prefer-h3": true,
         "respect-rules": false,
         "cache-algorithm": "arc",
+        "stale-cache": true,
         "listen": "0.0.0.0:1053",
         "enhanced-mode": "fake-ip",
         "fake-ip-range": "198.18.0.1/16",
