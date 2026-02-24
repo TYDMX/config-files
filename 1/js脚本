@@ -127,8 +127,8 @@ function main(config) {
     config["dns"] = {
         "enable": true,
         "ipv6": true,
-        "prefer-h3": true,
-        "respect-rules": false,
+        "prefer-h3": false,
+        "respect-rules": true,
         "cache-algorithm": "arc",
         "stale-cache": true,
         "listen": "0.0.0.0:1053",
