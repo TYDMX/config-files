@@ -94,25 +94,26 @@ function main(config) {
 
     // --- 【DNS配置模板】 ---
     const 谷歌IP = ["8.8.8.8", "2001:4860:4860::8888"];
-    const 谷歌DOT = ["tls://8.8.8.8", "tls://[2001:4860:4860::8888]"];
+    const 谷歌DOT = ["tls://dns.google"];
     const 谷歌DOH = ["https://dns.google/dns-query#h3=true"];
-    const 谷歌QUIC = ["quic://dns.google:853"];
+    const 谷歌QUIC = ["quic://dns.google"];
 
     const cloudflare_IP = ["1.1.1.1", "2606:4700:4700::1111"];
-    const cloudflare_DOT = ["tls://1.1.1.1", "tls://[2606:4700:4700::1111]"];
+    const cloudflare_DOT = ["tls://cloudflare-dns.com"];
     const cloudflare_DOH = ["https://cloudflare-dns.com/dns-query#h3=true"];
 
     const 阿里IP = ["223.5.5.5", "2400:3200::1"];
-    const 阿里DOT = ["tls://223.5.5.5:853", "tls://[2400:3200::1]"];
+    const 阿里DOT = ["tls://223.5.5.5:853"];
     const 阿里DOH = ["https://dns.alidns.com/dns-query#h3=true"];
     const 阿里QUIC = ["quic://dns.alidns.com"];
 
-    const 腾讯IP = ["119.29.29.29", "2402:4e00::"];
-    const 腾讯DOT = ["tls://119.29.29.29", "tls://[2402:4e00::]"];
+    const 腾讯IP = ["119.29.29.29"];
+    const 腾讯DOT = ["tls://dot.pub"];
     const 腾讯DOH = ["https://doh.pub/dns-query", "https://sm2.doh.pub/dns-query"];
 
     const DNS国外 = [...谷歌DOH, ...cloudflare_DOH];
     const DNS国内 = [...阿里QUIC];
+
     config["hosts"] = {
         "dns.google": 谷歌IP,
         "dns.cloudflare.com": cloudflare_IP,
@@ -146,14 +147,14 @@ function main(config) {
         "lookup-strategy": "fastest-ip",
         "default-nameserver": 阿里DOT,//用于解析DNS服务的域名
         "proxy-server-nameserver": DNS国内,
-        "nameserver-policy": {
-            "RULE-SET,自用直连规则": DNS国内,
-            "RULE-SET,自用代理规则": DNS国外,
-            "geosite:googlefcm": DNS国外,
-            "geosite:apple,microsoft,google@cn": DNS国内,
-            "geosite:private,cn,geolocation-cn": DNS国内,
-        },
         "nameserver": DNS国外,
+        "nameserver-policy": {
+            "RULE-SET,private,自用直连规则": DNS国内,
+            "RULE-SET,自用代理规则": DNS国外,
+            "geosite:apple,microsoft,google@cn,googlefcm": DNS国内,
+            "geosite:gfw,geolocation-!cn": DNS国外,
+            "geosite:cn,geolocation-cn": DNS国内,
+        },
     };
 
     // --- 【5. 地理数据与模型】 ---
