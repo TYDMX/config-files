@@ -120,7 +120,7 @@ function main(config) {
         "dns.alidns.com": 阿里IP,
         "doh.pub": 腾讯IP,
         "dot.pub": 腾讯IP,
-    },
+    };
 
     // --- 【4. DNS 模式配置】 ---
     config["dns"] = {
