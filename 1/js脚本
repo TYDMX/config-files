@@ -128,7 +128,7 @@ function main(config) {
         "enable": true,
         "ipv6": true,
         "prefer-h3": false,
-        "respect-rules": true,
+        "respect-rules": true,//远程解析
         "cache-algorithm": "arc",
         "stale-cache": true,
         "listen": "127.0.0.1:1053",
