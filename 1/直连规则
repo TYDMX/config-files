@@ -58,10 +58,10 @@ payload:
   #msn.com
   #storage.live
   #1drv
-  #public.sn.files.1drv.com
-  #public.by.files.1drv.com
-  #vizyng.sn.files.1drv.com
-  #vizyng.by.files.1drv.com
+  #.public.sn.files.1drv.com
+  #.public.by.files.1drv.com
+  #.vizyng.sn.files.1drv.com
+  #.vizyng.by.files.1drv.com
   #sn.files.1drv.com
   #by.files.1drv.com
   ##上传-下载域名
