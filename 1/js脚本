@@ -130,7 +130,6 @@ function main(config) {
         "prefer-h3": true,
         "respect-rules": true,//远程解析
         "cache-algorithm": "arc",
-        "stale-cache": true,
         "listen": "127.0.0.1:1053",
         "enhanced-mode": "fake-ip",
         "fake-ip-range": "198.18.0.1/16",
@@ -144,7 +143,6 @@ function main(config) {
         ],
         "use-hosts": false,
         "use-system-hosts": false,
-        "lookup-strategy": "fastest-ip",//防DNS泄露
         "default-nameserver": ["tls://223.5.5.5:853"],//用于解析DNS服务的域名
         "direct-nameserver": DNS国内,
         "proxy-server-nameserver": DNS国内,
