@@ -111,8 +111,8 @@ function main(config) {
     const 腾讯DOT = ["tls://dot.pub"];
     const 腾讯DOH = ["https://doh.pub/dns-query", "https://sm2.doh.pub/dns-query"];
 
-    const DNS国外 = [...谷歌DOH, ...cloudflare_DOH];
-    const DNS国内 = [...阿里DOH, ...阿里QUIC];
+    const DNS国外 = [...谷歌DOT, ...谷歌DOH, ...cloudflare_DOT, ...cloudflare_DOH];
+    const DNS国内 = [...阿里DOT, ...阿里DOH, ...阿里QUIC, ...腾讯DOT, ...腾讯DOH];
 
     config["hosts"] = {
         "dns.google": 谷歌IP,
