@@ -1,102 +1,102 @@
-  #dlgz
-  #    zlgz
-  #dlrj
-  #zlrj
+#dlgz
+#    zlgz
+#dlrj
+#zlrj
 
 
-  #challenges.cloudflare
-  download.nvidia.com
-  tpb.proxyninja
-  #nfsq
-  git.imee.me
-  #ipv6
+#challenges.cloudflare
+download.nvidia.com
+tpb.proxyninja
+#nfsq
+git.imee.me
+#ipv6
 
-  # 战雷
-  chat*.warthunder.com
-  #char*.warthunder.com
-  forum.warthunder.com
-  forum-*-cdn.warthunder.com
-  ## chat*.warthunder.com # 聊天
-  ## char*.warthunder.com # 角色
-  ## forum.warthunder.com # 论坛
+# 战雷
+chat*.warthunder.com
+#char*.warthunder.com
+forum.warthunder.com
+forum-*-cdn.warthunder.com
+## chat*.warthunder.com # 聊天
+## char*.warthunder.com # 角色
+## forum.warthunder.com # 论坛
 
-  gaijin
-  #warthunder
-  client-stats.gaijin.net
-  client-stats.warthunder.com
-  ## client-stats.gaijin.net # 自动匹配服务器的参考
-  ## client-stats.warthunder.com # 客户端性能数据
-
-
-  #三星
-  samsung
-  samsungcloud
-  galaxyappstore
-
-  # steam
-  ##下载
-  .steamcontent.com
-  brokenarrowgame.com
-
-  # epic
-  download.epicgames
-
-  # 暴雪
-  #api.blizzard
-  #account.battle.net
-  #battle.net
-  #ingest.gdp.blizzard.com
-  ##下载
-  #kr.cdn.blizzard.com
-  #level3.blizzard.com
-
-  # onedrive
-  #live.com
-  #office.com
-  #office.net
-  #msn.com
-  #storage.live
-  #1drv
-  #.public.sn.files.1drv.com
-  #.public.by.files.1drv.com
-  #.vizyng.sn.files.1drv.com
-  #.vizyng.by.files.1drv.com
-  #sn.files.1drv.com
-  #by.files.1drv.com
-  ##上传-下载域名
-  my.microsoftpersonalcontent.com
-  ## 观看域名tcp://australiaeast1-mediap.svc.ms:443
-
-  #twitch
-  ##广告流
-  #video-weaver
-  ##视频流
-  #video-edge
-  #abs.hls.ttvnw.net
-  #hls.ttvnw.net
-
-  #twitter
-  #abs.twimg.com
-  #abs-0.twimg.com
-  #video.twimg.com
-  #video-ft.twimg.com
-  #ton.twimg.com
+gaijin
+#warthunder
+client-stats.gaijin.net
+client-stats.warthunder.com
+## client-stats.gaijin.net # 自动匹配服务器的参考
+## client-stats.warthunder.com # 客户端性能数据
 
 
-  # vk
-  #sun9
-  #sun6
-  #vkvd
-  #mycdn.me
-  #st6
-  #userapi.com/impg
-  #vkuser
-  #queuev4.vk
-  #okcdn
-  # ms.vk.com
-  # vkvd84.mycdn.me
-  # vkvd415.okcdn.ru:443
+#三星
+samsung
+samsungcloud
+galaxyappstore
 
-  # elite
-  #img.strpst
-  #media.elitebabes
+# steam
+##下载
+.steamcontent.com
+brokenarrowgame.com
+
+# epic
+download.epicgames
+
+# 暴雪
+#api.blizzard
+#account.battle.net
+#battle.net
+#ingest.gdp.blizzard.com
+##下载
+#kr.cdn.blizzard.com
+#level3.blizzard.com
+
+# onedrive
+#live.com
+#office.com
+#office.net
+#msn.com
+#storage.live
+#1drv
+#.public.sn.files.1drv.com
+#.public.by.files.1drv.com
+#.vizyng.sn.files.1drv.com
+#.vizyng.by.files.1drv.com
+#sn.files.1drv.com
+#by.files.1drv.com
+##上传-下载域名
+my.microsoftpersonalcontent.com
+## 观看域名tcp://australiaeast1-mediap.svc.ms:443
+
+#twitch
+##广告流
+#video-weaver
+##视频流
+#video-edge
+#abs.hls.ttvnw.net
+#hls.ttvnw.net
+
+#twitter
+#abs.twimg.com
+#abs-0.twimg.com
+#video.twimg.com
+#video-ft.twimg.com
+#ton.twimg.com
+
+
+# vk
+#sun9
+#sun6
+#vkvd
+#mycdn.me
+#st6
+#userapi.com/impg
+#vkuser
+#queuev4.vk
+#okcdn
+# ms.vk.com
+# vkvd84.mycdn.me
+# vkvd415.okcdn.ru:443
+
+# elite
+#img.strpst
+#media.elitebabes
