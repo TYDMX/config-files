@@ -242,8 +242,8 @@ function main(config) {
     const domain_text = { type: "http", interval: 86400, behavior: "domain", format: "text" };
     // --- 【外部规则组】 ---
     config["rule-providers"] = {
-        "自用直连规则": { ...classical_text, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/1/直连规则" },
-        "自用代理规则": { ...classical_text, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/1/代理规则" },
+        "自用直连规则": { ...domain_text, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/1/直连规则" },
+        "自用代理规则": { ...domain_text, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/1/代理规则" },
         "自用直连软件": { ...classical_text, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/1/直连软件" },
         "自用代理软件": { ...classical_text, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/1/代理软件" },
         "前置直连规则": { ...classical_text, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/1/前置直连规则" },
