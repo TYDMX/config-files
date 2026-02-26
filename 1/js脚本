@@ -144,7 +144,7 @@ function main(config) {
         ],
         "use-hosts": false,
         "use-system-hosts": false,
-        //"lookup-strategy": "fastest-ip",
+        "lookup-strategy": "fastest-ip",//防DNS泄露
         "default-nameserver": 阿里DOT,//用于解析DNS服务的域名
         "direct-nameserver": DNS国内,
         "proxy-server-nameserver": DNS国内,
