@@ -6,7 +6,6 @@ payload:
 
 
   #challenges.cloudflare
-  challenges.cloudflare
   download.nvidia.com
   tpb.proxyninja
   #nfsq
@@ -83,6 +82,7 @@ payload:
   #video.twimg.com
   #video-ft.twimg.com
   #ton.twimg.com
+
 
   # vk
   #sun9
