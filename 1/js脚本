@@ -278,9 +278,8 @@ function main(config) {
         "GEOSITE,microsoft,🪟 Microsoft",
         "OR,((GEOSITE,google),(GEOIP,google)),🇬 谷歌",
         "OR,((GEOSITE,cloudflare),(GEOIP,cloudflare),(GEOIP,cloudfront)),🖥️ 代理服务",
-        "GEOSITE,gfw,🪜 代理域名",
-        "GEOSITE,geolocation-!cn,🪜 代理域名",
-        "OR,((GEOSITE,cn),(GEOIP,cn)),⬆️ 直连域名",
+        "OR,((GEOSITE,cn),(GEOSITE,geolocation-cn),(GEOIP,cn)),⬆️ 直连域名",
+        "OR,((GEOSITE,gfw),(GEOSITE,geolocation-!cn)),🪜 代理域名",
         "MATCH,🐟 漏网之鱼"
     ];
 
