@@ -23,16 +23,6 @@ function main(config) {
                         "lazy": true, 
                         "method": "HEAD", 
                     },
-                    "smux": { 
-                        "enabled": false, 
-                        "padding": false, 
-                        "protocol": "smux4", 
-                        //"max-streams": 16, 
-                        "max-connections": 4,
-                        "min-streams": 4,
-                        "statistic": false, 
-                        "only-tcp": false, 
-                    },
                 };
             }
         }
@@ -41,7 +31,6 @@ function main(config) {
 
     // --- 【1. 全局基础配置】 ---
     config["log-level"] = "info";
-    config["collect-data"] = false;
     config["port"] = 7890;
     config["socks-port"] = 7891;
     config["mixed-port"] = 7893;
