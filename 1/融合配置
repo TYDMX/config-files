@@ -23,16 +23,6 @@ cfw-latency-url: https://cp.cloudflare.com/generate_204
     consecutive-failures: 3
     lazy: true
     method: HEAD
-  smux:
-    enabled: true
-    padding: false
-    protocol: smux4 # 协议类型 smux，Yamux, h2mux, smux4
-    #mode: auto
-    max-connections: 32
-    max-streams: 64
-    min-streams: 16
-    statistic: false
-    only-tcp: true
   #proxies: select1 # 使用此提供者为select1中转
   #proxy: select1 # 更新用的代理组
   override:
