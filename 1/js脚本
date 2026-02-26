@@ -24,8 +24,8 @@ function main(config) {
                         "method": "HEAD", 
                     },
                     "smux": { 
-                        "enabled": true, 
-                        "padding": true, 
+                        "enabled": false, 
+                        "padding": false, 
                         "protocol": "smux4", 
                         //"max-streams": 16, 
                         "max-connections": 4,
