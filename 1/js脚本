@@ -132,7 +132,7 @@ function main(config) {
         ],
         "use-hosts": false,
         "use-system-hosts": false,
-        "default-nameserver": ["tls://223.5.5.5:853"],//用于解析DNS服务的域名
+        "default-nameserver": ["tls://223.5.5.5", "tls://119.29.29.29"],
         "direct-nameserver": DNS国内,
         "proxy-server-nameserver": DNS国内,
         "nameserver": DNS国外,
