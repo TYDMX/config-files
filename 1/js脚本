@@ -98,7 +98,7 @@ function main(config) {
 
     const 腾讯IP = ["119.29.29.29"];
     const 腾讯DOT = ["tls://dot.pub"];
-    const 腾讯DOH = ["https://doh.pub/dns-query", "https://sm2.doh.pub/dns-query"];
+    const 腾讯DOH = ["https://doh.pub/dns-query#h3=true", "https://sm2.doh.pub/dns-query#h3=true"];
 
     const DNS国外 = [...谷歌DOT, ...谷歌DOH, ...cloudflare_DOT, ...cloudflare_DOH];
     const DNS国内 = [...阿里DOT, ...阿里DOH, ...阿里QUIC, ...腾讯DOT, ...腾讯DOH];
@@ -116,8 +116,8 @@ function main(config) {
     config["dns"] = {
         "enable": true,
         "ipv6": true,
-        "prefer-h3": true,
-        "respect-rules": true,//远程解析
+        "prefer-h3": false,
+        "respect-rules": true,
         "cache-algorithm": "arc",
         "listen": "127.0.0.1:1053",
         "enhanced-mode": "fake-ip",
