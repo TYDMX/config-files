@@ -11,10 +11,10 @@ DOMAIN-SUFFIX,proxy.social.supercell
 
 # OneDrive
 #观看地址
-+.-mediap.svc.ms
+DOMAIN-SUFFIX,-mediap.svc.ms
 
 # WT
-+.forum.warthunder.com
-+.forum-*-cdn.warthunder.com
+DOMAIN-WILDCARD,forum.warthunder.com
+DOMAIN-WILDCARD,forum-*-cdn.warthunder.com
 
 
