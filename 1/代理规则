@@ -17,15 +17,11 @@
 #forum-*-cdn.warthunder.com
 
 # ph xv等
-#+.ev-h.phncdn.com
-#+.cv-h.phncdn.com
-#+.em-h.phncdn.com
-#+.hm-h.phncdn.com
-#-h.phncdn.com
++.*-h.phncdn.com
 #+.vid.xvideos-cdn.com
 #+.pic.xvideos-cdn.com
 #+.vid-mp4.xvideos-cdn.com
-#vdownload
+#+.vdownload
 #+.phncdn.com
 #+.ei.phncdn.com
 #+.xhcdn.com
