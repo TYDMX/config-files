@@ -3,11 +3,11 @@
 #dlrj
 #zlrj
 
-+.collector.github
+DOMAIN-SUFFIX:collector.github
 #redgifs
 
 # moco
-+.proxy.social.supercell
+DOMAIN-SUFFIX:proxy.social.supercell
 
 # OneDrive
 #观看地址
