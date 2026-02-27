@@ -20,7 +20,7 @@ forum-*-cdn.warthunder.com
 ## char*.warthunder.com # 角色
 ## forum.warthunder.com # 论坛
 
-+.gaijin
++.gaijin.net
 #warthunder
 +.client-stats.gaijin.net
 +.client-stats.warthunder.com
@@ -29,26 +29,22 @@ forum-*-cdn.warthunder.com
 
 
 #三星
-+.samsung
-+.samsungcloud
++.samsung.com
++.samsungcloud.com
 +.galaxyappstore.com
 
-# steam
-##下载
-+.steamcontent.com
+# 游戏
 +.brokenarrowgame.com
-
-# epic
-+.download.epicgames
-
-# 暴雪
+## 下载
++.steamcontent.com
++.download.epicgames.com
+#kr.cdn.blizzard.com
+#level3.blizzard.com
+## 暴雪
 #api.blizzard
 #account.battle.net
 #battle.net
 #ingest.gdp.blizzard.com
-##下载
-#kr.cdn.blizzard.com
-#level3.blizzard.com
 
 # onedrive
 #live.com
