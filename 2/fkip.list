@@ -65,4 +65,4 @@
 +.speedtest.cros.wr.pvp.net
 
 # 6. 其他特定服务
-resolver1.opendns.com
+#resolver1.opendns.com
