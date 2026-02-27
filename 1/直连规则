@@ -12,7 +12,7 @@
 +.nfsqttt.us
 
 # 战雷
-+.chat.*.warthunder.com
+chat-*.warthunder.com
 #+.char-*-*-*-*.warthunder.com
 +.forum.warthunder.com
 +.forum-*-cdn.warthunder.com
@@ -84,11 +84,11 @@
 
 # ph xv等
 +.*-h.phncdn.com
-#+.ei.phncdn.com
-#+.phncdn.com
-#+.xvideos-cdn.com
-#+.vdownload
-#+.xhcdn.com
++.ei.phncdn.com
++.phncdn.com
++.xvideos-cdn.com
++.vdownload.com
++.xhcdn.com
 #ahcdn
 #ukdevilz
 #+.100c9n4.ukdevilz.com
