@@ -5,36 +5,33 @@
 
 
 #challenges.cloudflare
-+.download.nvidia.com
-+.tpb.proxyninja.org
-+.git.imee.me
-+.nfsqttt.cn
-+.nfsqttt.us
+DOMAIN-SUFFIX,download.nvidia.com
+DOMAIN-SUFFIX,tpb.proxyninja.org
+DOMAIN-SUFFIX,git.imee.me
+DOMAIN-WILDCARD,nfsqttt.*
 
 # 战雷
-chat-*.warthunder.com
-#+.char-*-*-*-*.warthunder.com
-+.forum.warthunder.com
-+.forum-*-cdn.warthunder.com
-+.gaijin.net
-+.gaijin.com
-+.client-stats.gaijin.net
-+.client-stats.warthunder.com
+DOMAIN-WILDCARD,chat-*.warthunder.com
+#DOMAIN-WILDCARD,char-*.warthunder.com
+DOMAIN-SUFFIX,forum.warthunder.com
+DOMAIN-WILDCARD,forum-*-cdn.warthunder.com
+DOMAIN-WILDCARD,gaijin.*
+DOMAIN-WILDCARD,client-stats.*.net
 ## client-stats.gaijin.net # 自动匹配服务器的参考
 ## client-stats.warthunder.com # 客户端性能数据
 
 
 #三星
-+.samsung.com
-+.galaxyappstore.com
+DOMAIN-SUFFIX,samsung.com
+DOMAIN-SUFFIX,galaxyappstore.com
 
 # 游戏
-+.brokenarrowgame.com
+DOMAIN-SUFFIX,brokenarrowgame.com
 ## 下载
-+.steamcontent.com
-+.download.epicgames.com
-+.cdn.blizzard.com
-+.level*.blizzard.com
+DOMAIN-SUFFIX,steamcontent.com
+DOMAIN-SUFFIX,download.epicgames.com
+DOMAIN-SUFFIX,cdn.blizzard.com
+DOMAIN-WILDCARD,level*.blizzard.com
 ## 暴雪
 #api.blizzard
 #account.battle.net
@@ -42,14 +39,13 @@ chat-*.warthunder.com
 #ingest.gdp.blizzard.com
 
 # onedrive
-#.public.*.files.1drv.com
-#.vizyng.*.files.1drv.com
-#sn.files.1drv.com
-#by.files.1drv.com
+#DOMAIN-WILDCARD,public.*.files.1drv.com
+#DOMAIN-WILDCARD,vizyng.*.files.1drv.com
+#DOMAIN-WILDCARD,*.files.1drv.com
 ##上传-下载域名
-+.my.microsoftpersonalcontent.com
+DOMAIN-SUFFIX,my.microsoftpersonalcontent.com
 ## 观看域名
-#+.-mediap.svc.ms
+#DOMAIN-SUFFIX,-mediap.svc.ms
 
 #twitch
 ##广告流
@@ -83,12 +79,12 @@ chat-*.warthunder.com
 #media.elitebabes
 
 # ph xv等
-+.*-h.phncdn.com
-+.ei.phncdn.com
-+.phncdn.com
-+.xvideos-cdn.com
-+.vdownload.com
-+.xhcdn.com
+DOMAIN-WILDCARD,*-h.phncdn.com
+DOMAIN-SUFFIX,ei.phncdn.com
+DOMAIN-SUFFIX,phncdn.com
+DOMAIN-SUFFIX,xvideos-cdn.com
+DOMAIN-SUFFIX,vdownload.com
+DOMAIN-SUFFIX,xhcdn.com
 #ahcdn
 #ukdevilz
 #+.100c9n4.ukdevilz.com
