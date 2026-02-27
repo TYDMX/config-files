@@ -3,27 +3,25 @@
 #dlrj
 #zlrj
 
-#+.collector.github
++.collector.github
 
 # moco
-#+.proxy.social.supercell
++.proxy.social.supercell
 
 # OneDrive
 #观看地址
-#-mediap.svc.ms
++.-mediap.svc.ms
 
 # WT
-#+.forum.warthunder.com
-#forum-*-cdn.warthunder.com
++.forum.warthunder.com
++.forum-*-cdn.warthunder.com
 
 # ph xv等
-+.*-h.phncdn.com
-#+.vid.xvideos-cdn.com
-#+.pic.xvideos-cdn.com
-#+.vid-mp4.xvideos-cdn.com
-#+.vdownload
-#+.phncdn.com
+#+.*-h.phncdn.com
 #+.ei.phncdn.com
+#+.phncdn.com
+#+.xvideos-cdn.com
+#+.vdownload
 #+.xhcdn.com
 #ahcdn
 #ukdevilz
