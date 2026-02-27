@@ -180,10 +180,10 @@ function main(config) {
         // --- 【主要策略组】 ---
         { name: "🚀 节点选择", type: "select", proxies: ["🖥️ 服务节点", "🎯 全球直连", ...自选节点池], icon: 图标库 + "Static.png" },
         { name: "🖥️ 服务节点", type: "select", proxies: 故转节点池, icon: 图标库 + "ULB.png" },
-        { name: "🇭🇰 香港故转", type: "fallback", proxies: 香港故转池, hidden: true, interval: 80, icon: 图标库 + "Hong_Kong.png", lazy: true },
-        { name: "🇸🇬 狮城故转", type: "fallback", proxies: 狮城故转池, hidden: true, interval: 80, icon: 图标库 + "Singapore.png", lazy: true },
-        { name: "🇺🇸 美国故转", type: "fallback", proxies: 美国故转池, hidden: true, interval: 80, icon: 图标库 + "United_States.png", lazy: true },
-        { name: "🇯🇵 日本故转", type: "fallback", proxies: 日本故转池, hidden: true, interval: 80, icon: 图标库 + "Japan.png", lazy: true },
+        { name: "🇭🇰 香港故转", type: "fallback", proxies: 香港故转池, hidden: true, interval: 73, icon: 图标库 + "Hong_Kong.png", lazy: false },
+        { name: "🇸🇬 狮城故转", type: "fallback", proxies: 狮城故转池, hidden: true, interval: 83, icon: 图标库 + "Singapore.png", lazy: false },
+        { name: "🇺🇸 美国故转", type: "fallback", proxies: 美国故转池, hidden: true, interval: 77, icon: 图标库 + "United_States.png", lazy: false },
+        { name: "🇯🇵 日本故转", type: "fallback", proxies: 日本故转池, hidden: true, interval: 87, icon: 图标库 + "Japan.png", lazy: false },
         // --- 【自选策略组】 ---
         { name: "📹 视频平台", type: "select", proxies: ["🚀 节点选择", "🖥️ 服务节点", ...自选节点池, "🎯 全球直连"], icon: 图标库 + "YouTube.png" },
         { name: "📲 社交媒体", type: "select", proxies: ["🚀 节点选择", "🖥️ 服务节点", ...自选节点池, "🎯 全球直连"], icon: 图标库 + "Twitter.png" },
