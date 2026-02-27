@@ -6,22 +6,15 @@
 
 #challenges.cloudflare
 +.download.nvidia.com
-+.tpb.proxyninja
-#nfsq
++.tpb.proxyninja.org
 +.git.imee.me
-#ipv6
 
 # 战雷
-chat*.warthunder.com
++.chat*.warthunder.com
 #char*.warthunder.com
 +.forum.warthunder.com
-forum-*-cdn.warthunder.com
-## chat*.warthunder.com # 聊天
-## char*.warthunder.com # 角色
-## forum.warthunder.com # 论坛
-
++.forum-*-cdn.warthunder.com
 +.gaijin.net
-#warthunder
 +.client-stats.gaijin.net
 +.client-stats.warthunder.com
 ## client-stats.gaijin.net # 自动匹配服务器的参考
@@ -30,7 +23,6 @@ forum-*-cdn.warthunder.com
 
 #三星
 +.samsung.com
-+.samsungcloud.com
 +.galaxyappstore.com
 
 # 游戏
@@ -38,8 +30,8 @@ forum-*-cdn.warthunder.com
 ## 下载
 +.steamcontent.com
 +.download.epicgames.com
-#kr.cdn.blizzard.com
-#level3.blizzard.com
++.cdn.blizzard.com
++.level*.blizzard.com
 ## 暴雪
 #api.blizzard
 #account.battle.net
@@ -47,21 +39,14 @@ forum-*-cdn.warthunder.com
 #ingest.gdp.blizzard.com
 
 # onedrive
-#live.com
-#office.com
-#office.net
-#msn.com
-#storage.live
-#1drv
-#.public.sn.files.1drv.com
-#.public.by.files.1drv.com
-#.vizyng.sn.files.1drv.com
-#.vizyng.by.files.1drv.com
+#.public.*.files.1drv.com
+#.vizyng.*.files.1drv.com
 #sn.files.1drv.com
 #by.files.1drv.com
 ##上传-下载域名
 +.my.microsoftpersonalcontent.com
-## 观看域名tcp://australiaeast1-mediap.svc.ms:443
+## 观看域名
+#+.-mediap.svc.ms
 
 #twitch
 ##广告流
@@ -72,26 +57,23 @@ forum-*-cdn.warthunder.com
 #hls.ttvnw.net
 
 #twitter
-#abs.twimg.com
-#abs-0.twimg.com
-#video.twimg.com
-#video-ft.twimg.com
-#ton.twimg.com
+#+.abs.twimg.com
+#+.abs-*.twimg.com
+#+.video*.twimg.com
+#+.ton.twimg.com
 
 
 # vk
-#sun9
-#sun6
-#vkvd
-#mycdn.me
-#st6
-#userapi.com/impg
+#sun*
+#st*
 #vkuser
-#queuev4.vk
-#okcdn
-# ms.vk.com
-# vkvd84.mycdn.me
-# vkvd415.okcdn.ru:443
+#userapi.com/impg
+#queuev*.vk
+#+.ms.vk.com
+#+.mycdn.me
+#+.vkvd*.mycdn.me
+#+.okcdn.ru
+#+.vkvd*.okcdn.ru
 
 # elite
 #img.strpst
