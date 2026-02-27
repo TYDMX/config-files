@@ -287,7 +287,7 @@ function main(config) {
     function 创建地区分组(地区名, 地区图标, 地区节点池, 地区筛选池, 地区机场组) {
         return [
             { name: `${地区名}节点`, type: "select", use: 地区机场组, filter: 地区节点池, proxies: [`${地区名}自动`, `${地区名}散列`, `${地区名}轮询`, "🈚️ 假节点"], interval: 210, icon: 图标库 + 地区图标 },
-            { name: `${地区名}自动`, type: "url-test", use: 地区机场组, filter: 地区节点池, interval: 90, tolerance: 5, hidden: true, icon: 图标库 + 地区图标 },
+            { name: `${地区名}自动`, type: "url-test", use: 地区机场组, filter: 地区节点池, interval: 90, tolerance: 5, hidden: true, icon: 图标库 + 地区图标, lazy: false },
             { name: `${地区名}散列`, type: "load-balance", strategy: "consistent-hashing", use: 地区机场组, filter: 地区筛选池, interval: 300, hidden: true, icon: 图标库 + 地区图标 },
             { name: `${地区名}轮询`, type: "load-balance", strategy: "round-robin", use: 地区机场组, filter: 地区筛选池, interval: 220, hidden: true, icon: 图标库 + 地区图标 }
         ];
