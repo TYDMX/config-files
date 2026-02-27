@@ -12,8 +12,8 @@
 +.nfsqttt.us
 
 # 战雷
-+.chat*.warthunder.com
-#char*.warthunder.com
++.chat-*.warthunder.com
+#+.char-*.warthunder.com
 +.forum.warthunder.com
 +.forum-*-cdn.warthunder.com
 +.gaijin.net
