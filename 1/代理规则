@@ -3,18 +3,18 @@
 #dlrj
 #zlrj
 
-DOMAIN-SUFFIX,collector.github
+DOMAIN-KEYWORD,collector.github
 #redgifs
 
 # moco
-DOMAIN-SUFFIX,proxy.social.supercell
+DOMAIN-KEYWORD,social.supercell
 
 # OneDrive
 #观看地址
 DOMAIN-SUFFIX,-mediap.svc.ms
 
 # WT
-DOMAIN-WILDCARD,forum.warthunder.com
+DOMAIN-SUFFIX,forum.warthunder.com
 DOMAIN-WILDCARD,forum-*-cdn.warthunder.com
 
 
