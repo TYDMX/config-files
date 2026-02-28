@@ -59,7 +59,7 @@ function main(config) {
         "sniff": {
             "HTTP": { "ports": [80, "8080-8880"], "override-destination": true },
             "TLS": { "ports": [443] },
-            "QUIC": { "ports": [443, 5228, 8443] }
+            "QUIC": { "ports": [443, 5228, 8443, "8080-8880"] }
         },
         "force-domain": ["+.v2ex.com"],
         "skip-domain": ["+.push.apple.com", "Mijia Cloud"],
@@ -79,7 +79,7 @@ function main(config) {
         "mtu": 9000,
         "gso": true,
         "gso-max-size": 65536,
-        "udp-timeout": 300
+        "udp-timeout": 100
     };
 
     // --- 【DNS配置模板】 ---
@@ -87,7 +87,6 @@ function main(config) {
     const 谷歌DOT = ["tls://dns.google"];
     const 谷歌DOH = ["https://dns.google/dns-query#h3=true"];
     const 谷歌QUIC = ["quic://dns.google"];
-
     const cloudflare_IP = ["1.1.1.1"];
     const cloudflare_DOT = ["tls://cloudflare-dns.com"];
     const cloudflare_DOH = ["https://cloudflare-dns.com/dns-query#h3=true"];
@@ -96,7 +95,6 @@ function main(config) {
     const 阿里DOT = ["tls://dns.alidns.com"];
     const 阿里DOH = ["https://dns.alidns.com/dns-query#h3=true"];
     const 阿里QUIC = ["quic://dns.alidns.com"];
-
     const 腾讯IP = ["119.29.29.29"];
     const 腾讯DOT = ["tls://dot.pub"];
     const 腾讯DOH = ["https://doh.pub/dns-query#h3=true", "https://sm2.doh.pub/dns-query#h3=true"];
@@ -140,9 +138,9 @@ function main(config) {
         "nameserver-policy": {
             "RULE-SET,private,自用直连规则": DNS国内,
             "RULE-SET,自用代理规则": DNS国外,
-            "geosite:apple,microsoft,google@cn,googlefcm": DNS国内,
-            "geosite:gfw,geolocation-!cn": DNS国外,
+            "geosite:microsoft,google@cn,googlefcm": DNS国内,
             "geosite:cn,geolocation-cn": DNS国内,
+            "geosite:gfw,geolocation-!cn": DNS国外,
         },
     };
 
@@ -181,10 +179,10 @@ function main(config) {
         // --- 【主要策略组】 ---
         { name: "🚀 节点选择", type: "select", proxies: ["🖥️ 服务节点", "🎯 全球直连", ...自选节点池], icon: 图标库 + "Static.png" },
         { name: "🖥️ 服务节点", type: "select", proxies: 故转节点池, icon: 图标库 + "ULB.png" },
-        { name: "🇭🇰 香港故转", type: "fallback", proxies: 香港故转池, hidden: true, interval: 73, icon: 图标库 + "Hong_Kong.png" },
-        { name: "🇸🇬 狮城故转", type: "fallback", proxies: 狮城故转池, hidden: true, interval: 83, icon: 图标库 + "Singapore.png" },
-        { name: "🇺🇸 美国故转", type: "fallback", proxies: 美国故转池, hidden: true, interval: 77, icon: 图标库 + "United_States.png" },
-        { name: "🇯🇵 日本故转", type: "fallback", proxies: 日本故转池, hidden: true, interval: 87, icon: 图标库 + "Japan.png" },
+        { name: "🇭🇰 香港故转", type: "fallback", proxies: 香港故转池, hidden: true, icon: 图标库 + "Hong_Kong.png" },
+        { name: "🇸🇬 狮城故转", type: "fallback", proxies: 狮城故转池, hidden: true, icon: 图标库 + "Singapore.png" },
+        { name: "🇺🇸 美国故转", type: "fallback", proxies: 美国故转池, hidden: true, icon: 图标库 + "United_States.png" },
+        { name: "🇯🇵 日本故转", type: "fallback", proxies: 日本故转池, hidden: true, icon: 图标库 + "Japan.png" },
         // --- 【自选策略组】 ---
         { name: "📹 视频平台", type: "select", proxies: ["🚀 节点选择", "🖥️ 服务节点", ...自选节点池, "🎯 全球直连"], icon: 图标库 + "YouTube.png" },
         { name: "📲 社交媒体", type: "select", proxies: ["🚀 节点选择", "🖥️ 服务节点", ...自选节点池, "🎯 全球直连"], icon: 图标库 + "Twitter.png" },
@@ -199,7 +197,6 @@ function main(config) {
         { name: "🎮 game@CN", type: "fallback", proxies: ["🎯 全球直连"], icon: 图标库 + "Game.png", hidden: true },
         { name: "🪟 Bing", type: "fallback", proxies: ["🚀 节点选择"], icon: 图标库 + "Microsoft.png", hidden: true },
         { name: "🇬 谷歌@CN", type: "fallback", proxies: ["🎯 全球直连"], icon: 图标库 + "Google_Search.png", hidden: true },
-        { name: "🍎 Apple", type: "fallback", proxies: ["🎯 全球直连"], icon: 图标库 + "Apple.png", hidden: true },
         // --- 【代理策略组】 ---
         { name: "🪜 代理域名", type: "fallback", proxies: ["🚀 节点选择"], hidden: true },
         { name: "🌐 自用代理", type: "fallback", proxies: ["🚀 节点选择"], hidden: true },
@@ -235,12 +232,12 @@ function main(config) {
     ];
 
     // --- 【规则组定义锚】 ---
-    const ip_mrs = { type: "http", interval: 86400, behavior: "ipcidr", format: "mrs" };
-    const classical_text = { type: "http", interval: 86400, behavior: "classical", format: "text" };
-    const classical_yaml = { type: "http", interval: 86400, behavior: "classical", format: "yaml" };
-    const domain_mrs = { type: "http", interval: 86400, behavior: "domain", format: "mrs" };
-    const domain_yaml = { type: "http", interval: 86400, behavior: "domain", format: "yaml" };
-    const domain_text = { type: "http", interval: 86400, behavior: "domain", format: "text" };
+    const ip_mrs = { type: "http", interval: 21600, behavior: "ipcidr", format: "mrs" };
+    const classical_text = { type: "http", interval: 21600, behavior: "classical", format: "text" };
+    const classical_yaml = { type: "http", interval: 21600, behavior: "classical", format: "yaml" };
+    const domain_mrs = { type: "http", interval: 21600, behavior: "domain", format: "mrs" };
+    const domain_yaml = { type: "http", interval: 21600, behavior: "domain", format: "yaml" };
+    const domain_text = { type: "http", interval: 21600, behavior: "domain", format: "text" };
     // --- 【外部规则组】 ---
     config["rule-providers"] = {
         "自用直连规则": { ...classical_text, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/1/直连规则" },
@@ -264,7 +261,6 @@ function main(config) {
         "PROCESS-NAME,com.samsung.android.packageinstaller,🚫 广告拦截",
         "PROCESS-NAME,com.google.android.googlequicksearchbox,🤖 人工智能",
         "GEOSITE,ookla-speedtest,📈 测速地址",
-        "GEOSITE,apple,🍎 Apple",
         "GEOSITE,category-games-cn,🎮 game@CN",
         "OR,((GEOSITE,google@cn),(GEOSITE,googlefcm)),🇬 谷歌@CN",
         "GEOSITE,category-games-!cn,🎮 game",
