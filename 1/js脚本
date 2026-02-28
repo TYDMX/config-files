@@ -20,8 +20,8 @@ function main(config) {
                     "health-check": { 
                         "enable": true, 
                         "url": "https://cp.cloudflare.com/generate_204", 
-                        "interval": 21600, 
-                        "lazy": false, 
+                        "interval": 60, 
+                        "lazy": true, 
                         "method": "HEAD", 
                     },
                 };
@@ -181,10 +181,10 @@ function main(config) {
         // --- 【主要策略组】 ---
         { name: "🚀 节点选择", type: "select", proxies: ["🖥️ 服务节点", "🎯 全球直连", ...自选节点池], icon: 图标库 + "Static.png" },
         { name: "🖥️ 服务节点", type: "select", proxies: 故转节点池, icon: 图标库 + "ULB.png" },
-        { name: "🇭🇰 香港故转", type: "fallback", proxies: 香港故转池, hidden: true, interval: 73, icon: 图标库 + "Hong_Kong.png", lazy: true },
-        { name: "🇸🇬 狮城故转", type: "fallback", proxies: 狮城故转池, hidden: true, interval: 83, icon: 图标库 + "Singapore.png", lazy: true },
-        { name: "🇺🇸 美国故转", type: "fallback", proxies: 美国故转池, hidden: true, interval: 77, icon: 图标库 + "United_States.png", lazy: true },
-        { name: "🇯🇵 日本故转", type: "fallback", proxies: 日本故转池, hidden: true, interval: 87, icon: 图标库 + "Japan.png", lazy: true },
+        { name: "🇭🇰 香港故转", type: "fallback", proxies: 香港故转池, hidden: true, interval: 73, icon: 图标库 + "Hong_Kong.png" },
+        { name: "🇸🇬 狮城故转", type: "fallback", proxies: 狮城故转池, hidden: true, interval: 83, icon: 图标库 + "Singapore.png" },
+        { name: "🇺🇸 美国故转", type: "fallback", proxies: 美国故转池, hidden: true, interval: 77, icon: 图标库 + "United_States.png" },
+        { name: "🇯🇵 日本故转", type: "fallback", proxies: 日本故转池, hidden: true, interval: 87, icon: 图标库 + "Japan.png" },
         // --- 【自选策略组】 ---
         { name: "📹 视频平台", type: "select", proxies: ["🚀 节点选择", "🖥️ 服务节点", ...自选节点池, "🎯 全球直连"], icon: 图标库 + "YouTube.png" },
         { name: "📲 社交媒体", type: "select", proxies: ["🚀 节点选择", "🖥️ 服务节点", ...自选节点池, "🎯 全球直连"], icon: 图标库 + "Twitter.png" },
@@ -288,9 +288,9 @@ function main(config) {
     function 创建地区分组(地区名, 地区图标, 地区节点池, 地区筛选池, 地区机场组) {
         return [
             { name: `${地区名}节点`, type: "select", use: 地区机场组, filter: 地区节点池, proxies: [`${地区名}自动`, `${地区名}散列`, `${地区名}轮询`, "🈚️ 假节点"], icon: 图标库 + 地区图标 },
-            { name: `${地区名}自动`, type: "url-test", use: 地区机场组, filter: 地区节点池, interval: 60, hidden: true, icon: 图标库 + 地区图标, lazy: false },
-            { name: `${地区名}散列`, type: "load-balance", strategy: "consistent-hashing", use: 地区机场组, filter: 地区筛选池, interval: 300, hidden: true, icon: 图标库 + 地区图标 },
-            { name: `${地区名}轮询`, type: "load-balance", strategy: "round-robin", use: 地区机场组, filter: 地区筛选池, interval: 220, hidden: true, icon: 图标库 + 地区图标 }
+            { name: `${地区名}自动`, type: "url-test", use: 地区机场组, filter: 地区节点池, hidden: true, icon: 图标库 + 地区图标 },
+            { name: `${地区名}散列`, type: "load-balance", strategy: "consistent-hashing", use: 地区机场组, filter: 地区筛选池, hidden: true, icon: 图标库 + 地区图标 },
+            { name: `${地区名}轮询`, type: "load-balance", strategy: "round-robin", use: 地区机场组, filter: 地区筛选池, hidden: true, icon: 图标库 + 地区图标 }
         ];
     }
     
