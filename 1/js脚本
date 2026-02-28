@@ -102,7 +102,7 @@ function main(config) {
     const 腾讯DOH = ["https://doh.pub/dns-query#h3=true", "https://sm2.doh.pub/dns-query#h3=true"];
 
     const DNS国外 = [...谷歌DOT, ...谷歌DOH, ...cloudflare_DOT, ...cloudflare_DOH];
-    const DNS国内 = [...阿里DOT, ...阿里DOH, ...阿里QUIC, ...腾讯DOT, ...腾讯DOH];
+    const DNS国内 = [...阿里DOT, ...阿里DOH, ...阿里QUIC, ...腾讯DOT, ...腾讯DOH, ...cloudflare_DOT, ...cloudflare_DOH];
 
     config["hosts"] = {
         "dns.google": 谷歌IP,
@@ -118,7 +118,7 @@ function main(config) {
         "enable": true,
         "ipv6": true,
         "prefer-h3": false,
-        "respect-rules": true,
+        "respect-rules": false,
         "cache-algorithm": "arc",
         "listen": "127.0.0.1:1053",
         "enhanced-mode": "fake-ip",
@@ -141,17 +141,16 @@ function main(config) {
         "proxy-server-nameserver": [
             "tls://223.5.5.5", 
             "tls://119.29.29.29", 
-            "tls://8.8.8.8", 
             "tls://1.1.1.1",
         ],
         "nameserver": DNS国内,
-        "nameserver-policy": {
-            "geosite,private": DNS国内,
-            "RULE-SET,自用代理规则": DNS国外,
-            "geosite:microsoft,google@cn,googlefcm": DNS国内,
-            "geosite:cn,geolocation-cn": DNS国内,
-            "geosite:gfw,geolocation-!cn": DNS国外,
-        },
+        //"nameserver-policy": {
+            //"geosite,private": DNS国内,
+            //"RULE-SET,自用代理规则": DNS国外,
+            //"geosite:microsoft,google@cn,googlefcm": DNS国内,
+            //"geosite:cn,geolocation-cn": DNS国内,
+            //"geosite:gfw,geolocation-!cn": DNS国外,
+        //},
     };
 
     // --- 【5. 地理数据与模型】 ---
