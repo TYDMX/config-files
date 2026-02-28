@@ -133,9 +133,17 @@ function main(config) {
         ],
         "use-hosts": false,
         "use-system-hosts": false,
-        "default-nameserver": ["tls://223.5.5.5", "tls://119.29.29.29"],
+        "default-nameserver": [
+            "tls://223.5.5.5", 
+            "tls://119.29.29.29",
+        ],
         "direct-nameserver": DNS国内,
-        "proxy-server-nameserver": ["tls://223.5.5.5", "tls://119.29.29.29", "tls://8.8.8.8", "tls://1.1.1.1"],
+        "proxy-server-nameserver": [
+            "tls://223.5.5.5", 
+            "tls://119.29.29.29", 
+            "tls://8.8.8.8", 
+            "tls://1.1.1.1",
+        ],
         "nameserver": DNS国内,
         "nameserver-policy": {
             "geosite,private": DNS国内,
