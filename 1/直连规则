@@ -56,10 +56,10 @@ DOMAIN-SUFFIX,my.microsoftpersonalcontent.com
 #hls.ttvnw.net
 
 #twitter
-#+.abs.twimg.com
-#+.abs-*.twimg.com
-#+.video*.twimg.com
-#+.ton.twimg.com
+DOMAIN-SUFFIX,abs*.twimg.com
+#DOMAIN-WILDCARD,abs-*.twimg.com
+DOMAIN-WILDCARD,video*.twimg.com
+DOMAIN-WILDCARD,ton.twimg.com
 
 
 # vk
