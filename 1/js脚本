@@ -115,8 +115,8 @@ function main(config) {
     config["dns"] = {
         "enable": true,
         "ipv6": true,
-        "prefer-h3": true,
-        "respect-rules": false,
+        "prefer-h3": false,
+        "respect-rules": true,
         "cache-algorithm": "arc",
         "listen": "127.0.0.1:1053",
         "enhanced-mode": "fake-ip",
@@ -135,13 +135,13 @@ function main(config) {
         "direct-nameserver": DNS国内,
         "proxy-server-nameserver": DNS国内,
         "nameserver": DNS国内,
-        //"nameserver-policy": {
-            //"RULE-SET,private,自用直连规则": DNS国内,
-            //"RULE-SET,自用代理规则": DNS国外,
-            //"geosite:microsoft,google@cn,googlefcm": DNS国内,
-            //"geosite:cn,geolocation-cn": DNS国内,
-            //"geosite:gfw,geolocation-!cn": DNS国外,
-        //},
+        "nameserver-policy": {
+            "RULE-SET,private,自用直连规则": DNS国内,
+            "RULE-SET,自用代理规则": DNS国外,
+            "geosite:microsoft,google@cn,googlefcm": DNS国内,
+            "geosite:cn,geolocation-cn": DNS国内,
+            "geosite:gfw,geolocation-!cn": DNS国外,
+        },
     };
 
     // --- 【5. 地理数据与模型】 ---
