@@ -14,7 +14,7 @@ cfw-latency-url: https://cp.cloudflare.com/generate_204
   tfo: true # 启用 TCP Fast Open（TFO），可以减少 TCP 握手时间
   #filter: *filter
   exclude-filter: *exclude-filter
-  exclude-type: "http|ss"
+  exclude-type: "http"
   health-check:
     enable: true
     url: https://cp.cloudflare.com/generate_204
@@ -79,7 +79,7 @@ proxy-providers:
   dmit节点池 🪩:
     <<: *template
     interval: 3600
-    url: "https://proxypool.dmit.dpdns.org/clash/proxies?type=vmess,vless"
+    url: "https://proxypool.dmit.dpdns.org/clash/proxies?nstream=netflix,disney"
     override:
       additional-prefix: "🪩 "
       #additional-suffix: " 🪩"
