@@ -21,6 +21,8 @@ function main(config) {
                         "enable": true, 
                         "url": "https://cp.cloudflare.com/generate_204", 
                         "interval": 60, 
+                        "timeout": 10000, 
+                        "consecutive-failures": 3, 
                         "lazy": true, 
                         "method": "HEAD", 
                     },
