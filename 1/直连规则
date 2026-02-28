@@ -56,7 +56,7 @@ DOMAIN-SUFFIX,my.microsoftpersonalcontent.com
 #hls.ttvnw.net
 
 #twitter
-DOMAIN-SUFFIX,abs*.twimg.com
+DOMAIN-WILDCARD,abs*.twimg.com
 #DOMAIN-WILDCARD,abs-*.twimg.com
 DOMAIN-WILDCARD,video*.twimg.com
 DOMAIN-WILDCARD,ton.twimg.com
