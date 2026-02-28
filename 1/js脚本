@@ -20,9 +20,9 @@ function main(config) {
                     "health-check": { 
                         "enable": true, 
                         "url": "https://cp.cloudflare.com/generate_204", 
-                        "interval": 60, 
-                        "timeout": 2000, 
-                        "consecutive-failures": 2, 
+                        "interval": 120, 
+                        "timeout": 5000, 
+                        "consecutive-failures": 3, 
                         "lazy": true, 
                         "method": "HEAD", 
                     },
@@ -81,7 +81,7 @@ function main(config) {
         "mtu": 9000,
         "gso": true,
         "gso-max-size": 65536,
-        "udp-timeout": 100
+        "udp-timeout": 300
     };
 
     // --- 【DNS配置模板】 ---
