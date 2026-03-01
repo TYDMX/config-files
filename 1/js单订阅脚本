@@ -6,13 +6,15 @@ function main(config) {
     // --- 【配置外部订阅】 ---
     const 节点黑名单 = "(?i)(China|china|CHINA|🇨🇳|高倍|×10|10M|节点|过滤|剩余|流量|距离|下次|重置|重新|订阅|导入|套餐|到期|跳转|域名|请勿|邀请|好友|关注|频道|收费|就说明|被骗|续费|更新|地址|官网|下载|群组|永久|长期|中继|更换|协议|软件|教程|Lite|ali)";
 
-    const 原始节点 = config["proxies"] || [];
-    config["proxies"] = [
-        ...原始节点,
-        { name: "🎯 全球直连", type: "direct", udp: true },
-        { name: "🈚️ 假节点", type: "reject" },
-        { name: "🚫 阻止", type: "reject" }
-    ];
+const 原始订阅 = config["proxies"] || [];
+const 原始节点 = 原始订阅.map(p => p.name);
+
+config["proxies"] = [
+    ...原始订阅,
+    { name: "🎯 全球直连", type: "direct", udp: true },
+    { name: "🈚️ 假节点", type: "reject" },
+    { name: "🚫 阻止", type: "reject" }
+];
 
     // --- 【1. 全局基础配置】 ---
     config["log-level"] = "info";
@@ -189,13 +191,13 @@ function main(config) {
         { name: "🚫 广告拦截", type: "fallback", proxies: ["🚫 阻止"], hidden: true },
         { name: "🚫 追踪拦截", type: "fallback", proxies: ["🚫 阻止"], hidden: true },
         // --- 【生成地区组】 ---
-        ...创建地区分组("🇭🇰 香港", "Hong_Kong.png", `^${香港筛选}`, 全部订阅),
-        ...创建地区分组("🇸🇬 狮城", "Singapore.png", `^${狮城筛选}`, 全部订阅),
-        ...创建地区分组("🇺🇸 美国", "United_States.png", `^${美国筛选}`, 全部订阅),
-        ...创建地区分组("🇯🇵 日本", "Japan.png", `^${日本筛选}`, 全部订阅),
-        ...创建地区分组("🇹🇼 台湾", "Taiwan.png", `^${台湾筛选}`, 全部订阅),
-        ...创建地区分组("🇰🇷 韩国", "Korea.png", `^${韩国筛选}`, 全部订阅),
-        ...创建地区分组("🇪🇺 欧盟", "European_Union.png", `^${欧盟筛选}`, 全部订阅),
+        ...创建地区分组("🇭🇰 香港", "Hong_Kong.png", `^${香港筛选}`),
+        ...创建地区分组("🇸🇬 狮城", "Singapore.png", `^${狮城筛选}`),
+        ...创建地区分组("🇺🇸 美国", "United_States.png", `^${美国筛选}`),
+        ...创建地区分组("🇯🇵 日本", "Japan.png", `^${日本筛选}`),
+        ...创建地区分组("🇹🇼 台湾", "Taiwan.png", `^${台湾筛选}`),
+        ...创建地区分组("🇰🇷 韩国", "Korea.png", `^${韩国筛选}`),
+        ...创建地区分组("🇪🇺 欧盟", "European_Union.png", `^${欧盟筛选}`),
         // --- 【其他策略组】 ---
         { name: "🌐 冷门自选", type: "select", filter: `${冷门筛选}`, proxies: ["🈚️ 假节点, ...原始节点"], icon: 图标库 + "Europe_Map.png" },
         { name: "🌐 全部节点", type: "select", proxies: ["🈚️ 假节点, ...原始节点"], icon: 图标库 + "Clubhouse.png" },
