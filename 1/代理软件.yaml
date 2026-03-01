@@ -1,29 +1,21 @@
-#dlgz
-#zlgz
-#   dlrj
-#zlrj
+payload:
+  #dlgz
+  #zlgz
+  #    dlrj
+  #zlrj
 
-
-#软件
-## flodersync
-PROCESS-NAME,dk.tacit.android.foldersync.lite
-## svchost
-#PROCESS-NAME,svchost.exe
-## 三星软件安装
-#PROCESS-NAME,com.samsung.android.packageinstaller
-
-#游戏
-PROCESS-NAME,aces.exe
-#PROCESS-NAME,com.supercell.moco
-#PROCESS-NAME,com.blizzard.arc
-
-#谷歌全家桶
-## Google app
-#PROCESS-NAME,com.google.android.apps.bard
-## 圈搜
-#PROCESS-NAME,com.google.android.googlequicksearchbox
-## Gemini
-#PROCESS-NAME,com.google.bard
-## play商店
-#PROCESS-NAME,com.android.vending
+  #软件
+  - PROCESS-NAME,dk.tacit.android.foldersync.lite  ## flodersync
+  #PROCESS-NAME,svchost.exe  ## svchost
+  #PROCESS-NAME,com.samsung.android.packageinstaller  ## 三星软件安装
+  ##谷歌全家桶
+  #PROCESS-NAME,com.google.android.apps.bard  ## Google app
+  #PROCESS-NAME,com.google.android.googlequicksearchbox  ## 圈搜
+  #PROCESS-NAME,com.google.bard  ## Gemini
+  #PROCESS-NAME,com.android.vending  ## play商店
+  
+  #游戏
+  - PROCESS-NAME,aces.exe
+  #PROCESS-NAME,com.supercell.moco
+  #PROCESS-NAME,com.blizzard.arc
 
