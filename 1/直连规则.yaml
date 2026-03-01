@@ -53,7 +53,7 @@ payload:
   # - DOMAIN-WILDCARD,abs-*.twimg.com
   # - DOMAIN-WILDCARD,pbs*.twimg.com
   #- DOMAIN-WILDCARD,video*.twimg.com
-  #- DOMAIN-WILDCARD,ton.twimg.com
+  - DOMAIN-WILDCARD,ton.twimg.com
 
   # vk
   #sun*
