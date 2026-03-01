@@ -1,0 +1,85 @@
+payload:
+  #dlgz
+  #zlgz
+  #  dlrj
+  #zlrj
+
+
+  #challenges.cloudflare
+  - DOMAIN-SUFFIX,download.nvidia.com
+  - DOMAIN-SUFFIX,tpb.proxyninja.org
+  - DOMAIN-SUFFIX,git.imee.me
+  - DOMAIN-WILDCARD,nfsq*.*
+
+  # 战雷
+  - DOMAIN-WILDCARD,chat-*.warthunder.com # 聊天
+  # - DOMAIN-WILDCARD,char-*.warthunder.com # 角色
+  - DOMAIN-SUFFIX,forum.warthunder.com # 论坛
+  - DOMAIN-WILDCARD,forum-*-cdn.warthunder.com # 论坛
+  - DOMAIN-WILDCARD,gaijin.*
+  - DOMAIN-WILDCARD,client-stats.*.net ## client-stats.gaijin.net # 自动匹配服务器的参考 ## client-stats.warthunder.com # 客户端性能数据
+
+  #三星
+  - DOMAIN-SUFFIX,samsung.com
+  - DOMAIN-SUFFIX,galaxyappstore.com
+
+  # 游戏
+  - DOMAIN-SUFFIX,brokenarrowgame.com
+  - DOMAIN-SUFFIX,steamcontent.com ## 下载
+  - DOMAIN-SUFFIX,download.epicgames.com ## 下载
+  - DOMAIN-SUFFIX,cdn.blizzard.com ## 下载
+  - DOMAIN-WILDCARD,level*.blizzard.com ## 下载
+  ## 暴雪
+  #api.blizzard
+  #account.battle.net
+  #battle.net
+  #ingest.gdp.blizzard.com
+
+  # onedrive
+  # - DOMAIN-WILDCARD,public.*.files.1drv.com
+  # - DOMAIN-WILDCARD,vizyng.*.files.1drv.com
+  # - DOMAIN-WILDCARD,*.files.1drv.com
+  - DOMAIN-SUFFIX,my.microsoftpersonalcontent.com  ##上传-下载域名
+  #DOMAIN-SUFFIX,-mediap.svc.ms  ## 观看域名
+
+  #twitch
+  #video-weaver  ##广告流
+  #video-edge  ##视频流
+  #abs.hls.ttvnw.net
+  #hls.ttvnw.net
+
+  #推特
+  # - DOMAIN-WILDCARD,abs*.twimg.com
+  # - DOMAIN-WILDCARD,abs-*.twimg.com
+  # - DOMAIN-WILDCARD,pbs*.twimg.com
+  - DOMAIN-WILDCARD,video*.twimg.com
+  - DOMAIN-WILDCARD,ton.twimg.com
+
+  # vk
+  #sun*
+  #st*
+  #vkuser
+  #userapi.com/impg
+  #queuev*.vk
+  #+.ms.vk.com
+  #+.mycdn.me
+  #+.vkvd*.mycdn.me
+  #+.okcdn.ru
+  #+.vkvd*.okcdn.ru
+
+  # elite
+  #img.strpst
+  #media.elitebabes
+
+  # ph xv等
+  - DOMAIN-WILDCARD,*-h.phncdn.com # ph
+  - DOMAIN-SUFFIX,ei.phncdn.com # ph
+  - DOMAIN-SUFFIX,phncdn.com # ph
+  - DOMAIN-SUFFIX,xvideos-cdn.com # xv
+  - DOMAIN-SUFFIX,vdownload.com # xv
+  - DOMAIN-SUFFIX,xhcdn.com # xh
+  #ahcdn
+  #ukdevilz
+  #+.100c9n4.ukdevilz.com
+  #+.cdn.pvvstream.pro
+  #+.cdn-pr.pvvstream.pro
