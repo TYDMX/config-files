@@ -72,12 +72,12 @@ payload:
   #media.elitebabes
 
   # ph xv等
-  - DOMAIN-WILDCARD,*-h.phncdn.com # ph
-  - DOMAIN-SUFFIX,ei.phncdn.com # ph
-  - DOMAIN-SUFFIX,phncdn.com # ph
-  - DOMAIN-SUFFIX,xvideos-cdn.com # xv
-  - DOMAIN-SUFFIX,vdownload.com # xv
-  - DOMAIN-SUFFIX,xhcdn.com # xh
+  #- DOMAIN-WILDCARD,*-h.phncdn.com # ph
+  #- DOMAIN-SUFFIX,ei.phncdn.com # ph
+  #- DOMAIN-SUFFIX,phncdn.com # ph
+  #- DOMAIN-SUFFIX,xvideos-cdn.com # xv
+  #- DOMAIN-SUFFIX,vdownload.com # xv
+  #- DOMAIN-SUFFIX,xhcdn.com # xh
   #ahcdn
   #ukdevilz
   #+.100c9n4.ukdevilz.com
