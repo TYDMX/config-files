@@ -1,21 +1,16 @@
 //https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/1/js单订阅脚本
-
 function main(config) {
     const 图标库 = "https://github.com/Koolson/Qure/raw/master/IconSet/Color/";
-
     // --- 【配置外部订阅】 ---
     const 节点黑名单 = "(?i)(China|china|CHINA|🇨🇳|高倍|×10|10M|节点|过滤|剩余|流量|距离|下次|重置|重新|订阅|导入|套餐|到期|跳转|域名|请勿|邀请|好友|关注|频道|收费|就说明|被骗|续费|更新|地址|官网|下载|群组|永久|长期|中继|更换|协议|软件|教程|Lite|ali)";
-
 const 原始订阅 = config["proxies"] || [];
 const 原始节点 = 原始订阅.map(p => p.name);
-
 config["proxies"] = [
     ...原始订阅,
     { name: "🎯 全球直连", type: "direct", udp: true },
     { name: "🈚️ 假节点", type: "reject" },
     { name: "🚫 阻止", type: "reject" }
 ];
-
     // --- 【1. 全局基础配置】 ---
     config["log-level"] = "info";
     config["port"] = 7890;
@@ -29,14 +24,13 @@ config["proxies"] = [
     config["external-controller"] = "127.0.0.1:9090";
     config["secret"] = "12345678";
     config["find-process-mode"] = "strict";
-    config["profile"] = { 
-        "store-selected": true, 
+    config["profile"] = {
+        "store-selected": true,
         "store-fake-ip": true
     };
     config["experimental"] = {
         "quic-go-disable-gso": true
     };
-
     // --- 【2. 流量嗅探 (Sniffer)】 ---
     config["sniffer"] = {
         "enable": true,
@@ -52,7 +46,6 @@ config["proxies"] = [
         "skip-src-address": ["192.168.0.0/16"],
         "skip-dst-address": ["192.168.0.0/16"]
     };
-
     // --- 【3. TUN 模式配置】 ---
     config["tun"] = {
         "enable": true,
@@ -67,7 +60,6 @@ config["proxies"] = [
         "gso-max-size": 65536,
         "udp-timeout": 300
     };
-
     // --- 【DNS配置模板】 ---
     const 谷歌IP = ["8.8.8.8"];
     const 谷歌DOT = ["tls://dns.google"];
@@ -76,7 +68,6 @@ config["proxies"] = [
     const cloudflare_IP = ["1.1.1.1"];
     const cloudflare_DOT = ["tls://cloudflare-dns.com"];
     const cloudflare_DOH = ["https://cloudflare-dns.com/dns-query#h3=true"];
-
     const 阿里IP = ["223.5.5.5"];
     const 阿里DOT = ["tls://dns.alidns.com"];
     const 阿里DOH = ["https://dns.alidns.com/dns-query#h3=true"];
@@ -84,10 +75,8 @@ config["proxies"] = [
     const 腾讯IP = ["119.29.29.29"];
     const 腾讯DOT = ["tls://dot.pub"];
     const 腾讯DOH = ["https://doh.pub/dns-query#h3=true", "https://sm2.doh.pub/dns-query#h3=true"];
-
     const DNS国外 = [...谷歌DOT, ...谷歌DOH, ...cloudflare_DOT, ...cloudflare_DOH];
     const DNS国内 = [...阿里DOT, ...阿里DOH, ...阿里QUIC, ...腾讯DOT, ...腾讯DOH];
-
     config["hosts"] = {
         "dns.google": 谷歌IP,
         "dns.cloudflare.com": cloudflare_IP,
@@ -96,7 +85,6 @@ config["proxies"] = [
         "doh.pub": 腾讯IP,
         "dot.pub": 腾讯IP,
     };
-
     // --- 【4. DNS 模式配置】 ---
     config["dns"] = {
         "enable": true,
@@ -118,13 +106,13 @@ config["proxies"] = [
         "use-hosts": true,
         "use-system-hosts": false,
         "default-nameserver": [
-            "tls://223.5.5.5", 
+            "tls://223.5.5.5",
             "tls://119.29.29.29",
         ],
         "direct-nameserver": DNS国内,
         "proxy-server-nameserver": [
-            "tls://223.5.5.5", 
-            "tls://119.29.29.29", 
+            "tls://223.5.5.5",
+            "tls://119.29.29.29",
             "tls://1.1.1.1",
         ],
         "nameserver": DNS国内,
@@ -136,7 +124,6 @@ config["proxies"] = [
             "geosite:gfw,geolocation-!cn": DNS国外,
         },
     };
-
     // --- 【节点筛选正则表达式】 ---
     const 香港筛选 = '(?=.*(?i)(港|🇭🇰|HK|Hong|HKG))';
     const 狮城筛选 = '(?=.*(?i)(坡|🇸🇬|SG|Sing|SIN|XSP))';
@@ -191,20 +178,18 @@ config["proxies"] = [
         { name: "🚫 广告拦截", type: "fallback", proxies: ["🚫 阻止"], hidden: true },
         { name: "🚫 追踪拦截", type: "fallback", proxies: ["🚫 阻止"], hidden: true },
         // --- 【生成地区组】 ---
-        ...创建地区分组("🇭🇰 香港", "Hong_Kong.png", 香港筛选),
-        ...创建地区分组("🇸🇬 狮城", "Singapore.png", 狮城筛选),
-        ...创建地区分组("🇺🇸 美国", "United_States.png", 美国筛选),
-        ...创建地区分组("🇯🇵 日本", "Japan.png", 日本筛选),
-        ...创建地区分组("🇹🇼 台湾", "Taiwan.png", 台湾筛选),
-        ...创建地区分组("🇰🇷 韩国", "Korea.png", 韩国筛选),
-        ...创建地区分组("🇪🇺 欧盟", "European_Union.png", 欧盟筛选),
+        ...创建地区分组("🇭🇰 香港", "Hong_Kong.png", `^${香港筛选}`),
+        ...创建地区分组("🇸🇬 狮城", "Singapore.png", `^${狮城筛选}`),
+        ...创建地区分组("🇺🇸 美国", "United_States.png", `^${美国筛选}`),
+        ...创建地区分组("🇯🇵 日本", "Japan.png", `^${日本筛选}`),
+        ...创建地区分组("🇹🇼 台湾", "Taiwan.png", `^${台湾筛选}`),
+        ...创建地区分组("🇰🇷 韩国", "Korea.png", `^${韩国筛选}`),
+        ...创建地区分组("🇪🇺 欧盟", "European_Union.png", `^${欧盟筛选}`),
         // --- 【其他策略组】 ---
         { name: "🌐 冷门自选", type: "select", filter: `${冷门筛选}`, proxies: ["🈚️ 假节点", ...原始节点], icon: 图标库 + "Europe_Map.png" },
         { name: "🌐 全部节点", type: "select", proxies: ["🈚️ 假节点", ...原始节点], icon: 图标库 + "Clubhouse.png" },
         { name: "🐟 漏网之鱼", type: "select", proxies: ["🚀 节点选择", "🎯 全球直连", ...原始节点], filter: 节点黑名单, icon: 图标库 + "Final.png" }
     ];
-
-
     // --- 【规则组定义锚】 ---
     const ip_mrs = { type: "http", interval: 21600, behavior: "ipcidr", format: "mrs" };
     const classical_text = { type: "http", interval: 21600, behavior: "classical", format: "text" };
@@ -221,7 +206,6 @@ config["proxies"] = [
         "前置直连规则": { ...classical_text, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/1/前置直连规则" },
         "自用fake-ip-filter": { ...domain_text, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/2/fkip.list" }
     };
-
     // --- 【规则】 ---
     config["rules"] = [
         "OR,((GEOSITE,private),(GEOIP,private)),🔒 私有网络",
@@ -251,7 +235,6 @@ config["proxies"] = [
         "OR,((GEOSITE,gfw),(GEOSITE,geolocation-!cn)),🪜 代理域名",
         "MATCH,🐟 漏网之鱼"
     ];
-
     function 创建地区分组(地区名, 地区图标, 地区节点池) {
         return [
             { name: `${地区名}节点`, type: "select", filter: 地区节点池, proxies: [`${地区名}自动`, `${地区名}散列`, `${地区名}轮询`, "🈚️ 假节点", ...原始节点], icon: 图标库 + 地区图标 },
@@ -260,6 +243,6 @@ config["proxies"] = [
             { name: `${地区名}轮询`, type: "load-balance", strategy: "round-robin", proxies: 原始节点, filter: 地区节点池, hidden: true, icon: 图标库 + 地区图标 }
         ];
     }
-    
+   
     return config;
 }
