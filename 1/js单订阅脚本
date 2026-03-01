@@ -15,11 +15,6 @@ function main(config) {
     ];
     const 全部节点 = 原始节点.map(p => p.name);
 
-
-
-
-  
-
     // --- 【1. 全局基础配置】 ---
     config["log-level"] = "info";
     config["port"] = 7890;
@@ -141,19 +136,6 @@ function main(config) {
         },
     };
 
-    // --- 【5. 地理数据与模型】 ---
-    config["geox-url"] = {
-        "geosite": "https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geosite.dat",
-        "mmdb": "https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip.metadb",
-        "geoip": "https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip.dat",
-        "asn": "https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/GeoLite2-ASN.mmdb"
-    };
-    config["geo-auto-update"] = true;
-    config["geo-update-interval"] = 168;
-    config["lgbm-auto-update"] = true;
-    config["lgbm-update-interval"] = 72;
-    config["lgbm-url"] = "https://v6.gh-proxy.com/https://github.com/vernesong/mihomo/releases/download/LightGBM-Model/Model-large.bin";
-
     // --- 【节点筛选正则表达式】 ---
     const 香港筛选 = '(?=.*(?i)(港|🇭🇰|HK|Hong|HKG))';
     const 狮城筛选 = '(?=.*(?i)(坡|🇸🇬|SG|Sing|SIN|XSP))';
@@ -271,10 +253,10 @@ function main(config) {
 
     function 创建地区分组(地区名, 地区图标, 地区节点池, 地区机场组) {
         return [
-            { name: `${地区名}节点`, type: "select", use: 地区机场组, filter: 地区节点池, proxies: [`${地区名}自动`, `${地区名}散列`, `${地区名}轮询`, "🈚️ 假节点"], icon: 图标库 + 地区图标 },
-            { name: `${地区名}自动`, type: "url-test", use: 地区机场组, filter: 地区节点池, hidden: true, icon: 图标库 + 地区图标 },
-            { name: `${地区名}散列`, type: "load-balance", strategy: "consistent-hashing", use: 地区机场组, filter: 地区节点池, hidden: true, icon: 图标库 + 地区图标 },
-            { name: `${地区名}轮询`, type: "load-balance", strategy: "round-robin", use: 地区机场组, filter: 地区节点池, hidden: true, icon: 图标库 + 地区图标 }
+            { name: `${地区名}节点`, type: "select", proxies: 原始节点, filter: 地区节点池, proxies: [`${地区名}自动`, `${地区名}散列`, `${地区名}轮询`, "🈚️ 假节点"], icon: 图标库 + 地区图标 },
+            { name: `${地区名}自动`, type: "url-test", proxies: 原始节点, filter: 地区节点池, hidden: true, icon: 图标库 + 地区图标 },
+            { name: `${地区名}散列`, type: "load-balance", strategy: "consistent-hashing", proxies: 原始节点, filter: 地区节点池, hidden: true, icon: 图标库 + 地区图标 },
+            { name: `${地区名}轮询`, type: "load-balance", strategy: "round-robin", proxies: 原始节点, filter: 地区节点池, hidden: true, icon: 图标库 + 地区图标 }
         ];
     }
     
