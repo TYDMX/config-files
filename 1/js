@@ -23,6 +23,9 @@ function main(config) {
                     "exclude-filter": 节点黑名单,
                     "exclude-type": "http|ss",
                     "path": `./proxies/${机场名}.yaml`,
+                    "override": {
+                    "additional-prefix": 自动前缀
+                    },
                     "health-check": { 
                         "enable": true, 
                         "url": "https://cp.cloudflare.com/generate_204", 
