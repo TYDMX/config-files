@@ -1,4 +1,4 @@
-//https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/1/js
+//https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/1/单订阅脚本.js
 function main(config) {
     const 图标库 = "https://github.com/Koolson/Qure/raw/master/IconSet/Color/";
      // --- 【配置外部订阅】 ---
