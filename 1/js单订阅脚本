@@ -124,30 +124,24 @@ config["proxies"] = [
             "geosite:gfw,geolocation-!cn": DNS国外,
         },
     };
+
     // --- 【节点筛选正则表达式】 ---
-    // --- 独立变量筛选区 ---
     const 香港筛选 = 原始节点.filter(n => new RegExp("(港|🇭🇰|HK|Hong|HKG)", "i").test(n));
     const 狮城筛选 = 原始节点.filter(n => new RegExp("(坡|🇸🇬|SG|Sing|SIN|XSP)", "i").test(n));
     const 美国筛选 = 原始节点.filter(n => new RegExp("(美|🇺🇸|US|USA|JFK|LAX|ORD|ATL|DFW|SFO|MIA|SEA|IAD)", "i").test(n));
     const 日本筛选 = 原始节点.filter(n => new RegExp("(日|🇯🇵|JP|Japan|NRT|HND|KIX|CTS|FUK)", "i").test(n));
     const 台湾筛选 = 原始节点.filter(n => new RegExp("(台|🇹🇼|TW|tai|TPE|TSA|KHH)", "i").test(n));
     const 韩国筛选 = 原始节点.filter(n => new RegExp("(韩|🇰🇷|韓|首尔|南朝鲜|KR|KOR|Korea)", "i").test(n));
-
-    // 欧盟筛选（包含欧盟关键字 且 排除 马来/印度）
     const 欧盟正则 = "(奥|比|保|克罗地亚|塞|捷|丹|爱沙|芬|法|德|希|匈|爱尔|意|拉|立|卢|马其它|荷|波|葡|罗|斯洛伐|斯洛文|西|瑞|英|🇧🇪|🇨🇿|🇩🇰|🇫🇮|🇫🇷|🇩🇪|🇮🇪|🇮🇹|🇱🇹|🇱🇺|🇳🇱|🇵🇱|🇸🇪|🇬🇧|CDG|FRA|AMS|MAD|BCN|FCO|MUC|BRU|GB|FR|DE|NL|RU|LV|SE|LT|AU|NZ)";
     const 欧盟排除 = "(马来|印度)";
-    const 欧盟筛选 = 原始节点.filter(n => 
-        new RegExp(欧盟正则, "i").test(n) && !new RegExp(欧盟排除, "i").test(n)
-    );
-    // 保底处理：如果筛出来是空的，放个假节点
-    const HK_List = 香港筛选.length > 0 ? 香港筛选 : ["🈚️ 假节点"];
-    const SG_List = 狮城筛选.length > 0 ? 狮城筛选 : ["🈚️ 假节点"];
-    const US_List = 美国筛选.length > 0 ? 美国筛选 : ["🈚️ 假节点"];
-    const JP_List = 日本筛选.length > 0 ? 日本筛选 : ["🈚️ 假节点"];
-    const TW_List = 台湾筛选.length > 0 ? 台湾筛选 : ["🈚️ 假节点"];
-    const KR_List = 韩国筛选.length > 0 ? 韩国筛选 : ["🈚️ 假节点"];
-    const EU_List = 欧盟筛选.length > 0 ? 欧盟筛选 : ["🈚️ 假节点"];
-
+    const 欧盟筛选 = 原始节点.filter(n => new RegExp(欧盟正则, "i").test(n) && !new RegExp(欧盟排除, "i").test(n));
+    const 香港_List = 香港筛选.length > 0 ? 香港筛选 : ["🈚️ 假节点"];
+    const 狮城_List = 狮城筛选.length > 0 ? 狮城筛选 : ["🈚️ 假节点"];
+    const 美国_List = 美国筛选.length > 0 ? 美国筛选 : ["🈚️ 假节点"];
+    const 日本_List = 日本筛选.length > 0 ? 日本筛选 : ["🈚️ 假节点"];
+    const 台湾_List = 台湾筛选.length > 0 ? 台湾筛选 : ["🈚️ 假节点"];
+    const 韩国_List = 韩国筛选.length > 0 ? 韩国筛选 : ["🈚️ 假节点"];
+    const 欧盟_List = 欧盟筛选.length > 0 ? 欧盟筛选 : ["🈚️ 假节点"];
     // --- 【策略组代理列表模板】 ---
     const 节点选择池 = ["🇭🇰 香港节点", "🇺🇸 美国节点", "🇸🇬 狮城节点", "🇯🇵 日本节点", "🇹🇼 台湾节点", "🇰🇷 韩国节点", "🇪🇺 欧盟节点", "🌐 全部节点"];
     const 故转节点池 = ["🇭🇰 香港故转", "🇺🇸 美国故转", "🇸🇬 狮城故转", "🇯🇵 日本故转"];
@@ -193,34 +187,13 @@ config["proxies"] = [
         { name: "🚫 广告拦截", type: "fallback", proxies: ["🚫 阻止"], hidden: true },
         { name: "🚫 追踪拦截", type: "fallback", proxies: ["🚫 阻止"], hidden: true },
         // --- 【生成地区组】 ---
-        { name: "🇭🇰 香港节点", type: "select", proxies: ["🇭🇰 香港自动", "🇭🇰 香港散列", "🇭🇰 香港轮询", ...HK_List], icon: 图标库 + "Hong_Kong.png" },
-        { name: "🇭🇰 香港自动", type: "url-test", proxies: HK_List, interval: 300, hidden: true, icon: 图标库 + "Hong_Kong.png" },
-        { name: "🇭🇰 香港散列", type: "load-balance", strategy: "consistent-hashing", proxies: HK_List, interval: 300, hidden: true, icon: 图标库 + "Hong_Kong.png" },
-        { name: "🇭🇰 香港轮询", type: "load-balance", strategy: "round-robin", proxies: HK_List, interval: 300, hidden: true, icon: 图标库 + "Hong_Kong.png" },
-        { name: "🇸🇬 狮城节点", type: "select", proxies: ["🇸🇬 狮城自动", "🇸🇬 狮城散列", "🇸🇬 狮城轮询", ...SG_List], icon: 图标库 + "Singapore.png" },
-        { name: "🇸🇬 狮城自动", type: "url-test", proxies: SG_List, interval: 300, hidden: true, icon: 图标库 + "Singapore.png" },
-        { name: "🇸🇬 狮城散列", type: "load-balance", strategy: "consistent-hashing", proxies: SG_List, interval: 300, hidden: true, icon: 图标库 + "Singapore.png" },
-        { name: "🇸🇬 狮城轮询", type: "load-balance", strategy: "round-robin", proxies: SG_List, interval: 300, hidden: true, icon: 图标库 + "Singapore.png" },
-        { name: "🇺🇸 美国节点", type: "select", proxies: ["🇺🇸 美国自动", "🇺🇸 美国散列", "🇺🇸 美国轮询", ...US_List], icon: 图标库 + "United_States.png" },
-        { name: "🇺🇸 美国自动", type: "url-test", proxies: US_List, interval: 300, hidden: true, icon: 图标库 + "United_States.png" },
-        { name: "🇺🇸 美国散列", type: "load-balance", strategy: "consistent-hashing", proxies: US_List, interval: 300, hidden: true, icon: 图标库 + "United_States.png" },
-        { name: "🇺🇸 美国轮询", type: "load-balance", strategy: "round-robin", proxies: US_List, interval: 300, hidden: true, icon: 图标库 + "United_States.png" },
-        { name: "🇯🇵 日本节点", type: "select", proxies: ["🇯🇵 日本自动", "🇯🇵 日本散列", "🇯🇵 日本轮询", ...JP_List], icon: 图标库 + "Japan.png" },
-        { name: "🇯🇵 日本自动", type: "url-test", proxies: JP_List, interval: 300, hidden: true, icon: 图标库 + "Japan.png" },
-        { name: "🇯🇵 日本散列", type: "load-balance", strategy: "consistent-hashing", proxies: JP_List, interval: 300, hidden: true, icon: 图标库 + "Japan.png" },
-        { name: "🇯🇵 日本轮询", type: "load-balance", strategy: "round-robin", proxies: JP_List, interval: 300, hidden: true, icon: 图标库 + "Japan.png" },
-        { name: "🇹🇼 台湾节点", type: "select", proxies: ["🇹🇼 台湾自动", "🇹🇼 台湾散列", "🇹🇼 台湾轮询", ...TW_List], icon: 图标库 + "Taiwan.png" },
-        { name: "🇹🇼 台湾自动", type: "url-test", proxies: TW_List, interval: 300, hidden: true, icon: 图标库 + "Taiwan.png" },
-        { name: "🇹🇼 台湾散列", type: "load-balance", strategy: "consistent-hashing", proxies: TW_List, interval: 300, hidden: true, icon: 图标库 + "Taiwan.png" },
-        { name: "🇹🇼 台湾轮询", type: "load-balance", strategy: "round-robin", proxies: TW_List, interval: 300, hidden: true, icon: 图标库 + "Taiwan.png" },
-        { name: "🇰🇷 韩国节点", type: "select", proxies: ["🇰🇷 韩国自动", "🇰🇷 韩国散列", "🇰🇷 韩国轮询", ...KR_List], icon: 图标库 + "Korea.png" },
-        { name: "🇰🇷 韩国自动", type: "url-test", proxies: KR_List, interval: 300, hidden: true, icon: 图标库 + "Korea.png" },
-        { name: "🇰🇷 韩国散列", type: "load-balance", strategy: "consistent-hashing", proxies: KR_List, interval: 300, hidden: true, icon: 图标库 + "Korea.png" },
-        { name: "🇰🇷 韩国轮询", type: "load-balance", strategy: "round-robin", proxies: KR_List, interval: 300, hidden: true, icon: 图标库 + "Korea.png" },
-        { name: "🇪🇺 欧盟节点", type: "select", proxies: ["🇪🇺 欧盟自动", "🇪🇺 欧盟散列", "🇪🇺 欧盟轮询", ...EU_List], icon: 图标库 + "European_Union.png" },
-        { name: "🇪🇺 欧盟自动", type: "url-test", proxies: EU_List, interval: 300, hidden: true, icon: 图标库 + "European_Union.png" },
-        { name: "🇪🇺 欧盟散列", type: "load-balance", strategy: "consistent-hashing", proxies: EU_List, interval: 300, hidden: true, icon: 图标库 + "European_Union.png" },
-        { name: "🇪🇺 欧盟轮询", type: "load-balance", strategy: "round-robin", proxies: EU_List, interval: 300, hidden: true, icon: 图标库 + "European_Union.png" },
+        ...创建地区分组("🇭🇰 香港", "Hong_Kong.png", 香港_List),
+        ...创建地区分组("🇸🇬 狮城", "Singapore.png", 狮城_List),
+        ...创建地区分组("🇺🇸 美国", "United_States.png", 美国_List),
+        ...创建地区分组("🇯🇵 日本", "Japan.png", 日本_List),
+        ...创建地区分组("🇹🇼 台湾", "Taiwan.png", 台湾_List),
+        ...创建地区分组("🇰🇷 韩国", "Korea.png", 韩国_List),
+        ...创建地区分组("🇪🇺 欧盟", "European_Union.png", 欧盟_List),
         // --- 【其他策略组】 ---
         { name: "🌐 全部节点", type: "select", proxies: ["🈚️ 假节点", ...原始节点], icon: 图标库 + "Clubhouse.png" },
         { name: "🐟 漏网之鱼", type: "select", proxies: ["🚀 节点选择", "🎯 全球直连"], filter: 节点黑名单, icon: 图标库 + "Final.png" }
@@ -270,6 +243,15 @@ config["proxies"] = [
         "OR,((GEOSITE,gfw),(GEOSITE,geolocation-!cn)),🪜 代理域名",
         "MATCH,🐟 漏网之鱼"
     ];
-    
+
+    function 创建地区分组(地区名, 地区图标, 地区节点池) {
+        return [
+            { name: `${地区名}节点`, type: "select", proxies: [`${地区名}自动`, `${地区名}散列`, `${地区名}轮询`, "🈚️ 假节点", ...地区节点池], icon: 图标库 + 地区图标 },
+            { name: `${地区名}自动`, type: "url-test", proxies: 地区节点池, hidden: true, icon: 图标库 + 地区图标 },
+            { name: `${地区名}散列`, type: "load-balance", strategy: "consistent-hashing", proxies: 地区节点池, hidden: true, icon: 图标库 + 地区图标 },
+            { name: `${地区名}轮询`, type: "load-balance", strategy: "round-robin", proxies: 地区节点池, hidden: true, icon: 图标库 + 地区图标 }
+        ];
+    }
+
     return config;
 }
