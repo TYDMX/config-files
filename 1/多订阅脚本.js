@@ -248,12 +248,12 @@ function main(config) {
     const domain_text = { type: "http", interval: 300, behavior: "domain", format: "text" };
     // --- 【外部规则组】 ---
     config["rule-providers"] = {
-        "自用直连规则": { ...classical_text, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/1/直连规则.yaml" },
-        "自用代理规则": { ...classical_text, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/1/代理规则.yaml" },
-        "自用直连软件": { ...classical_text, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/1/直连软件.yaml" },
-        "自用代理软件": { ...classical_text, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/1/代理软件.yaml" },
-        "前置直连规则": { ...classical_text, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/1/前置直连规则.yaml" },
-        "自用fake-ip-filter": { ...domain_text, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/2/fkip.yaml" }
+        "自用直连规则": { ...classical_yaml, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/1/直连规则.yaml" },
+        "自用代理规则": { ...classical_yaml, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/1/代理规则.yaml" },
+        "自用直连软件": { ...classical_yaml, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/1/直连软件.yaml" },
+        "自用代理软件": { ...classical_yaml, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/1/代理软件.yaml" },
+        "前置直连规则": { ...classical_yaml, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/1/前置直连规则.yaml" },
+        "自用fake-ip-filter": { ...domain_yaml, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/2/fkip.yaml" }
     };
 
     // --- 【规则】 ---
