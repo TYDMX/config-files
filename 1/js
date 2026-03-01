@@ -13,7 +13,7 @@ function main(config) {
         for (let 机场名 in config["proxy-providers"]) {
             let 原订阅 = config["proxy-providers"][机场名];
             if (原订阅.url) {
-                const emojiMatch = 机场名.match(/[\u{1F300}-\u{1F9FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}]/u);
+                const emojiMatch = 机场名.match(/[\u{1F300}-\u{1FBFF}\u{2600}-\u{27BF}]/u);
                 const 自动前缀 = emojiMatch ? `${emojiMatch[0]} ` : "";
                 config["proxy-providers"][机场名] = 
                     {...原订阅,
