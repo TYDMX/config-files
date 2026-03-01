@@ -188,7 +188,7 @@ config["proxies"] = [
         // --- 【其他策略组】 ---
         { name: "🌐 冷门自选", type: "select", filter: `${冷门筛选}`, proxies: ["🈚️ 假节点", ...原始节点], icon: 图标库 + "Europe_Map.png" },
         { name: "🌐 全部节点", type: "select", proxies: ["🈚️ 假节点", ...原始节点], icon: 图标库 + "Clubhouse.png" },
-        { name: "🐟 漏网之鱼", type: "select", proxies: ["🚀 节点选择", "🎯 全球直连", ...原始节点], filter: 节点黑名单, icon: 图标库 + "Final.png" }
+        { name: "🐟 漏网之鱼", type: "select", proxies: ["🚀 节点选择", "🎯 全球直连"], filter: 节点黑名单, icon: 图标库 + "Final.png" }
     ];
     // --- 【规则组定义锚】 ---
     const ip_mrs = { type: "http", interval: 21600, behavior: "ipcidr", format: "mrs" };
