@@ -117,8 +117,8 @@ config["proxies"] = [
         ],
         "nameserver": DNS国内,
         "nameserver-policy": {
-            "geosite,private": DNS国内,
-            "RULE-SET,自用代理规则": DNS国外,
+            "geosite:private": DNS国内,
+            "RULE-SET:自用代理规则": DNS国外,
             "geosite:microsoft,google@cn,googlefcm": DNS国内,
             "geosite:cn,geolocation-cn": DNS国内,
             "geosite:gfw,geolocation-!cn": DNS国外,
