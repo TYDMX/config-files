@@ -102,7 +102,7 @@ function main(config) {
     const 腾讯DOH = ["https://doh.pub/dns-query#h3=true", "https://sm2.doh.pub/dns-query#h3=true"];
 
     const DNS国外 = [...谷歌DOT, ...谷歌DOH, ...cloudflare_DOT, ...cloudflare_DOH];
-    const DNS国内 = [...阿里DOT, ...阿里DOH, ...阿里QUIC, ...腾讯DOT, ...腾讯DOH, ...cloudflare_DOT, ...cloudflare_DOH];
+    const DNS国内 = [...阿里DOT, ...阿里DOH, ...阿里QUIC, ...腾讯DOT, ...腾讯DOH];
 
     config["hosts"] = {
         "dns.google": 谷歌IP,
@@ -117,8 +117,8 @@ function main(config) {
     config["dns"] = {
         "enable": true,
         "ipv6": true,
-        "prefer-h3": true,
-        "respect-rules": false,
+        "prefer-h3": false,
+        "respect-rules": true,
         "cache-algorithm": "arc",
         "listen": "127.0.0.1:1053",
         "enhanced-mode": "fake-ip",
@@ -131,7 +131,7 @@ function main(config) {
             "geosite:connectivity-check",
             "geosite:googlefcm",
         ],
-        "use-hosts": false,
+        "use-hosts": true,
         "use-system-hosts": false,
         "default-nameserver": [
             "tls://223.5.5.5", 
@@ -144,6 +144,13 @@ function main(config) {
             "tls://1.1.1.1",
         ],
         "nameserver": DNS国内,
+        "nameserver-policy": {
+            "geosite,private": DNS国内,
+            "RULE-SET,自用代理规则": DNS国外,
+            "geosite:microsoft,google@cn,googlefcm": DNS国内,
+            "geosite:cn,geolocation-cn": DNS国内,
+            "geosite:gfw,geolocation-!cn": DNS国外,
+        },
     };
 
     // --- 【5. 地理数据与模型】 ---
@@ -160,13 +167,13 @@ function main(config) {
     config["lgbm-url"] = "https://v6.gh-proxy.com/https://github.com/vernesong/mihomo/releases/download/LightGBM-Model/Model-large.bin";
 
     // --- 【节点筛选正则表达式】 ---
-    const 香港筛选 = '(?i)(港|🇭🇰|HK|Hong|HKG)';
-    const 狮城筛选 = '(?i)(坡|🇸🇬|SG|Sing|SIN|XSP)';
-    const 美国筛选 = '(?i)(美|🇺🇸|US|USA|JFK|LAX|ORD|ATL|DFW|SFO|MIA|SEA|IAD)';
-    const 日本筛选 = '(?i)(日|🇯🇵|JP|Japan|NRT|HND|KIX|CTS|FUK)';
-    const 韩国筛选 = '(?i)(韩|🇰🇷|韓|首尔|南朝鲜|KR|KOR|Korea)';
-    const 台湾筛选 = '(?i)(台|🇹🇼|TW|tai|TPE|TSA|KHH)';
-    const 欧盟筛选 = '(?i)(奥|比|保|克罗地亚|塞|捷|丹|爱沙|芬|法|德|希|匈|爱尔|意|拉|立|卢|马其它|荷|波|葡|罗|斯洛伐|斯洛文|西|瑞|英|🇧🇪|🇨🇿|🇩🇰|🇫🇮|🇫🇷|🇩🇪|🇮🇪|🇮🇹|🇱🇹|🇱🇺|🇳🇱|🇵🇱|🇸🇪|🇬🇧|CDG|FRA|AMS|MAD|BCN|FCO|MUC|BRU|GB|FR|DE|NL|RU|LV|SE|LT|AU|NZ)(?!.*(?i)(马来|印度))';
+    const 香港筛选 = '(?=.*(?i)(港|🇭🇰|HK|Hong|HKG))';
+    const 狮城筛选 = '(?=.*(?i)(坡|🇸🇬|SG|Sing|SIN|XSP))';
+    const 美国筛选 = '(?=.*(?i)(美|🇺🇸|US|USA|JFK|LAX|ORD|ATL|DFW|SFO|MIA|SEA|IAD))';
+    const 日本筛选 = '(?=.*(?i)(日|🇯🇵|JP|Japan|NRT|HND|KIX|CTS|FUK))';
+    const 韩国筛选 = '(?=.*(?i)(韩|🇰🇷|韓|首尔|南朝鲜|KR|KOR|Korea))';
+    const 台湾筛选 = '(?=.*(?i)(台|🇹🇼|TW|tai|TPE|TSA|KHH))';
+    const 欧盟筛选 = '(?=.*(?i)(奥|比|保|克罗地亚|塞|捷|丹|爱沙|芬|法|德|希|匈|爱尔|意|拉|立|卢|马其它|荷|波|葡|罗|斯洛伐|斯洛文|西|瑞|英|🇧🇪|🇨🇿|🇩🇰|🇫🇮|🇫🇷|🇩🇪|🇮🇪|🇮🇹|🇱🇹|🇱🇺|🇳🇱|🇵🇱|🇸🇪|🇬🇧|CDG|FRA|AMS|MAD|BCN|FCO|MUC|BRU|GB|FR|DE|NL|RU|LV|SE|LT|AU|NZ))(?!.*(?i)(马来|印度))';
     const 冷门筛选 = `^(?!${[香港筛选,狮城筛选,美国筛选,日本筛选,韩国筛选,台湾筛选,欧盟筛选].join(")(?!")}).*`;
     // --- 【策略组代理列表模板】 ---
     const 节点选择池 = ["🇭🇰 香港节点", "🇺🇸 美国节点", "🇸🇬 狮城节点", "🇯🇵 日本节点", "🇹🇼 台湾节点", "🇰🇷 韩国节点", "🇪🇺 欧盟节点", "🌐 冷门自选", "🌐 全部节点"];
@@ -213,13 +220,13 @@ function main(config) {
         { name: "🚫 广告拦截", type: "fallback", proxies: ["🚫 阻止"], hidden: true },
         { name: "🚫 追踪拦截", type: "fallback", proxies: ["🚫 阻止"], hidden: true },
         // --- 【生成地区组】 ---
-        ...创建地区分组("🇭🇰 香港", "Hong_Kong.png", `${香港筛选}`, `${香港筛选}(?=.*💧)(?!.*(?i)住)`, 全部订阅),
-        ...创建地区分组("🇸🇬 狮城", "Singapore.png", `${狮城筛选}`, `${狮城筛选}(?=.*💧)`, 全部订阅),
-        ...创建地区分组("🇺🇸 美国", "United_States.png", `${美国筛选}`, `${美国筛选}(?!.*💧)`, 全部订阅),
-        ...创建地区分组("🇯🇵 日本", "Japan.png", `${日本筛选}`, `${日本筛选}(?=.*💧)`, 全部订阅),
-        ...创建地区分组("🇹🇼 台湾", "Taiwan.png", `${台湾筛选}`, `${台湾筛选}`, 全部订阅),
-        ...创建地区分组("🇰🇷 韩国", "Korea.png", `${韩国筛选}`, `${韩国筛选}`, 全部订阅),
-        ...创建地区分组("🇪🇺 欧盟", "European_Union.png", `${欧盟筛选}`, `${欧盟筛选}(?!.*💧)`, 全部订阅),
+        ...创建地区分组("🇭🇰 香港", "Hong_Kong.png", `^${香港筛选}`, `^${香港筛选}(?=.*💧)(?!.*(?i)住)`, 全部订阅),
+        ...创建地区分组("🇸🇬 狮城", "Singapore.png", `^${狮城筛选}`, `^${狮城筛选}(?=.*💧)`, 全部订阅),
+        ...创建地区分组("🇺🇸 美国", "United_States.png", `^${美国筛选}`, `^${美国筛选}(?!.*💧)`, 全部订阅),
+        ...创建地区分组("🇯🇵 日本", "Japan.png", `^${日本筛选}`, `^${日本筛选}(?=.*💧)`, 全部订阅),
+        ...创建地区分组("🇹🇼 台湾", "Taiwan.png", `^${台湾筛选}`, `^${台湾筛选}`, 全部订阅),
+        ...创建地区分组("🇰🇷 韩国", "Korea.png", `^${韩国筛选}`, `^${韩国筛选}`, 全部订阅),
+        ...创建地区分组("🇪🇺 欧盟", "European_Union.png", `^${欧盟筛选}`, `^${欧盟筛选}(?!.*💧)`, 全部订阅),
         // --- 【其他策略组】 ---
         { name: "🌐 冷门自选", type: "select", use: 全部订阅, filter: `${冷门筛选}`, proxies: ["🈚️ 假节点"], icon: 图标库 + "Europe_Map.png" },
         { name: "🌐 全部节点", type: "select", use: 全部订阅, proxies: ["🈚️ 假节点"], icon: 图标库 + "Clubhouse.png" },
