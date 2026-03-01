@@ -76,13 +76,13 @@ proxy-providers:
       additional-prefix: "🌏 "
       #additional-suffix: " 🌏"
 
-  公益机场自建 🌏:
+  公益机场自建 🔮:
     <<: *template
     interval: 3600
     url: "https://raw.githubusercontent.com/go4sharing/sub/main/clash.yaml"
     override:
-      additional-prefix: "🌏 "
-      #additional-suffix: " 🌏"
+      additional-prefix: "🔮 "
+      #additional-suffix: " 🔮"
 
   dmit节点池 🪩:
     <<: *template
