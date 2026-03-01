@@ -1,0 +1,13 @@
+payload:
+  # 前置直连规则
+
+  
+  #软件
+  - PROCESS-NAME,com.microsoft.appmanager  # 连结至 Windows
+  ##三星推送软件
+  #PROCESS-NAME,com.sec.factory.camera
+  - PROCESS-NAME,com.sec.spp.push
+  - PROCESS-NAME,com.samsung.android.pushservice
+  - DOMAIN-KEYWORD,ss.getui.com
+  #PROCESS-NAME,com.samsung.android.app.spage
+
