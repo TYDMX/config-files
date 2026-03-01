@@ -174,7 +174,6 @@ function main(config) {
     const 台湾筛选 = 原始节点.filter(n => new RegExp("(台|🇹🇼|TW|tai|TPE|TSA|KHH)", "i").test(n));
     const 韩国筛选 = 原始节点.filter(n => new RegExp("(韩|🇰🇷|韓|首尔|南朝鲜|KR|KOR|Korea)", "i").test(n));
 
-
     const 欧盟筛选 = 原始节点.filter(n => new RegExp(欧盟正则, "i").test(n) && !new RegExp(欧盟排除, "i").test(n));
     const 香港_List = 香港筛选.length > 0 ? 香港筛选 : ["🈚️ 假节点"];
     const 狮城_List = 狮城筛选.length > 0 ? 狮城筛选 : ["🈚️ 假节点"];
