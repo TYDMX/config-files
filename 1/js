@@ -174,8 +174,7 @@ function main(config) {
     const 台湾筛选 = 原始节点.filter(n => new RegExp(台湾正则, "i").test(n));
     const 韩国筛选 = 原始节点.filter(n => new RegExp(韩国正则, "i").test(n));
     const 欧盟筛选 = 原始节点.filter(n => new RegExp(欧盟正则, "i").test(n));
-    const 冷门筛选 = 原始节点.filter(n => new RegExp(欧盟正则, "i").test(n));
-    const 冷门正则 = 原始节点.filter(n => !new RegExp(汇总正则, "i").test(n));
+    const 冷门筛选 = 原始节点.filter(n => !new RegExp(汇总正则, "i").test(n));
     
     const 香港_List = 香港筛选.length > 0 ? 香港筛选 : ["🈚️ 假节点"];
     const 狮城_List = 狮城筛选.length > 0 ? 狮城筛选 : ["🈚️ 假节点"];
