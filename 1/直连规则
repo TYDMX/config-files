@@ -8,7 +8,7 @@
 DOMAIN-SUFFIX,download.nvidia.com
 DOMAIN-SUFFIX,tpb.proxyninja.org
 DOMAIN-SUFFIX,git.imee.me
-DOMAIN-WILDCARD,nfsqttt.*
+DOMAIN-WILDCARD,nfsq*.*
 
 # 战雷
 DOMAIN-WILDCARD,chat-*.warthunder.com
