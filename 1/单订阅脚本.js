@@ -247,12 +247,12 @@ function main(config) {
         { name: "🐟 漏网之鱼", type: "select", proxies: ["🚀 节点选择", "🎯 全球直连"], filter: 节点黑名单, icon: 图标库 + "Final.png" }
     ];
     // --- 【规则组定义锚】 ---
-    const ip_mrs = { type: "http", interval: 21600, behavior: "ipcidr", format: "mrs" };
-    const classical_text = { type: "http", interval: 21600, behavior: "classical", format: "text" };
-    const classical_yaml = { type: "http", interval: 21600, behavior: "classical", format: "yaml" };
-    const domain_mrs = { type: "http", interval: 21600, behavior: "domain", format: "mrs" };
-    const domain_yaml = { type: "http", interval: 21600, behavior: "domain", format: "yaml" };
-    const domain_text = { type: "http", interval: 21600, behavior: "domain", format: "text" };
+    const ip_mrs = { type: "http", interval: 300, behavior: "ipcidr", format: "mrs" };
+    const classical_text = { type: "http", interval: 300, behavior: "classical", format: "text" };
+    const classical_yaml = { type: "http", interval: 300, behavior: "classical", format: "yaml" };
+    const domain_mrs = { type: "http", interval: 300, behavior: "domain", format: "mrs" };
+    const domain_yaml = { type: "http", interval: 300, behavior: "domain", format: "yaml" };
+    const domain_text = { type: "http", interval: 300, behavior: "domain", format: "text" };
     // --- 【外部规则组】 ---
     config["rule-providers"] = {
         "自用直连规则": { ...classical_yaml, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/1/直连规则.yaml" },
