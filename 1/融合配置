@@ -367,11 +367,11 @@ rule-anchor:
 ## ---------------- 规则提供者 ---------------------
 rule-providers:
 ## ---------------- class规则提供者 ---------------------
-  自用直连规则: { <<: *classical-text, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/1/直连规则"}
-  自用代理规则: { <<: *classical-text, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/1/代理规则"}
-  自用直连软件: { <<: *classical-text, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/1/直连软件"}
-  自用代理软件: { <<: *classical-text, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/1/代理软件"}
-  前置直连规则: { <<: *classical-text, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/1/前置直连规则"}
+  自用直连规则: { <<: *classical-yaml, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/1/直连规则.yaml"}
+  自用代理规则: { <<: *classical-yaml, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/1/代理规则.yaml"}
+  自用直连软件: { <<: *classical-yaml, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/1/直连软件.yaml"}
+  自用代理软件: { <<: *classical-yaml, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/1/代理软件.yaml"}
+  前置直连规则: { <<: *classical-yaml, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/1/前置直连规则.yaml"}
 ## ---------------- 广告拦截规则提供者 --------------------
 ## ---------------- domain域名规则提供者 ---------------
   自用fake-ip-filter: { <<: *domain-text, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/2/fkip.list"}
