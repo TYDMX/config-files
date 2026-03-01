@@ -1,4 +1,4 @@
-//https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/1/js多订阅脚本
+//https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/1/多订阅脚本.js
 
 function main(config) {
     const 图标库 = "https://github.com/Koolson/Qure/raw/master/IconSet/Color/";
