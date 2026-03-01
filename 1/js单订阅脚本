@@ -252,7 +252,7 @@ config["proxies"] = [
         "MATCH,🐟 漏网之鱼"
     ];
 
-    function 创建地区分组(地区名, 地区图标, 地区节点池, 地区机场组) {
+    function 创建地区分组(地区名, 地区图标, 地区节点池) {
         return [
             { name: `${地区名}节点`, type: "select", filter: 地区节点池, proxies: [`${地区名}自动`, `${地区名}散列`, `${地区名}轮询`, "🈚️ 假节点", ...原始节点], icon: 图标库 + 地区图标 },
             { name: `${地区名}自动`, type: "url-test", proxies: 原始节点, filter: 地区节点池, hidden: true, icon: 图标库 + 地区图标 },
