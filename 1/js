@@ -1,12 +1,12 @@
-//https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/1/js脚本
+//https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/1/js单订阅脚本
 function main(config) {
     const 图标库 = "https://github.com/Koolson/Qure/raw/master/IconSet/Color/";
      // --- 【配置外部订阅】 ---
 
     config["proxy-providers"] = {
         "订阅分享中心自建 🌏": { url: "https://sub.dmit.dpdns.org/share/sub/dingyue_Center_zijian_auto?token=xgy1nCsG7xgerdecv4QRn" },
-        "公益机场自建 🔮": { url: "https://raw.githubusercontent.com/go4sharing/sub/main/clash.yaml" },
-        "dmit节点池 🪩": { url: "https://proxypool.dmit.dpdns.org/clash/proxies?nstream=netflix,disney" },
+        "公益机场自建 🔮": { url: "https://raw.githubusercontent.com/go4sharing/sub/main/clash.yaml"},
+        "dmit节点池 🪩": { url: "https://proxypool.dmit.dpdns.org/clash/proxies?nstream=netflix,disney"},
     };
     const 节点黑名单 = "(?i)(China|china|CHINA|🇨🇳|高倍|×10|10M|节点|过滤|剩余|流量|距离|下次|重置|重新|订阅|导入|套餐|到期|跳转|域名|请勿|邀请|好友|关注|频道|收费|就说明|被骗|续费|更新|地址|官网|下载|群组|永久|长期|中继|更换|协议|软件|教程|Lite|ali)";
     if (config["proxy-providers"]) {
@@ -164,8 +164,7 @@ function main(config) {
     const 日本正则 = '(日|🇯🇵|JP|Japan|NRT|HND|KIX|CTS|FUK)';
     const 韩国正则 = '(韩|🇰🇷|韓|首尔|南朝鲜|KR|KOR|Korea)';
     const 台湾正则 = '(台|🇹🇼|TW|tai|TPE|TSA|KHH)';
-    const 欧盟正则 = "(奥|比|保|克罗地亚|塞|捷|丹|爱沙|芬|法|德|希|匈|爱尔|意|拉|立|卢|马其它|荷|波|葡|罗|斯洛伐|斯洛文|西|瑞|英|🇧🇪|🇨🇿|🇩🇰|🇫🇮|🇫🇷|🇩🇪|🇮🇪|🇮🇹|🇱🇹|🇱🇺|🇳🇱|🇵🇱|🇸🇪|🇬🇧|CDG|FRA|AMS|MAD|BCN|FCO|MUC|BRU|GB|FR|DE|NL|RU|LV|SE|LT|AU|NZ)";
-    const 欧盟排除 = "(马来|印度)";
+    const 欧盟正则 = "(奥|比|保|克罗地亚|塞|捷|丹|爱沙|芬|法|德|希|匈|爱尔|意|拉|立|卢|马其它|荷|波|葡|罗|斯洛伐|斯洛文|西|瑞|英|🇧🇪|🇨🇿|🇩🇰|🇫🇮|🇫🇷|🇩🇪|🇮🇪|🇮🇹|🇱🇹|🇱🇺|🇳🇱|🇵🇱|🇸🇪|🇬🇧|CDG|FRA|AMS|MAD|BCN|FCO|MUC|BRU|GB|FR|DE|NL|RU|LV|SE|LT|AU|NZ)(?!(.*(马来|印度)))";
     
     const 香港筛选 = 原始节点.filter(n => new RegExp(香港正则, "i").test(n));
     const 狮城筛选 = 原始节点.filter(n => new RegExp(狮城正则, "i").test(n));
@@ -173,7 +172,9 @@ function main(config) {
     const 日本筛选 = 原始节点.filter(n => new RegExp(日本正则, "i").test(n));
     const 台湾筛选 = 原始节点.filter(n => new RegExp(台湾正则, "i").test(n));
     const 韩国筛选 = 原始节点.filter(n => new RegExp(韩国正则, "i").test(n));
-    const 欧盟筛选 = 原始节点.filter(n => new RegExp(欧盟正则, "i").test(n) && !new RegExp(欧盟排除, "i").test(n));
+    const 欧盟筛选 = 原始节点.filter(n => new RegExp(欧盟正则, "i").test(n));
+    
+    const 冷门筛选 = `(${[香港正则,狮城正则,美国正则,日本正则,韩国正则,台湾正则,欧盟正则].join(")(?!")})`;
     
     const 香港_List = 香港筛选.length > 0 ? 香港筛选 : ["🈚️ 假节点"];
     const 狮城_List = 狮城筛选.length > 0 ? 狮城筛选 : ["🈚️ 假节点"];
@@ -182,6 +183,7 @@ function main(config) {
     const 台湾_List = 台湾筛选.length > 0 ? 台湾筛选 : ["🈚️ 假节点"];
     const 韩国_List = 韩国筛选.length > 0 ? 韩国筛选 : ["🈚️ 假节点"];
     const 欧盟_List = 欧盟筛选.length > 0 ? 欧盟筛选 : ["🈚️ 假节点"];
+    //const 冷门_List = 冷门筛选.length > 0 ? 冷门筛选 : ["🈚️ 假节点"];
     // --- 【策略组代理列表模板】 ---
     const 节点选择池 = ["🇭🇰 香港节点", "🇺🇸 美国节点", "🇸🇬 狮城节点", "🇯🇵 日本节点", "🇹🇼 台湾节点", "🇰🇷 韩国节点", "🇪🇺 欧盟节点", "🌐 全部节点"];
     const 故转节点池 = ["🇭🇰 香港故转", "🇺🇸 美国故转", "🇸🇬 狮城故转", "🇯🇵 日本故转"];
@@ -235,7 +237,7 @@ function main(config) {
         ...创建地区分组("🇰🇷 韩国", "Korea.png", 韩国_List, `${韩国正则}`),
         ...创建地区分组("🇪🇺 欧盟", "European_Union.png", 欧盟_List, `${欧盟正则}`),
         // --- 【其他策略组】 ---
-        { name: "🌐 全部节点", type: "select", proxies: ["🈚️ 假节点", ...原始节点], icon: 图标库 + "Clubhouse.png" },
+        { name: "🌐 全部节点", type: "select", use: 外部订阅, proxies: ["🈚️ 假节点", ...原始节点], icon: 图标库 + "Clubhouse.png" },
         { name: "🐟 漏网之鱼", type: "select", proxies: ["🚀 节点选择", "🎯 全球直连"], filter: 节点黑名单, icon: 图标库 + "Final.png" }
     ];
     // --- 【规则组定义锚】 ---
