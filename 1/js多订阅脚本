@@ -240,12 +240,12 @@ function main(config) {
     ];
 
     // --- 【规则组定义锚】 ---
-    const ip_mrs = { type: "http", interval: 21600, behavior: "ipcidr", format: "mrs" };
-    const classical_text = { type: "http", interval: 21600, behavior: "classical", format: "text" };
-    const classical_yaml = { type: "http", interval: 21600, behavior: "classical", format: "yaml" };
-    const domain_mrs = { type: "http", interval: 21600, behavior: "domain", format: "mrs" };
-    const domain_yaml = { type: "http", interval: 21600, behavior: "domain", format: "yaml" };
-    const domain_text = { type: "http", interval: 21600, behavior: "domain", format: "text" };
+    const ip_mrs = { type: "http", interval: 300, behavior: "ipcidr", format: "mrs" };
+    const classical_text = { type: "http", interval: 300, behavior: "classical", format: "text" };
+    const classical_yaml = { type: "http", interval: 300, behavior: "classical", format: "yaml" };
+    const domain_mrs = { type: "http", interval: 300, behavior: "domain", format: "mrs" };
+    const domain_yaml = { type: "http", interval: 300, behavior: "domain", format: "yaml" };
+    const domain_text = { type: "http", interval: 300, behavior: "domain", format: "text" };
     // --- 【外部规则组】 ---
     config["rule-providers"] = {
         "自用直连规则": { ...classical_text, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/1/直连规则" },
