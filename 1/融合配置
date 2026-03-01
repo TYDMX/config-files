@@ -30,44 +30,7 @@ cfw-latency-url: https://cp.cloudflare.com/generate_204
 
 ## ---------------- 代理提供者 ----------------
 proxy-providers:
-
-  Flclash手机 💧:
-    <<: *template
-    url: "https://5.nfsqttt.us/nfsq/?token=TTVqJp7q-Gou-aOuXjmPRnW5wLGAUyFP"
-    override:
-      additional-prefix: "💧 "
-      #additional-suffix: " 💧"
-  Flclash电脑 💧:
-    <<: *template
-    url: "https://1.nfsqttt.us/nfsq/?token=QgvsBrfBojr63n4gXCUndn0mC5AlFcjj"
-    override:
-      additional-prefix: "💧 "
-      #additional-suffix: " 💧"
-  Clash Meta 💧:
-    <<: *template
-    url: "https://7.nfsqttt.us/nfsq/?token=kE_Qf1uUJVJqYSRPiRANadYBq5AMUzOU"
-    override:
-      additional-prefix: "💧 "
-      #additional-suffix: " 💧"
-  FlyClash 💧:
-    <<: *template
-    url: "https://7.nfsqttt.us/nfsq/?token=G79Sr_wQlOsNJcrx43p2wpX-CwO3i-iT"
-    override:
-      additional-prefix: "💧 "
-      #additional-suffix: " 💧"
-  FlyClash smart 💧:
-    <<: *template
-    url: "https://9.nfsqttt.us/nfsq/?token=ao6i1gJAAbHuKIgCO9w8P7mgf-b9gcUF"
-    override:
-      additional-prefix: "💧 "
-      #additional-suffix: " 💧"
-  Clash Verge 💧:
-    <<: *template
-    url: "https://1.nfsqttt.us/nfsq/?token=D1mEigyDi21p0agO5DFDUJ8pWUFgAiQk"
-    override:
-      additional-prefix: "💧 "
-      #additional-suffix: " 💧"   
-      
+    
   订阅分享中心自建 🌏:
     <<: *template
     interval: 3600
