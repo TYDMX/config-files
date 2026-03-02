@@ -11,6 +11,7 @@ payload:
   
   # 战雷
   #PROCESS-NAME,aces.exe
+  - PROCESS-NAME,launcher.exe
   #PROCESS-NAME,aces_BE.exe
   #PROCESS-NAME,BEService.exe
   # 暴雪
