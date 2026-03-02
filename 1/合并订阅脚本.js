@@ -117,9 +117,15 @@ function main(config) {
     const 阿里QUIC = ["quic://dns.alidns.com"];
     const 腾讯IP = ["119.29.29.29"];
     const 腾讯DOT = ["tls://dot.pub"];
-    const 腾讯DOH = ["https://doh.pub/dns-query#h3=true", "https://sm2.doh.pub/dns-query#h3=true"];
-    const 国外DNS = [...谷歌DOT, ...谷歌DOH, ...cloudflare_DOT, ...cloudflare_DOH];
-    const 国内DNS = [...阿里DOT, ...阿里DOH, ...阿里QUIC, ...腾讯DOT, ...腾讯DOH];
+    const 腾讯DOH = ["https://doh.pub/dns-query#h3=true"];
+    const 国外DNS = [
+        ...谷歌DOT, ...谷歌DOH, 
+        ...cloudflare_DOT, ...cloudflare_DOH
+    ];
+    const 国内DNS = [
+        ...阿里DOT, ...阿里DOH, ...阿里QUIC, 
+        ...腾讯DOT, ...腾讯DOH
+    ];
     config["hosts"] = {
         "dns.google": 谷歌IP,
         "dns.cloudflare.com": cloudflare_IP,
@@ -143,6 +149,7 @@ function main(config) {
         "fake-ip-filter": [
             "rule-set:自用fake-ip-filter",
             "geosite:private",
+            "geosite:cn,geolocation-cn",
             "geosite:connectivity-check",
             "geosite:googlefcm",
         ],
@@ -162,6 +169,7 @@ function main(config) {
         "nameserver-policy": {
             "geosite:private": 国内DNS,
             "RULE-SET:自用代理规则": 国外DNS,
+            "RULE-SET:自用直连规则": 国内DNS,
             "geosite:microsoft,google@cn,googlefcm": 国内DNS,
             "geosite:cn,geolocation-cn": 国内DNS,
             "geosite:gfw,geolocation-!cn": 国外DNS,
@@ -169,12 +177,12 @@ function main(config) {
     };
     // --- 【节点筛选正则表达式】 ---
     const 香港正则 = '(港|🇭🇰|HK|Hong|HKG)';
-    const 狮城正则 = '(坡|🇸🇬|SG|Sing|SIN|XSP)';
+    const 狮城正则 = '(新|🇸🇬|坡|SG|Sing|SIN|XSP)';
     const 美国正则 = '(美|🇺🇸|US|USA|JFK|LAX|ORD|ATL|DFW|SFO|MIA|SEA|IAD)';
     const 日本正则 = '(日|🇯🇵|JP|Japan|NRT|HND|KIX|CTS|FUK)';
     const 韩国正则 = '(韩|🇰🇷|韓|首尔|南朝鲜|KR|KOR|Korea)';
     const 台湾正则 = '(台|🇹🇼|TW|tai|TPE|TSA|KHH)';
-    const 欧盟正则 = "^(?!(.*(马来|印度|剩余))).*(奥|比|保|克罗地亚|塞|捷|丹|爱沙|芬|法|德|希|匈|爱尔|意|拉|立|卢|马其它|荷|波|葡|罗|斯洛伐|斯洛文|西|瑞|英|🇧🇪|🇨🇿|🇩🇰|🇫🇮|🇫🇷|🇩🇪|🇮🇪|🇮🇹|🇱🇹|🇱🇺|🇳🇱|🇵🇱|🇸🇪|🇬🇧|CDG|FRA|AMS|MAD|BCN|FCO|MUC|BRU|GB|FR|DE|NL|RU|LV|SE|LT|AU|NZ)";
+    const 欧盟正则 = "^(?!(.*(马来|印度))).*(奥|比|保|克罗地亚|塞|捷|丹|爱沙|芬|法|德|希|匈|爱尔|意|拉|立|卢|马其它|荷|波|葡|罗|斯洛伐|斯洛文|西|瑞|英|🇧🇪|🇨🇿|🇩🇰|🇫🇮|🇫🇷|🇩🇪|🇮🇪|🇮🇹|🇱🇹|🇱🇺|🇳🇱|🇵🇱|🇸🇪|🇬🇧|CDG|FRA|AMS|MAD|BCN|FCO|MUC|BRU|GB|FR|DE|NL|RU|LV|SE|LT|AU|NZ)";
     const 汇总正则 = `(${[香港正则,狮城正则,美国正则,日本正则,韩国正则,台湾正则,欧盟正则].join("|")})`;
     const 香港筛选 = 内部节点.filter(n => new RegExp(香港正则, "i").test(n));
     const 狮城筛选 = 内部节点.filter(n => new RegExp(狮城正则, "i").test(n));
@@ -250,12 +258,8 @@ function main(config) {
         { name: "🐟 漏网之鱼", type: "select", proxies: ["🚀 节点选择", "🎯 全球直连"], filter: 节点黑名单, icon: 图标库 + "Final.png" }
     ];
     // --- 【规则组定义锚】 ---
-    const ip_mrs = { type: "http", interval: 300, behavior: "ipcidr", format: "mrs" };
-    const classical_text = { type: "http", interval: 300, behavior: "classical", format: "text" };
     const classical_yaml = { type: "http", interval: 300, behavior: "classical", format: "yaml" };
-    const domain_mrs = { type: "http", interval: 300, behavior: "domain", format: "mrs" };
     const domain_yaml = { type: "http", interval: 300, behavior: "domain", format: "yaml" };
-    const domain_text = { type: "http", interval: 300, behavior: "domain", format: "text" };
     // --- 【外部规则组】 ---
     config["rule-providers"] = {
         "自用直连规则": { ...classical_yaml, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/1/直连规则.yaml" },
