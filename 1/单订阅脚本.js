@@ -4,6 +4,7 @@ function main(config) {
      // --- 【配置外部订阅】 ---
 
     config["proxy-providers"] = {
+        ...config["proxy-providers"],
         "订阅分享中心自建 🌏": { url: "https://sub.dmit.dpdns.org/share/sub/dingyue_Center_zijian_auto?token=xgy1nCsG7xgerdecv4QRn" },
         "公益机场自建 🔮": { url: "https://raw.githubusercontent.com/go4sharing/sub/main/clash.yaml"},
         "dmit节点池 🪩": { url: "https://proxypool.dmit.dpdns.org/clash/proxies?nstream=netflix,disney"},
