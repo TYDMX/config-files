@@ -131,7 +131,7 @@ function main(config) {
             "geosite:connectivity-check",
             "geosite:googlefcm",
         ],
-        "use-hosts": true,
+        "use-hosts": false,
         "use-system-hosts": false,
         "default-nameserver": [
             "tls://223.5.5.5", 
