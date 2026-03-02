@@ -40,8 +40,7 @@ function main(config) {
         }
     }
     const 外部订阅 = Object.keys(config["proxy-providers"] || {});
-    
-     // --- 【合并内部节点】 ---
+    // --- 【合并内部节点】 ---
     const 功能节点 = [
         { name: "🎯 全球直连", type: "direct", udp: true },
         { name: "🈚️ 假节点", type: "reject" },
@@ -54,11 +53,6 @@ function main(config) {
         ...内部节点,
         ...功能节点
     ];
-
-
-
-
-    
     // --- 【1. 全局基础配置】 ---
     config["log-level"] = "info";
     config["port"] = 7890;
