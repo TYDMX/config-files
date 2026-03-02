@@ -99,7 +99,7 @@ function main(config) {
         "udp-timeout": 300
     };
     // --- 【DNS配置模板】 ---
-    const 谷歌IP = ["8.8.8.8"];
+    const IP谷歌 = ["8.8.8.8"];
     const 谷歌DOT = ["tls://dns.google"];
     const 谷歌DOH = ["https://dns.google/dns-query#h3=true"];
     const 谷歌QUIC = ["quic://dns.google"];
@@ -116,7 +116,7 @@ function main(config) {
     const DNS国外 = [...谷歌DOT, ...谷歌DOH, ...cloudflare_DOT, ...cloudflare_DOH];
     const DNS国内 = [...阿里DOT, ...阿里DOH, ...阿里QUIC, ...腾讯DOT, ...腾讯DOH];
     config["hosts"] = {
-        "dns.google": 谷歌IP,
+        "dns.google": IP谷歌,
         "dns.cloudflare.com": cloudflare_IP,
         "cloudflare-dns.com": cloudflare_IP,
         "dns.alidns.com": 阿里IP,
