@@ -186,8 +186,8 @@ function main(config) {
     const 台湾筛选 = 内部节点.filter(n => new RegExp(台湾正则, "i").test(n));
     const 韩国筛选 = 内部节点.filter(n => new RegExp(韩国正则, "i").test(n));
     const 欧盟筛选 = 内部节点.filter(n => new RegExp(欧盟正则, "i").test(n));
-    const 冷门筛选 = 内部节点.filter(n => !new RegExp(`${汇总正则}|${排除正则}`, "i").test(n));
-    const 全部筛选 = 内部节点.filter(n => !new RegExp(排除正则, "i").test(n));
+    const 冷门_List = 内部节点.filter(n => !new RegExp(`${汇总正则}|${排除正则}`, "i").test(n));
+    const 全部_List = 内部节点.filter(n => !new RegExp(排除正则, "i").test(n));
     
     const 香港_List = 香港筛选.length > 0 ? 香港筛选 : ["🈚️ 假节点"];
     const 狮城_List = 狮城筛选.length > 0 ? 狮城筛选 : ["🈚️ 假节点"];
@@ -196,8 +196,6 @@ function main(config) {
     const 台湾_List = 台湾筛选.length > 0 ? 台湾筛选 : ["🈚️ 假节点"];
     const 韩国_List = 韩国筛选.length > 0 ? 韩国筛选 : ["🈚️ 假节点"];
     const 欧盟_List = 欧盟筛选.length > 0 ? 欧盟筛选 : ["🈚️ 假节点"];
-    const 冷门_List = 冷门筛选.length > 0 ? 冷门筛选 : ["🈚️ 假节点"];
-    const 全部_List = 全部筛选.length > 0 ? 冷门筛选 : ["🈚️ 假节点"];
     // --- 【策略组代理列表模板】 ---
     const 节点选择池 = ["🇭🇰 香港节点", "🇺🇸 美国节点", "🇸🇬 狮城节点", "🇯🇵 日本节点", "🇹🇼 台湾节点", "🇰🇷 韩国节点", "🇪🇺 欧盟节点", "🌐 冷门自选", "🌐 全部节点"];
     const 故转节点池 = ["🇭🇰 香港故转", "🇺🇸 美国故转", "🇸🇬 狮城故转", "🇯🇵 日本故转"];
