@@ -1,4 +1,3 @@
-
 //https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/1/合并订阅脚本.js
 function main(config) {
     const 图标库 = "https://github.com/Koolson/Qure/raw/master/IconSet/Color/";
@@ -168,7 +167,6 @@ function main(config) {
             "geosite:gfw,geolocation-!cn": 国外DNS,
         },
     };
-
     // --- 【节点筛选正则表达式】 ---
     const 香港正则 = '(港|🇭🇰|HK|Hong|HKG)';
     const 狮城正则 = '(坡|🇸🇬|SG|Sing|SIN|XSP)';
@@ -178,7 +176,6 @@ function main(config) {
     const 台湾正则 = '(台|🇹🇼|TW|tai|TPE|TSA|KHH)';
     const 欧盟正则 = "^(?!(.*(马来|印度|剩余))).*(奥|比|保|克罗地亚|塞|捷|丹|爱沙|芬|法|德|希|匈|爱尔|意|拉|立|卢|马其它|荷|波|葡|罗|斯洛伐|斯洛文|西|瑞|英|🇧🇪|🇨🇿|🇩🇰|🇫🇮|🇫🇷|🇩🇪|🇮🇪|🇮🇹|🇱🇹|🇱🇺|🇳🇱|🇵🇱|🇸🇪|🇬🇧|CDG|FRA|AMS|MAD|BCN|FCO|MUC|BRU|GB|FR|DE|NL|RU|LV|SE|LT|AU|NZ)";
     const 汇总正则 = `(${[香港正则,狮城正则,美国正则,日本正则,韩国正则,台湾正则,欧盟正则].join("|")})`;
-    
     const 香港筛选 = 内部节点.filter(n => new RegExp(香港正则, "i").test(n));
     const 狮城筛选 = 内部节点.filter(n => new RegExp(狮城正则, "i").test(n));
     const 美国筛选 = 内部节点.filter(n => new RegExp(美国正则, "i").test(n));
@@ -188,7 +185,6 @@ function main(config) {
     const 欧盟筛选 = 内部节点.filter(n => new RegExp(欧盟正则, "i").test(n));
     const 冷门_List = 内部节点.filter(n => !new RegExp(`${汇总正则}|${节点黑名单}`, "i").test(n));
     const 全部_List = 内部节点.filter(n => !new RegExp(节点黑名单, "i").test(n));
-    
     const 香港_List = 香港筛选.length > 0 ? 香港筛选 : ["🈚️ 假节点"];
     const 狮城_List = 狮城筛选.length > 0 ? 狮城筛选 : ["🈚️ 假节点"];
     const 美国_List = 美国筛选.length > 0 ? 美国筛选 : ["🈚️ 假节点"];
@@ -249,7 +245,7 @@ function main(config) {
         ...创建地区分组("🇰🇷 韩国", "Korea.png", 韩国_List, `${韩国正则}`),
         ...创建地区分组("🇪🇺 欧盟", "European_Union.png", 欧盟_List, `${欧盟正则}`),
         // --- 【其他策略组】 ---
-        { name: "🌐 冷门自选", type: "select", use: 外部订阅, "exclude-filter": `(?i)(${汇总正则}|${节点黑名单})`, proxies: ["🈚️ 假节点", ...冷门_List], icon: 图标库 + "Europe_Map.png" },
+        { name: "🌐 冷门自选", type: "select", use: 外部订阅, "exclude-filter": `(?i)(${汇总正则})`, proxies: ["🈚️ 假节点", ...冷门_List], icon: 图标库 + "Europe_Map.png" },
         { name: "🌐 全部节点", type: "select", use: 外部订阅, proxies: ["🈚️ 假节点", ...全部_List], icon: 图标库 + "Clubhouse.png" },
         { name: "🐟 漏网之鱼", type: "select", proxies: ["🚀 节点选择", "🎯 全球直连"], filter: 节点黑名单, icon: 图标库 + "Final.png" }
     ];
