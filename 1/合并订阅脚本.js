@@ -248,7 +248,7 @@ function main(config) {
         ...创建地区分组("🇰🇷 韩国", "Korea.png", 韩国_List, `${韩国正则}`),
         ...创建地区分组("🇪🇺 欧盟", "European_Union.png", 欧盟_List, `${欧盟正则}`),
         // --- 【其他策略组】 ---
-        { name: "🌐 冷门自选", type: "select", use: 外部订阅, "exclude-filter": `${汇总正则}`, proxies: ["🈚️ 假节点", ...冷门_List], icon: 图标库 + "Europe_Map.png" },
+        { name: "🌐 冷门自选", type: "select", use: 外部订阅, "exclude-filter": `${汇总正则}|${节点黑名单}`, proxies: ["🈚️ 假节点", ...冷门_List], icon: 图标库 + "Europe_Map.png" },
         { name: "🌐 全部节点", type: "select", use: 外部订阅, proxies: ["🈚️ 假节点", ...全部_List], icon: 图标库 + "Clubhouse.png" },
         { name: "🐟 漏网之鱼", type: "select", proxies: ["🚀 节点选择", "🎯 全球直连"], filter: 节点黑名单, icon: 图标库 + "Final.png" }
     ];
