@@ -40,15 +40,25 @@ function main(config) {
         }
     }
     const 外部订阅 = Object.keys(config["proxy-providers"] || {});
+    
      // --- 【合并内部节点】 ---
-    const 内部订阅 = config["proxies"] || [];
-    const 内部节点 = 内部订阅.map(p => p.name);
-    config["proxies"] = [
-        ...内部订阅,
+    const 功能节点 = [
         { name: "🎯 全球直连", type: "direct", udp: true },
         { name: "🈚️ 假节点", type: "reject" },
         { name: "🚫 阻止", type: "reject" }
     ];
+    const 内部节点 = (config["proxies"] || []).filter(
+        p => !功能节点.some(e => e.name === p.name)
+    );
+    config["proxies"] = [
+        ...内部节点,
+        ...功能节点
+    ];
+
+
+
+
+    
     // --- 【1. 全局基础配置】 ---
     config["log-level"] = "info";
     config["port"] = 7890;
