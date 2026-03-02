@@ -46,13 +46,14 @@ function main(config) {
         { name: "🈚️ 假节点", type: "reject" },
         { name: "🚫 阻止", type: "reject" }
     ];
-    const 内部节点 = (config["proxies"] || []).filter(
+    const 内部过滤节点 = (config["proxies"] || []).filter(
         p => !功能节点.some(e => e.name === p.name)
     );
     config["proxies"] = [
-        ...内部节点,
+        ...内部过滤节点,
         ...功能节点
     ];
+    const 内部节点 = config["proxies"].map(p => p.name);
     // --- 【1. 全局基础配置】 ---
     config["log-level"] = "info";
     config["port"] = 7890;
