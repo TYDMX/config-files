@@ -177,6 +177,7 @@ function main(config) {
     const 台湾正则 = '(台|🇹🇼|TW|tai|TPE|TSA|KHH)';
     const 欧盟正则 = "^(?!(.*(马来|印度|剩余))).*(奥|比|保|克罗地亚|塞|捷|丹|爱沙|芬|法|德|希|匈|爱尔|意|拉|立|卢|马其它|荷|波|葡|罗|斯洛伐|斯洛文|西|瑞|英|🇧🇪|🇨🇿|🇩🇰|🇫🇮|🇫🇷|🇩🇪|🇮🇪|🇮🇹|🇱🇹|🇱🇺|🇳🇱|🇵🇱|🇸🇪|🇬🇧|CDG|FRA|AMS|MAD|BCN|FCO|MUC|BRU|GB|FR|DE|NL|RU|LV|SE|LT|AU|NZ)";
     const 汇总正则 = `(${[香港正则,狮城正则,美国正则,日本正则,韩国正则,台湾正则,欧盟正则].join("|")})`;
+    const 排除正则 = '(阻止|直连|China|china|CHINA|🇨🇳|高倍|×10|10M|节点|过滤|剩余|流量|距离|下次|重置|重新|订阅|导入|套餐|到期|跳转|域名|请勿|邀请|好友|关注|频道|收费|就说明|被骗|续费|更新|地址|官网|下载|群组|永久|长期|中继|更换|协议|软件|教程|Lite|ali)';
 
     const 香港筛选 = 内部节点.filter(n => new RegExp(香港正则, "i").test(n));
     const 狮城筛选 = 内部节点.filter(n => new RegExp(狮城正则, "i").test(n));
@@ -185,7 +186,8 @@ function main(config) {
     const 台湾筛选 = 内部节点.filter(n => new RegExp(台湾正则, "i").test(n));
     const 韩国筛选 = 内部节点.filter(n => new RegExp(韩国正则, "i").test(n));
     const 欧盟筛选 = 内部节点.filter(n => new RegExp(欧盟正则, "i").test(n));
-    const 冷门筛选 = 内部节点.filter(n => !new RegExp(汇总正则, "i").test(n));
+    const 冷门筛选 = 内部节点.filter(n => !new RegExp(`${汇总正则}|${排除正则}`, "i").test(n));
+    const 全部筛选 = 内部节点.filter(n => !new RegExp(排除正则, "i").test(n));
     
     const 香港_List = 香港筛选.length > 0 ? 香港筛选 : ["🈚️ 假节点"];
     const 狮城_List = 狮城筛选.length > 0 ? 狮城筛选 : ["🈚️ 假节点"];
@@ -195,6 +197,7 @@ function main(config) {
     const 韩国_List = 韩国筛选.length > 0 ? 韩国筛选 : ["🈚️ 假节点"];
     const 欧盟_List = 欧盟筛选.length > 0 ? 欧盟筛选 : ["🈚️ 假节点"];
     const 冷门_List = 冷门筛选.length > 0 ? 冷门筛选 : ["🈚️ 假节点"];
+    const 全部_List = 全部筛选.length > 0 ? 冷门筛选 : ["🈚️ 假节点"];
     // --- 【策略组代理列表模板】 ---
     const 节点选择池 = ["🇭🇰 香港节点", "🇺🇸 美国节点", "🇸🇬 狮城节点", "🇯🇵 日本节点", "🇹🇼 台湾节点", "🇰🇷 韩国节点", "🇪🇺 欧盟节点", "🌐 冷门自选", "🌐 全部节点"];
     const 故转节点池 = ["🇭🇰 香港故转", "🇺🇸 美国故转", "🇸🇬 狮城故转", "🇯🇵 日本故转"];
@@ -249,7 +252,7 @@ function main(config) {
         ...创建地区分组("🇪🇺 欧盟", "European_Union.png", 欧盟_List, `${欧盟正则}`),
         // --- 【其他策略组】 ---
         { name: "🌐 冷门自选", type: "select", use: 外部订阅, "exclude-filter": `${汇总正则}`, proxies: ["🈚️ 假节点", ...冷门_List], icon: 图标库 + "Europe_Map.png" },
-        { name: "🌐 全部节点", type: "select", use: 外部订阅, proxies: ["🈚️ 假节点", ...内部节点], icon: 图标库 + "Clubhouse.png" },
+        { name: "🌐 全部节点", type: "select", use: 外部订阅, proxies: ["🈚️ 假节点", ...全部_List], icon: 图标库 + "Clubhouse.png" },
         { name: "🐟 漏网之鱼", type: "select", proxies: ["🚀 节点选择", "🎯 全球直连"], filter: 节点黑名单, icon: 图标库 + "Final.png" }
     ];
     // --- 【规则组定义锚】 ---
