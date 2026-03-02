@@ -100,28 +100,28 @@ function main(config) {
     };
     // --- 【DNS配置模板】 ---
     const IP谷歌 = ["8.8.8.8"];
-    const 谷歌DOT = ["tls://dns.google"];
-    const 谷歌DOH = ["https://dns.google/dns-query#h3=true"];
-    const 谷歌QUIC = ["quic://dns.google"];
-    const cloudflare_IP = ["1.1.1.1"];
-    const cloudflare_DOT = ["tls://cloudflare-dns.com"];
-    const cloudflare_DOH = ["https://cloudflare-dns.com/dns-query#h3=true"];
-    const 阿里IP = ["223.5.5.5"];
-    const 阿里DOT = ["tls://dns.alidns.com"];
-    const 阿里DOH = ["https://dns.alidns.com/dns-query#h3=true"];
-    const 阿里QUIC = ["quic://dns.alidns.com"];
-    const 腾讯IP = ["119.29.29.29"];
-    const 腾讯DOT = ["tls://dot.pub"];
-    const 腾讯DOH = ["https://doh.pub/dns-query#h3=true", "https://sm2.doh.pub/dns-query#h3=true"];
-    const DNS国外 = [...谷歌DOT, ...谷歌DOH, ...cloudflare_DOT, ...cloudflare_DOH];
-    const DNS国内 = [...阿里DOT, ...阿里DOH, ...阿里QUIC, ...腾讯DOT, ...腾讯DOH];
+    const DOT谷歌 = ["tls://dns.google"];
+    const DOH谷歌 = ["https://dns.google/dns-query#h3=true"];
+    const QUIC谷歌 = ["quic://dns.google"];
+    const cloudflareIP = ["1.1.1.1"];
+    const cloudflareDOT = ["tls://cloudflare-dns.com"];
+    const cloudflareDOH = ["https://cloudflare-dns.com/dns-query#h3=true"];
+    const IP阿里 = ["223.5.5.5"];
+    const DOT阿里 = ["tls://dns.alidns.com"];
+    const DOH阿里 = ["https://dns.alidns.com/dns-query#h3=true"];
+    const QUIC阿里 = ["quic://dns.alidns.com"];
+    const IP腾讯 = ["119.29.29.29"];
+    const DOT腾讯 = ["tls://dot.pub"];
+    const DOH腾讯 = ["https://doh.pub/dns-query#h3=true", "https://sm2.doh.pub/dns-query#h3=true"];
+    const DNS国外 = [...DOT谷歌, ...DOH谷歌, ...cloudflareDOT, ...cloudflareDOH];
+    const DNS国内 = [...DOT阿里, ...DOH阿里, ...QUIC阿里, ...DOT腾讯, ...DOH腾讯];
     config["hosts"] = {
         "dns.google": IP谷歌,
-        "dns.cloudflare.com": cloudflare_IP,
-        "cloudflare-dns.com": cloudflare_IP,
-        "dns.alidns.com": 阿里IP,
-        "doh.pub": 腾讯IP,
-        "dot.pub": 腾讯IP,
+        "dns.cloudflare.com": cloudflareIP,
+        "cloudflare-dns.com": cloudflareIP,
+        "dns.alidns.com": IP阿里,
+        "doh.pub": IP腾讯,
+        "dot.pub": IP腾讯,
     };
     // --- 【4. DNS 模式配置】 ---
     config["dns"] = {
