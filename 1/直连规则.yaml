@@ -12,12 +12,16 @@ payload:
   - DOMAIN-WILDCARD,nfsq*.*
 
   # 战雷
-  - DOMAIN-WILDCARD,chat-*.warthunder.com # 聊天
-  # - DOMAIN-WILDCARD,char-*.warthunder.com # 角色
-  - DOMAIN-SUFFIX,forum.warthunder.com # 论坛
-  - DOMAIN-WILDCARD,forum-*-cdn.warthunder.com # 论坛
-  - DOMAIN-WILDCARD,gaijin.*
-  - DOMAIN-WILDCARD,client-stats.*.net ## client-stats.gaijin.net # 自动匹配服务器的参考 ## client-stats.warthunder.com # 客户端性能数据
+  - DOMAIN-WILDCARD,chat*.warthunder.com # 聊天
+  # - DOMAIN-WILDCARD,char*.warthunder.com # 角色
+  - DOMAIN-WILDCARD,forum*.warthunder.com # 论坛
+  - DOMAIN-WILDCARD,client-stats.*.net ## *gaijin # 自动匹配服务器的参考 *warthunder.com # 客户端性能数据
+  - DOMAIN-SUFFIX,gaijin.com
+  - DOMAIN-SUFFIX,gaijin.net
+  - DOMAIN-WILDCARD,*.gaijinent.com # 下载*yuptracker
+  - DOMAIN-WILDCARD,*cdn.gaijin.net
+  - DOMAIN-WILDCARD,*cdn.warthunder.com
+  
 
   #三星
   - DOMAIN-SUFFIX,samsung.com
