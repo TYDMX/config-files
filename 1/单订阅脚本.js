@@ -9,7 +9,7 @@ function main(config) {
         "dmit节点池 🪩": { url: "https://proxypool.dmit.dpdns.org/clash/proxies?nstream=netflix,disney"},
     };
     const 外部订阅 = Object.keys(config["proxy-providers"] || {});
-    const 节点黑名单 = "(?i)(China|china|CHINA|🇨🇳|高倍|×10|10M|节点|过滤|剩余|流量|距离|下次|重置|重新|订阅|导入|套餐|到期|跳转|域名|请勿|邀请|好友|关注|频道|收费|就说明|被骗|续费|更新|地址|官网|下载|群组|永久|长期|中继|更换|协议|软件|教程|Lite|ali)";
+    const 节点黑名单 = "(阻止|直连|CHINA|🇨🇳|高倍|×10|10M|节点|过滤|剩余|流量|距离|下次|重置|重新|订阅|导入|套餐|到期|跳转|域名|请勿|邀请|好友|关注|频道|收费|就说明|被骗|续费|更新|地址|官网|下载|群组|永久|长期|中继|更换|协议|软件|教程|Lite|ali)";
     if (config["proxy-providers"]) {
         for (let 机场名 in config["proxy-providers"]) {
             let 原订阅 = config["proxy-providers"][机场名];
@@ -21,7 +21,7 @@ function main(config) {
                     "type": "http",
                     "url": 原订阅.url,
                     "tfo": true,
-                    "exclude-filter": 节点黑名单,
+                    "exclude-filter": `(?i)${节点黑名单}`,
                     "exclude-type": "http|ss",
                     "path": `./proxies/${机场名}.yaml`,
                     "override": {
@@ -177,8 +177,7 @@ function main(config) {
     const 台湾正则 = '(台|🇹🇼|TW|tai|TPE|TSA|KHH)';
     const 欧盟正则 = "^(?!(.*(马来|印度|剩余))).*(奥|比|保|克罗地亚|塞|捷|丹|爱沙|芬|法|德|希|匈|爱尔|意|拉|立|卢|马其它|荷|波|葡|罗|斯洛伐|斯洛文|西|瑞|英|🇧🇪|🇨🇿|🇩🇰|🇫🇮|🇫🇷|🇩🇪|🇮🇪|🇮🇹|🇱🇹|🇱🇺|🇳🇱|🇵🇱|🇸🇪|🇬🇧|CDG|FRA|AMS|MAD|BCN|FCO|MUC|BRU|GB|FR|DE|NL|RU|LV|SE|LT|AU|NZ)";
     const 汇总正则 = `(${[香港正则,狮城正则,美国正则,日本正则,韩国正则,台湾正则,欧盟正则].join("|")})`;
-    const 排除正则 = '(阻止|直连|China|china|CHINA|🇨🇳|高倍|×10|10M|节点|过滤|剩余|流量|距离|下次|重置|重新|订阅|导入|套餐|到期|跳转|域名|请勿|邀请|好友|关注|频道|收费|就说明|被骗|续费|更新|地址|官网|下载|群组|永久|长期|中继|更换|协议|软件|教程|Lite|ali)';
-
+    
     const 香港筛选 = 内部节点.filter(n => new RegExp(香港正则, "i").test(n));
     const 狮城筛选 = 内部节点.filter(n => new RegExp(狮城正则, "i").test(n));
     const 美国筛选 = 内部节点.filter(n => new RegExp(美国正则, "i").test(n));
@@ -186,8 +185,8 @@ function main(config) {
     const 台湾筛选 = 内部节点.filter(n => new RegExp(台湾正则, "i").test(n));
     const 韩国筛选 = 内部节点.filter(n => new RegExp(韩国正则, "i").test(n));
     const 欧盟筛选 = 内部节点.filter(n => new RegExp(欧盟正则, "i").test(n));
-    const 冷门_List = 内部节点.filter(n => !new RegExp(`${汇总正则}|${排除正则}`, "i").test(n));
-    const 全部_List = 内部节点.filter(n => !new RegExp(排除正则, "i").test(n));
+    const 冷门_List = 内部节点.filter(n => !new RegExp(`${汇总正则}|${节点黑名单}`, "i").test(n));
+    const 全部_List = 内部节点.filter(n => !new RegExp(节点黑名单, "i").test(n));
     
     const 香港_List = 香港筛选.length > 0 ? 香港筛选 : ["🈚️ 假节点"];
     const 狮城_List = 狮城筛选.length > 0 ? 狮城筛选 : ["🈚️ 假节点"];
