@@ -1,8 +1,7 @@
 //https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/1/单订阅脚本.js
 function main(config) {
     const 图标库 = "https://github.com/Koolson/Qure/raw/master/IconSet/Color/";
-     // --- 【配置外部订阅】 ---
-
+     // --- 【合并外部订阅】 ---
     config["proxy-providers"] = {
         ...(config["proxy-providers"] || {}),
         "订阅分享中心自建 🌏": { url: "https://sub.dmit.dpdns.org/share/sub/dingyue_Center_zijian_auto?token=xgy1nCsG7xgerdecv4QRn" },
@@ -41,10 +40,11 @@ function main(config) {
         }
     }
     const 外部订阅 = Object.keys(config["proxy-providers"] || {});
-    const 原始订阅 = config["proxies"] || [];
-    const 原始节点 = 原始订阅.map(p => p.name);
+     // --- 【合并内部节点】 ---
+    const 内部订阅 = config["proxies"] || [];
+    const 内部节点 = 内部订阅.map(p => p.name);
     config["proxies"] = [
-        ...原始订阅,
+        ...内部订阅,
         { name: "🎯 全球直连", type: "direct", udp: true },
         { name: "🈚️ 假节点", type: "reject" },
         { name: "🚫 阻止", type: "reject" }
@@ -173,14 +173,14 @@ function main(config) {
     const 欧盟正则 = "^(?!(.*(马来|印度|剩余))).*(奥|比|保|克罗地亚|塞|捷|丹|爱沙|芬|法|德|希|匈|爱尔|意|拉|立|卢|马其它|荷|波|葡|罗|斯洛伐|斯洛文|西|瑞|英|🇧🇪|🇨🇿|🇩🇰|🇫🇮|🇫🇷|🇩🇪|🇮🇪|🇮🇹|🇱🇹|🇱🇺|🇳🇱|🇵🇱|🇸🇪|🇬🇧|CDG|FRA|AMS|MAD|BCN|FCO|MUC|BRU|GB|FR|DE|NL|RU|LV|SE|LT|AU|NZ)";
     const 汇总正则 = `(${[香港正则,狮城正则,美国正则,日本正则,韩国正则,台湾正则,欧盟正则].join("|")})`;
 
-    const 香港筛选 = 原始节点.filter(n => new RegExp(香港正则, "i").test(n));
-    const 狮城筛选 = 原始节点.filter(n => new RegExp(狮城正则, "i").test(n));
-    const 美国筛选 = 原始节点.filter(n => new RegExp(美国正则, "i").test(n));
-    const 日本筛选 = 原始节点.filter(n => new RegExp(日本正则, "i").test(n));
-    const 台湾筛选 = 原始节点.filter(n => new RegExp(台湾正则, "i").test(n));
-    const 韩国筛选 = 原始节点.filter(n => new RegExp(韩国正则, "i").test(n));
-    const 欧盟筛选 = 原始节点.filter(n => new RegExp(欧盟正则, "i").test(n));
-    const 冷门筛选 = 原始节点.filter(n => !new RegExp(汇总正则, "i").test(n));
+    const 香港筛选 = 内部节点.filter(n => new RegExp(香港正则, "i").test(n));
+    const 狮城筛选 = 内部节点.filter(n => new RegExp(狮城正则, "i").test(n));
+    const 美国筛选 = 内部节点.filter(n => new RegExp(美国正则, "i").test(n));
+    const 日本筛选 = 内部节点.filter(n => new RegExp(日本正则, "i").test(n));
+    const 台湾筛选 = 内部节点.filter(n => new RegExp(台湾正则, "i").test(n));
+    const 韩国筛选 = 内部节点.filter(n => new RegExp(韩国正则, "i").test(n));
+    const 欧盟筛选 = 内部节点.filter(n => new RegExp(欧盟正则, "i").test(n));
+    const 冷门筛选 = 内部节点.filter(n => !new RegExp(汇总正则, "i").test(n));
     
     const 香港_List = 香港筛选.length > 0 ? 香港筛选 : ["🈚️ 假节点"];
     const 狮城_List = 狮城筛选.length > 0 ? 狮城筛选 : ["🈚️ 假节点"];
@@ -244,7 +244,7 @@ function main(config) {
         ...创建地区分组("🇪🇺 欧盟", "European_Union.png", 欧盟_List, `${欧盟正则}`),
         // --- 【其他策略组】 ---
         { name: "🌐 冷门自选", type: "select", use: 外部订阅, "exclude-filter": `${汇总正则}`, proxies: ["🈚️ 假节点", ...冷门_List], icon: 图标库 + "Europe_Map.png" },
-        { name: "🌐 全部节点", type: "select", use: 外部订阅, proxies: ["🈚️ 假节点", ...原始节点], icon: 图标库 + "Clubhouse.png" },
+        { name: "🌐 全部节点", type: "select", use: 外部订阅, proxies: ["🈚️ 假节点", ...内部节点], icon: 图标库 + "Clubhouse.png" },
         { name: "🐟 漏网之鱼", type: "select", proxies: ["🚀 节点选择", "🎯 全球直连"], filter: 节点黑名单, icon: 图标库 + "Final.png" }
     ];
     // --- 【规则组定义锚】 ---
@@ -293,12 +293,12 @@ function main(config) {
         "MATCH,🐟 漏网之鱼"
     ];
 
-    function 创建地区分组(地区名, 地区图标, 地区节点池, 外部地区节点池) {
+    function 创建地区分组(地区名, 地区图标, 内部地区节点池, 地区正则) {
         return [
-            { name: `${地区名}节点`, type: "select", use: 外部订阅, filter: 外部地区节点池, proxies: [`${地区名}自动`, `${地区名}散列`, `${地区名}轮询`, ...地区节点池], icon: 图标库 + 地区图标 },
-            { name: `${地区名}自动`, type: "url-test", use: 外部订阅, filter: 外部地区节点池, proxies: 地区节点池, hidden: true, icon: 图标库 + 地区图标 },
-            { name: `${地区名}散列`, type: "load-balance", strategy: "consistent-hashing", proxies: 地区节点池, hidden: true, icon: 图标库 + 地区图标 },
-            { name: `${地区名}轮询`, type: "load-balance", strategy: "round-robin", proxies: 地区节点池, hidden: true, icon: 图标库 + 地区图标 }
+            { name: `${地区名}节点`, type: "select", use: 外部订阅, filter: 地区正则, proxies: [`${地区名}自动`, `${地区名}散列`, `${地区名}轮询`, ...内部地区节点池], icon: 图标库 + 地区图标 },
+            { name: `${地区名}自动`, type: "url-test", use: 外部订阅, filter: 地区正则, proxies: 内部地区节点池, hidden: true, icon: 图标库 + 地区图标 },
+            { name: `${地区名}散列`, type: "load-balance", strategy: "consistent-hashing", proxies: 内部地区节点池, hidden: true, icon: 图标库 + 地区图标 },
+            { name: `${地区名}轮询`, type: "load-balance", strategy: "round-robin", proxies: 内部地区节点池, hidden: true, icon: 图标库 + 地区图标 }
         ];
     }
 
