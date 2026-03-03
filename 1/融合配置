@@ -31,7 +31,7 @@ cfw-latency-url: https://cp.cloudflare.com/generate_204
 ## ---------------- 代理提供者 ----------------
 proxy-providers:
     
-  订阅分享中心自建 🌏:
+  自建 🌏:
     <<: *template
     interval: 3600
     url: "https://sub.dmit.dpdns.org/share/sub/dingyue_Center_zijian_auto?token=xgy1nCsG7xgerdecv4QRn"
@@ -39,7 +39,7 @@ proxy-providers:
       additional-prefix: "🌏 "
       #additional-suffix: " 🌏"
 
-  公益机场自建 🔮:
+  自建 🔮:
     <<: *template
     interval: 3600
     url: "https://raw.githubusercontent.com/go4sharing/sub/main/clash.yaml"
@@ -47,7 +47,7 @@ proxy-providers:
       additional-prefix: "🔮 "
       #additional-suffix: " 🔮"
 
-  dmit节点池 🪩:
+  节点池 🪩:
     <<: *template
     interval: 3600
     url: "https://proxypool.dmit.dpdns.org/clash/proxies?nstream=netflix,disney"
