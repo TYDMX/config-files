@@ -15,7 +15,7 @@ payload:
   #PROCESS-NAME,aces_BE.exe
   #PROCESS-NAME,BEService.exe
   # 暴雪
-  #PROCESS-NAME,com.blizzard.arc
+  - PROCESS-NAME,com.blizzard.arc
   #PROCESS-NAME,WarcraftRumble.exe
   #PROCESS-NAME,Wow.exe
 
