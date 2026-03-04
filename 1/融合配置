@@ -373,5 +373,5 @@ rule-providers:
   前置直连规则: { <<: *classical-yaml, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/1/前置直连规则.yaml"}
 ## ---------------- 广告拦截规则提供者 --------------------
 ## ---------------- domain域名规则提供者 ---------------
-  自用fake-ip-filter: { <<: *domain-yaml, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/2/fkip.list"}
+  自用fake-ip-filter: { <<: *domain-yaml, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/2/fkip.yaml"}
 ## ---------------- ip规则提供者 ---------------------  
