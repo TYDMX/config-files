@@ -70,7 +70,6 @@ tcp-concurrent: true # 尝试与多个IP建立TCP连接
 external-controller: 127.0.0.1:9090 # 外部UI控制器的访问地址和端口，'0.0.0.0'表示任何IP都可访问
 secret: "12345678"
 find-process-mode: strict
-global-client-fingerprint: chrome
 keep-alive-idle: 120
 keep-alive-interval: 75
 keep-alive-probes: 5
