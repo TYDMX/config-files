@@ -9,7 +9,7 @@ payload:
   - DOMAIN-SUFFIX,download.nvidia.com
   - DOMAIN-SUFFIX,tpb.proxyninja.org
   - DOMAIN-SUFFIX,git.imee.me
-  - DOMAIN-WILDCARD,nfsq*.*
+  - DOMAIN-KEYWORD,nfsq
 
   # 战雷
   # - DOMAIN-WILDCARD,char*.warthunder.com # 角色
