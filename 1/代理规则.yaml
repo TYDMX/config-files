@@ -4,7 +4,7 @@ payload:
   #dlrj
   #zlrj
 
-  - DOMAIN-KEYWORD,collector.github  # GitHub图标
+  - DOMAIN-SUFFIX,collector.github.com  # GitHub图标
   #- DOMAIN-KEYWORD,redgifs
   
   # OneDrive
