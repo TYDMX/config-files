@@ -25,7 +25,7 @@ cfw-latency-url: https://cp.cloudflare.com/generate_204
     method: HEAD
   #proxies: select1 # 使用此提供者为select1中转
   #proxy: select1 # 更新用的代理组
-  override:
+  #override:
       #dialer-proxy: ♻️ 中转服务
 
 ## ---------------- 代理提供者 ----------------
@@ -37,7 +37,6 @@ proxy-providers:
     url: "https://sub.dmit.dpdns.org/share/sub/dingyue_Center_zijian_auto?token=xgy1nCsG7xgerdecv4QRn"
     override:
       additional-prefix: "🌏 "
-      #additional-suffix: " 🌏"
 
   自建 🔮:
     <<: *template
@@ -45,7 +44,6 @@ proxy-providers:
     url: "https://raw.githubusercontent.com/go4sharing/sub/main/clash.yaml"
     override:
       additional-prefix: "🔮 "
-      #additional-suffix: " 🔮"
 
   节点池 🪩:
     <<: *template
@@ -53,7 +51,6 @@ proxy-providers:
     url: "https://proxypool.dmit.dpdns.org/clash/proxies?nstream=netflix,disney"
     override:
       additional-prefix: "🪩 "
-      #additional-suffix: " 🪩"
 
 # ==========================================================
 ## ---------------- 全局配置 ----------------
@@ -141,7 +138,7 @@ dns:
   fake-ip-filter-mode: blacklist
   #fake-ip-ttl: 1
   fake-ip-filter:
-    - "rule-set:自用fake-ip-filter"
+    - "rule-set:自用fake-ip"
     - "geosite:connectivity-check,private"
     - "geosite:Google@CN,googlefcm"
     - "geosite:cn,geolocation-cn"
@@ -168,8 +165,8 @@ dns:
     "DOMAIN-KEYWORD,nfsq": *dns_guonei
   nameserver: *dns_guowai
   nameserver-policy:
-    #"geosite:private,Google@CN,googlefcm": *dns_guonei
-    #"geosite:cn,geolocation-cn": *dns_guonei
+    "geosite:private,Google@CN,googlefcm": *dns_guonei
+    "geosite:cn,geolocation-cn": *dns_guonei
     "geosite:Google@CN,googlefcm": *dns_guowai
     "geosite:category-games-!cn": *dns_guowai
     "geosite:geolocation-!cn,gfw": *dns_guowai
@@ -366,12 +363,12 @@ rule-anchor:
 ## ---------------- 规则提供者 ---------------------
 rule-providers:
 ## ---------------- class规则提供者 ---------------------
-  自用直连规则: { <<: *classical-yaml, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/1/直连规则.yaml"}
-  自用代理规则: { <<: *classical-yaml, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/1/代理规则.yaml"}
-  自用直连软件: { <<: *classical-yaml, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/1/直连软件.yaml"}
-  自用代理软件: { <<: *classical-yaml, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/1/代理软件.yaml"}
-  前置直连规则: { <<: *classical-yaml, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/1/前置直连规则.yaml"}
+  自用直连规则: { <<: *classical-yaml, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/配置/自用直连.yaml"}
+  自用代理规则: { <<: *classical-yaml, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/配置/自用代理.yaml"}
+  自用直连软件: { <<: *classical-yaml, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/配置/直连软件.yaml"}
+  自用代理软件: { <<: *classical-yaml, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/配置/代理软件.yaml"}
+  前置直连规则: { <<: *classical-yaml, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/配置/前置直连.yaml"}
 ## ---------------- 广告拦截规则提供者 --------------------
 ## ---------------- domain域名规则提供者 ---------------
-  自用fake-ip-filter: { <<: *domain-yaml, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/2/fake-ip-filter.yaml"}
+  自用fake-ip: { <<: *domain-yaml, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/配置/fake-ip-filter.yaml"}
 ## ---------------- ip规则提供者 ---------------------  
