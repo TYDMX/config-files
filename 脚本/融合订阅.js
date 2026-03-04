@@ -97,15 +97,14 @@ function main(config) {
     config["tun"] = {
         "enable": true,
         "stack": "mixed",
-        "dns-hijack": ["any:53", "tcp://any:53"],
+        "dns-hijack": ["any:53"],
         "auto-route": true,
         "auto-detect-interface": true,
         "strict-route": true,
         "disable-icmp-forwarding": true,
-        "mtu": 9000,
-        "gso": true,
-        "gso-max-size": 65536,
-        "udp-timeout": 3000
+        "mtu": 1500,
+        "gso": false,
+        "udp-timeout": 600
     };
     // --- 【DNS配置模板】 ---#h3=true
     const 谷歌IP = ["8.8.8.8"];
@@ -122,12 +121,11 @@ function main(config) {
     const 腾讯DOT = ["tls://dot.pub"];
     const 腾讯DOH = ["https://doh.pub/dns-query#h3=true"];
     const 国外DNS = [
-        ...谷歌DOT, ...谷歌DOH, 
-        ...cloudflare_DOT, ...cloudflare_DOH
+        ...谷歌DOH, 
+        ...cloudflare_DOH, 
     ];
     const 国内DNS = [
         ...阿里DOH, ...阿里QUIC, 
-        ...腾讯DOH,
     ];
     config["hosts"] = {
         "dns.google": 谷歌IP,
