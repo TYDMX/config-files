@@ -1,4 +1,4 @@
-//https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/1/多订阅脚本.js
+//https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/脚本/多订阅整合.js
 
 function main(config) {
     const 图标库 = "https://github.com/Koolson/Qure/raw/master/IconSet/Color/";
@@ -126,7 +126,7 @@ function main(config) {
         "fake-ip-range6": "fdfe:dcba:9876::/64",
         "fake-ip-filter-mode": "blacklist",
         "fake-ip-filter": [
-            "rule-set:自用fake-ip-filter",
+            "rule-set:自用fake-ip",
             "geosite:private",
             "geosite:connectivity-check",
             "geosite:googlefcm",
@@ -146,7 +146,6 @@ function main(config) {
         "nameserver": DNS国内,
         "nameserver-policy": {
             "geosite:private": DNS国内,
-            "RULE-SET:自用代理规则": DNS国外,
             "geosite:microsoft,google@cn,googlefcm": DNS国内,
             "geosite:cn,geolocation-cn": DNS国内,
             "geosite:gfw,geolocation-!cn": DNS国外,
@@ -248,12 +247,12 @@ function main(config) {
     const domain_text = { type: "http", interval: 300, behavior: "domain", format: "text" };
     // --- 【外部规则组】 ---
     config["rule-providers"] = {
-        "自用直连规则": { ...classical_yaml, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/1/直连规则.yaml" },
-        "自用代理规则": { ...classical_yaml, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/1/代理规则.yaml" },
-        "自用直连软件": { ...classical_yaml, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/1/直连软件.yaml" },
-        "自用代理软件": { ...classical_yaml, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/1/代理软件.yaml" },
-        "前置直连规则": { ...classical_yaml, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/1/前置直连规则.yaml" },
-        "自用fake-ip-filter": { ...domain_yaml, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/2/fkip.yaml" }
+        "自用直连规则": { ...classical_yaml, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/配置/自用直连.yaml" },
+        "自用代理规则": { ...classical_yaml, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/配置/自用代理.yaml" },
+        "自用直连软件": { ...classical_yaml, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/配置/直连软件.yaml" },
+        "自用代理软件": { ...classical_yaml, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/配置/代理软件.yaml" },
+        "前置直连规则": { ...classical_yaml, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/配置/前置直连.yaml" },
+        "自用fake-ip": { ...domain_yaml, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/配置/fake-ip-filter.yaml" }
     };
 
     // --- 【规则】 ---
