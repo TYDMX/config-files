@@ -12,5 +12,5 @@ payload:
 
   # 游戏
   - DOMAIN-SUFFIX,forum.warthunder.com # WT论坛
-  - DOMAIN-WILDCARD,forum-*-cdn.warthunder.com # WT论坛cdn
+  - DOMAIN-WILDCARD,forum-*-cdn.warthunder.com # WT论坛cdn forum-en-cdn.warthunder.com
   - DOMAIN-KEYWORD,social.supercell  # moco聊天室
