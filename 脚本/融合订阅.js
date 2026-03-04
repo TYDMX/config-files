@@ -105,19 +105,18 @@ function main(config) {
         "mtu": 9000,
         "gso": true,
         "gso-max-size": 65536,
-        "udp-timeout": 300
+        "udp-timeout": 3000
     };
-    // --- 【DNS配置模板】 ---
+    // --- 【DNS配置模板】 ---#h3=true
     const 谷歌IP = ["8.8.8.8"];
     const 谷歌DOT = ["tls://dns.google"];
-    const 谷歌DOH = ["https://dns.google/dns-query#h3=true"];
-    const 谷歌QUIC = ["quic://dns.google"];
+    const 谷歌DOH = ["https://dns.google/dns-query"];
     const cloudflare_IP = ["1.1.1.1"];
     const cloudflare_DOT = ["tls://cloudflare-dns.com"];
-    const cloudflare_DOH = ["https://cloudflare-dns.com/dns-query#h3=true"];
+    const cloudflare_DOH = ["https://cloudflare-dns.com/dns-query"];
     const 阿里IP = ["223.5.5.5"];
     const 阿里DOT = ["tls://dns.alidns.com"];
-    const 阿里DOH = ["https://dns.alidns.com/dns-query#h3=true"];
+    const 阿里DOH = ["https://dns.alidns.com/dns-query"];
     const 阿里QUIC = ["quic://dns.alidns.com"];
     const 腾讯IP = ["119.29.29.29"];
     const 腾讯DOT = ["tls://dot.pub"];
@@ -127,8 +126,8 @@ function main(config) {
         ...cloudflare_DOT, ...cloudflare_DOH
     ];
     const 国内DNS = [
-        ...阿里DOT, ...阿里DOH, ...阿里QUIC, 
-        ...腾讯DOT, ...腾讯DOH
+        ...阿里DOH, ...阿里QUIC, 
+        ...腾讯DOH,
     ];
     config["hosts"] = {
         "dns.google": 谷歌IP,
@@ -142,7 +141,7 @@ function main(config) {
     config["dns"] = {
         "enable": true,
         "ipv6": true,
-        "prefer-h3": false,
+        "prefer-h3": true,
         "respect-rules": true,
         "cache-algorithm": "arc",
         "listen": "127.0.0.1:1053",
@@ -153,7 +152,6 @@ function main(config) {
         "fake-ip-filter": [
             "rule-set:自用fake-ip",
             "geosite:private",
-            "geosite:cn,geolocation-cn",
             "geosite:connectivity-check",
             "geosite:googlefcm",
         ],
@@ -167,16 +165,12 @@ function main(config) {
         "proxy-server-nameserver": [
             "tls://223.5.5.5",
             "tls://119.29.29.29",
-            "tls://1.1.1.1",
         ],
         "nameserver": 国内DNS,
         "nameserver-policy": {
-            "geosite:private": 国内DNS,
-            "RULE-SET:自用代理规则": 国外DNS,
-            "RULE-SET:自用直连规则": 国内DNS,
-            "geosite:microsoft,google@cn,googlefcm": 国内DNS,
-            "geosite:cn,geolocation-cn": 国内DNS,
             "geosite:gfw,geolocation-!cn": 国外DNS,
+            "geosite:microsoft,google@cn,googlefcm": 国内DNS,
+            "geosite:private,cn,geolocation-cn": 国内DNS,
         },
     };
     // --- 【节点筛选正则表达式】 ---
