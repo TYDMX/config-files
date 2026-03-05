@@ -100,7 +100,7 @@ function main(config) {
         "dns-hijack": ["any:53"],
         "auto-route": true,
         "auto-detect-interface": true,
-        "strict-route": true,
+        "strict-route": false,
         "disable-icmp-forwarding": true,
         "mtu": 1500,
         "gso": false,
