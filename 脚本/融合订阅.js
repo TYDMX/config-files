@@ -166,9 +166,9 @@ function main(config) {
         //"direct-nameserver": 国内DNS,
         "nameserver": 国内DNS,
         "nameserver-policy": {
-            "geosite:gfw,geolocation-!cn": 国外DNS,
             "geosite:microsoft,google@cn,googlefcm": 国内DNS,
             "geosite:private,cn,geolocation-cn": 国内DNS,
+            "geosite:gfw,geolocation-!cn": 国外DNS,
         },
     };
     // --- 【节点筛选正则表达式】 ---
