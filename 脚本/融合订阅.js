@@ -96,7 +96,7 @@ function main(config) {
     // --- 【3. TUN 模式配置】 ---
     config["tun"] = {
         "enable": true,
-        "stack": "mixed",
+        "stack": "system",
         "dns-hijack": ["any:53"],
         "auto-route": true,
         "auto-detect-interface": true,
