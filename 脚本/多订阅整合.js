@@ -119,6 +119,10 @@ function main(config) {
         "ipv6": true,
         "prefer-h3": false,
         "respect-rules": true,
+        "proxy-server-nameserver": [
+            "tls://223.5.5.5", 
+            "tls://119.29.29.29", 
+        ],
         "cache-algorithm": "arc",
         "listen": "127.0.0.1:1053",
         "enhanced-mode": "fake-ip",
@@ -138,11 +142,6 @@ function main(config) {
             "tls://119.29.29.29",
         ],
         "direct-nameserver": DNS国内,
-        "proxy-server-nameserver": [
-            "tls://223.5.5.5", 
-            "tls://119.29.29.29", 
-            "tls://1.1.1.1",
-        ],
         "nameserver": DNS国内,
         "nameserver-policy": {
             "geosite:private": DNS国内,
