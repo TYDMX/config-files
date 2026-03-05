@@ -159,7 +159,7 @@ function main(config) {
             "tls://223.5.5.5",
             "tls://119.29.29.29",
         ],
-        "direct-nameserver": 国内DNS,
+        //"direct-nameserver": 国内DNS,
         "proxy-server-nameserver": [
             "tls://223.5.5.5",
             "tls://119.29.29.29",
