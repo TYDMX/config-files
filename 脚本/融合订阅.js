@@ -96,11 +96,11 @@ function main(config) {
     // --- 【3. TUN 模式配置】 ---
     config["tun"] = {
         "enable": true,
-        "stack": "system",
+        "stack": "mixed",
         "dns-hijack": ["any:53"],
         "auto-route": true,
         "auto-detect-interface": true,
-        "strict-route": false,
+        "strict-route": true,
         "disable-icmp-forwarding": true,
         "mtu": 1500,
         "gso": false,
