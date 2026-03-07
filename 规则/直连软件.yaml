@@ -32,7 +32,7 @@ payload:
 
   #  三星
   - PROCESS-NAME,com.samsung.android.sskds (1000)
-  #PROCESS-NAME,com.sec.android.app.samsungapps  #商店
+  - PROCESS-NAME,com.sec.android.app.samsungapps  #商店
   #PROCESS-NAME,com.samsung.android.app.reminder  #提醒
   #PROCESS-NAME,com.sec.android.daemonapp  #天气
   
