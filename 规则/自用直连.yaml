@@ -5,7 +5,7 @@ payload:
   #zlrj
 
 
-  #challenges.cloudflare
+  - DOMAIN-KEYWORD,challenges.cloudflare
   - DOMAIN-SUFFIX,download.nvidia.com
   - DOMAIN-SUFFIX,tpb.proxyninja.org
   - DOMAIN-SUFFIX,git.imee.me
