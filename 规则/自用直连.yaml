@@ -15,9 +15,9 @@ payload:
   # - DOMAIN-WILDCARD,char*.warthunder.com # 角色
   - DOMAIN-WILDCARD,chat*.warthunder.com # 聊天
   - DOMAIN-WILDCARD,forum*.warthunder.com # 论坛
-  - DOMAIN-WILDCARD,match*.warthunder.com ## 自动匹配服务器的参考
-  - DOMAIN-WILDCARD,client-stats*.gaijin.net ## 自动匹配服务器的参考
-  - DOMAIN-WILDCARD,client-stats*.warthunder.com ## 客户端状态数据
+  - DOMAIN-WILDCARD,match*.warthunder.com # 自动匹配服务器
+  - DOMAIN-WILDCARD,client-stats*.gaijin.net # 自动匹配服务器
+  - DOMAIN-WILDCARD,client-stats*.warthunder.com # 客户端状态
 
   - DOMAIN-SUFFIX,gaijin.com
   - DOMAIN-SUFFIX,gaijin.net
@@ -32,10 +32,10 @@ payload:
 
   # 游戏
   - DOMAIN-SUFFIX,brokenarrowgame.com
-  - DOMAIN-SUFFIX,steamcontent.com ## 下载
-  - DOMAIN-SUFFIX,download.epicgames.com ## 下载
-  - DOMAIN-SUFFIX,cdn.blizzard.com ## 下载
-  - DOMAIN-WILDCARD,level*.blizzard.com ## 下载
+  - DOMAIN-SUFFIX,steamcontent.com # 下载
+  - DOMAIN-SUFFIX,download.epicgames.com # 下载
+  - DOMAIN-SUFFIX,cdn.blizzard.com # 下载
+  - DOMAIN-WILDCARD,level*.blizzard.com # 下载
   ## 暴雪
   #api.blizzard
   #account.battle.net
@@ -43,10 +43,8 @@ payload:
   #ingest.gdp.blizzard.com
 
   # onedrive
-  # - DOMAIN-WILDCARD,public.*.files.1drv.com
-  # - DOMAIN-WILDCARD,vizyng.*.files.1drv.com
-  # - DOMAIN-WILDCARD,*.files.1drv.com
-  - DOMAIN-SUFFIX,my.microsoftpersonalcontent.com  ##上传-下载域名
+  # - DOMAIN-WILDCARD,*.files.1drv.com # vizyng,public
+  - DOMAIN-WILDCARD,*.microsoftpersonalcontent.com  #my.上传-下载
   #DOMAIN-SUFFIX,-mediap.svc.ms  ## 观看域名
 
   #twitch
