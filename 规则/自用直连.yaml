@@ -15,6 +15,7 @@ payload:
   # - DOMAIN-WILDCARD,char*.warthunder.com # 角色
   - DOMAIN-WILDCARD,chat*.warthunder.com # 聊天
   - DOMAIN-WILDCARD,forum*.warthunder.com # 论坛
+  - DOMAIN-SUFFIX,trade.gaijin.net # 交易所
   - DOMAIN-WILDCARD,match*.warthunder.com # 自动匹配服务器
   - DOMAIN-WILDCARD,client-stats*.gaijin.net # 自动匹配服务器
   - DOMAIN-WILDCARD,client-stats*.warthunder.com # 客户端状态
