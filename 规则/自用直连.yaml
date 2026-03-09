@@ -20,8 +20,8 @@ payload:
   - DOMAIN-WILDCARD,client-stats*.gaijin.net # 自动匹配服务器
   - DOMAIN-WILDCARD,client-stats*.warthunder.com # 客户端状态
 
-  - DOMAIN-SUFFIX,gaijin.com
-  - DOMAIN-SUFFIX,gaijin.net
+  #- DOMAIN-SUFFIX,gaijin.com
+  #- DOMAIN-SUFFIX,gaijin.net
   - DOMAIN-WILDCARD,*.gaijinent.com # 下载*yuptracker
   - DOMAIN-WILDCARD,*cdn.gaijin.net
   - DOMAIN-WILDCARD,*cdn.warthunder.com
