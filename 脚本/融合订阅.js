@@ -85,8 +85,8 @@ function main(config) {
         "parse-pure-ip": false,
         "sniff": {
             "HTTP": { "ports": [80, "8080-8880"], "override-destination": true },
-            "TLS": { "ports": [443, 853, "5228-5230"] },
-            "QUIC": { "ports": [443, 853, 8443, "5228-5230"] }
+            "TLS": { "ports": [443, "5228-5230"] },
+            "QUIC": { "ports": [443, 8443, "5228-5230"] }
         },
         "force-domain": ["+.v2ex.com"],
         "skip-domain": ["+.push.apple.com", "Mijia Cloud"],
@@ -96,14 +96,13 @@ function main(config) {
     // --- 【3. TUN 模式配置】 ---
     config["tun"] = {
         "enable": true,
-        "stack": "gvisor",
+        "stack": "mixed",
         "dns-hijack": ["any:53"],
         "auto-route": true,
         "auto-detect-interface": true,
         "strict-route": true,
         "disable-icmp-forwarding": true,
         "mtu": 1500,
-        "gso": false,
         "udp-timeout": 600
     };
     // --- 【DNS配置模板】 ---#h3=true
@@ -119,13 +118,13 @@ function main(config) {
     const 阿里QUIC = ["quic://dns.alidns.com"];
     const 腾讯IP = ["119.29.29.29"];
     const 腾讯DOT = ["tls://dot.pub"];
-    const 腾讯DOH = ["https://doh.pub/dns-query#h3=true"];
+    const 腾讯DOH = ["https://doh.pub/dns-query"];
     const 国外DNS = [
         ...谷歌DOH, 
         ...cloudflare_DOH, 
     ];
     const 国内DNS = [
-        ...阿里DOH, ...阿里QUIC, 
+        ...阿里DOH, 
     ];
     config["hosts"] = {
         "dns.google": 谷歌IP,
@@ -139,11 +138,10 @@ function main(config) {
     config["dns"] = {
         "enable": true,
         "ipv6": true,
-        "prefer-h3": true,
+        "prefer-h3": false,
         "respect-rules": true,
         "proxy-server-nameserver": [
             "tls://223.5.5.5",
-            "tls://119.29.29.29",
         ],
         "cache-algorithm": "arc",
         "listen": "127.0.0.1:1053",
@@ -155,21 +153,18 @@ function main(config) {
             "rule-set:自用fake-ip",
             "geosite:private",
             "geosite:connectivity-check",
-            "geosite:googlefcm",
         ],
         "use-hosts": false,
         "use-system-hosts": false,
         "default-nameserver": [
             "tls://223.5.5.5",
-            "tls://119.29.29.29",
         ],
-        //"direct-nameserver": 国内DNS,
-        "nameserver": 国内DNS,
         "nameserver-policy": {
             "geosite:microsoft,google@cn,googlefcm": 国内DNS,
             "geosite:private,cn,geolocation-cn": 国内DNS,
             "geosite:gfw,geolocation-!cn": 国外DNS,
         },
+        "nameserver": 国内DNS,
     };
     // --- 【节点筛选正则表达式】 ---
     const 香港正则 = '(港|🇭🇰|HK|Hong|HKG)';
