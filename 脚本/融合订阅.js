@@ -173,7 +173,7 @@ function main(config) {
     const 日本正则 = '(日|🇯🇵|JP|Japan|NRT|HND|KIX|CTS|FUK)';
     const 韩国正则 = '(韩|🇰🇷|韓|首尔|南朝鲜|KR|KOR|Korea)';
     const 台湾正则 = '(台|🇹🇼|TW|tai|TPE|TSA|KHH)';
-    const 欧盟正则 = "^(?!(.*(马来|印度))).*(奥|比|保|克罗地亚|塞|捷|丹|爱沙|芬|法|德|希|匈|爱尔|意|拉|立|卢|马其它|荷|波|葡|罗|斯洛伐|斯洛文|西|瑞|英|🇧🇪|🇨🇿|🇩🇰|🇫🇮|🇫🇷|🇩🇪|🇮🇪|🇮🇹|🇱🇹|🇱🇺|🇳🇱|🇵🇱|🇸🇪|🇬🇧|CDG|FRA|AMS|MAD|BCN|FCO|MUC|BRU|GB|FR|DE|NL|RU|LV|SE|LT|AU|NZ)";
+    const 欧盟正则 = "^(?!(.*(马来|印度|流量))).*(奥|比|保|克罗地亚|塞|捷|丹|爱沙|芬|法|德|希|匈|爱尔|意|拉|立|卢|马其它|荷|波|葡|罗|斯洛伐|斯洛文|西|瑞|英|🇧🇪|🇨🇿|🇩🇰|🇫🇮|🇫🇷|🇩🇪|🇮🇪|🇮🇹|🇱🇹|🇱🇺|🇳🇱|🇵🇱|🇸🇪|🇬🇧|CDG|FRA|AMS|MAD|BCN|FCO|MUC|BRU|GB|FR|DE|NL|RU|LV|SE|LT|AU|NZ)";
     const 汇总正则 = `(${[香港正则,狮城正则,美国正则,日本正则,韩国正则,台湾正则,欧盟正则].join("|")})`;
     const 香港筛选 = 内部节点.filter(n => new RegExp(香港正则, "i").test(n));
     const 狮城筛选 = 内部节点.filter(n => new RegExp(狮城正则, "i").test(n));
