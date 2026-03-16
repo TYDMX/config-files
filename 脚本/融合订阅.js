@@ -160,10 +160,11 @@ function main(config) {
             "tls://223.5.5.5",
         ],
         "nameserver-policy": {
-            "geosite:microsoft,google@cn,googlefcm": 国内DNS,
-            "geosite:private,cn,geolocation-cn": 国内DNS,
-            "geosite:gfw,geolocation-!cn": 国外DNS,
+            "geosite:google@cn,googlefcm": 国内DNS,
+            "geosite:private": 国内DNS,
+            "geosite:gfw": 国外DNS,
         },
+        "direct-nameserver": 国内DNS,
         "nameserver": 国内DNS,
     };
     // --- 【节点筛选正则表达式】 ---
