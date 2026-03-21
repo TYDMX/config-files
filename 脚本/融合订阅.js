@@ -115,7 +115,7 @@ function main(config) {
         ...cloudflare_DOH, 
     ];
     const 国内DNS = [
-        //...阿里DOH, 
+        ...阿里DOH, 
         ...阿里QUIC, 
     ];
     config["hosts"] = {
