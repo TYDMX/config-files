@@ -103,7 +103,7 @@ function main(config) {
         "strict-route": true,
         "disable-icmp-forwarding": true,
         "mtu": 1500,
-        "udp-timeout": 600
+        "udp-timeout": 100
     };
     // --- 【DNS配置模板】 ---#h3=true
     const 谷歌IP = ["8.8.8.8"];
@@ -140,8 +140,8 @@ function main(config) {
         "enable": true,
         "ipv6": true,
         "prefer-h3": true,
-        "respect-rules": false,
-        //"proxy-server-nameserver": ["tls://223.5.5.5",],
+        "respect-rules": true,
+        "proxy-server-nameserver": ["tls://223.5.5.5",],
         "cache-algorithm": "arc",
         "listen": "127.0.0.1:1053",
         "enhanced-mode": "fake-ip",
@@ -161,7 +161,7 @@ function main(config) {
             //"geosite:private": 国内DNS,
             //"geosite:gfw": 国外DNS,
         //},
-        //"direct-nameserver": 国内DNS,
+        "direct-nameserver": 国内DNS,
         "nameserver": 国内DNS,
     };
     // --- 【节点筛选正则表达式】 ---
