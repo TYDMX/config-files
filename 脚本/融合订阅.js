@@ -101,39 +101,26 @@ function main(config) {
         "auto-route": true,
         "auto-detect-interface": true,
         "strict-route": true,
-        "disable-icmp-forwarding": true,
+        //"disable-icmp-forwarding": true,
         "mtu": 1500,
         "udp-timeout": 100
     };
     // --- 【DNS配置模板】 ---#h3=true
-    const 谷歌IP = ["8.8.8.8"];
-    const 谷歌DOT = ["tls://dns.google"];
-    const 谷歌DOH = ["https://dns.google/dns-query"];
-    const cloudflare_IP = ["1.1.1.1"];
-    const cloudflare_DOT = ["tls://cloudflare-dns.com"];
-    const cloudflare_DOH = ["https://cloudflare-dns.com/dns-query"];
-    const 阿里IP = ["223.5.5.5"];
-    const 阿里DOT = ["tls://dns.alidns.com"];
-    const 阿里DOH = ["https://dns.alidns.com/dns-query"];
-    const 阿里QUIC = ["quic://dns.alidns.com"];
-    const 腾讯IP = ["119.29.29.29"];
-    const 腾讯DOT = ["tls://dot.pub"];
-    const 腾讯DOH = ["https://doh.pub/dns-query"];
+    const 谷歌IP = ["8.8.8.8"]; const 谷歌DOT = ["tls://dns.google"]; const 谷歌DOH = ["https://dns.google/dns-query"];
+    const cloudflare_IP = ["1.1.1.1"]; const cloudflare_DOT = ["tls://cloudflare-dns.com"]; const cloudflare_DOH = ["https://cloudflare-dns.com/dns-query"];
+    const 阿里IP = ["223.5.5.5"]; const 阿里DOT = ["tls://dns.alidns.com"]; const 阿里DOH = ["https://dns.alidns.com/dns-query"]; const 阿里QUIC = ["quic://dns.alidns.com"];
+    const 腾讯IP = ["119.29.29.29"]; const 腾讯DOT = ["tls://dot.pub"]; const 腾讯DOH = ["https://doh.pub/dns-query"];
     const 国外DNS = [
         ...谷歌DOH, 
         ...cloudflare_DOH, 
     ];
     const 国内DNS = [
-        ...阿里DOH, 
+        //...阿里DOH, 
         ...阿里QUIC, 
     ];
     config["hosts"] = {
-        "dns.google": 谷歌IP,
-        "dns.cloudflare.com": cloudflare_IP,
-        "cloudflare-dns.com": cloudflare_IP,
-        "dns.alidns.com": 阿里IP,
-        "doh.pub": 腾讯IP,
-        "dot.pub": 腾讯IP,
+        "dns.google": 谷歌IP, "dns.cloudflare.com": cloudflare_IP, "cloudflare-dns.com": cloudflare_IP,
+        "dns.alidns.com": 阿里IP, "doh.pub": 腾讯IP, "dot.pub": 腾讯IP,
     };
     // --- 【4. DNS 模式配置】 ---
     config["dns"] = {
@@ -244,7 +231,7 @@ function main(config) {
         // --- 【其他策略组】 ---
         { name: "🌐 冷门自选", type: "select", use: 外部订阅, "exclude-filter": `(?i)(${汇总正则})`, proxies: ["🈚️ 假节点", ...冷门_List], icon: 图标库 + "Europe_Map.png" },
         { name: "🌐 全部节点", type: "select", use: 外部订阅, proxies: ["🈚️ 假节点", ...全部_List], icon: 图标库 + "Clubhouse.png" },
-        { name: "🐟 漏网之鱼", type: "select", proxies: ["🚀 节点选择", "🎯 全球直连"], filter: 节点黑名单, icon: 图标库 + "Final.png" }
+        { name: "🐟 漏网之鱼", type: "select", proxies: ["🚀 节点选择", "🎯 全球直连"], icon: 图标库 + "Final.png" }
     ];
     // --- 【规则组定义锚】 ---
     const classical_yaml = { type: "http", interval: 300, behavior: "classical", format: "yaml" };
