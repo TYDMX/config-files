@@ -102,7 +102,7 @@ function main(config) {
         "auto-detect-interface": true,
         "strict-route": true,
         //"disable-icmp-forwarding": true,
-        "mtu": 1500,
+        "mtu": 9000,
         "udp-timeout": 100
     };
     // --- 【DNS配置模板】 ---#h3=true
@@ -128,7 +128,7 @@ function main(config) {
         "ipv6": true,
         "prefer-h3": true,
         "respect-rules": true,
-        "proxy-server-nameserver": ["tls://223.5.5.5",],
+        "proxy-server-nameserver": 国内DNS,
         "cache-algorithm": "arc",
         "listen": "127.0.0.1:1053",
         "enhanced-mode": "fake-ip",
@@ -142,13 +142,13 @@ function main(config) {
         ],
         "use-hosts": false,
         "use-system-hosts": false,
-        "default-nameserver": ["tls://223.5.5.5",],
+        "default-nameserver": ["tls://223.5.5.5"],
         //"nameserver-policy": {
             //"geosite:google@cn,googlefcm": 国内DNS,
             //"geosite:private": 国内DNS,
             //"geosite:gfw": 国外DNS,
         //},
-        "direct-nameserver": 国内DNS,
+        //"direct-nameserver": 国内DNS,
         "nameserver": 国内DNS,
     };
     // --- 【节点筛选正则表达式】 ---
