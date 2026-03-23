@@ -101,7 +101,7 @@ function main(config) {
         "auto-route": true,
         "auto-detect-interface": true,
         "strict-route": true,
-        //"disable-icmp-forwarding": true,
+        "disable-icmp-forwarding": true,
         "mtu": 9000,
         "udp-timeout": 100
     };
@@ -111,12 +111,12 @@ function main(config) {
     const 阿里IP = ["223.5.5.5"]; const 阿里DOT = ["tls://dns.alidns.com"]; const 阿里DOH = ["https://dns.alidns.com/dns-query"]; const 阿里QUIC = ["quic://dns.alidns.com"];
     const 腾讯IP = ["119.29.29.29"]; const 腾讯DOT = ["tls://dot.pub"]; const 腾讯DOH = ["https://doh.pub/dns-query"];
     const 国外DNS = [
-        ...谷歌DOH, 
-        ...cloudflare_DOH, 
+        ...谷歌DOH, ...谷歌DOT, 
+        ...cloudflare_DOH, ...cloudflare_DOT, 
     ];
     const 国内DNS = [
-        ...阿里DOH, 
-        ...阿里QUIC, 
+        ...阿里DOH, ...阿里DOT, ...阿里QUIC,
+        ...腾讯DOH, ...腾讯DOT, 
     ];
     config["hosts"] = {
         "dns.google": 谷歌IP, "dns.cloudflare.com": cloudflare_IP, "cloudflare-dns.com": cloudflare_IP,
@@ -148,7 +148,6 @@ function main(config) {
             //"geosite:private": 国内DNS,
             //"geosite:gfw": 国外DNS,
         //},
-        //"direct-nameserver": 国内DNS,
         "nameserver": 国内DNS,
     };
     // --- 【节点筛选正则表达式】 ---
