@@ -103,7 +103,7 @@ function main(config) {
         "strict-route": true,
         "disable-icmp-forwarding": true,
         "mtu": 9000,
-        "udp-timeout": 100
+        "udp-timeout": 600//秒
     };
     // --- 【DNS配置模板】 ---#h3=true
     const 谷歌IP = ["8.8.8.8"]; const 谷歌DOT = ["tls://dns.google"]; const 谷歌DOH = ["https://dns.google/dns-query"];
