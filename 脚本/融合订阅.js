@@ -137,7 +137,7 @@ function main(config) {
         "fake-ip-filter-mode": "blacklist",
         "fake-ip-filter": [
             "rule-set:自用fake-ip",
-            "geosite:private",
+            "geosite:private,googlefcm",
             "geosite:connectivity-check",
         ],
         "use-hosts": false,
