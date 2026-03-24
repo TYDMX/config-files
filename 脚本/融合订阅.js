@@ -143,11 +143,12 @@ function main(config) {
         "use-hosts": false,
         "use-system-hosts": false,
         "default-nameserver": ["tls://223.5.5.5"],
-        //"nameserver-policy": {
-            //"geosite:google@cn,googlefcm": 国内DNS,
-            //"geosite:private": 国内DNS,
-            //"geosite:gfw": 国外DNS,
-        //},
+        "nameserver-policy": {
+            "geosite:google@cn,googlefcm": 国内DNS,
+            "geosite:private": 国内DNS,
+            "geosite:cn,geolocation-cn": DNS国内,
+            "geosite:gfw,geolocation-!cn": DNS国外,
+        },
         "nameserver": 国内DNS,
     };
     // --- 【节点筛选正则表达式】 ---
