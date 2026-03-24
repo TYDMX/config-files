@@ -146,8 +146,8 @@ function main(config) {
         "nameserver-policy": {
             "geosite:google@cn,googlefcm": 国内DNS,
             "geosite:private": 国内DNS,
-            "geosite:cn,geolocation-cn": DNS国内,
-            "geosite:gfw,geolocation-!cn": DNS国外,
+            "geosite:cn,geolocation-cn": 国内DNS,
+            "geosite:gfw,geolocation-!cn": 国外DNS,
         },
         "nameserver": 国内DNS,
     };
