@@ -115,8 +115,8 @@ function main(config) {
         ...cloudflare_DOH, ...cloudflare_DOT, 
     ];
     const 国内DNS = [
-        ...阿里DOH, ...阿里DOT, ...阿里QUIC,
-        ...腾讯DOH, ...腾讯DOT, 
+        ...阿里DOH, ...阿里QUIC,
+        ...腾讯DOH, 
     ];
     config["hosts"] = {
         "dns.google": 谷歌IP, "dns.cloudflare.com": cloudflare_IP, "cloudflare-dns.com": cloudflare_IP,
