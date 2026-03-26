@@ -34,8 +34,8 @@ function main(config) {
                     "health-check": { 
                         "enable": true, 
                         "url": "https://cp.cloudflare.com/generate_204", 
-                        "interval": 120, 
-                        "timeout": 5000, 
+                        "interval": 300, 
+                        "timeout": 2000, 
                         "consecutive-failures": 3, 
                         "lazy": true, 
                         "method": "HEAD", 
@@ -103,7 +103,7 @@ function main(config) {
         "strict-route": true,
         "disable-icmp-forwarding": true,
         "mtu": 9000,
-        "udp-timeout": 600//秒
+        "udp-timeout": 300//秒
     };
     // --- 【DNS配置模板】 ---#h3=true
     const 谷歌IP = ["8.8.8.8"]; const 谷歌DOT = ["tls://dns.google"]; const 谷歌DOH = ["https://dns.google/dns-query"];
@@ -143,7 +143,7 @@ function main(config) {
         "use-hosts": false,
         "use-system-hosts": false,
         "default-nameserver": ["tls://223.5.5.5"],
-        //"nameserver-policy": {"geosite:google@cn,googlefcm": 国内DNS,"geosite:private": 国内DNS,"geosite:cn,geolocation-cn": 国内DNS,"geosite:gfw,geolocation-!cn": 国外DNS,},
+        "nameserver-policy": {"geosite:google@cn,googlefcm": 国内DNS,"geosite:private": 国内DNS,"geosite:cn,geolocation-cn": 国内DNS,"geosite:gfw,geolocation-!cn": 国外DNS,},
         "nameserver": 国内DNS,
     };
     // --- 【节点筛选正则表达式】 ---
