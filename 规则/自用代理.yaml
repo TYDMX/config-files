@@ -5,7 +5,7 @@ payload:
   #zlrj
 
   - DOMAIN-SUFFIX,collector.github.com  # GitHub图标
-  #- DOMAIN-KEYWORD,redgifs
+  - DOMAIN-KEYWORD,redgifs
   
   # OneDrive
   - DOMAIN-SUFFIX,-mediap.svc.ms  #观看地址
