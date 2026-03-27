@@ -90,7 +90,7 @@ function main(config) {
             "QUIC": { "ports": [443, 8443, "5228-5230"] }
         },
         "force-domain": ["+.v2ex.com"],
-        "skip-domain": ["+.push.apple.com", "Mijia Cloud"],
+        "skip-domain": ["+.local"],
         "skip-src-address": ["192.168.0.0/16"],
         "skip-dst-address": ["192.168.0.0/16"]
     };
