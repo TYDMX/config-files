@@ -83,7 +83,7 @@ function main(config) {
         "enable": true,
         "force-dns-mapping": true,
         "parse-pure-ip": false,
-        "override-destination": true 
+        "override-destination": true,
         "sniff": {
             "HTTP": { "ports": [80, "8080-8880"] },
             "TLS": { "ports": [443, "5228-5230"] },
