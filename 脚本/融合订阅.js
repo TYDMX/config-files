@@ -127,8 +127,8 @@ function main(config) {
         "enable": true,
         "ipv6": true,
         "prefer-h3": true,
-        "respect-rules": true,
-        "proxy-server-nameserver": 国内DNS,
+        "respect-rules": false,
+        "proxy-server-nameserver": ["tls://223.5.5.5"],
         "cache-algorithm": "arc",
         "listen": "127.0.0.1:1053",
         "enhanced-mode": "fake-ip",
@@ -143,7 +143,7 @@ function main(config) {
         "use-hosts": false,
         "use-system-hosts": false,
         "default-nameserver": ["tls://223.5.5.5"],
-        "nameserver-policy": {"geosite:google@cn,googlefcm": 国内DNS,"geosite:private": 国内DNS,"geosite:cn,geolocation-cn": 国内DNS,"geosite:gfw,geolocation-!cn": 国外DNS,},
+        //"nameserver-policy": {"geosite:google@cn,googlefcm": 国内DNS,"geosite:private": 国内DNS,"geosite:cn,geolocation-cn": 国内DNS,"geosite:gfw,geolocation-!cn": 国外DNS,},
         "nameserver": 国内DNS,
     };
     // --- 【节点筛选正则表达式】 ---
