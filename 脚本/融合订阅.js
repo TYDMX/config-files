@@ -83,9 +83,10 @@ function main(config) {
         "enable": true,
         "force-dns-mapping": true,
         "parse-pure-ip": false,
+        "override-destination": true 
         "sniff": {
-            "HTTP": { "ports": [80, "8080-8880"], "override-destination": true },
-            "TLS": { "ports": [443, "5228-5230"], "override-destination": true },
+            "HTTP": { "ports": [80, "8080-8880"] },
+            "TLS": { "ports": [443, "5228-5230"] },
             "QUIC": { "ports": [443, 8443, "5228-5230"] }
         },
         "force-domain": ["+.v2ex.com"],
