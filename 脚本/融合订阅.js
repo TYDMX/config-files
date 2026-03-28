@@ -243,7 +243,7 @@ function main(config) {
     };
     // --- 【规则】 ---
     config["rules"] = [
-        "OR,((GEOSITE,private),(GEOIP,private)),🔒 私有网络",
+        "OR,((GEOSITE,private),(GEOIP,private,no-resolve)),🔒 私有网络",
         "RULE-SET,前置直连规则,⬆️ 自用直连",
         "RULE-SET,自用代理规则,🌐 自用代理",
         "RULE-SET,自用直连规则,⬆️ 自用直连",
