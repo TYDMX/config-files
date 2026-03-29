@@ -48,7 +48,9 @@ function main(config) {
     const 功能节点 = [
         { name: "🎯 全球直连", type: "direct", udp: true },
         { name: "🈚️ 假节点", type: "reject" },
-        { name: "🚫 阻止", type: "reject" }
+        { name: "🚫 阻止", type: "reject" },
+        { name: '🇨🇳 直连（IPv4优先）', type: 'direct', udp: true, 'ip-version': 'ipv4' },
+        { name: '🇨🇳 直连（IPv6优先）', type: 'direct', udp: true, 'ip-version': 'ipv6' },
     ];
     const 内部过滤节点 = (config["proxies"] || []).filter(
         p => !功能节点.some(e => e.name === p.name)
