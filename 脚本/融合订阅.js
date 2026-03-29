@@ -187,6 +187,7 @@ function main(config) {
         // --- 【主要策略组】 ---
         { name: "🚀 节点选择", type: "select", proxies: ["🖥️ 服务节点", "🎯 全球直连", ...自选节点池], icon: 图标库 + "Static.png" },
         { name: "🖥️ 服务节点", type: "select", proxies: [...自选节点池, "🎯 全球直连"], icon: 图标库 + "ULB.png" },
+        { name: "🎯 全球直连", type: "select", proxies: ["🇨🇳 直连","🇨🇳 直连（IPv4优先）","🇨🇳 直连（IPv6优先）",], icon: 图标库 + "China_Map.png" },
         { name: "🇭🇰 香港故转", type: "fallback", proxies: 香港故转池, hidden: true, icon: 图标库 + "Hong_Kong.png" },
         { name: "🇸🇬 狮城故转", type: "fallback", proxies: 狮城故转池, hidden: true, icon: 图标库 + "Singapore.png" },
         { name: "🇺🇸 美国故转", type: "fallback", proxies: 美国故转池, hidden: true, icon: 图标库 + "United_States.png" },
