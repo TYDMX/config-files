@@ -152,7 +152,7 @@ function main(config) {
     // --- 【节点筛选正则表达式】 ---
     const 香港正则 = '(港|🇭🇰|HK|Hong|HKG)';
     const 狮城正则 = '(新|🇸🇬|坡|SG|Sing|SIN|XSP)';
-    const 美国正则 = '(美|🇺🇸|US|USA|JFK|LAX|ORD|ATL|DFW|SFO|MIA|SEA|IAD)';
+    const 美国正则 = '(美|🇺🇸|US|USA|加|🇨🇦|CA|JFK|LAX|ORD|ATL|DFW|SFO|MIA|SEA|IAD)';
     const 日本正则 = '(日|🇯🇵|JP|Japan|NRT|HND|KIX|CTS|FUK)';
     const 韩国正则 = '(韩|🇰🇷|韓|首尔|南朝鲜|KR|KOR|Korea)';
     const 台湾正则 = '(台|🇹🇼|TW|tai|TPE|TSA|KHH)';
