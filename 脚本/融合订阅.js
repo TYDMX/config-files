@@ -4,8 +4,8 @@ function main(config) {
      // --- 【合并外部订阅】 ---
     config["proxy-providers"] = {
         ...(config["proxy-providers"] || {}),
-        "自建 🌏": { url: "https://sub.dmit.dpdns.org/share/sub/dingyue_Center_zijian_auto?token=xgy1nCsG7xgerdecv4QRn",  interval: 3600 },
-        "自建 🔮": { url: "https://raw.githubusercontent.com/go4sharing/sub/main/clash.yaml",  interval: 3600 },
+        //"自建 🌏": { url: "https://sub.dmit.dpdns.org/share/sub/dingyue_Center_zijian_auto?token=xgy1nCsG7xgerdecv4QRn",  interval: 3600 },
+        //"自建 🔮": { url: "https://raw.githubusercontent.com/go4sharing/sub/main/clash.yaml",  interval: 3600 },
         "节点池 🪩": { url: "https://proxypool.dmit.dpdns.org/clash/proxies?nstream=netflix,disney&type=vless",  interval: 3600 },
         "节点池vmess 🪩": { url: "https://proxypool.dmit.dpdns.org/clash/proxies?nstream=netflix,disney&type=vmess",  interval: 3600 },
         "节点池trojan 🪩": { url: "https://proxypool.dmit.dpdns.org/clash/proxies?nstream=netflix,disney&type=trojan",  interval: 3600 },
