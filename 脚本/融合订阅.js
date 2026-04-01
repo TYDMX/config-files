@@ -257,7 +257,7 @@ function main(config) {
         "GEOSITE,category-games-cn,🎮 game@CN",
         "OR,((GEOSITE,google@cn),(GEOSITE,googlefcm)),🇬 谷歌@CN",
         "GEOSITE,category-games-!cn,🎮 game",
-        "AND,((DST-PORT,443),(NETWORK,UDP)(NOT,((GEOIP,CN)),REJECT",
+        "AND,((DST-PORT,443),(NETWORK,UDP),(NOT,((GEOSITE,cn),(GEOIP,CN)),REJECT",
 
         "OR,((GEOSITE,openai),(GEOSITE,google-gemini),(GEOSITE,category-ai-!cn)),🤖 人工智能",
         "GEOSITE,spotify,🇯🇵 日本故转",
