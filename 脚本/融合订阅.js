@@ -124,6 +124,8 @@ function main(config) {
     config["hosts"] = {
         "dns.google": 谷歌IP, "dns.cloudflare.com": cloudflare_IP, "cloudflare-dns.com": cloudflare_IP,
         "dns.alidns.com": 阿里IP, "doh.pub": 腾讯IP, "dot.pub": 腾讯IP,
+        "service.googleapis.cn": "service.googleapis.com",
+
     };
     // --- 【4. DNS 模式配置】 ---
     config["dns"] = {
