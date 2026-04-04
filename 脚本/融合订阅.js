@@ -1,6 +1,6 @@
 //https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/脚本/融合订阅.js
 function main(config) {
-    const 图标库 = "https://github.com/Koolson/Qure/raw/master/IconSet/Color/";
+    const 图标库 = "https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/";
      // --- 【合并外部订阅】 ---
     config["proxy-providers"] = {
         ...(config["proxy-providers"] || {}),
