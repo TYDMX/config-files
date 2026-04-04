@@ -49,8 +49,10 @@ function main(config) {
         { name: "🎯 全球直连", type: "direct", udp: true },
         { name: "🈚️ 假节点", type: "reject" },
         { name: "🚫 阻止", type: "reject" },
-        { name: '🇨🇳 直连（IPv4优先）', type: 'direct', udp: true, 'ip-version': 'ipv4' },
-        { name: '🇨🇳 直连（IPv6优先）', type: 'direct', udp: true, 'ip-version': 'ipv6' },
+        { name: '🇨🇳 直连（IPv4）', type: 'direct', udp: true, 'ip-version': 'ipv4' },
+        { name: '🇨🇳 直连（IPv6）', type: 'direct', udp: true, 'ip-version': 'ipv6' },
+        { name: '🇨🇳 直连（IPv4优先）', type: 'direct', udp: true, 'ip-version': 'ipv4-prefer' },
+        { name: '🇨🇳 直连（IPv6优先）', type: 'direct', udp: true, 'ip-version': 'ipv6-prefer' },
     ];
     const 内部过滤节点 = (config["proxies"] || []).filter(
         p => !功能节点.some(e => e.name === p.name)
@@ -189,7 +191,7 @@ function main(config) {
         // --- 【主要策略组】 ---
         { name: "🚀 节点选择", type: "select", proxies: ["🖥️ 服务节点", "🇨🇳 直连", ...自选节点池], icon: 图标库 + "Static.png" },
         { name: "🖥️ 服务节点", type: "select", proxies: [...自选节点池, "🇨🇳 直连"], icon: 图标库 + "ULB.png" },
-        { name: "🇨🇳 直连", type: "select", proxies: ["🎯 全球直连","🇨🇳 直连（IPv4优先）","🇨🇳 直连（IPv6优先）",], icon: 图标库 + "China_Map.png" },
+        { name: "🇨🇳 直连", type: "select", proxies: ["🎯 全球直连"], "include-all-proxies": true, filter: '🇨🇳 直连', icon: 图标库 + "China_Map.png" },
         { name: "🇭🇰 香港故转", type: "fallback", proxies: 香港故转池, hidden: true, icon: 图标库 + "Hong_Kong.png" },
         { name: "🇸🇬 狮城故转", type: "fallback", proxies: 狮城故转池, hidden: true, icon: 图标库 + "Singapore.png" },
         { name: "🇺🇸 美国故转", type: "fallback", proxies: 美国故转池, hidden: true, icon: 图标库 + "United_States.png" },
