@@ -255,6 +255,8 @@ function main(config) {
         //前置规则
         "OR,((GEOSITE,private),(GEOIP,private,no-resolve)),🔒 私有网络",
         "RULE-SET,前置直连规则,⬆️ 自用直连",
+        "DOMAIN-SUFFIX,dns.google,🖥️ 代理服务",
+        "DOMAIN-SUFFIX,cloudflare-dns.com,🖥️ 代理服务",
         "RULE-SET,自用代理规则,🌐 自用代理",
         "RULE-SET,自用直连规则,⬆️ 自用直连",
         "RULE-SET,自用代理软件,🖥️ 代理软件",
@@ -266,8 +268,6 @@ function main(config) {
         "OR,((GEOSITE,google@cn),(GEOSITE,googlefcm)),🇬 谷歌@CN",
         "OR,((GEOSITE,cn),(GEOSITE,geolocation-cn),(GEOIP,cn)),⬆️ 直连域名",
         //代理规则
-        "DOMAIN-SUFFIX,dns.google,🖥️ 代理服务",
-        "DOMAIN-SUFFIX,cloudflare-dns.com,🖥️ 代理服务",
         "GEOSITE,category-games-!cn,🎮 game",
         "AND,((NETWORK,UDP),(DST-PORT,443)),REJECT",
         "OR,((GEOSITE,openai),(GEOSITE,google-gemini),(GEOSITE,category-ai-!cn)),🤖 人工智能",
