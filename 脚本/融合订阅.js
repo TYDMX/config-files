@@ -278,9 +278,9 @@ function main(config) {
         "OR,((GEOSITE,twitter),(GEOSITE,tiktok),(GEOSITE,Reddit),(GEOSITE,discord)),📲 社交媒体",
         "OR,((GEOSITE,telegram),(GEOIP,telegram)),📲 电报飞机",
         "OR,((GEOSITE,youtube),(GEOSITE,netflix),(GEOSITE,onedrive),(GEOSITE,twitch),(GEOSITE,vk),(GEOSITE,disney),(GEOSITE,biliintl),(GEOSITE,category-porn)),📹 视频平台",
+        "OR,((GEOSITE,cloudflare),(GEOIP,cloudflare),(GEOIP,cloudfront)),🖥️ 代理服务",
         "GEOSITE,microsoft,🪟 Microsoft",
         "OR,((GEOSITE,google),(GEOIP,google)),🇬 谷歌",
-        "OR,((GEOSITE,cloudflare),(GEOIP,cloudflare),(GEOIP,cloudfront)),🖥️ 代理服务",
         //兜底规则
         "OR,((GEOSITE,gfw),(GEOSITE,geolocation-!cn)),🪜 代理域名",
         "MATCH,🐟 漏网之鱼"
