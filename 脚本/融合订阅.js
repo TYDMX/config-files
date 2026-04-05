@@ -252,6 +252,7 @@ function main(config) {
     };
     // --- 【规则】 ---
     config["rules"] = [
+        //前置规则
         "OR,((GEOSITE,private),(GEOIP,private,no-resolve)),🔒 私有网络",
         "RULE-SET,前置直连规则,⬆️ 自用直连",
         "RULE-SET,自用代理规则,🌐 自用代理",
@@ -260,12 +261,15 @@ function main(config) {
         "RULE-SET,自用直连软件,🖥️ 直连软件",
         "OR,((GEOSITE,tracker),(GEOSITE,category-public-tracker)),🚫 追踪拦截",
         "OR,((GEOSITE,category-ads-all),(GEOIP,ad)),🚫 广告拦截",
+        //直连规则
         "GEOSITE,category-games-cn,🎮 game@CN",
         "OR,((GEOSITE,google@cn),(GEOSITE,googlefcm)),🇬 谷歌@CN",
         "GEOSITE,category-games-!cn,🎮 game",
-
-        //"AND,((NETWORK,UDP),(DST-PORT,443)),REJECT",
-
+        "OR,((GEOSITE,cn),(GEOSITE,geolocation-cn),(GEOIP,cn)),⬆️ 直连域名",
+        //代理规则
+        "DOMAIN-SUFFIX,dns.google,🖥️ 代理服务",
+        "DOMAIN-SUFFIX,cloudflare-dns.com,🖥️ 代理服务",
+        "AND,((NETWORK,UDP),(DST-PORT,443)),REJECT",
         "OR,((GEOSITE,openai),(GEOSITE,google-gemini),(GEOSITE,category-ai-!cn)),🤖 人工智能",
         "GEOSITE,spotify,🇯🇵 日本故转",
         "GEOSITE,paypal,💶 PayPal",
@@ -277,7 +281,7 @@ function main(config) {
         "GEOSITE,microsoft,🪟 Microsoft",
         "OR,((GEOSITE,google),(GEOIP,google)),🇬 谷歌",
         "OR,((GEOSITE,cloudflare),(GEOIP,cloudflare),(GEOIP,cloudfront)),🖥️ 代理服务",
-        "OR,((GEOSITE,cn),(GEOSITE,geolocation-cn),(GEOIP,cn)),⬆️ 直连域名",
+        //兜底规则
         "OR,((GEOSITE,gfw),(GEOSITE,geolocation-!cn)),🪜 代理域名",
         "MATCH,🐟 漏网之鱼"
     ];
