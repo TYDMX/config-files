@@ -264,11 +264,11 @@ function main(config) {
         //直连规则
         "GEOSITE,category-games-cn,🎮 game@CN",
         "OR,((GEOSITE,google@cn),(GEOSITE,googlefcm)),🇬 谷歌@CN",
-        "GEOSITE,category-games-!cn,🎮 game",
         "OR,((GEOSITE,cn),(GEOSITE,geolocation-cn),(GEOIP,cn)),⬆️ 直连域名",
         //代理规则
         "DOMAIN-SUFFIX,dns.google,🖥️ 代理服务",
         "DOMAIN-SUFFIX,cloudflare-dns.com,🖥️ 代理服务",
+        "GEOSITE,category-games-!cn,🎮 game",
         "AND,((NETWORK,UDP),(DST-PORT,443)),REJECT",
         "OR,((GEOSITE,openai),(GEOSITE,google-gemini),(GEOSITE,category-ai-!cn)),🤖 人工智能",
         "GEOSITE,spotify,🇯🇵 日本故转",
