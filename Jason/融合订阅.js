@@ -113,18 +113,19 @@ function main(config) {
     // --- 【DNS配置模板】 ---#h3=true
     const 谷歌IP = ["2001:4860:4860::8888", "8.8.8.8", "2001:4860:4860::8844", "8.8.4.4"]; const 谷歌DOT = ["tls://dns.google"]; const 谷歌DOH = ["https://dns.google/dns-query#🖥️ 代理服务&h3=true"];
     const cloudflare_IP = ["2606:4700:4700::1111", "1.1.1.1", "2606:4700:4700::1001", "1.0.0.1"]; const cloudflare_DOT = ["tls://cloudflare-dns.com"]; const cloudflare_DOH = ["https://cloudflare-dns.com/dns-query#🖥️ 代理服务&h3=true"];
-    const 阿里IP = ["2400:3200::1", "223.5.5.5"]; const 阿里DOT = ["tls://dns.alidns.com"]; const 阿里DOH = ["https://dns.alidns.com/dns-query"]; const 阿里QUIC = ["quic://dns.alidns.com"];
-    const 腾讯IP = ["2402:4e00::", "119.29.29.29"]; const 腾讯DOT = ["tls://dot.pub"]; const 腾讯DOH = ["https://doh.pub/dns-query"];
+    const 阿里IP = ["2400:3200::1", "223.5.5.5"]; const 阿里DOT = ["tls://dns.alidns.com"]; const 阿里DOH = ["https://dns.alidns.com/dns-query#🇨🇳 直连"]; const 阿里QUIC = ["quic://dns.alidns.com#🇨🇳 直连"];
+    const 腾讯IP = ["2402:4e00::", "119.29.29.29"]; const 腾讯DOT = ["tls://dot.pub"]; const 腾讯DOH = ["https://doh.pub/dns-query#🇨🇳 直连"];
     const 国外DNS = [
         ...谷歌DOH, 
         ...cloudflare_DOH,
     ];
     const 国内DNS = [
         ...阿里DOH, ...阿里QUIC,
+        ...腾讯DOH,
     ];
     config["hosts"] = {
-        "dns.google": 谷歌IP, "dns.cloudflare.com": cloudflare_IP, "cloudflare-dns.com": cloudflare_IP,
-        "dns.alidns.com": 阿里IP, "doh.pub": 腾讯IP, "dot.pub": 腾讯IP,
+        //"dns.google": 谷歌IP, "dns.cloudflare.com": cloudflare_IP, "cloudflare-dns.com": cloudflare_IP,
+        //"dns.alidns.com": 阿里IP, "doh.pub": 腾讯IP, "dot.pub": 腾讯IP,
         "service.googleapis.cn": "service.googleapis.com",
         "mtalk.google.com": "142.250.107.188, 108.177.125.188",
     };
