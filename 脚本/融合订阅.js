@@ -111,8 +111,8 @@ function main(config) {
         "udp-timeout": 300//秒
     };
     // --- 【DNS配置模板】 ---#h3=true
-    const 谷歌IP = ["2001:4860:4860::8888", "8.8.8.8", "2001:4860:4860::8844", "8.8.4.4"]; const 谷歌DOT = ["tls://dns.google"]; const 谷歌DOH = ["https://dns.google/dns-query"];
-    const cloudflare_IP = ["2606:4700:4700::1111", "1.1.1.1", "2606:4700:4700::1001", "1.0.0.1"]; const cloudflare_DOT = ["tls://cloudflare-dns.com"]; const cloudflare_DOH = ["https://cloudflare-dns.com/dns-query"];
+    const 谷歌IP = ["2001:4860:4860::8888", "8.8.8.8", "2001:4860:4860::8844", "8.8.4.4"]; const 谷歌DOT = ["tls://dns.google"]; const 谷歌DOH = ["https://dns.google/dns-query#🖥️ 代理服务"];
+    const cloudflare_IP = ["2606:4700:4700::1111", "1.1.1.1", "2606:4700:4700::1001", "1.0.0.1"]; const cloudflare_DOT = ["tls://cloudflare-dns.com"]; const cloudflare_DOH = ["https://cloudflare-dns.com/dns-query#🖥️ 代理服务"];
     const 阿里IP = ["2400:3200::1", "223.5.5.5"]; const 阿里DOT = ["tls://dns.alidns.com"]; const 阿里DOH = ["https://dns.alidns.com/dns-query"]; const 阿里QUIC = ["quic://dns.alidns.com"];
     const 腾讯IP = ["2402:4e00::", "119.29.29.29"]; const 腾讯DOT = ["tls://dot.pub"]; const 腾讯DOH = ["https://doh.pub/dns-query"];
     const 国外DNS = [
@@ -134,7 +134,7 @@ function main(config) {
         "enable": true,
         "ipv6": true,
         "prefer-h3": true,
-        "respect-rules": true,
+        "respect-rules": false,
         "proxy-server-nameserver": 国内DNS,
         "cache-algorithm": "arc",
         "listen": "127.0.0.1:1053",
@@ -150,9 +150,9 @@ function main(config) {
         "use-hosts": true,
         "use-system-hosts": false,
         "default-nameserver": ["223.5.5.5", "2400:3200::1"],
-        //"direct-nameserver": 国内DNS,
-        //"direct-nameserver-follow-policy": true,
-        //"nameserver-policy": {"geosite:google@cn,googlefcm": 国内DNS,"geosite:private": 国内DNS,"geosite:cn,geolocation-cn": 国内DNS,"geosite:gfw,geolocation-!cn": 国外DNS,},
+        "direct-nameserver": 国内DNS,
+        "direct-nameserver-follow-policy": true,
+        "nameserver-policy": {"geosite:google@cn,googlefcm": 国内DNS,"geosite:private": 国内DNS,"geosite:cn,geolocation-cn": 国内DNS,"geosite:gfw,geolocation-!cn": 国外DNS,},
         "nameserver": 国内DNS,
     };
     // --- 【节点筛选正则表达式】 ---
@@ -255,16 +255,6 @@ function main(config) {
         //前置规则
         "OR,((GEOSITE,private),(GEOIP,private,no-resolve)),🔒 私有网络",
         "RULE-SET,前置直连规则,⬆️ 自用直连",
-        "DOMAIN-SUFFIX,dns.google,🖥️ 代理服务",
-        "DOMAIN-SUFFIX,cloudflare-dns.com,🖥️ 代理服务",
-        "IP-CIDR,1.1.1.1/32,🖥️ 代理服务",
-        "IP-CIDR,1.0.0.1/32,🖥️ 代理服务",
-        "IP-CIDR,8.8.8.8/32,🖥️ 代理服务",
-        "IP-CIDR,8.8.4.4/32,🖥️ 代理服务",
-        "IP-CIDR,2606:4700:4700::1111/128,🖥️ 代理服务",
-        "IP-CIDR,2606:4700:4700::1001/128,🖥️ 代理服务",
-        "IP-CIDR,2001:4860:4860::8888/128,🖥️ 代理服务",
-        "IP-CIDR,2001:4860:4860::8844/128,🖥️ 代理服务",
         "RULE-SET,自用代理规则,🌐 自用代理",
         "RULE-SET,自用直连规则,⬆️ 自用直连",
         "RULE-SET,自用代理软件,🖥️ 代理软件",
