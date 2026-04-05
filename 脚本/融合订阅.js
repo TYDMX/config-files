@@ -1,4 +1,4 @@
-//https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/脚本/融合订阅.js
+//https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/Jason/融合订阅.js
 function main(config) {
     const 图标库 = "https://github.com/Koolson/Qure/raw/master/IconSet/Color/";
      // --- 【合并外部订阅】 ---
@@ -267,7 +267,7 @@ function main(config) {
         "OR,((GEOSITE,cn),(GEOSITE,geolocation-cn),(GEOIP,cn)),⬆️ 直连域名",
         //代理规则
         "GEOSITE,category-games-!cn,🎮 game",
-        "AND,((NETWORK,UDP),(DST-PORT,443)),🈚️ 假节点",
+        "AND,((NETWORK,UDP),(DST-PORT,443)),REJECT",
         "OR,((GEOSITE,openai),(GEOSITE,google-gemini),(GEOSITE,category-ai-!cn)),🤖 人工智能",
         "GEOSITE,spotify,🇯🇵 日本故转",
         "GEOSITE,paypal,💶 PayPal",
