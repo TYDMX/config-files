@@ -124,10 +124,10 @@ function main(config) {
         ...腾讯DOH, 
     ];
     config["hosts"] = {
-        "dns.google": 谷歌IP, "dns.cloudflare.com": cloudflare_IP, "cloudflare-dns.com": cloudflare_IP,
+        //"dns.google": 谷歌IP, "dns.cloudflare.com": cloudflare_IP, "cloudflare-dns.com": cloudflare_IP,
         "dns.alidns.com": 阿里IP, "doh.pub": 腾讯IP, "dot.pub": 腾讯IP,
         "service.googleapis.cn": "service.googleapis.com",
-        "mtalk.google.com": "142.250.107.188, 108.177.125.188",
+        //"mtalk.google.com": "142.250.107.188, 108.177.125.188",
     };
     // --- 【4. DNS 模式配置】 ---
     config["dns"] = {
@@ -258,9 +258,13 @@ function main(config) {
         "DOMAIN-SUFFIX,dns.google,🖥️ 代理服务",
         "DOMAIN-SUFFIX,cloudflare-dns.com,🖥️ 代理服务",
         "IP-CIDR,1.1.1.1/32,🖥️ 代理服务",
+        "IP-CIDR,1.0.0.1/32,🖥️ 代理服务",
         "IP-CIDR,8.8.8.8/32,🖥️ 代理服务",
+        "IP-CIDR,8.8.4.4/32,🖥️ 代理服务",
         "IP-CIDR,2606:4700:4700::1111/128,🖥️ 代理服务",
+        "IP-CIDR,2606:4700:4700::1001/128,🖥️ 代理服务",
         "IP-CIDR,2001:4860:4860::8888/128,🖥️ 代理服务",
+        "IP-CIDR,2001:4860:4860::8844/128,🖥️ 代理服务",
         "RULE-SET,自用代理规则,🌐 自用代理",
         "RULE-SET,自用直连规则,⬆️ 自用直连",
         "RULE-SET,自用代理软件,🖥️ 代理软件",
