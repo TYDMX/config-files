@@ -150,9 +150,9 @@ function main(config) {
         "use-hosts": true,
         "use-system-hosts": false,
         "default-nameserver": ["223.5.5.5", "2400:3200::1"],
-        "direct-nameserver": 国内DNS,
-        "direct-nameserver-follow-policy": true,
-        "nameserver-policy": {"geosite:google@cn,googlefcm": 国内DNS,"geosite:private": 国内DNS,"geosite:cn,geolocation-cn": 国内DNS,"geosite:gfw,geolocation-!cn": 国外DNS,},
+        //"direct-nameserver": 国内DNS,
+        //"direct-nameserver-follow-policy": true,
+        //"nameserver-policy": {"geosite:google@cn,googlefcm": 国内DNS,"geosite:private": 国内DNS,"geosite:cn,geolocation-cn": 国内DNS,"geosite:gfw,geolocation-!cn": 国外DNS,},
         "nameserver": 国内DNS,
     };
     // --- 【节点筛选正则表达式】 ---
