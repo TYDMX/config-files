@@ -80,7 +80,9 @@ function main(config) {
         "store-fake-ip": true
     };
     config["experimental"] = {
-        "quic-go-disable-gso": true
+        "quic-go-disable-gso": false,
+        "quic-go-disable-ecn": false,
+        "dialer-ip4p-convert": false,
     };
     // --- 【2. 流量嗅探 (Sniffer)】 ---
     config["sniffer"] = {
@@ -107,7 +109,7 @@ function main(config) {
         "auto-detect-interface": true,
         "strict-route": true,
         "disable-icmp-forwarding": true,
-        "mtu": 9000,
+        "mtu": 4064,
         "udp-timeout": 300//秒
     };
     // --- 【DNS配置模板】 ---#h3=true
@@ -288,7 +290,7 @@ function main(config) {
     function 创建地区分组(地区名, 地区图标, 内部地区节点池, 地区正则) {
         return [
             { name: `${地区名}节点`, type: "select", use: 外部订阅, filter: 地区正则, proxies: [`${地区名}自动`, `${地区名}散列`, `${地区名}轮询`, ...内部地区节点池], icon: 图标库 + 地区图标 },
-            { name: `${地区名}自动`, type: "url-test", use: 外部订阅, filter: 地区正则, proxies: 内部地区节点池, hidden: true, icon: 图标库 + 地区图标, interval: 300, "url": "https://cp.cloudflare.com/generate_204", "timeout": 2000, lazy: true },
+            { name: `${地区名}自动`, type: "url-test", use: 外部订阅, filter: 地区正则, proxies: 内部地区节点池, hidden: true, icon: 图标库 + 地区图标, interval: 300, "url": "https://cp.cloudflare.com/generate_204", "timeout": 2000, lazy: false },
             { name: `${地区名}散列`, type: "load-balance", strategy: "consistent-hashing", proxies: 内部地区节点池, hidden: true, icon: 图标库 + 地区图标 },
             { name: `${地区名}轮询`, type: "load-balance", strategy: "round-robin", proxies: 内部地区节点池, hidden: true, icon: 图标库 + 地区图标 }
         ];
