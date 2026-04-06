@@ -191,27 +191,27 @@ function main(config) {
     // --- 【策略组】 ---
     config["proxy-groups"] = [
         // --- 【主要策略组】 ---
-        { name: "🚀 节点选择", type: "select", proxies: ["🖥️ 服务节点", "🇨🇳 直连", ...自选节点池], icon: 图标库 + "Static.png" },
         { name: "🖥️ 服务节点", type: "select", proxies: [...自选节点池, "🇨🇳 直连"], icon: 图标库 + "ULB.png" },
+        { name: "🚀 节点选择", type: "select", proxies: ["🖥️ 服务节点", "🇨🇳 直连", ...自选节点池], icon: 图标库 + "Static.png" },
         { name: "🇨🇳 直连", type: "select", proxies: ["🎯 全球直连"], "include-all-proxies": true, filter: '🇨🇳 直连', icon: 图标库 + "China_Map.png" },
         { name: "🇭🇰 香港故转", type: "fallback", proxies: 香港故转池, hidden: true, icon: 图标库 + "Hong_Kong.png" },
         { name: "🇸🇬 狮城故转", type: "fallback", proxies: 狮城故转池, hidden: true, icon: 图标库 + "Singapore.png" },
         { name: "🇺🇸 美国故转", type: "fallback", proxies: 美国故转池, hidden: true, icon: 图标库 + "United_States.png" },
         { name: "🇯🇵 日本故转", type: "fallback", proxies: 日本故转池, hidden: true, icon: 图标库 + "Japan.png" },
         // --- 【自选策略组】 ---
-        { name: "📹 视频平台", type: "select", proxies: ["🚀 节点选择", "🖥️ 服务节点", ...自选节点池, "🇨🇳 直连"], icon: 图标库 + "YouTube.png" },
-        { name: "📲 社交媒体", type: "select", proxies: ["🚀 节点选择", "🖥️ 服务节点", ...自选节点池, "🇨🇳 直连"], icon: 图标库 + "Twitter.png" },
-        { name: "📲 电报飞机", type: "select", proxies: ["🚀 节点选择", "🖥️ 服务节点", ...自选节点池, "🇨🇳 直连"], icon: 图标库 + "Telegram_X.png" },
-        { name: "🎵 音乐服务", type: "select", proxies: ["🚀 节点选择", "🖥️ 服务节点", ...自选节点池, "🇨🇳 直连"], icon: 图标库 + "Spotify.png" },
-        { name: "🤖 人工智能", type: "select", proxies: ["🚀 节点选择", "🖥️ 服务节点", ...自选节点池, "🇨🇳 直连"], icon: 图标库 + "ChatGPT.png" },
-        { name: "🎮 game", type: "select", proxies: ["🚀 节点选择", "🖥️ 服务节点", ...自选节点池, "🇨🇳 直连"], icon: 图标库 + "Game.png" },
-        { name: "🇬 谷歌", type: "select", proxies: ["🚀 节点选择", "🖥️ 服务节点", ...自选节点池, "🇨🇳 直连"], icon: 图标库 + "Google_Search.png" },
-        { name: "🪟 Microsoft", type: "select", proxies: ["🇨🇳 直连", "🚀 节点选择", "🖥️ 服务节点", ...自选节点池], icon: 图标库 + "Microsoft.png" },
+        { name: "📹 视频平台", type: "select", proxies: ["🚀 节点选择",  "🖥️ 服务节点", ...自选节点池, "🇨🇳 直连"], icon: 图标库 + "YouTube.png" },
+        { name: "📲 社交媒体", type: "select", proxies: ["🚀 节点选择",  "🖥️ 服务节点", ...自选节点池, "🇨🇳 直连"], icon: 图标库 + "Twitter.png" },
+        { name: "📲 电报飞机", type: "select", proxies: ["🚀 节点选择",  "🖥️ 服务节点", ...自选节点池, "🇨🇳 直连"], icon: 图标库 + "Telegram_X.png" },
+        { name: "🎵 音乐服务", type: "select", proxies: ["🖥️ 服务节点",  "🚀 节点选择", ...自选节点池, "🇨🇳 直连"], icon: 图标库 + "Spotify.png" },
+        { name: "🤖 人工智能", type: "select", proxies: ["🖥️ 服务节点",  "🚀 节点选择", ...自选节点池, "🇨🇳 直连"], icon: 图标库 + "ChatGPT.png" },
+        { name: "🎮 game", type: "select", proxies: ["🖥️ 服务节点",  "🚀 节点选择", ...自选节点池, "🇨🇳 直连"], icon: 图标库 + "Game.png" },
+        { name: "🇬 谷歌", type: "select", proxies: ["🖥️ 服务节点",  "🚀 节点选择", ...自选节点池, "🇨🇳 直连"], icon: 图标库 + "Google_Search.png" },
+        { name: "🪟 Microsoft", type: "select", proxies: ["🇨🇳 直连", "🖥️ 服务节点",  "🚀 节点选择", ...自选节点池], icon: 图标库 + "Microsoft.png" },
         // --- 【固定分流组】 ---
         { name: "👨🏿‍💻 GitHub", type: "fallback", proxies: ["🖥️ 服务节点"], icon: 图标库 + "GitHub.png", hidden: true },
         { name: "💶 PayPal", type: "fallback", proxies: ["🖥️ 服务节点"], icon: 图标库 + "PayPal.png", hidden: true },
         { name: "🎮 game@CN", type: "fallback", proxies: ["🇨🇳 直连"], icon: 图标库 + "Game.png", hidden: true },
-        { name: "🪟 Bing", type: "fallback", proxies: ["🚀 节点选择"], icon: 图标库 + "Microsoft.png", hidden: true },
+        { name: "🪟 Bing", type: "fallback", proxies: ["🖥️ 服务节点"], icon: 图标库 + "Microsoft.png", hidden: true },
         { name: "🇬 谷歌@CN", type: "fallback", proxies: ["🎯 全球直连"], icon: 图标库 + "Google_Search.png", hidden: true },
         // --- 【代理策略组】 ---
         { name: "🪜 代理域名", type: "fallback", proxies: ["🚀 节点选择"], hidden: true },
