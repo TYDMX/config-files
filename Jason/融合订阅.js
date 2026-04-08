@@ -126,14 +126,16 @@ function main(config) {
         ...腾讯DOH,
     ];
     config["hosts"] = {
-        //"dns.google": 谷歌IP, "dns.cloudflare.com": cloudflare_IP, "cloudflare-dns.com": cloudflare_IP,
-        //"dns.alidns.com": 阿里IP, "doh.pub": 腾讯IP, "dot.pub": 腾讯IP,
+        "dns.google": 谷歌IP, "dns.cloudflare.com": cloudflare_IP, "cloudflare-dns.com": cloudflare_IP,
+        "dns.alidns.com": 阿里IP, "doh.pub": 腾讯IP, "dot.pub": 腾讯IP,
         "service.googleapis.cn": "service.googleapis.com",
         "mtalk.google.com": "142.250.107.188, 108.177.125.188",
     };
     // --- 【4. DNS 模式配置】 ---
     config["dns"] = {
         "enable": true,
+        "use-hosts": false,
+        "use-system-hosts": false,
         "ipv6": true,
         "prefer-h3": true,
         "respect-rules": false,
@@ -143,14 +145,15 @@ function main(config) {
         "enhanced-mode": "fake-ip",
         "fake-ip-range": "198.18.0.1/16",
         "fake-ip-range6": "fdfe:dcba:9876::/64",
-        "fake-ip-filter-mode": "blacklist",
+        "fake-ip-filter-mode": "rule",
         "fake-ip-filter": [
-            "rule-set:自用fake-ip",
-            "geosite:private,googlefcm",
-            "geosite:connectivity-check",
+            "RULE-SET,自用fake-ip,real-ip",
+            "OR,((GEOSITE,private),(GEOSITE,connectivity-check)),real-ip",
+            "GEOSITE,googlefcm,real-ip",
+            "OR,((GEOSITE,cn),(GEOSITE,geolocation-cn)),real-ip",
+            "OR,((GEOSITE,gfw),(GEOSITE,geolocation-!cn)),fake-ip",
+            "MATCH,fake-ip"
         ],
-        "use-hosts": true,
-        "use-system-hosts": false,
         "default-nameserver": ["tcp://223.5.5.5"],
         "direct-nameserver": 国内DNS,
         "direct-nameserver-follow-policy": true,
@@ -270,7 +273,7 @@ function main(config) {
         "OR,((GEOSITE,cn),(GEOSITE,geolocation-cn),(GEOIP,cn)),⬆️ 直连域名",
         //代理规则
         "GEOSITE,category-games-!cn,🎮 game",
-        "AND,((NETWORK,UDP),(DST-PORT,443)),REJECT",
+        //"AND,((NETWORK,UDP),(DST-PORT,443)),REJECT",
         "OR,((GEOSITE,openai),(GEOSITE,google-gemini),(GEOSITE,category-ai-!cn)),🤖 人工智能",
         "GEOSITE,spotify,🎵 音乐服务",
         "GEOSITE,paypal,💶 PayPal",
