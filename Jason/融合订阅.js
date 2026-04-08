@@ -147,11 +147,10 @@ function main(config) {
         "fake-ip-range6": "fdfe:dcba:9876::/64",
         "fake-ip-filter-mode": "rule",
         "fake-ip-filter": [
-            "RULE-SET,自用fake-ip,real-ip",
-            "OR,((GEOSITE,private),(GEOSITE,connectivity-check)),real-ip",
-            "GEOSITE,googlefcm,real-ip",
-            "OR,((GEOSITE,cn),(GEOSITE,geolocation-cn)),real-ip",
-            "OR,((GEOSITE,gfw),(GEOSITE,geolocation-!cn)),fake-ip",
+            "GEOSITE,private,real-ip", "GEOSITE,connectivity-check,real-ip",
+            "RULE-SET,自用fake-ip,real-ip", "GEOSITE,googlefcm,real-ip",
+            "GEOSITE,cn,real-ip", "GEOSITE,geolocation-cn,real-ip",
+            "GEOSITE,gfw,fake-ip", "GEOSITE,geolocation-!cn,fake-ip",
             "MATCH,fake-ip"
         ],
         "default-nameserver": ["tcp://223.5.5.5"],
