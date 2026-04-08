@@ -37,7 +37,7 @@ function main(config) {
                         "interval": 300, 
                         "timeout": 2000, 
                         "consecutive-failures": 3, 
-                        "lazy": true, 
+                        "lazy": false, 
                         "method": "HEAD", 
                     },
                 };
@@ -292,7 +292,7 @@ function main(config) {
     function 创建地区分组(地区名, 地区图标, 内部地区节点池, 地区正则) {
         return [
             { name: `${地区名}节点`, type: "select", use: 外部订阅, filter: 地区正则, proxies: [`${地区名}自动`, `${地区名}散列`, `${地区名}轮询`, ...内部地区节点池], icon: 图标库 + 地区图标 },
-            { name: `${地区名}自动`, type: "url-test", use: 外部订阅, filter: 地区正则, proxies: 内部地区节点池, hidden: true, icon: 图标库 + 地区图标, interval: 300, "url": "https://cp.cloudflare.com/generate_204", "timeout": 2000, lazy: false },
+            { name: `${地区名}自动`, type: "url-test", use: 外部订阅, filter: 地区正则, proxies: 内部地区节点池, hidden: true, icon: 图标库 + 地区图标 },
             { name: `${地区名}散列`, type: "load-balance", strategy: "consistent-hashing", proxies: 内部地区节点池, hidden: true, icon: 图标库 + 地区图标 },
             { name: `${地区名}轮询`, type: "load-balance", strategy: "round-robin", proxies: 内部地区节点池, hidden: true, icon: 图标库 + 地区图标 }
         ];
