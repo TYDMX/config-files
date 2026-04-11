@@ -4,7 +4,7 @@ function main(config) {
      // --- 【合并外部订阅】 ---
     config["proxy-providers"] = {
         ...(config["proxy-providers"] || {}),
-        "自建 🌏": { url: "https://sub.dmit.dpdns.org/share/sub/dingyue_Center_zijian_auto?token=xgy1nCsG7xgerdecv4QRn",  interval: 3600 },
+        //"自建 🌏": { url: "https://sub.dmit.dpdns.org/share/sub/dingyue_Center_zijian_auto?token=xgy1nCsG7xgerdecv4QRn",  interval: 3600 },
         //"自建 🔮": { url: "https://raw.githubusercontent.com/go4sharing/sub/main/clash.yaml",  interval: 3600 },
         "节点池 🪩": { url: "https://proxypool.dmit.dpdns.org/clash/proxies?nstream=netflix,disney&speed=30&type=vless",  interval: 3600 },
         "节点池vmess 🪩": { url: "https://proxypool.dmit.dpdns.org/clash/proxies?nstream=netflix,disney&speed=30&type=vmess",  interval: 3600 },
@@ -116,17 +116,17 @@ function main(config) {
         "udp-timeout": 300//秒
     };
     // --- 【DNS配置模板】 ---#h3=true
-    const 谷歌IP = ["2001:4860:4860::8888", "8.8.8.8", "2001:4860:4860::8844", "8.8.4.4"]; const 谷歌DOT = ["tls://dns.google"]; const 谷歌DOH = ["https://dns.google/dns-query#🖥️ 代理服务"];
-    const cloudflare_IP = ["2606:4700:4700::1111", "1.1.1.1", "2606:4700:4700::1001", "1.0.0.1"]; const cloudflare_DOT = ["tls://cloudflare-dns.com"]; const cloudflare_DOH = ["https://cloudflare-dns.com/dns-query#🖥️ 代理服务"];
-    const 阿里IP = ["2400:3200::1", "223.5.5.5"]; const 阿里DOT = ["tls://dns.alidns.com"]; const 阿里DOH = ["https://dns.alidns.com/dns-query#🇨🇳 直连"]; const 阿里QUIC = ["quic://dns.alidns.com#🇨🇳 直连"];
-    const 腾讯IP = ["2402:4e00::", "119.29.29.29"]; const 腾讯DOT = ["tls://dot.pub"]; const 腾讯DOH = ["https://doh.pub/dns-query#🇨🇳 直连"];
+    const 谷歌IP = ["8.8.8.8"]; const 谷歌DOT = ["tls://dns.google"]; const 谷歌DOH = ["https://dns.google/dns-query#🖥️ 代理服务"];
+    const cloudflare_IP = ["1.1.1.1"]; const cloudflare_DOT = ["tls://cloudflare-dns.com"]; const cloudflare_DOH = ["https://cloudflare-dns.com/dns-query#🖥️ 代理服务"];
+    const 阿里IP = ["223.5.5.5"]; const 阿里DOT = ["tls://dns.alidns.com"]; const 阿里DOH = ["https://dns.alidns.com/dns-query#🇨🇳 直连"]; const 阿里QUIC = ["quic://dns.alidns.com#🇨🇳 直连"];
+    const 腾讯IP = ["119.29.29.29"]; const 腾讯DOT = ["tls://dot.pub"]; const 腾讯DOH = ["https://doh.pub/dns-query#🇨🇳 直连"];
     const 国外DNS = [
         ...谷歌DOH, 
         ...cloudflare_DOH,
     ];
     const 国内DNS = [
-        ...阿里DOH, ...阿里QUIC, ...阿里DOT, ...阿里IP,
-        ...腾讯DOH, ...腾讯DOT, ...腾讯IP,
+        ...阿里QUIC,
+        ...腾讯DOH,
     ];
     config["hosts"] = {
         "dns.google": 谷歌IP, "dns.cloudflare.com": cloudflare_IP, "cloudflare-dns.com": cloudflare_IP,
@@ -137,17 +137,17 @@ function main(config) {
     // --- 【4. DNS 模式配置】 ---
     config["dns"] = {
         "enable": true,
-        "use-hosts": false,
-        "use-system-hosts": false,
-        "ipv6": true,
+        "use-hosts": true,
+        "use-system-hosts": true,
+        "ipv6": false,
         "prefer-h3": true,
         "respect-rules": false,
-        "proxy-server-nameserver": 阿里DOH,
+        "proxy-server-nameserver": 国内DNS,
         "cache-algorithm": "arc",
         "listen": "127.0.0.1:1053",
         "enhanced-mode": "fake-ip",
         "fake-ip-range": "198.18.0.1/16",
-        "fake-ip-range6": "fdfe:dcba:9876::/64",
+        //"fake-ip-range6": "fdfe:dcba:9876::/64",
         "fake-ip-filter-mode": "rule",
         "fake-ip-filter": [
             "GEOSITE,private,real-ip", "GEOSITE,connectivity-check,real-ip",
