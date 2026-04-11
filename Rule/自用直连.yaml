@@ -50,7 +50,9 @@ payload:
   #battle.net
   #ingest.gdp.blizzard.com
 
-  # onedrive
+  #微软
+  - DOMAIN-SUFFIX,mobile.events.data.microsoft.com
+  ## onedrive
   # - DOMAIN-WILDCARD,*.files.1drv.com # vizyng,public
   - DOMAIN-WILDCARD,*.microsoftpersonalcontent.com  #my.上传-下载
   #DOMAIN-SUFFIX,-mediap.svc.ms  ## 观看域名
