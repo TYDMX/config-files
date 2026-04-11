@@ -12,9 +12,7 @@ function main(config) {
         "节点池hysteria2 🪩": { url: "https://proxypool.dmit.dpdns.org/clash/proxies?nstream=netflix,disney&speed=30&type=hysteria2",  interval: 3600 },
         "节点池anytls 🪩": { url: "https://proxypool.dmit.dpdns.org/clash/proxies?nstream=netflix,disney&type=anytls",  interval: 3600 },
         "qhr 💚": { url: "https://fd.hief.store/api/subscribe?token=dd8aba469bed016dd8079de28d155a67",  interval: 3600 },
-
-
-
+        "酷可 💜": { url: "https://y.kukeyun.cc/s/363a1642a6cdc938a0384b38ad74f9b6",  interval: 3600 },
 
     };
     const 外部订阅 = Object.keys(config["proxy-providers"] || {});
