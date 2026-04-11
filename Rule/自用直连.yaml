@@ -66,7 +66,7 @@ payload:
   # - DOMAIN-WILDCARD,abs-*.twimg.com
   # - DOMAIN-WILDCARD,pbs*.twimg.com
   #- DOMAIN-WILDCARD,video*.twimg.com
-  - DOMAIN-WILDCARD,ton.twimg.com
+  #- DOMAIN-WILDCARD,ton.twimg.com
 
   # vk
   #sun*
@@ -86,7 +86,7 @@ payload:
 
   # ph xv等
   #- DOMAIN-SUFFIX,phncdn.com # ph
-  - DOMAIN-WILDCARD,*-h.phncdn.com # ph
+  #- DOMAIN-WILDCARD,*-h.phncdn.com # ph
   #- DOMAIN-SUFFIX,ei.phncdn.com # ph
   #- DOMAIN-SUFFIX,xvideos-cdn.com # xv
   #- DOMAIN-SUFFIX,vdownload.com # xv
