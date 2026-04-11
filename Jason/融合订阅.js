@@ -40,7 +40,7 @@ function main(config) {
                         "interval": 300, 
                         "timeout": 2000, 
                         "consecutive-failures": 3, 
-                        "lazy": false, 
+                        "lazy": true, 
                         "method": "HEAD", 
                     },
                 };
@@ -240,13 +240,13 @@ function main(config) {
         { name: "🚫 广告拦截", type: "fallback", proxies: ["🚫 阻止"], hidden: true },
         { name: "🚫 追踪拦截", type: "fallback", proxies: ["🚫 阻止"], hidden: true },
         // --- 【生成地区组】 ---
-        ...创建地区分组("🇭🇰 香港", "Hong_Kong.png", 香港_List, `${香港正则}`),
-        ...创建地区分组("🇸🇬 狮城", "Singapore.png", 狮城_List, `${狮城正则}`),
-        ...创建地区分组("🇺🇸 美国", "United_States.png", 美国_List, `${美国正则}`),
-        ...创建地区分组("🇯🇵 日本", "Japan.png", 日本_List, `${日本正则}`),
-        ...创建地区分组("🇹🇼 台湾", "Taiwan.png", 台湾_List, `${台湾正则}`),
-        ...创建地区分组("🇰🇷 韩国", "Korea.png", 韩国_List, `${韩国正则}`),
-        ...创建地区分组("🇪🇺 欧盟", "European_Union.png", 欧盟_List, `${欧盟正则}`),
+        ...创建地区分组("🇭🇰 香港", "Hong_Kong.png", 香港筛选, `${香港正则}`),
+        ...创建地区分组("🇸🇬 狮城", "Singapore.png", 狮城筛选, `${狮城正则}`),
+        ...创建地区分组("🇺🇸 美国", "United_States.png", 美国筛选, `${美国正则}`),
+        ...创建地区分组("🇯🇵 日本", "Japan.png", 日本筛选, `${日本正则}`),
+        ...创建地区分组("🇹🇼 台湾", "Taiwan.png", 台湾筛选, `${台湾正则}`),
+        ...创建地区分组("🇰🇷 韩国", "Korea.png", 韩国筛选, `${韩国正则}`),
+        ...创建地区分组("🇪🇺 欧盟", "European_Union.png", 欧盟筛选, `${欧盟正则}`),
         // --- 【其他策略组】 ---
         { name: "🌐 冷门自选", type: "select", use: 外部订阅, "exclude-filter": `(?i)(${汇总正则})`, proxies: ["🈚️ 假节点", ...冷门_List], icon: 图标库 + "Europe_Map.png" },
         { name: "🌐 全部节点", type: "select", use: 外部订阅, proxies: ["🈚️ 假节点", ...全部_List], icon: 图标库 + "Clubhouse.png" },
@@ -301,9 +301,9 @@ function main(config) {
     function 创建地区分组(地区名, 地区图标, 内部地区节点池, 地区正则) {
         return [
             { name: `${地区名}节点`, type: "select", use: 外部订阅, filter: 地区正则, proxies: [`${地区名}自动`, `${地区名}散列`, `${地区名}轮询`, ...内部地区节点池], icon: 图标库 + 地区图标 },
-            { name: `${地区名}自动`, type: "url-test", use: 外部订阅, filter: 地区正则, proxies: 内部地区节点池, hidden: true, icon: 图标库 + 地区图标 },
-            { name: `${地区名}散列`, type: "load-balance", strategy: "consistent-hashing", proxies: 内部地区节点池, hidden: true, icon: 图标库 + 地区图标 },
-            { name: `${地区名}轮询`, type: "load-balance", strategy: "round-robin", proxies: 内部地区节点池, hidden: true, icon: 图标库 + 地区图标 }
+            { name: `${地区名}自动`, type: "url-test", use: 外部订阅, filter: 地区正则, proxies: 内部地区节点池, hidden: true, icon: 图标库 + 地区图标, interval: 300, url: "https://cp.cloudflare.com/generate_204", timeout: 2000, method: "HEAD" , lazy: true },
+            { name: `${地区名}散列`, type: "load-balance", strategy: "consistent-hashing", use: 外部订阅, filter: 地区正则, proxies: 内部地区节点池, hidden: true, icon: 图标库 + 地区图标, interval: 300, url: "https://cp.cloudflare.com/generate_204", timeout: 2000, method: "HEAD" , lazy: true },
+            { name: `${地区名}轮询`, type: "load-balance", strategy: "round-robin", use: 外部订阅, filter: 地区正则, proxies: 内部地区节点池, hidden: true, icon: 图标库 + 地区图标, interval: 300, url: "https://cp.cloudflare.com/generate_204", timeout: 2000, method: "HEAD" , lazy: true }
         ];
     }
 
