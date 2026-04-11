@@ -111,15 +111,15 @@ function main(config) {
         "auto-route": true,
         "auto-detect-interface": true,
         "strict-route": true,
-        "disable-icmp-forwarding": true,
+        //"disable-icmp-forwarding": true,
         "mtu": 4064,
         "udp-timeout": 300//秒
     };
     // --- 【DNS配置模板】 ---#h3=true
     const 谷歌IP = ["2001:4860:4860::8888", "8.8.8.8", "2001:4860:4860::8844", "8.8.4.4"]; const 谷歌DOT = ["tls://dns.google"]; const 谷歌DOH = ["https://dns.google/dns-query#🖥️ 代理服务"];
     const cloudflare_IP = ["2606:4700:4700::1111", "1.1.1.1", "2606:4700:4700::1001", "1.0.0.1"]; const cloudflare_DOT = ["tls://cloudflare-dns.com"]; const cloudflare_DOH = ["https://cloudflare-dns.com/dns-query#🖥️ 代理服务"];
-    const 阿里IP = ["2400:3200::1", "223.5.5.5"]; const 阿里DOT = ["tls://dns.alidns.com"]; const 阿里DOH = ["https://dns.alidns.com/dns-query#🇨🇳 直连（IPv4优先）"]; const 阿里QUIC = ["quic://dns.alidns.com#🇨🇳 直连（IPv4优先）"];
-    const 腾讯IP = ["2402:4e00::", "119.29.29.29"]; const 腾讯DOT = ["tls://dot.pub"]; const 腾讯DOH = ["https://doh.pub/dns-query#🇨🇳 直连（IPv4优先）"];
+    const 阿里IP = ["2400:3200::1", "223.5.5.5"]; const 阿里DOT = ["tls://dns.alidns.com"]; const 阿里DOH = ["https://dns.alidns.com/dns-query#🇨🇳 直连"]; const 阿里QUIC = ["quic://dns.alidns.com#🇨🇳 直连"];
+    const 腾讯IP = ["2402:4e00::", "119.29.29.29"]; const 腾讯DOT = ["tls://dot.pub"]; const 腾讯DOH = ["https://doh.pub/dns-query#🇨🇳 直连"];
     const 国外DNS = [
         ...谷歌DOH, 
         ...cloudflare_DOH,
@@ -141,7 +141,7 @@ function main(config) {
         "use-system-hosts": false,
         "ipv6": true,
         "prefer-h3": true,
-        "respect-rules": false,
+        "respect-rules": true,
         "proxy-server-nameserver": 国内DNS,
         "cache-algorithm": "arc",
         "listen": "127.0.0.1:1053",
@@ -151,7 +151,8 @@ function main(config) {
         "fake-ip-filter-mode": "rule",
         "fake-ip-filter": [
             "GEOSITE,private,real-ip", "GEOSITE,connectivity-check,real-ip",
-            "RULE-SET,自用fake-ip,real-ip", "RULE-SET,自用直连规则,real-ip", "GEOSITE,googlefcm,real-ip",
+            "RULE-SET,自用fake-ip,real-ip", "RULE-SET,自用直连规则,real-ip", 
+            "GEOSITE,googlefcm,real-ip",
             "GEOSITE,cn,real-ip", "GEOSITE,geolocation-cn,real-ip",
             "GEOSITE,gfw,fake-ip", "GEOSITE,geolocation-!cn,fake-ip",
             "MATCH,fake-ip"
@@ -159,7 +160,12 @@ function main(config) {
         "default-nameserver": ["tcp://223.5.5.5"],
         "direct-nameserver": 国内DNS,
         "direct-nameserver-follow-policy": true,
-        "nameserver-policy": {"geosite:google@cn,googlefcm": 国内DNS,"geosite:private": 国内DNS,"geosite:cn,geolocation-cn": 国内DNS,"geosite:gfw,geolocation-!cn": 国外DNS,},
+        "nameserver-policy": {
+            "geosite:private": 国内DNS, 
+            "geosite:google@cn,googlefcm": 国内DNS, 
+            "geosite:cn,geolocation-cn": 国内DNS, 
+            "geosite:gfw,geolocation-!cn": 国外DNS,
+        },
         "nameserver": 国内DNS,
     };
     // --- 【节点筛选正则表达式】 ---
@@ -219,7 +225,7 @@ function main(config) {
         { name: "💶 PayPal", type: "fallback", proxies: ["🖥️ 服务节点"], icon: 图标库 + "PayPal.png", hidden: true },
         { name: "🎮 game@CN", type: "fallback", proxies: ["🇨🇳 直连"], icon: 图标库 + "Game.png", hidden: true },
         { name: "🪟 Bing", type: "fallback", proxies: ["🖥️ 服务节点"], icon: 图标库 + "Microsoft.png", hidden: true },
-        { name: "🇬 谷歌@CN", type: "fallback", proxies: ["🎯 全球直连"], icon: 图标库 + "Google_Search.png", hidden: true },
+        { name: "🇬 谷歌@CN", type: "fallback", proxies: ["🇨🇳 直连"], icon: 图标库 + "Google_Search.png", hidden: true },
         // --- 【代理策略组】 ---
         { name: "🪜 代理域名", type: "fallback", proxies: ["🚀 节点选择"], hidden: true },
         { name: "🌐 自用代理", type: "fallback", proxies: ["🚀 节点选择"], hidden: true },
