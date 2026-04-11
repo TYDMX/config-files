@@ -125,8 +125,8 @@ function main(config) {
         ...cloudflare_DOH,
     ];
     const 国内DNS = [
-        ...阿里DOH, ...阿里QUIC,
-        ...腾讯DOH,
+        ...阿里DOH, ...阿里QUIC, ...阿里DOT, ...阿里IP,
+        ...腾讯DOH, ...腾讯DOT, ...腾讯IP,
     ];
     config["hosts"] = {
         "dns.google": 谷歌IP, "dns.cloudflare.com": cloudflare_IP, "cloudflare-dns.com": cloudflare_IP,
@@ -141,8 +141,8 @@ function main(config) {
         "use-system-hosts": false,
         "ipv6": true,
         "prefer-h3": true,
-        "respect-rules": true,
-        "proxy-server-nameserver": 国内DNS,
+        "respect-rules": false,
+        "proxy-server-nameserver": 阿里DOH,
         "cache-algorithm": "arc",
         "listen": "127.0.0.1:1053",
         "enhanced-mode": "fake-ip",
@@ -166,7 +166,7 @@ function main(config) {
             "geosite:cn,geolocation-cn": 国内DNS, 
             "geosite:gfw,geolocation-!cn": 国外DNS,
         },
-        "nameserver": 国内DNS,
+        "nameserver": 国外DNS,
     };
     // --- 【节点筛选正则表达式】 ---
     const 香港正则 = '(港|🇭🇰|HK|Hong|HKG)';
