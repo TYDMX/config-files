@@ -111,7 +111,7 @@ function main(config) {
         "auto-route": true,
         "auto-detect-interface": true,
         "strict-route": true,
-        //"disable-icmp-forwarding": true,
+        "disable-icmp-forwarding": true,
         "mtu": 4064,
         "udp-timeout": 300//秒
     };
