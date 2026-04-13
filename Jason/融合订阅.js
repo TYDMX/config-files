@@ -169,7 +169,7 @@ function main(config) {
         "nameserver": 国外DNS,
     };
     // --- 【节点筛选正则表达式】 ---
-    const 香港正则 = '(港|🇭🇰|HK|Hong|HKG)';
+    const 香港正则 = "^(?!(.*(家|住))).*(港|🇭🇰|HK|Hong|HKG)";
     const 狮城正则 = '(新|🇸🇬|坡|SG|Sing|SIN|XSP)';
     const 美国正则 = "^(?!(.*(新|流量))).*(美|🇺🇸|US|USA|加|🇨🇦|CA|JFK|LAX|ORD|ATL|DFW|SFO|MIA|SEA|IAD)";
     const 日本正则 = '(日|🇯🇵|JP|Japan|NRT|HND|KIX|CTS|FUK)';
