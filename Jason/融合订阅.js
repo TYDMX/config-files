@@ -121,12 +121,12 @@ function main(config) {
     const 阿里IP = ["223.5.5.5"]; const 阿里DOT = ["tls://dns.alidns.com"]; const 阿里DOH = ["https://dns.alidns.com/dns-query"]; const 阿里QUIC = ["quic://dns.alidns.com"];
     const 腾讯IP = ["119.29.29.29"]; const 腾讯DOT = ["tls://dot.pub"]; const 腾讯DOH = ["https://doh.pub/dns-query","https://sm2.doh.pub/dns-query"];
     const 国外DNS = [
-        //...谷歌DOH, 
+        ...谷歌DOH, 
         ...cloudflare_DOH,
     ];
     const 国内DNS = [
         ...阿里DOH,
-        //...腾讯DOH,
+        ...腾讯DOH,
     ];
     config["hosts"] = {
         "dns.google": 谷歌IP, "dns.cloudflare.com": cloudflare_IP, "cloudflare-dns.com": cloudflare_IP,
@@ -166,7 +166,7 @@ function main(config) {
             "geosite:cn,geolocation-cn": 国内DNS, 
             "geosite:gfw,geolocation-!cn": 国外DNS,
         },
-        "nameserver": 国外DNS,
+        "nameserver": 国内DNS,
     };
     // --- 【节点筛选正则表达式】 ---
     const 香港正则 = "^(?!(.*(家|住))).*(港|🇭🇰|HK|Hong|HKG)";
