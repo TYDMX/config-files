@@ -94,7 +94,7 @@ function main(config) {
         "parse-pure-ip": true,
         "override-destination": false,
         "sniff": {
-            "HTTP": { "ports": [80, "8080-8880"], "override-destination": false, },
+            "HTTP": { "ports": [80, "8080-8880"], "override-destination": true, },
             "TLS": { "ports": [443, "5228-5230"] },
             //"QUIC": { "ports": [443, 8443, "5228-5230"] }
         },
