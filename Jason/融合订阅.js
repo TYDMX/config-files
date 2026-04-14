@@ -154,6 +154,7 @@ function main(config) {
             "RULE-SET,自用fake-ip,real-ip", "RULE-SET,自用直连规则,real-ip", 
             "GEOSITE,googlefcm,real-ip",
             "GEOSITE,cn,real-ip", "GEOSITE,geolocation-cn,real-ip",
+            "DOMAIN-SUFFIX,cn,real-ip",
             "GEOSITE,gfw,fake-ip", "GEOSITE,geolocation-!cn,fake-ip",
             "MATCH,fake-ip"
         ],
