@@ -91,7 +91,7 @@ function main(config) {
     config["sniffer"] = {
         "enable": true,
         "force-dns-mapping": true,
-        "parse-pure-ip": false,
+        "parse-pure-ip": true,
         "override-destination": false,
         "sniff": {
             "HTTP": { "ports": [80, "8080-8880"], "override-destination": false, },
