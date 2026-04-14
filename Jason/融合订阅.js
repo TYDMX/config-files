@@ -158,13 +158,12 @@ function main(config) {
             "GEOSITE,gfw,fake-ip", "GEOSITE,geolocation-!cn,fake-ip",
             "MATCH,fake-ip"
         ],
-        "default-nameserver": ["tcp://223.5.5.5"],
+        "default-nameserver": ["https://223.5.5.5/dns-query"],
         "direct-nameserver": 国内DNS,
         "direct-nameserver-follow-policy": true,
         "nameserver-policy": {
-            "geosite:private": 国内DNS, "+.cn": 国内DNS, 
-            "geosite:google@cn,googlefcm": 国内DNS, 
-            "geosite:cn,geolocation-cn": 国内DNS, 
+            "geosite:private": 国内DNS, "geosite:google@cn,googlefcm": 国内DNS, 
+            "geosite:cn,geolocation-cn": 国内DNS, "+.cn": 国内DNS, 
             "geosite:gfw,geolocation-!cn": 国外DNS,
         },
         "nameserver": 国内DNS,
