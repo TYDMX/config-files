@@ -147,7 +147,7 @@ function main(config) {
         "listen": "127.0.0.1:1053",
         "enhanced-mode": "fake-ip",
         "fake-ip-range": "198.18.0.1/16",
-        //"fake-ip-range6": "fdfe:dcba:9876::/64",
+        "fake-ip-range6": "fdfe:dcba:9876::/64",
         "fake-ip-filter-mode": "rule",
         "fake-ip-filter": [
             "GEOSITE,private,real-ip", "GEOSITE,connectivity-check,real-ip",
@@ -162,7 +162,7 @@ function main(config) {
         "direct-nameserver": 国内DNS,
         "direct-nameserver-follow-policy": true,
         "nameserver-policy": {
-            "geosite:private": 国内DNS, 
+            "geosite:private": 国内DNS, "+.cn": 国内DNS, 
             "geosite:google@cn,googlefcm": 国内DNS, 
             "geosite:cn,geolocation-cn": 国内DNS, 
             "geosite:gfw,geolocation-!cn": 国外DNS,
