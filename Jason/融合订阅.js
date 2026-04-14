@@ -290,6 +290,7 @@ function main(config) {
         "GEOSITE,bing,🪟 Bing",
         "OR,((GEOSITE,twitter),(GEOSITE,tiktok),(GEOSITE,Reddit),(GEOSITE,discord)),📲 社交媒体",
         "OR,((GEOSITE,telegram),(GEOIP,telegram)),📲 电报飞机",
+        "AND,((NETWORK,UDP),(DST-PORT,443),(GEOSITE,youtube)),REJECT",   
         "OR,((GEOSITE,youtube),(GEOSITE,netflix),(GEOSITE,onedrive),(GEOSITE,twitch),(GEOSITE,vk),(GEOSITE,disney),(GEOSITE,biliintl),(GEOSITE,category-porn)),📹 视频平台",
         "OR,((GEOSITE,cloudflare),(GEOIP,cloudflare),(GEOIP,cloudfront)),🖥️ 代理服务",
         "GEOSITE,microsoft,🪟 Microsoft",
