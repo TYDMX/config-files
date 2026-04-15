@@ -281,7 +281,7 @@ function main(config) {
         "OR,((GEOSITE,cn),(GEOSITE,geolocation-cn),(GEOIP,cn)),⬆️ 直连域名",
         //代理规则
         //"AND,((NETWORK,UDP),(DST-PORT,443)),REJECT",  
-        "AND,((NETWORK,UDP),(DST-PORT,443),(NOT,((GEOIP,CN)))),REJECT",
+        //"AND,((NETWORK,UDP),(DST-PORT,443),(NOT,((GEOIP,CN)))),REJECT",
         "GEOSITE,category-games-!cn,🎮 game",
         "OR,((GEOSITE,openai),(GEOSITE,google-gemini),(GEOSITE,category-ai-!cn)),🤖 人工智能",
         "GEOSITE,spotify,🎵 音乐服务",
