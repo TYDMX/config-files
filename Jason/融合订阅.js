@@ -137,9 +137,9 @@ function main(config) {
     // --- 【4. DNS 模式配置】 ---
     config["dns"] = {
         "enable": true,
-        "use-hosts": true,
-        "use-system-hosts": true,
-        "ipv6": false,
+        "use-hosts": false,
+        "use-system-hosts": false,
+        "ipv6": true,
         "prefer-h3": true,
         "respect-rules": false,
         "proxy-server-nameserver": 国内DNS,
