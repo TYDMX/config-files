@@ -71,7 +71,7 @@ function main(config) {
     config["socks-port"] = 7891;
     config["mixed-port"] = 7893;
     config["tproxy-port"] = 7894;
-    config["ipv6"] = true;
+    config["ipv6"] = false;
     config["allow-lan"] = false;
     config["unified-delay"] = true;
     config["tcp-concurrent"] = true;
@@ -139,7 +139,7 @@ function main(config) {
         "enable": true,
         "use-hosts": false,
         "use-system-hosts": false,
-        "ipv6": true,
+        "ipv6": false,
         "prefer-h3": true,
         "respect-rules": false,
         "proxy-server-nameserver": 国内DNS,
