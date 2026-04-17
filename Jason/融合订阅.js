@@ -116,8 +116,8 @@ function main(config) {
         "udp-timeout": 300//秒
     };
     // --- 【DNS配置模板】 ---
-    const 谷歌IP = ["8.8.8.8"]; const 谷歌DOT = ["tls://dns.google"]; const 谷歌DOH = ["https://dns.google/dns-query#🖥️ 代理服务"];
-    const cloudflare_IP = ["1.1.1.1"]; const cloudflare_DOT = ["tls://cloudflare-dns.com"]; const cloudflare_DOH = ["https://cloudflare-dns.com/dns-query#🖥️ 代理服务"];
+    const 谷歌IP = ["8.8.8.8"]; const 谷歌DOT = ["tls://dns.google"]; const 谷歌DOH = ["https://dns.google/dns-query#🇬 谷歌"];
+    const cloudflare_IP = ["1.1.1.1"]; const cloudflare_DOT = ["tls://cloudflare-dns.com"]; const cloudflare_DOH = ["https://cloudflare-dns.com/dns-query#🖥️ 域名服务"];
     const 阿里IP = ["223.5.5.5"]; const 阿里DOT = ["tls://dns.alidns.com"]; const 阿里DOH = ["https://dns.alidns.com/dns-query"]; const 阿里QUIC = ["quic://dns.alidns.com"];
     const 腾讯IP = ["119.29.29.29"]; const 腾讯DOT = ["tls://dot.pub"]; const 腾讯DOH = ["https://doh.pub/dns-query","https://sm2.doh.pub/dns-query"];
     const 国外DNS = [
@@ -207,6 +207,7 @@ function main(config) {
         { name: "🖥️ 服务节点", type: "select", proxies: [...自选节点池, "🇨🇳 直连"], icon: 图标库 + "ULB.png" },
         { name: "🚀 节点选择", type: "select", proxies: ["🖥️ 服务节点", "🇨🇳 直连", ...自选节点池], icon: 图标库 + "Static.png" },
         { name: "🇨🇳 直连", type: "select", proxies: ["🎯 全球直连"], "include-all-proxies": true, filter: '🇨🇳 直连', icon: 图标库 + "China_Map.png" },
+        { name: "🖥️ 域名服务", type: "select", proxies: ["🖥️ 服务节点", "🇨🇳 直连", ...自选节点池], icon: 图标库 + "Cloudflare.png" },
         { name: "🇭🇰 香港故转", type: "fallback", proxies: 香港故转池, hidden: true, icon: 图标库 + "Hong_Kong.png" },
         { name: "🇸🇬 狮城故转", type: "fallback", proxies: 狮城故转池, hidden: true, icon: 图标库 + "Singapore.png" },
         { name: "🇺🇸 美国故转", type: "fallback", proxies: 美国故转池, hidden: true, icon: 图标库 + "United_States.png" },
