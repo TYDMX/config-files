@@ -71,7 +71,7 @@ function main(config) {
     config["socks-port"] = 7891;
     config["mixed-port"] = 7893;
     config["tproxy-port"] = 7894;
-    config["ipv6"] = false;
+    config["ipv6"] = true;
     config["allow-lan"] = false;
     config["unified-delay"] = true;
     config["tcp-concurrent"] = true;
