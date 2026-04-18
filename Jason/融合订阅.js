@@ -6,10 +6,10 @@ function main(config) {
         ...(config["proxy-providers"] || {}),
         //"自建 🌏": { url: "https://sub.dmit.dpdns.org/share/sub/dingyue_Center_zijian_auto?token=xgy1nCsG7xgerdecv4QRn",  interval: 3600 },
         //"自建 🔮": { url: "https://raw.githubusercontent.com/go4sharing/sub/main/clash.yaml",  interval: 3600 },
-        "节点池 🪩": { url: "https://proxypool.dmit.dpdns.org/clash/proxies?nstream=netflix,disney&speed=30&type=vless",  interval: 3600 },
-        "节点池vmess 🪩": { url: "https://proxypool.dmit.dpdns.org/clash/proxies?nstream=netflix,disney&speed=30&type=vmess",  interval: 3600 },
-        "节点池trojan 🪩": { url: "https://proxypool.dmit.dpdns.org/clash/proxies?nstream=netflix,disney&speed=30&type=trojan",  interval: 3600 },
-        "节点池hysteria2 🪩": { url: "https://proxypool.dmit.dpdns.org/clash/proxies?nstream=netflix,disney&speed=30&type=hysteria2",  interval: 3600 },
+        "节点池 🪩": { url: "https://proxypool.dmit.dpdns.org/clash/proxies?nstream=netflix,disney&type=vless",  interval: 3600 },
+        "节点池vmess 🪩": { url: "https://proxypool.dmit.dpdns.org/clash/proxies?nstream=netflix,disney&type=vmess",  interval: 3600 },
+        "节点池trojan 🪩": { url: "https://proxypool.dmit.dpdns.org/clash/proxies?nstream=netflix,disney&type=trojan",  interval: 3600 },
+        "节点池hysteria2 🪩": { url: "https://proxypool.dmit.dpdns.org/clash/proxies?nstream=netflix,disney&type=hysteria2",  interval: 3600 },
         "节点池anytls 🪩": { url: "https://proxypool.dmit.dpdns.org/clash/proxies?nstream=netflix,disney&type=anytls",  interval: 3600 },
         "qhr 💚": { url: "https://fd.hief.store/api/subscribe?token=dd8aba469bed016dd8079de28d155a67",  interval: 3600 },
         "酷可 💜": { url: "https://y.kukeyun.cc/s/363a1642a6cdc938a0384b38ad74f9b6",  interval: 3600 },
@@ -304,9 +304,9 @@ function main(config) {
     function 创建地区分组(地区名, 地区图标, 内部地区节点池, 地区正则) {
         return [
             { name: `${地区名}节点`, type: "select", use: 外部订阅, filter: 地区正则, proxies: [`${地区名}自动`, `${地区名}散列`, `${地区名}轮询`, ...内部地区节点池], icon: 图标库 + 地区图标 },
-            { name: `${地区名}自动`, type: "url-test", use: 外部订阅, filter: 地区正则, proxies: 内部地区节点池, hidden: true, icon: 图标库 + 地区图标, interval: 300, url: "https://cp.cloudflare.com/generate_204", timeout: 2000, method: "HEAD" , lazy: true },
-            { name: `${地区名}散列`, type: "load-balance", strategy: "consistent-hashing", use: 外部订阅, filter: 地区正则, proxies: 内部地区节点池, hidden: true, icon: 图标库 + 地区图标, interval: 300, url: "https://cp.cloudflare.com/generate_204", timeout: 2000, method: "HEAD" , lazy: true },
-            { name: `${地区名}轮询`, type: "load-balance", strategy: "round-robin", use: 外部订阅, filter: 地区正则, proxies: 内部地区节点池, hidden: true, icon: 图标库 + 地区图标, interval: 300, url: "https://cp.cloudflare.com/generate_204", timeout: 2000, method: "HEAD" , lazy: true }
+            { name: `${地区名}自动`, type: "url-test", use: 外部订阅, filter: 地区正则, proxies: 内部地区节点池, hidden: true, icon: 图标库 + 地区图标, interval: 300, url: "https://cp.cloudflare.com/generate_204", timeout: 2000, consecutive-failures: 3, method: "HEAD" , lazy: false },
+            { name: `${地区名}散列`, type: "load-balance", strategy: "consistent-hashing", use: 外部订阅, filter: 地区正则, proxies: 内部地区节点池, hidden: true, icon: 图标库 + 地区图标, interval: 300, url: "https://cp.cloudflare.com/generate_204", timeout: 2000, consecutive-failures: 3, method: "HEAD" , lazy: true },
+            { name: `${地区名}轮询`, type: "load-balance", strategy: "round-robin", use: 外部订阅, filter: 地区正则, proxies: 内部地区节点池, hidden: true, icon: 图标库 + 地区图标, interval: 300, url: "https://cp.cloudflare.com/generate_204", timeout: 2000, consecutive-failures: 3, method: "HEAD" , lazy: true }
         ];
     }
 
