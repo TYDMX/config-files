@@ -126,7 +126,7 @@ function main(config) {
     ];
     const 国内DNS = [
         //...阿里DOH,
-        "quic://223.5.5.5",
+        "quic://223.5.5.5#🇨🇳 直连",
         //...腾讯DOH,
     ];
     config["hosts"] = {
