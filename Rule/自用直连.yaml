@@ -5,12 +5,18 @@ payload:
   #zlrj
 
 
-  - DOMAIN-KEYWORD,challenges.cloudflare
+
   - DOMAIN-SUFFIX,download.nvidia.com
   - DOMAIN-SUFFIX,tpb.proxyninja.org
   - DOMAIN-SUFFIX,git.imee.me
   - DOMAIN-KEYWORD,nfsq
   - DOMAIN-SUFFIX,proxypool.dmit.dpdns.org
+
+
+  # 人机验证
+  - DOMAIN-KEYWORD,challenges.cloudflare
+  - DOMAIN-KEYWORD,turnstile.cloudflare.com
+  - DOMAIN-KEYWORD,ctp.cloudflare.com
 
   # 战雷
   # - DOMAIN-WILDCARD,char*.warthunder.com # 角色
