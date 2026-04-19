@@ -281,7 +281,7 @@ function main(config) {
         //直连规则
         "GEOSITE,category-games-cn,🎮 game@CN",
         "OR,((GEOSITE,google@cn),(GEOSITE,googlefcm)),🇬 谷歌@CN",
-        "OR,((GEOSITE,cn),(GEOSITE,geolocation-cn),(GEOIP,cn)),⬆️ 直连域名",
+        "GEOIP,cloudfront,🖥️ 直连服务",
         //代理规则
         //"AND,((NETWORK,UDP),(DST-PORT,443)),REJECT",  
         //"AND,((NETWORK,UDP),(DST-PORT,443),(NOT,((GEOIP,CN)))),REJECT",
@@ -295,10 +295,11 @@ function main(config) {
         "OR,((GEOSITE,telegram),(GEOIP,telegram)),📲 电报飞机",
         "AND,((NETWORK,UDP),(DST-PORT,443),(GEOSITE,youtube)),REJECT",   
         "OR,((GEOSITE,youtube),(GEOSITE,netflix),(GEOSITE,onedrive),(GEOSITE,twitch),(GEOSITE,vk),(GEOSITE,disney),(GEOSITE,biliintl),(GEOSITE,category-porn)),📹 视频平台",
-        "OR,((GEOSITE,cloudflare),(GEOIP,cloudflare),(GEOIP,cloudfront)),🖥️ 代理服务",
+        "OR,((GEOSITE,cloudflare),(GEOIP,cloudflare)),🖥️ 代理服务",
         "GEOSITE,microsoft,🪟 Microsoft",
         "OR,((GEOSITE,google),(GEOIP,google)),🇬 谷歌",
         //兜底规则
+        "OR,((GEOSITE,cn),(GEOSITE,geolocation-cn),(GEOIP,cn)),⬆️ 直连域名",
         "OR,((GEOSITE,gfw),(GEOSITE,geolocation-!cn)),🪜 代理域名",
         "MATCH,🐟 漏网之鱼"
     ];
