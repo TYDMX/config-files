@@ -242,8 +242,8 @@ function main(config) {
         { name: "🖥️ 直连服务", type: "fallback", proxies: ["🇨🇳 直连"], hidden: true },
         { name: "🖥️ 代理软件", type: "fallback", proxies: ["🖥️ 服务节点"], hidden: true },
         { name: "🖥️ 代理服务", type: "fallback", proxies: ["🖥️ 服务节点"], hidden: true },
-        { name: "🚫 广告拦截", type: "select", proxies: ["🚫 阻止", "🇨🇳 直连"], hidden: false },
-        { name: "🚫 追踪拦截", type: "fallback", proxies: ["🚫 阻止"], hidden: true },
+        { name: "🚫 广告拦截", type: "select", proxies: ["🚫 阻止", "🇨🇳 直连"], icon: 图标库 + "Advertising.png" , hidden: false },
+        { name: "🚫 追踪拦截", type: "fallback", proxies: ["🚫 阻止"], icon: 图标库 + "AdBlack.png" , hidden: true },
         // --- 【生成地区组】 ---
         ...创建地区分组("🇭🇰 香港", "Hong_Kong.png", 香港筛选, `${香港正则}`),
         ...创建地区分组("🇸🇬 狮城", "Singapore.png", 狮城筛选, `${狮城正则}`),
