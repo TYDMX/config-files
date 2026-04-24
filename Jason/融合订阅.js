@@ -117,20 +117,19 @@ function main(config) {
         "udp-timeout": 300//秒
     };
     // --- 【DNS配置模板】 ---
-    const 谷歌IP = ["8.8.8.8"]; const 谷歌DOT = ["tls://dns.google"]; const 谷歌DOH = ["https://dns.google/dns-query#🇬 谷歌"];
-    const cloudflare_IP = ["1.1.1.1"]; const cloudflare_DOT = ["tls://cloudflare-dns.com"]; const cloudflare_DOH = ["https://cloudflare-dns.com/dns-query#🖥️ 域名服务"];
-    const 阿里IP = ["223.5.5.5"]; const 阿里DOT = ["tls://dns.alidns.com"]; const 阿里DOH = ["https://dns.alidns.com/dns-query"]; const 阿里QUIC = ["quic://dns.alidns.com"];
-    const 腾讯IP = ["119.29.29.29"]; const 腾讯DOT = ["tls://dot.pub"]; const 腾讯DOH = ["https://doh.pub/dns-query","https://sm2.doh.pub/dns-query"];
+    const 谷歌IP = ["8.8.8.8", "8.8.4.4"]; const 谷歌DOT = ["tls://dns.google"]; const 谷歌DOH = ["https://dns.google/dns-query#🇬 谷歌"];
+    const cloudflare_IP = ["1.1.1.1", "1.0.0.1"]; const cloudflare_DOT = ["tls://cloudflare-dns.com"]; const cloudflare_DOH = ["https://cloudflare-dns.com/dns-query#🖥️ 域名服务"];
+    const 阿里IP = ["223.5.5.5", "223.6.6.6"]; const 阿里DOT = ["tls://dns.alidns.com"]; const 阿里DOH = ["https://dns.alidns.com/dns-query"]; const 阿里QUIC = ["quic://dns.alidns.com"];
+    const 腾讯IP = ["119.29.29.29", "120.53.53.90"]; const 腾讯DOT = ["tls://dot.pub"]; const 腾讯DOH = ["https://doh.pub/dns-query","https://sm2.doh.pub/dns-query"];
     const 国外DNS = [
         ...谷歌DOH, 
         ...cloudflare_DOH,
     ];
     const 国内DNS = [
-        "system",
+        //"system",
         ...阿里DOH,
         ...阿里QUIC,
-        //"quic://223.5.5.5#🇨🇳 直连",
-        //...腾讯DOH,
+        ...腾讯DOH,
     ];
     config["hosts"] = {
         "dns.google": 谷歌IP, "dns.cloudflare.com": cloudflare_IP, "cloudflare-dns.com": cloudflare_IP,
