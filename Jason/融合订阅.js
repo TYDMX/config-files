@@ -7,12 +7,12 @@ function main(config) {
         //"自建 🌏": { url: "https://sub.dmit.dpdns.org/share/sub/dingyue_Center_zijian_auto?token=xgy1nCsG7xgerdecv4QRn",  interval: 3600 },
         //"自建 🔮": { url: "https://raw.githubusercontent.com/go4sharing/sub/main/clash.yaml",  interval: 3600 },
         "节点池 🪩": { url: "https://proxypool.dmit.dpdns.org/clash/proxies?nstream=netflix,disney&type=vless",  interval: 3600 },
-        "节点池vmess 🪩": { url: "https://proxypool.dmit.dpdns.org/clash/proxies?nstream=netflix,disney&type=vmess",  interval: 3600 },
+        //"节点池vmess 🪩": { url: "https://proxypool.dmit.dpdns.org/clash/proxies?nstream=netflix,disney&type=vmess",  interval: 3600 },
         "节点池trojan 🪩": { url: "https://proxypool.dmit.dpdns.org/clash/proxies?nstream=netflix,disney&type=trojan",  interval: 3600 },
         "节点池hysteria2 🪩": { url: "https://proxypool.dmit.dpdns.org/clash/proxies?nstream=netflix,disney&type=hysteria2",  interval: 3600 },
         "节点池anytls 🪩": { url: "https://proxypool.dmit.dpdns.org/clash/proxies?nstream=netflix,disney&type=anytls",  interval: 3600 },
         "qhr 💚": { url: "https://fd.hief.store/api/subscribe?token=dd8aba469bed016dd8079de28d155a67",  interval: 3600 },
-        "酷可 💜": { url: "https://y.kukeyun.cc/s/363a1642a6cdc938a0384b38ad74f9b6",  interval: 3600 },
+        //"酷可 💜": { url: "https://y.kukeyun.cc/s/363a1642a6cdc938a0384b38ad74f9b6",  interval: 3600 },
 
     };
     const 外部订阅 = Object.keys(config["proxy-providers"] || {});
@@ -126,11 +126,11 @@ function main(config) {
         ...cloudflare_DOH,
     ];
     const 国内DNS = [
+        "system",
         ...阿里DOH,
         ...阿里QUIC,
         //"quic://223.5.5.5#🇨🇳 直连",
         //...腾讯DOH,
-        "system"
     ];
     config["hosts"] = {
         "dns.google": 谷歌IP, "dns.cloudflare.com": cloudflare_IP, "cloudflare-dns.com": cloudflare_IP,
