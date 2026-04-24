@@ -166,7 +166,7 @@ function main(config) {
         "direct-nameserver": 国内DNS,
         "direct-nameserver-follow-policy": true,
         "nameserver-policy": {
-            "geosite:private": 国内DNS, "geosite:google@cn,googlefcm": 国内DNS, 
+            "geosite:private": 国内DNS, "geosite:google@cn,googlefcm,steam": 国内DNS, 
             "geosite:cn,geolocation-cn": 国内DNS, "+.cn": 国内DNS, 
             "geosite:gfw,geolocation-!cn": 国外DNS,
         },
