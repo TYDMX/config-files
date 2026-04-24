@@ -107,7 +107,7 @@ function main(config) {
     // --- 【3. TUN 模式配置】 ---
     config["tun"] = {
         "enable": true,
-        "stack": "mixed",
+        "stack": "system",
         "dns-hijack": ["any:53", "tcp://any:53"],
         "auto-route": true,
         "auto-detect-interface": true,
@@ -141,7 +141,7 @@ function main(config) {
     // --- 【4. DNS 模式配置】 ---
     config["dns"] = {
         "enable": true,
-        "use-hosts": false,
+        "use-hosts": true,
         "use-system-hosts": false,
         "ipv6": true,
         "prefer-h3": false,
