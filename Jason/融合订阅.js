@@ -144,7 +144,7 @@ function main(config) {
         "use-system-hosts": false,
         "ipv6": true,
         "prefer-h3": false,
-        "respect-rules": false,
+        "respect-rules": true,
         "proxy-server-nameserver": ["https://223.5.5.5/dns-query"],
         "cache-algorithm": "arc",
         "listen": "127.0.0.1:1053",
