@@ -1,11 +1,11 @@
 //https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/Jason/融合订阅.js
 function main(config) {
     const 图标库 = "https://github.com/Koolson/Qure/raw/master/IconSet/Color/";
+
     // ═══════════════════════════════════
     //   一、数据准备层
     // ═══════════════════════════════════
-
-    // --- ① 合并外部订阅 ---
+    // --- ① 合并外部订阅 ----------
     config["proxy-providers"] = {
         ...(config["proxy-providers"] || {}),
         //"自建 🌏": { url: "https://sub.dmit.dpdns.org/share/sub/dingyue_Center_zijian_auto?token=xgy1nCsG7xgerdecv4QRn",  interval: 3600 },
@@ -52,7 +52,7 @@ function main(config) {
             }
         }
     }
-    // --- ② 合并内部节点 ---
+    // --- ② 合并内部节点 ----------
     const 功能节点 = [
         { name: "🎯 全球直连", type: "direct", udp: true },
         { name: "🈚️ 假节点", type: "reject" },
@@ -70,11 +70,11 @@ function main(config) {
         ...功能节点
     ];
     const 内部节点 = config["proxies"].map(p => p.name);
+
     // ═══════════════════════════════════
     //   二、核心协议层
     // ═══════════════════════════════════
-
-    // --- ① 全局基础配置 ---
+    // --- ① 全局基础配置 ----------
     config["log-level"] = "info";
     config["port"] = 7890;
     config["socks-port"] = 7891;
@@ -96,7 +96,7 @@ function main(config) {
         "quic-go-disable-ecn": false,
         "dialer-ip4p-convert": false,
     };
-    // --- ② 流量嗅探 -------
+    // --- ② 流量嗅探 --------------
     config["sniffer"] = {
         "enable": true,
         "force-dns-mapping": true,
@@ -112,7 +112,7 @@ function main(config) {
         "skip-src-address": ["192.168.0.0/16"],
         "skip-dst-address": ["192.168.0.0/16"]
     };
-    // --- ③ TUN 模式 -------
+    // --- ③ TUN 模式 --------------
     config["tun"] = {
         "enable": true,
         "stack": "system",
@@ -124,11 +124,11 @@ function main(config) {
         "mtu": 4064,
         "udp-timeout": 300, // 秒
     };
+
     // ═══════════════════════════════════
     //   三、DNS 体系
     // ═══════════════════════════════════
-
-    // --- ① DNS 常量模板 ---
+    // --- ① DNS 常量模板 ----------
     const 谷歌IP = ["8.8.8.8", "8.8.4.4"];
     const 谷歌DOT = ["tls://dns.google"];
     const 谷歌DOH = ["https://dns.google/dns-query#🇬 谷歌"];
@@ -162,7 +162,7 @@ function main(config) {
         //"service.googleapis.cn": "service.googleapis.com",
         //"mtalk.google.com": "142.250.107.188, 108.177.125.188",
     };
-    // --- ② DNS 模式配置 ---
+    // --- ② DNS 模式配置 ----------
     config["dns"] = {
         "enable": true,
         "use-hosts": true,
@@ -196,11 +196,11 @@ function main(config) {
         },
         "nameserver": 国内DNS,
     };
+
     // ═══════════════════════════════════
     //   四、节点筛选层
     // ═══════════════════════════════════
-
-    // --- ① 节点正则表达式 --
+    // --- ① 节点正则表达式 ---------
     const 香港正则 = "^(?!(.*(家|住))).*(港|🇭🇰|HK|Hong|HKG)";
     const 狮城正则 = '(新|🇸🇬|坡|SG|Sing|SIN|XSP)';
     const 美国正则 = "^(?!(.*(新|流量))).*(美|🇺🇸|US|USA|加|🇨🇦|CA|JFK|LAX|ORD|ATL|DFW|SFO|MIA|SEA|IAD)";
@@ -209,7 +209,7 @@ function main(config) {
     const 台湾正则 = '(台|🇹🇼|TW|tai|TPE|TSA|KHH)';
     const 欧盟正则 = "^(?!(.*(马来|印度|流量))).*(奥|比|保|克罗地亚|塞|捷|丹|爱沙|芬|法|德|希|匈|爱尔|意|拉|立|卢|马其它|荷|波|葡|罗|斯洛伐|斯洛文|西|瑞|英|🇧🇪|🇨🇿|🇩🇰|🇫🇮|🇫🇷|🇩🇪|🇮🇪|🇮🇹|🇱🇹|🇱🇺|🇳🇱|🇵🇱|🇸🇪|🇬🇧|CDG|FRA|AMS|MAD|BCN|FCO|MUC|BRU|GB|FR|DE|NL|RU|LV|SE|LT|AU|NZ)";
     const 汇总正则 = `(${[香港正则,狮城正则,美国正则,日本正则,韩国正则,台湾正则,欧盟正则].join("|")})`;
-    // --- ② 节点列表生成 ---
+    // --- ② 节点列表生成 ----------
     const 香港筛选 = 内部节点.filter(n => new RegExp(香港正则, "i").test(n));
     const 狮城筛选 = 内部节点.filter(n => new RegExp(狮城正则, "i").test(n));
     const 美国筛选 = 内部节点.filter(n => new RegExp(美国正则, "i").test(n));
@@ -226,11 +226,11 @@ function main(config) {
     const 台湾_List = 台湾筛选.length > 0 ? 台湾筛选 : ["🈚️ 假节点"];
     const 韩国_List = 韩国筛选.length > 0 ? 韩国筛选 : ["🈚️ 假节点"];
     const 欧盟_List = 欧盟筛选.length > 0 ? 欧盟筛选 : ["🈚️ 假节点"];
+
     // ═══════════════════════════════════
     //   五、策略组体系
     // ═══════════════════════════════════
-
-    // --- ① 代理列表模板 ---
+    // --- ① 代理列表模板 ----------
     const 节点选择池 = ["🇭🇰 香港节点", "🇺🇸 美国节点", "🇸🇬 狮城节点", "🇯🇵 日本节点", "🇹🇼 台湾节点", "🇰🇷 韩国节点", "🇪🇺 欧盟节点", "🌐 冷门自选", "🌐 全部节点"];
     const 故转节点池 = ["🇭🇰 香港故转", "🇺🇸 美国故转", "🇸🇬 狮城故转", "🇯🇵 日本故转"];
     const 自选节点池 = [...故转节点池, ...节点选择池];
@@ -238,7 +238,7 @@ function main(config) {
     const 狮城故转池 = ["🇸🇬 狮城节点", "🇸🇬 狮城自动", "🇭🇰 香港节点", "🇯🇵 日本节点", "🇺🇸 美国节点", "🇪🇺 欧盟节点"];
     const 美国故转池 = ["🇺🇸 美国节点", "🇺🇸 美国自动", "🇪🇺 欧盟节点", "🇭🇰 香港节点", "🇸🇬 狮城节点", "🇯🇵 日本节点"];
     const 日本故转池 = ["🇯🇵 日本节点", "🇯🇵 日本自动", "🇭🇰 香港节点", "🇸🇬 狮城节点", "🇺🇸 美国节点", "🇪🇺 欧盟节点"];
-    // --- ② 策略组定义 -----
+    // --- ② 策略组定义 -----------
     config["proxy-groups"] = [
         // ▸ 主要策略组 ----------
         { name: "🖥️ 服务节点", type: "select", proxies: [...自选节点池, "🇨🇳 直连"], icon: 图标库 + "ULB.png" },
@@ -290,11 +290,11 @@ function main(config) {
         { name: "🌐 全部节点", type: "select", use: 外部订阅, proxies: ["🈚️ 假节点", ...全部_List], icon: 图标库 + "Clubhouse.png" },
         { name: "🐟 漏网之鱼", type: "select", proxies: ["🚀 节点选择", "🇨🇳 直连"], icon: 图标库 + "Final.png" }
     ];
+
     // ═══════════════════════════════════
     //   六、规则体系
     // ═══════════════════════════════════
-
-    // --- ① 规则提供器 -----
+    // --- ① 规则提供器 -----------
     const classical_yaml = { type: "http", interval: 300, behavior: "classical", format: "yaml" };
     const domain_yaml = { type: "http", interval: 300, behavior: "domain", format: "yaml" };
     config["rule-providers"] = {
@@ -305,7 +305,7 @@ function main(config) {
         "前置直连规则": { ...classical_yaml, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/Rule/前置直连.yaml" },
         "自用fake-ip": { ...domain_yaml, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/Rule/fake-ip-filter.yaml" }
     };
-    // --- ② 规则列表 -------
+    // --- ② 规则列表 --------------
     config["rules"] = [
         // ▸ 前置规则 ------------
         "OR,((GEOSITE,private),(GEOIP,private,no-resolve)),🔒 私有网络",
@@ -341,11 +341,11 @@ function main(config) {
         "OR,((GEOSITE,gfw),(GEOSITE,geolocation-!cn)),🪜 代理域名",
         "MATCH,🐟 漏网之鱼"
     ];
+
     // ═══════════════════════════════════
     //   七、工具函数
     // ═══════════════════════════════════
-
-    // --- ① 创建地区分组 ---
+    // --- ① 创建地区分组 ----------
     function 创建地区分组(地区名, 地区图标, 内部地区节点池, 地区正则) {
         return [
             { name: `${地区名}节点`, type: "select", use: 外部订阅, filter: 地区正则, proxies: [`${地区名}自动`, `${地区名}散列`, `${地区名}轮询`, ...内部地区节点池], icon: 图标库 + 地区图标 },
