@@ -34,9 +34,9 @@ payload:
 
   #音乐
   ##spotify 
-  - DOMAIN-WILDCARD,​*.audio*.spotify.com
-  ​- DOMAIN-WILDCARD,*.api.spotify.com
-  - DOMAIN-WILDCARD,​*.auth.spotify.com
+  - DOMAIN-WILDCARD,*.audio*.spotify.com
+  - DOMAIN-WILDCARD,*.api.spotify.com
+  - DOMAIN-WILDCARD,*.auth.spotify.com
   - DOMAIN-SUFFIX,pscdn.co
   - DOMAIN-SUFFIX,scdn.co
   
