@@ -347,11 +347,8 @@ function main(config) {
     // ═══════════════════════════════════
     // --- ① 创建地区分组 ----------
     function 创建地区分组(地区名, 地区图标, 选择池, 测速池, 地区正则) {
-        const 选择池分组 = 选择池.length === 1 && 选择池[0] === "🈚️ 假节点"
-            ? ["🈚️ 假节点", `${地区名}自动`, `${地区名}散列`, `${地区名}轮询`]
-            : [`${地区名}自动`, `${地区名}散列`, `${地区名}轮询`, ...选择池];
         return [
-            { name: `${地区名}节点`, type: "select", use: 外部订阅, filter: 地区正则, proxies: 选择池分组, icon: 图标库 + 地区图标 },
+            { name: `${地区名}节点`, type: "select", use: 外部订阅, filter: 地区正则, proxies: [`${地区名}自动`, `${地区名}散列`, `${地区名}轮询`, ...选择池], icon: 图标库 + 地区图标 },
             { name: `${地区名}自动`, type: "url-test", use: 外部订阅, filter: 地区正则, proxies: 测速池, hidden: true, icon: 图标库 + 地区图标, interval: 300, url: "https://cp.cloudflare.com/generate_204", timeout: 2000, "max-failed-times": 3, method: "HEAD", lazy: false },
             { name: `${地区名}散列`, type: "load-balance", strategy: "consistent-hashing", use: 外部订阅, filter: 地区正则, proxies: 测速池, hidden: true, icon: 图标库 + 地区图标, interval: 300, url: "https://cp.cloudflare.com/generate_204", timeout: 2000, "max-failed-times": 3, method: "HEAD", lazy: true },
             { name: `${地区名}轮询`, type: "load-balance", strategy: "round-robin", use: 外部订阅, filter: 地区正则, proxies: 测速池, hidden: true, icon: 图标库 + 地区图标, interval: 300, url: "https://cp.cloudflare.com/generate_204", timeout: 2000, "max-failed-times": 3, method: "HEAD", lazy: true }
