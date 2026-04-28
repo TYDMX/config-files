@@ -116,7 +116,7 @@ function main(config) {
     config["tun"] = {
         "enable": true,
         "stack": "system",
-        "dns-hijack": ["any:53", "tcp://any:53"],
+        "dns-hijack": ["any:53"],
         "auto-route": true,
         "auto-detect-interface": true,
         "strict-route": true,
@@ -182,7 +182,6 @@ function main(config) {
             "RULE-SET,自用fake-ip,real-ip",
             "GEOSITE,googlefcm,real-ip",
             "GEOSITE,cn,real-ip", "GEOSITE,geolocation-cn,real-ip",
-            "DOMAIN-SUFFIX,cn,real-ip",
             "GEOSITE,gfw,fake-ip", "GEOSITE,geolocation-!cn,fake-ip",
             "MATCH,fake-ip"
         ],
