@@ -101,7 +101,7 @@ function main(config) {
         "enable": true,
         "force-dns-mapping": true,
         "parse-pure-ip": true,
-        "override-destination": false,
+        "override-destination": true,
         "sniff": {
             "HTTP": { "ports": [80, "8080-8880"], "override-destination": true, },
             "TLS": { "ports": [443, "5228-5230"] },
@@ -188,7 +188,7 @@ function main(config) {
         ],
         "default-nameserver": ["https://223.5.5.5/dns-query"],
         "direct-nameserver": 国内DNS,
-        "direct-nameserver-follow-policy": true,
+        //"direct-nameserver-follow-policy": true,
         "nameserver-policy": {
             "geosite:private": 国内DNS, "geosite:google@cn,googlefcm,steam": 国内DNS, 
             "geosite:cn,geolocation-cn": 国内DNS, "+.cn": 国内DNS, 
