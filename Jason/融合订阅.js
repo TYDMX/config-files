@@ -20,7 +20,7 @@ function main(config) {
 
     };
     const 外部订阅 = Object.keys(config["proxy-providers"] || {});
-    const 节点黑名单 = "(?i)(阻止|直连|China|🇨🇳|高倍|×10|10M|节点|过滤|剩余|流量|距离|下次|重置|重新|订阅|导入|套餐|到期|跳转|域名|请勿|邀请|好友|关注|频道|收费|就说明|被骗|续费|更新|地址|官网|下载|群组|永久|长期|中继|更换|协议|软件|教程|Lite|ali)";
+    const 节点黑名单 = "(阻止|直连|China|🇨🇳|高倍|×10|10M|节点|过滤|剩余|流量|距离|下次|重置|重新|订阅|导入|套餐|到期|跳转|域名|请勿|邀请|好友|关注|频道|收费|就说明|被骗|续费|更新|地址|官网|下载|群组|永久|长期|中继|更换|协议|软件|教程|Lite|ali)";
     if (config["proxy-providers"]) {
         for (let 机场名 in config["proxy-providers"]) {
             let 原订阅 = config["proxy-providers"][机场名];
@@ -201,13 +201,13 @@ function main(config) {
     //   四、节点筛选层
     // ═══════════════════════════════════
     // --- ① 节点正则表达式 ---------
-    const 香港正则 = "(?i)^(?!(.*(家|住))).*(港|🇭🇰|HK|Hong|HKG)";
-    const 狮城正则 = '(?i)(新|🇸🇬|坡|SG|Sing|SIN|XSP)';
-    const 美国正则 = "(?i)^(?!(.*(新|流量))).*(美|🇺🇸|US|USA|加|🇨🇦|CA|JFK|LAX|ORD|ATL|DFW|SFO|MIA|SEA|IAD)";
-    const 日本正则 = '(?i)(日|🇯🇵|JP|Japan|NRT|HND|KIX|CTS|FUK)';
-    const 韩国正则 = '(?i)(韩|🇰🇷|韓|首尔|南朝鲜|KR|KOR|Korea)';
-    const 台湾正则 = '(?i)(台|🇹🇼|TW|tai|TPE|TSA|KHH)';
-    const 欧盟正则 = "(?i)(奥|比|保|克罗地亚|塞|捷|丹|爱沙|芬|法|德|希|匈|爱尔|意|拉|立|卢|马其它|荷|波|葡|罗|斯洛伐|斯洛文|西|瑞|英|🇧🇪|🇨🇿|🇩🇰|🇫🇮|🇫🇷|🇩🇪|🇮🇪|🇮🇹|🇱🇹|🇱🇺|🇳🇱|🇵🇱|🇸🇪|🇬🇧|CDG|FRA|AMS|MAD|BCN|FCO|MUC|BRU|GB|FR|DE|NL|RU|LV|SE|LT|AU|NZ)(?!.*(马来|印度|流量))";
+    const 香港正则 = "^(?!(.*(家|住))).*(港|🇭🇰|HK|Hong|HKG)";
+    const 狮城正则 = '(新|🇸🇬|坡|SG|Sing|SIN|XSP)';
+    const 美国正则 = "^(?!(.*(新|流量))).*(美|🇺🇸|US|USA|加|🇨🇦|CA|JFK|LAX|ORD|ATL|DFW|SFO|MIA|SEA|IAD)";
+    const 日本正则 = '(日|🇯🇵|JP|Japan|NRT|HND|KIX|CTS|FUK)';
+    const 韩国正则 = '(韩|🇰🇷|韓|首尔|南朝鲜|KR|KOR|Korea)';
+    const 台湾正则 = '(台|🇹🇼|TW|tai|TPE|TSA|KHH)';
+    const 欧盟正则 = "(奥|比|保|克罗地亚|塞|捷|丹|爱沙|芬|法|德|希|匈|爱尔|意|拉|立|卢|马其它|荷|波|葡|罗|斯洛伐|斯洛文|西|瑞|英|🇧🇪|🇨🇿|🇩🇰|🇫🇮|🇫🇷|🇩🇪|🇮🇪|🇮🇹|🇱🇹|🇱🇺|🇳🇱|🇵🇱|🇸🇪|🇬🇧|CDG|FRA|AMS|MAD|BCN|FCO|MUC|BRU|GB|FR|DE|NL|RU|LV|SE|LT|AU|NZ)(?!.*(马来|印度|流量))";
     const 汇总正则 = `(${[香港正则,狮城正则,美国正则,日本正则,韩国正则,台湾正则,欧盟正则].join("|")})`;
     // --- ② 节点列表生成 ----------
     const 香港筛选 = 内部节点.filter(n => new RegExp(香港正则, "i").test(n));
