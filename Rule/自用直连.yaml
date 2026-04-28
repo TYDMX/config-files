@@ -1,82 +1,82 @@
 payload:
-  #dlgz
-  #zlgz
-  #  dlrj
-  #zlrj
+  #   dlgz
+  # ▸ zlgz  ← 自用直连
+  #   dlrj
+  #   zlrj
 
-
-
+  # ═══ 下载与工具 ═══
   - DOMAIN-SUFFIX,download.nvidia.com
   - DOMAIN-SUFFIX,tpb.proxyninja.org
   - DOMAIN-SUFFIX,git.imee.me
   - DOMAIN-KEYWORD,nfsq
   - DOMAIN-SUFFIX,proxypool.dmit.dpdns.org
 
-
-  # 人机验证
+  # ═══ 人机验证 ═══
   - DOMAIN-KEYWORD,challenges.cloudflare
   - DOMAIN-KEYWORD,turnstile.cloudflare.com
   - DOMAIN-KEYWORD,ctp.cloudflare.com
 
-  # 战雷
-  # - DOMAIN-WILDCARD,char*.warthunder.com # 角色
-  - DOMAIN-WILDCARD,chat*.warthunder.com # 聊天
-  - DOMAIN-WILDCARD,forum*.warthunder.com # 论坛
-  - DOMAIN-SUFFIX,trade.gaijin.net # 交易所
-  - DOMAIN-WILDCARD,match*.warthunder.com # 自动匹配服务器
-  - DOMAIN-WILDCARD,client-stats*.gaijin.net # 自动匹配服务器
-  - DOMAIN-WILDCARD,client-stats*.warthunder.com # 客户端状态
+  # ═══ 战雷 ═══
+  # - DOMAIN-WILDCARD,char*.warthunder.com  # 角色
+  - DOMAIN-WILDCARD,chat*.warthunder.com  # 聊天
+  - DOMAIN-WILDCARD,forum*.warthunder.com  # 论坛
+  - DOMAIN-SUFFIX,trade.gaijin.net  # 交易所
+  - DOMAIN-WILDCARD,match*.warthunder.com  # 自动匹配服务器
+  - DOMAIN-WILDCARD,client-stats*.gaijin.net  # 自动匹配服务器
+  - DOMAIN-WILDCARD,client-stats*.warthunder.com  # 客户端状态
   #- DOMAIN-SUFFIX,gaijin.com
   #- DOMAIN-SUFFIX,gaijin.net
-  - DOMAIN-WILDCARD,*.gaijinent.com # 下载*yuptracker
+  - DOMAIN-WILDCARD,*.gaijinent.com  # 下载*yuptracker
   - DOMAIN-WILDCARD,*cdn.gaijin.net
   - DOMAIN-WILDCARD,*cdn.warthunder.com
 
-  #音乐
-  ##spotify 
+  # ═══ 音乐 ═══
+  # ── spotify ──
   - DOMAIN-WILDCARD,*.audio*.spotify.com
   - DOMAIN-WILDCARD,*.api.spotify.com
   - DOMAIN-WILDCARD,*.auth.spotify.com
   - DOMAIN-SUFFIX,pscdn.co
   - DOMAIN-SUFFIX,scdn.co
-  
-  #三星
+
+  # ═══ 三星 ═══
   - DOMAIN-SUFFIX,samsung.com
   - DOMAIN-SUFFIX,galaxyappstore.com
 
-  # 游戏
+  # ═══ 游戏 ═══
   - DOMAIN-SUFFIX,brokenarrowgame.com
-  - DOMAIN-SUFFIX,steamcontent.com # 下载
-  - DOMAIN-SUFFIX,download.epicgames.com # 下载
-  - DOMAIN-SUFFIX,cdn.blizzard.com # 下载
-  - DOMAIN-WILDCARD,level*.blizzard.com # 下载
-  ## 暴雪
+  - DOMAIN-SUFFIX,steamcontent.com  # 下载
+  - DOMAIN-SUFFIX,download.epicgames.com  # 下载
+  - DOMAIN-SUFFIX,cdn.blizzard.com  # 下载
+  - DOMAIN-WILDCARD,level*.blizzard.com  # 下载
+
+  # ── 暴雪 ──
   #api.blizzard
   #account.battle.net
   #battle.net
   #ingest.gdp.blizzard.com
 
-  #微软
+  # ═══ 微软 ═══
   - DOMAIN-SUFFIX,mobile.events.data.microsoft.com
-  ## onedrive
-  # - DOMAIN-WILDCARD,*.files.1drv.com # vizyng,public
-  - DOMAIN-WILDCARD,*.microsoftpersonalcontent.com  #my.上传-下载
-  #DOMAIN-SUFFIX,-mediap.svc.ms  ## 观看域名
 
-  #twitch
-  #video-weaver  ##广告流
-  #video-edge  ##视频流
+  # ── onedrive ──
+  # - DOMAIN-WILDCARD,*.files.1drv.com  # vizyng,public
+  - DOMAIN-WILDCARD,*.microsoftpersonalcontent.com  # my.上传-下载
+  #DOMAIN-SUFFIX,-mediap.svc.ms  # 观看域名
+
+  # ═══ twitch ═══
+  #video-weaver  # 广告流
+  #video-edge  # 视频流
   #abs.hls.ttvnw.net
   #hls.ttvnw.net
 
-  #推特
+  # ═══ 推特 ═══
   # - DOMAIN-WILDCARD,abs*.twimg.com
   # - DOMAIN-WILDCARD,abs-*.twimg.com
   # - DOMAIN-WILDCARD,pbs*.twimg.com
   #- DOMAIN-WILDCARD,video*.twimg.com
   #- DOMAIN-WILDCARD,ton.twimg.com
 
-  # vk
+  # ═══ vk ═══
   #sun*
   #st*
   #vkuser
@@ -88,17 +88,17 @@ payload:
   #+.okcdn.ru
   #+.vkvd*.okcdn.ru
 
-  # elite
+  # ═══ elite ═══
   #img.strpst
   #media.elitebabes
 
-  # ph xv等
-  #- DOMAIN-SUFFIX,phncdn.com # ph
-  #- DOMAIN-WILDCARD,*-h.phncdn.com # ph
-  #- DOMAIN-SUFFIX,ei.phncdn.com # ph
-  #- DOMAIN-SUFFIX,xvideos-cdn.com # xv
-  #- DOMAIN-SUFFIX,vdownload.com # xv
-  #- DOMAIN-SUFFIX,xhcdn.com # xh
+  # ═══ ph xv等 ═══
+  #- DOMAIN-SUFFIX,phncdn.com  # ph
+  #- DOMAIN-WILDCARD,*-h.phncdn.com  # ph
+  #- DOMAIN-SUFFIX,ei.phncdn.com  # ph
+  #- DOMAIN-SUFFIX,xvideos-cdn.com  # xv
+  #- DOMAIN-SUFFIX,vdownload.com  # xv
+  #- DOMAIN-SUFFIX,xhcdn.com  # xh
   #ahcdn
   #ukdevilz
   #+.100c9n4.ukdevilz.com

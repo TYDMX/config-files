@@ -1,19 +1,19 @@
 payload:
-  #    dlgz
-  #zlgz
-  #dlrj
-  #zlrj
+  # ▸ dlgz  ← 自用代理
+  #   zlgz
+  #   dlrj
+  #   zlrj
 
   - DOMAIN-SUFFIX,collector.github.com  # GitHub图标
   - DOMAIN-KEYWORD,redgifs
-  
-  # OneDrive
-  - DOMAIN-SUFFIX,-mediap.svc.ms  #观看地址
 
-  # 游戏
-  - DOMAIN-SUFFIX,forum.warthunder.com # WT论坛
-  - DOMAIN-WILDCARD,forum-*-cdn.warthunder.com # WT论坛cdn forum-en-cdn.warthunder.com
-  - DOMAIN-SUFFIX,trade*.gaijin.net # 交易所
+  # ═══ OneDrive ═══
+  - DOMAIN-SUFFIX,-mediap.svc.ms  # 观看地址
+
+  # ═══ 游戏 ═══
+  - DOMAIN-SUFFIX,forum.warthunder.com  # WT论坛
+  - DOMAIN-WILDCARD,forum-*-cdn.warthunder.com  # WT论坛cdn
+  - DOMAIN-WILDCARD,*trade*.gaijin.net  # 交易所（原DOMAIN-SUFFIX不支持通配符）
   - DOMAIN-WILDCARD,market*.gaijin.net
-  - DOMAIN-SUFFIX,embed.gaijin.net # 交易所
+  - DOMAIN-SUFFIX,embed.gaijin.net  # 交易所
   - DOMAIN-KEYWORD,social.supercell  # moco聊天室
