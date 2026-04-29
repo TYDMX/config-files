@@ -33,7 +33,7 @@ function main(config) {
                     "url": 原订阅.url,
                     "proxy": "DIRECT", 
                     "tfo": true,
-                    "exclude-filter": 节点黑名单,
+                    "exclude-filter": "(?i)" + 节点黑名单,
                     "exclude-type": "http|ss",
                     "path": `./proxies/${机场名}.yaml`,
                     "override": {
@@ -206,7 +206,7 @@ function main(config) {
     const 日本正则 = '(日|🇯🇵|JP|Japan|NRT|HND|KIX|CTS|FUK)';
     const 韩国正则 = '(韩|🇰🇷|韓|首尔|南朝鲜|KR|KOR|Korea)';
     const 台湾正则 = '(台|🇹🇼|TW|tai|TPE|TSA|KHH)';
-    const 欧盟正则 = "(奥|比|保|克罗地亚|塞|捷|丹|爱沙|芬|法|德|希|匈|爱尔|意|拉|立|卢|马其它|荷|波|葡|罗|斯洛伐|斯洛文|西|瑞|英|🇧🇪|🇨🇿|🇩🇰|🇫🇮|🇫🇷|🇩🇪|🇮🇪|🇮🇹|🇱🇹|🇱🇺|🇳🇱|🇵🇱|🇸🇪|🇬🇧|CDG|FRA|AMS|MAD|BCN|FCO|MUC|BRU|GB|FR|DE|NL|RU|LV|SE|LT|AU|NZ)(?!.*(马来|印度|流量))";
+    const 欧盟正则 = "^(?!(.*(马来|印度|流量))).*(奥|比|保|克罗地亚|塞|捷|丹|爱沙|芬|法|德|希|匈|爱尔|意|拉|立|卢|马其它|荷|波|葡|罗|斯洛伐|斯洛文|西|瑞|英|🇧🇪|🇨🇿|🇩🇰|🇫🇮|🇫🇷|🇩🇪|🇮🇪|🇮🇹|🇱🇹|🇱🇺|🇳🇱|🇵🇱|🇸🇪|🇬🇧|CDG|FRA|AMS|MAD|BCN|FCO|MUC|BRU|GB|FR|DE|NL|RU|LV|SE|LT|AU|NZ)";
     const 汇总正则 = `(${[香港正则,狮城正则,美国正则,日本正则,韩国正则,台湾正则,欧盟正则].join("|")})`;
     // --- ② 节点列表生成 ----------
     const 香港筛选 = 内部节点.filter(n => new RegExp(香港正则, "i").test(n));
@@ -347,10 +347,10 @@ function main(config) {
     // --- ① 创建地区分组 ----------
     function 创建地区分组(地区名, 地区图标, 选择池, 测速池, 地区正则) {
         return [
-            { name: `${地区名}节点`, type: "select", use: 外部订阅, filter: 地区正则, proxies: [`${地区名}自动`, `${地区名}散列`, `${地区名}轮询`, ...选择池], icon: 图标库 + 地区图标 },
-            { name: `${地区名}自动`, type: "url-test", use: 外部订阅, filter: 地区正则, proxies: 测速池, hidden: true, icon: 图标库 + 地区图标, interval: 300, url: "https://cp.cloudflare.com/generate_204", timeout: 2000, "max-failed-times": 3, method: "HEAD", lazy: false },
-            { name: `${地区名}散列`, type: "load-balance", strategy: "consistent-hashing", use: 外部订阅, filter: 地区正则, proxies: 测速池, hidden: true, icon: 图标库 + 地区图标, interval: 300, url: "https://cp.cloudflare.com/generate_204", timeout: 2000, "max-failed-times": 3, method: "HEAD", lazy: true },
-            { name: `${地区名}轮询`, type: "load-balance", strategy: "round-robin", use: 外部订阅, filter: 地区正则, proxies: 测速池, hidden: true, icon: 图标库 + 地区图标, interval: 300, url: "https://cp.cloudflare.com/generate_204", timeout: 2000, "max-failed-times": 3, method: "HEAD", lazy: true }
+            { name: `${地区名}节点`, type: "select", use: 外部订阅, filter: "(?i)" + 地区正则, proxies: [`${地区名}自动`, `${地区名}散列`, `${地区名}轮询`, ...选择池], icon: 图标库 + 地区图标 },
+            { name: `${地区名}自动`, type: "url-test", use: 外部订阅, filter: "(?i)" + 地区正则, proxies: 测速池, hidden: true, icon: 图标库 + 地区图标, interval: 300, url: "https://cp.cloudflare.com/generate_204", timeout: 2000, "max-failed-times": 3, method: "HEAD", lazy: false },
+            { name: `${地区名}散列`, type: "load-balance", strategy: "consistent-hashing", use: 外部订阅, filter: "(?i)" + 地区正则, proxies: 测速池, hidden: true, icon: 图标库 + 地区图标, interval: 300, url: "https://cp.cloudflare.com/generate_204", timeout: 2000, "max-failed-times": 3, method: "HEAD", lazy: true },
+            { name: `${地区名}轮询`, type: "load-balance", strategy: "round-robin", use: 外部订阅, filter: "(?i)" + 地区正则, proxies: 测速池, hidden: true, icon: 图标库 + 地区图标, interval: 300, url: "https://cp.cloudflare.com/generate_204", timeout: 2000, "max-failed-times": 3, method: "HEAD", lazy: true }
         ];
     }
 
