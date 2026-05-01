@@ -57,12 +57,12 @@ proxy-providers:
     #override:
       #additional-prefix: "🔮 "
 
-  节点池 🪩:
-    <<: *template
-    interval: 3600
-    url: "https://proxypool.dmit.dpdns.org/clash/proxies?nstream=netflix,disney&speed=30"
-    override:
-      additional-prefix: "🪩 "
+  #节点池 🪩:
+    #<<: *template
+    #interval: 3600
+    #url: "https://proxypool.dmit.dpdns.org/clash/proxies?nstream=netflix,disney&speed=30"
+    #override:
+      #additional-prefix: "🪩 "
 
 
 # ==========================================================
