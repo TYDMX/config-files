@@ -336,7 +336,7 @@ function main(config) {
         "AND,((NETWORK,UDP),(DST-PORT,443),(GEOSITE,youtube)),REJECT",   
         "OR,((GEOSITE,youtube),(GEOSITE,netflix),(GEOSITE,twitch),(GEOSITE,disney),(GEOSITE,biliintl),(GEOSITE,category-porn)),📹 视频平台",
         "OR,((GEOSITE,cloudflare),(GEOIP,cloudflare,no-resolve)),🖥️ 代理服务",
-        "GEOSITE,microsoft,🪟 Microsoft",
+        "OR,((GEOSITE,microsoft),(GEOIP,microsoft,no-resolve)),🪟 Microsoft",
         "OR,((GEOSITE,google),(GEOIP,google,no-resolve)),🇬 谷歌",
         // ▸ 兜底规则 ------------
         "OR,((GEOSITE,cn),(GEOSITE,geolocation-cn)),⬆️ 直连域名",
