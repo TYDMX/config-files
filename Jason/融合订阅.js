@@ -159,8 +159,8 @@ function main(config) {
         "dns.alidns.com": 阿里IP,
         "doh.pub": 腾讯IP,
         "dot.pub": 腾讯IP,
-        //"service.googleapis.cn": "service.googleapis.com",
-        //"mtalk.google.com": "142.250.107.188, 108.177.125.188",
+        "service.googleapis.cn": "service.googleapis.com",
+        "mtalk.google.com": "142.250.107.188, 108.177.125.188",
     };
     // --- ② DNS 模式配置 ----------
     config["dns"] = {
