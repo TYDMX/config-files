@@ -268,6 +268,7 @@ function main(config) {
         { name: "🌐 自用代理", type: "fallback", proxies: ["🚀 节点选择"], hidden: true },
         { name: "⬆️ 自用直连", type: "fallback", proxies: ["🇨🇳 直连"], hidden: true },
         { name: "⬆️ 直连域名", type: "fallback", proxies: ["🇨🇳 直连"], hidden: true },
+        { name: "⬆️ 直连IP", type: "fallback", proxies: ["🇨🇳 直连"], hidden: true },
         { name: "🔒 私有网络", type: "fallback", proxies: ["🇨🇳 直连"], hidden: true },
         // ▸ 功能策略组 ----------
         { name: "🖥️ 直连软件", type: "fallback", proxies: ["🇨🇳 直连"], hidden: true },
@@ -336,7 +337,8 @@ function main(config) {
         "GEOSITE,microsoft,🪟 Microsoft",
         "OR,((GEOSITE,google),(GEOIP,google)),🇬 谷歌",
         // ▸ 兜底规则 ------------
-        "OR,((GEOSITE,cn),(GEOSITE,geolocation-cn),(GEOIP,cn)),⬆️ 直连域名",
+        "OR,((GEOSITE,cn),(GEOSITE,geolocation-cn)),⬆️ 直连域名",
+        "GEOIP,cn,⬆️ 直连IP,no-resolve",
         "OR,((GEOSITE,gfw),(GEOSITE,geolocation-!cn)),🪜 代理域名",
         "MATCH,🐟 漏网之鱼"
     ];
