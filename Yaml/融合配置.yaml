@@ -31,7 +31,7 @@ cfw-latency-url: https://cp.cloudflare.com/generate_204
 ## ---------------- 代理提供者 ----------------
 proxy-providers:
 
-  农夫 💧:
+  农夫1 💧:
     <<: *template
     url: "https://a1.a3ab91e6.us/lczq1w2/?token=0N-v1-gBcGKTVrU6vzhhHlkcyrntX5bC"
     override:
