@@ -39,7 +39,7 @@ proxy-providers:
 
   电脑bettbox 💧:
     <<: *template
-    url: "https://a1.a3ab91e6.us/lczq1w2/?token=MfRCreE380u7watuuc2xXCNb4tUIGOup"
+    url: "https://a1.a3ab91e6.us/lczq1w2/?token=aZC0Re0lI5Bb2QG8BWTyn5enVXtq69aJ"
     override:
       additional-prefix: "💧 "
 
