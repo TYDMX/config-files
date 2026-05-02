@@ -331,7 +331,7 @@ function main(config) {
         "RULE-SET,自用代理软件,🖥️ 代理软件",
         "RULE-SET,自用直连软件,🖥️ 直连软件",
         // ▸ 直连规则 ------------
-        "OR,((GEOSITE,category-games-cn),(GEOSITE,steam@cn)),🎮 game@CN",
+        "OR,((GEOSITE,category-games-cn),(GEOSITE,steam@cn),(GEOSITE,category-game-platforms-download)),🎮 game@CN",
         "GEOSITE,microsoft@cn,🪟 Microsoft@CN",
         "OR,((GEOSITE,google@cn),(GEOSITE,googlefcm)),🇬 谷歌@CN",
         "GEOSITE,ookla-speedtest,📈 测速地址",
