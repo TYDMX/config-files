@@ -44,10 +44,10 @@ payload:
 
   # ═══ 游戏 ═══
   - DOMAIN-SUFFIX,brokenarrowgame.com
-  - DOMAIN-SUFFIX,steamcontent.com  # 下载
-  - DOMAIN-SUFFIX,download.epicgames.com  # 下载
-  - DOMAIN-SUFFIX,cdn.blizzard.com  # 下载
-  - DOMAIN-WILDCARD,level*.blizzard.com  # 下载
+  #- DOMAIN-SUFFIX,steamcontent.com  # 下载
+  #- DOMAIN-SUFFIX,download.epicgames.com  # 下载
+  #- DOMAIN-SUFFIX,cdn.blizzard.com  # 下载
+  #- DOMAIN-WILDCARD,level*.blizzard.com  # 下载
 
   # ── 暴雪 ──
   #api.blizzard
