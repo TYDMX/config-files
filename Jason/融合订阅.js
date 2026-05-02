@@ -276,7 +276,7 @@ function main(config) {
         { name: "🎮 game@CN", type: "fallback", proxies: ["🇨🇳 直连"], icon: 图标库 + "Game.png", hidden: true },
         { name: "🪟 Bing", type: "fallback", proxies: ["🖥️ 服务节点"], icon: 图标库 + "Microsoft.png", hidden: true },
         { name: "🇬 谷歌@CN", type: "fallback", proxies: ["🇨🇳 直连"], icon: 图标库 + "Google_Search.png", hidden: true },
-        { name: "🪟 Microsoft@CN", type: "select", proxies: ["🇨🇳 直连", "🖥️ 服务节点",  "🚀 节点选择", ...自选节点池], icon: 图标库 + "Microsoft.png" },
+        { name: "🪟 Microsoft@CN", type: "fallback", proxies: ["🇨🇳 直连"], icon: 图标库 + "Microsoft.png", hidden: true },
         // ▸ 代理策略组 ----------
         { name: "🪜 代理域名", type: "fallback", proxies: ["🚀 节点选择"], hidden: true },
         { name: "🌐 自用代理", type: "fallback", proxies: ["🚀 节点选择"], hidden: true },
