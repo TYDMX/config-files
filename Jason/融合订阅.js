@@ -334,8 +334,8 @@ function main(config) {
         "OR,((GEOSITE,category-games-cn),(GEOSITE,steam@cn),(GEOSITE,category-game-platforms-download)),🎮 game@CN",
         "GEOSITE,microsoft@cn,🪟 Microsoft@CN",
         "OR,((GEOSITE,google@cn),(GEOSITE,googlefcm)),🇬 谷歌@CN",
+        "OR,((GEOSITE,cloudflare@cn),(GEOIP,cloudfront,no-resolve)),🖥️ 直连服务",
         "GEOSITE,ookla-speedtest,📈 测速地址",
-        "GEOIP,cloudfront,🖥️ 直连服务,no-resolve",
         // ▸ 代理规则 ------------
         //"AND,((NETWORK,UDP),(DST-PORT,443)),REJECT",  
         //"AND,((NETWORK,UDP),(DST-PORT,443),(NOT,((GEOIP,CN)))),REJECT",
