@@ -341,9 +341,9 @@ function main(config) {
         "OR,((GEOSITE,microsoft),(GEOIP,microsoft,no-resolve)),🪟 Microsoft",
         "OR,((GEOSITE,google),(GEOIP,google,no-resolve)),🇬 谷歌",
         // ▸ 兜底规则 ------------
-        "GEOSITE,gfw,🪜 代理域名",
-        "GEOSITE,geolocation-cn,⬆️ 直连域名",
+        "OR,((GEOSITE,gfw),(GEOSITE,geolocation-！cn)),🪜 代理域名",
         "GEOIP,cn,⬆️ 直连IP",
+        "OR,((GEOSITE,cn),(GEOSITE,geolocation-cn)),⬆️ 直连域名",
         "MATCH,🐟 漏网之鱼"
     ];
 
