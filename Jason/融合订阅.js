@@ -139,6 +139,7 @@ function main(config) {
     const 阿里DOT = ["tls://dns.alidns.com"];
     const 阿里DOH = ["https://dns.alidns.com/dns-query"];
     const 阿里QUIC = ["quic://dns.alidns.com"];
+    const 阿里自建 = ["https://819431-jchlcf2024.alidns.com/dns-query"];
     const 腾讯IP = ["119.29.29.29", "120.53.53.90"];
     const 腾讯DOT = ["tls://dot.pub"];
     const 腾讯DOH = ["https://doh.pub/dns-query"];
@@ -148,9 +149,10 @@ function main(config) {
     ];
     const 国内DNS = [
         //"system",
-        ...阿里DOH,
-        ...阿里QUIC,
-        ...腾讯DOH,
+        ...阿里自建,
+        //...阿里DOH,
+        //...阿里QUIC,
+        //...腾讯DOH,
     ];
     config["hosts"] = {
         "dns.google": 谷歌IP,
@@ -170,7 +172,7 @@ function main(config) {
         "ipv6": true,
         "prefer-h3": false,
         "respect-rules": true,
-        "proxy-server-nameserver": ["https://223.5.5.5/dns-query"],
+        "proxy-server-nameserver": 国内DNS,
         "cache-algorithm": "arc",
         "listen": "127.0.0.1:1053",
         "enhanced-mode": "fake-ip",
@@ -194,7 +196,7 @@ function main(config) {
         "nameserver-policy": {
             "geosite:private": 国内DNS, 
             "geosite:google@cn,googlefcm,steam": 国内DNS, 
-            "geosite:cn,geolocation-cn": 国内DNS,
+            //"geosite:cn,geolocation-cn": 国内DNS,
             "geosite:gfw,geolocation-!cn": 国外DNS,
         },
         "nameserver": 国内DNS,
@@ -343,9 +345,9 @@ function main(config) {
         "OR,((GEOSITE,microsoft),(GEOIP,microsoft,no-resolve)),🪟 Microsoft",
         "OR,((GEOSITE,google),(GEOIP,google,no-resolve)),🇬 谷歌",
         // ▸ 兜底规则 ------------
-        "OR,((GEOSITE,cn),(GEOSITE,geolocation-cn)),⬆️ 直连域名",
-        "GEOIP,cn,⬆️ 直连IP,no-resolve",
-        "OR,((GEOSITE,gfw),(GEOSITE,geolocation-!cn)),🪜 代理域名",
+        "GEOSITE,gfw,🪜 代理域名",
+        //"OR,((GEOSITE,cn),(GEOSITE,geolocation-cn)),⬆️ 直连域名",
+        "GEOIP,cn,⬆️ 直连IP",
         "MATCH,🐟 漏网之鱼"
     ];
 
