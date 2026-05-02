@@ -128,7 +128,7 @@ function main(config) {
     // --- ① DNS 常量模板 ----------
     const 谷歌IP = ["8.8.8.8", "8.8.4.4"];
     const 谷歌DOT = ["tls://dns.google"];
-    const 谷歌DOH = ["https://dns.google/dns-query#🇬 谷歌"];
+    const 谷歌DOH = ["https://dns.google/dns-query#🖥️ 域名服务"];
     const cloudflare_IP = ["1.1.1.1", "1.0.0.1"];
     const cloudflare_DOT = ["tls://cloudflare-dns.com"];
     const cloudflare_DOH = ["https://cloudflare-dns.com/dns-query#🖥️ 域名服务"];
@@ -244,7 +244,6 @@ function main(config) {
         // ▸ 主要策略组 ----------
         { name: "🖥️ 服务节点", type: "select", proxies: [...自选节点池, "🇨🇳 直连"], icon: 图标库 + "ULB.png" },
         { name: "🚀 节点选择", type: "select", proxies: ["🖥️ 服务节点", "🇨🇳 直连", ...自选节点池], icon: 图标库 + "Static.png" },
-        { name: "🖥️ 域名服务", type: "select", proxies: ["🖥️ 服务节点", "🇨🇳 直连", ...自选节点池], icon: 图标库 + "Cloudflare.png" },
         { name: "🇨🇳 直连", type: "select", proxies: ["🎯 全球直连"], "include-all-proxies": true, filter: '🇨🇳 直连', icon: 图标库 + "China.png" },
         { name: "🇭🇰 香港故转", type: "fallback", proxies: 香港故转池, hidden: true, icon: 图标库 + "Hong_Kong.png" },
         { name: "🇸🇬 狮城故转", type: "fallback", proxies: 狮城故转池, hidden: true, icon: 图标库 + "Singapore.png" },
@@ -279,6 +278,7 @@ function main(config) {
         { name: "🖥️ 直连服务", type: "fallback", proxies: ["🇨🇳 直连"], hidden: true },
         { name: "🖥️ 代理软件", type: "fallback", proxies: ["🖥️ 服务节点"], hidden: true },
         { name: "🖥️ 代理服务", type: "fallback", proxies: ["🖥️ 服务节点"], hidden: true },
+        { name: "🖥️ 域名服务", type: "fallback", proxies: ["🖥️ 服务节点"], icon: 图标库 + "Cloudflare.png", hidden: true },
         { name: "🚫 广告拦截", type: "select", proxies: ["🚫 阻止", "🇨🇳 直连"], icon: 图标库 + "Advertising.png", hidden: false },
         { name: "🚫 追踪拦截", type: "fallback", proxies: ["🚫 阻止"], icon: 图标库 + "AdBlack.png", hidden: true },
         // ▸ 生成地区组 ----------
