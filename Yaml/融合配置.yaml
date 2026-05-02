@@ -31,15 +31,9 @@ cfw-latency-url: https://cp.cloudflare.com/generate_204
 ## ---------------- 代理提供者 ----------------
 proxy-providers:
 
-  手机bettbox 💧:
+  bettbox 💧:
     <<: *template
-    url: "https://a1.a3ab91e6.us/lczq1w2/?token=fZIcasDCtCY1w1DB1lnLcyJvNAyhzFFy"
-    override:
-      additional-prefix: "💧 "
-
-  电脑bettbox 💧:
-    <<: *template
-    url: "https://a1.a3ab91e6.us/lczq1w2/?token=aZC0Re0lI5Bb2QG8BWTyn5enVXtq69aJ"
+    url: "https://a2.a3ab91e6.us/lczq1w2/?token=sQsiyJk4Y9vmAhT3CcNT7PNtra1UYFzy"
     override:
       additional-prefix: "💧 "
 
