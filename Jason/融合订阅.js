@@ -195,7 +195,7 @@ function main(config) {
         ],
         "default-nameserver": [
             "https://223.5.5.5/dns-query",
-            "quic://dns.alidns.com",
+            "quic://223.5.5.5",
         ],
         "direct-nameserver": 国内DNS,
         "direct-nameserver-follow-policy": true,
