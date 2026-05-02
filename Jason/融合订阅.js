@@ -198,14 +198,14 @@ function main(config) {
             "quic://223.5.5.5",
         ],
         "direct-nameserver": 国内DNS,
-        "direct-nameserver-follow-policy": true,
+        //"direct-nameserver-follow-policy": true,
         "nameserver-policy": {
             "geosite:private": 国内DNS, 
             "geosite:google@cn,googlefcm,steam": 国内DNS, 
-            "geosite:cn,geolocation-cn": 国内DNS,
-            "geosite:gfw,geolocation-!cn": 国外DNS,
+            //"geosite:cn,geolocation-cn": 国内DNS,
+            //"geosite:gfw,geolocation-!cn": 国外DNS,
         },
-        "nameserver": 国内DNS,
+        "nameserver": 国外DNS,
     };
 
     // ═══════════════════════════════════
