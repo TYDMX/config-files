@@ -15,9 +15,6 @@ function main(config) {
         //"节点池trojan 🪩": { url: "https://proxypool.dmit.dpdns.org/clash/proxies?nstream=netflix,disney&type=trojan",  interval: 3600 },
         "节点池hysteria2 🪩": { url: "https://proxypool.dmit.dpdns.org/clash/proxies?nstream=netflix,disney&type=hysteria2",  interval: 3600 },
         "节点池anytls 🪩": { url: "https://proxypool.dmit.dpdns.org/clash/proxies?nstream=netflix,disney&type=anytls",  interval: 3600 },
-        //"qhr 💚": { url: "https://fd.hief.store/api/subscribe?token=dd8aba469bed016dd8079de28d155a67",  interval: 3600 },
-        //"酷可 💜": { url: "https://y.kukeyun.cc/s/363a1642a6cdc938a0384b38ad74f9b6",  interval: 3600 },
-
     };
     const 外部订阅 = Object.keys(config["proxy-providers"] || {});
     const 节点黑名单 = "(阻止|直连|China|🇨🇳|高倍|×10|10M|节点|过滤|剩余|流量|距离|下次|重置|重新|订阅|导入|套餐|到期|跳转|域名|请勿|邀请|好友|关注|频道|收费|就说明|被骗|续费|更新|地址|官网|下载|群组|永久|长期|中继|更换|协议|软件|教程|Lite|ali)";
@@ -150,9 +147,6 @@ function main(config) {
     const 国内DNS = [
         //"system",
         ...阿里自建,
-        //...阿里DOH,
-        //...阿里QUIC,
-        //...腾讯DOH,
     ];
     config["hosts"] = {
         "dns.google": 谷歌IP,
@@ -186,11 +180,7 @@ function main(config) {
             "GEOSITE,private,real-ip", 
             "GEOSITE,connectivity-check,real-ip",
             "RULE-SET,自用fake-ip,real-ip",
-            "GEOSITE,googlefcm,real-ip",
-            "GEOSITE,cn,real-ip", 
             "GEOSITE,geolocation-cn,real-ip",
-            "GEOSITE,gfw,fake-ip", 
-            "GEOSITE,geolocation-!cn,fake-ip",
             "MATCH,fake-ip"
         ],
         "default-nameserver": [
@@ -202,7 +192,7 @@ function main(config) {
         "nameserver-policy": {
             "geosite:private": 国内DNS, 
             "geosite:google@cn,googlefcm,steam": 国内DNS, 
-            "geosite:cn,geolocation-cn": 国内DNS,
+            "geosite:geolocation-cn": 国内DNS,
             //"geosite:gfw,geolocation-!cn": 国外DNS,
         },
         "nameserver": 国外DNS,
@@ -337,8 +327,6 @@ function main(config) {
         "OR,((GEOSITE,google@cn),(GEOSITE,googlefcm)),🇬 谷歌@CN",
         "OR,((GEOSITE,cloudflare@cn),(GEOIP,cloudfront,no-resolve)),🖥️ 直连服务",
         // ▸ 代理规则 ------------
-        //"AND,((NETWORK,UDP),(DST-PORT,443)),REJECT",  
-        //"AND,((NETWORK,UDP),(DST-PORT,443),(NOT,((GEOIP,CN)))),REJECT",
         "GEOSITE,category-games-!cn,🎮 game",
         "OR,((GEOSITE,openai),(GEOSITE,google-gemini),(GEOSITE,category-ai-!cn)),🤖 人工智能",
         "GEOSITE,spotify,🎵 音乐服务",
@@ -354,7 +342,7 @@ function main(config) {
         "OR,((GEOSITE,google),(GEOIP,google,no-resolve)),🇬 谷歌",
         // ▸ 兜底规则 ------------
         "GEOSITE,gfw,🪜 代理域名",
-        //"OR,((GEOSITE,cn),(GEOSITE,geolocation-cn)),⬆️ 直连域名",
+        "GEOSITE,geolocation-cn,⬆️ 直连域名",
         "GEOIP,cn,⬆️ 直连IP",
         "MATCH,🐟 漏网之鱼"
     ];
