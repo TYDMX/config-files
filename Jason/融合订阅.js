@@ -332,10 +332,10 @@ function main(config) {
         "RULE-SET,自用直连软件,🖥️ 直连软件",
         // ▸ 直连规则 ------------
         "OR,((GEOSITE,category-games-cn),(GEOSITE,steam@cn),(GEOSITE,category-game-platforms-download)),🎮 game@CN",
+        "GEOSITE,ookla-speedtest,📈 测速地址",
         "GEOSITE,microsoft@cn,🪟 Microsoft@CN",
         "OR,((GEOSITE,google@cn),(GEOSITE,googlefcm)),🇬 谷歌@CN",
         "OR,((GEOSITE,cloudflare@cn),(GEOIP,cloudfront,no-resolve)),🖥️ 直连服务",
-        "GEOSITE,ookla-speedtest,📈 测速地址",
         // ▸ 代理规则 ------------
         //"AND,((NETWORK,UDP),(DST-PORT,443)),REJECT",  
         //"AND,((NETWORK,UDP),(DST-PORT,443),(NOT,((GEOIP,CN)))),REJECT",
