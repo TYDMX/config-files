@@ -276,6 +276,7 @@ function main(config) {
         { name: "🎮 game@CN", type: "fallback", proxies: ["🇨🇳 直连"], icon: 图标库 + "Game.png", hidden: true },
         { name: "🪟 Bing", type: "fallback", proxies: ["🖥️ 服务节点"], icon: 图标库 + "Microsoft.png", hidden: true },
         { name: "🇬 谷歌@CN", type: "fallback", proxies: ["🇨🇳 直连"], icon: 图标库 + "Google_Search.png", hidden: true },
+        { name: "🪟 Microsoft@CN", type: "select", proxies: ["🇨🇳 直连", "🖥️ 服务节点",  "🚀 节点选择", ...自选节点池], icon: 图标库 + "Microsoft.png" },
         // ▸ 代理策略组 ----------
         { name: "🪜 代理域名", type: "fallback", proxies: ["🚀 节点选择"], hidden: true },
         { name: "🌐 自用代理", type: "fallback", proxies: ["🚀 节点选择"], hidden: true },
@@ -330,7 +331,8 @@ function main(config) {
         "RULE-SET,自用代理软件,🖥️ 代理软件",
         "RULE-SET,自用直连软件,🖥️ 直连软件",
         // ▸ 直连规则 ------------
-        "GEOSITE,category-games-cn,🎮 game@CN",
+        "OR,((GEOSITE,category-games-cn),(GEOSITE,steam@cn)),🎮 game@CN",
+        "GEOSITE,microsoft@cn,🪟 Microsoft@CN",
         "OR,((GEOSITE,google@cn),(GEOSITE,googlefcm)),🇬 谷歌@CN",
         "GEOSITE,ookla-speedtest,📈 测速地址",
         "GEOIP,cloudfront,🖥️ 直连服务,no-resolve",
