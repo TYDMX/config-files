@@ -43,6 +43,11 @@ proxy-providers:
     override:
       additional-prefix: "💧 "
 
+  flclash PC 💧:
+    <<: *template
+    url: "https://a1.a3ab91e6.us/lczq1w2/?token=Jx1DjBMYx93IK2UM3KOMymQPK458CHMc"
+    override:
+      additional-prefix: "💧 "
 
   #自建 🌏:
     #<<: *template
