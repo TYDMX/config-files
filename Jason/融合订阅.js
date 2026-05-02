@@ -170,7 +170,7 @@ function main(config) {
         "use-hosts": true,
         "use-system-hosts": false,
         "ipv6": true,
-        "prefer-h3": false,
+        "prefer-h3": true,
         "respect-rules": true,
         "proxy-server-nameserver": 国内DNS,
         "cache-algorithm": "arc",
