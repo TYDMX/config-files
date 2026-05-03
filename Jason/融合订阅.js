@@ -189,15 +189,16 @@ function main(config) {
             "https://223.5.5.5/dns-query",
             "quic://223.5.5.5",
         ],
-        "direct-nameserver": 国内DNS,
-        "direct-nameserver-follow-policy": true,
+        //"direct-nameserver": 国内DNS,
+        //"direct-nameserver-follow-policy": true,
         "nameserver-policy": {
             "RULE-SET,private": 国内DNS,
             "RULE-SET,google@cn,googlefcm": 国内DNS,
-            "RULE-SET,steam": 国内DNS,
-            "RULE-SET,cn,geolocation-cn": 国内DNS,
+            "RULE-SET,category-game-platforms-download": 国内DNS,
+            //"RULE-SET,cn,geolocation-cn": 国内DNS,
+            "RULE-SET,gfw,geolocation-!cn": 国外DNS,
         },
-        "nameserver": 国外DNS,
+        "nameserver": 国内DNS,
     };
 
     // ═══════════════════════════════════
