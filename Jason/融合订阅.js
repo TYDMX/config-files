@@ -1,6 +1,7 @@
 //https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/Jason/融合订阅.js
 function main(config) {
     const 图标库 = "https://github.com/Koolson/Qure/raw/master/IconSet/Color/";
+    const 测速链接 = "https://cp.cloudflare.com/generate_204";
 
     // ═══════════════════════════════════
     //   一、数据准备层
@@ -38,7 +39,7 @@ function main(config) {
                     },
                     "health-check": { 
                         "enable": true, 
-                        "url": "https://cp.cloudflare.com/generate_204", 
+                        "url": 测速链接, 
                         "interval": 300, 
                         "timeout": 2000, 
                         "max-failed-times": 3, 
@@ -246,10 +247,10 @@ function main(config) {
         { name: "🖥️ 服务节点", type: "select", proxies: [...自选节点池, "🇨🇳 直连"], icon: 图标库 + "ULB.png" },
         { name: "🚀 节点选择", type: "select", proxies: ["🖥️ 服务节点", "🇨🇳 直连", ...自选节点池], icon: 图标库 + "Static.png" },
         { name: "🇨🇳 直连", type: "select", proxies: ["🎯 全球直连"], "include-all-proxies": true, filter: '🇨🇳 直连', icon: 图标库 + "China.png" },
-        { name: "🇭🇰 香港故转", type: "fallback", proxies: 香港故转池, hidden: true, icon: 图标库 + "Hong_Kong.png" },
-        { name: "🇸🇬 狮城故转", type: "fallback", proxies: 狮城故转池, hidden: true, icon: 图标库 + "Singapore.png" },
-        { name: "🇺🇸 美国故转", type: "fallback", proxies: 美国故转池, hidden: true, icon: 图标库 + "United_States.png" },
-        { name: "🇯🇵 日本故转", type: "fallback", proxies: 日本故转池, hidden: true, icon: 图标库 + "Japan.png" },
+        { name: "🇭🇰 香港故转", type: "fallback", proxies: 香港故转池, icon: 图标库 + "Hong_Kong.png", url: 测速链接, interval: 300, hidden: true },
+        { name: "🇸🇬 狮城故转", type: "fallback", proxies: 狮城故转池, icon: 图标库 + "Singapore.png", url: 测速链接, interval: 300, hidden: true },
+        { name: "🇺🇸 美国故转", type: "fallback", proxies: 美国故转池, icon: 图标库 + "United_States.png", url: 测速链接, interval: 300, hidden: true },
+        { name: "🇯🇵 日本故转", type: "fallback", proxies: 日本故转池, icon: 图标库 + "Japan.png", url: 测速链接, interval: 300, hidden: true },
         // ▸ 自选策略组 ----------
         { name: "📹 视频平台", type: "select", proxies: ["🚀 节点选择",  "🖥️ 服务节点", ...自选节点池, "🇨🇳 直连"], icon: 图标库 + "YouTube.png" },
         { name: "📲 社交媒体", type: "select", proxies: ["🚀 节点选择",  "🖥️ 服务节点", ...自选节点池, "🇨🇳 直连"], icon: 图标库 + "Twitter.png" },
@@ -283,13 +284,13 @@ function main(config) {
         { name: "🚫 广告拦截", type: "select", proxies: ["🚫 阻止", "🇨🇳 直连"], icon: 图标库 + "Advertising.png", hidden: false },
         { name: "🚫 追踪拦截", type: "fallback", proxies: ["🚫 阻止"], icon: 图标库 + "AdBlack.png", hidden: true },
         // ▸ 生成地区组 ----------
-        ...创建地区分组("🇭🇰 香港", "Hong_Kong.png", 香港_List, 香港筛选, `${香港正则}`),
-        ...创建地区分组("🇸🇬 狮城", "Singapore.png", 狮城_List, 狮城筛选, `${狮城正则}`),
-        ...创建地区分组("🇺🇸 美国", "United_States.png", 美国_List, 美国筛选, `${美国正则}`),
-        ...创建地区分组("🇯🇵 日本", "Japan.png", 日本_List, 日本筛选, `${日本正则}`),
-        ...创建地区分组("🇹🇼 台湾", "Taiwan.png", 台湾_List, 台湾筛选, `${台湾正则}`),
-        ...创建地区分组("🇰🇷 韩国", "Korea.png", 韩国_List, 韩国筛选, `${韩国正则}`),
-        ...创建地区分组("🇪🇺 欧盟", "European_Union.png", 欧盟_List, 欧盟筛选, `${欧盟正则}`),
+...创建地区分组("🇭🇰 香港", "Hong_Kong.png", 香港_List, 香港筛选, `${香港正则}`, `${"💧"}`),
+...创建地区分组("🇸🇬 狮城", "Singapore.png", 狮城_List, 狮城筛选, `${狮城正则}`, `${"💧"}`),
+...创建地区分组("🇺🇸 美国", "United_States.png", 美国_List, 美国筛选, `${美国正则}`, `${"💧"}`),
+...创建地区分组("🇯🇵 日本", "Japan.png", 日本_List, 日本筛选, `${日本正则}`, `${"💧"}`),
+...创建地区分组("🇹🇼 台湾", "Taiwan.png", 台湾_List, 台湾筛选, `${台湾正则}`, `${"💧"}`),
+...创建地区分组("🇰🇷 韩国", "Korea.png", 韩国_List, 韩国筛选, `${韩国正则}`, `${"💧"}`),
+...创建地区分组("🇪🇺 欧盟", "European_Union.png", 欧盟_List, 欧盟筛选, `${欧盟正则}`, `${"💧"}`),
         // ▸ 其他策略组 ----------
         { name: "🌐 冷门自选", type: "select", use: 外部订阅, "exclude-filter": `(?i)(${汇总正则})`, proxies: ["🈚️ 假节点", ...冷门_List], icon: 图标库 + "Europe_Map.png" },
         { name: "🌐 全部节点", type: "select", use: 外部订阅, proxies: ["🈚️ 假节点", ...全部_List], icon: 图标库 + "Clubhouse.png" },
@@ -410,12 +411,13 @@ function main(config) {
     //   七、工具函数
     // ═══════════════════════════════════
     // --- ① 创建地区分组 ----------
-    function 创建地区分组(地区名, 地区图标, 选择池, 测速池, 地区正则) {
+    function 创建地区分组(地区名, 地区图标, 选择池, 测速池, 地区正则, 优选筛选) {
         return [
-            { name: `${地区名}节点`, type: "select", use: 外部订阅, filter: `(?i)${地区正则}`, proxies: [`${地区名}自动`, `${地区名}散列`, `${地区名}轮询`, ...选择池], icon: 图标库 + 地区图标 },
-            { name: `${地区名}自动`, type: "url-test", use: 外部订阅, filter: `(?i)${地区正则}`, proxies: 测速池, hidden: true, icon: 图标库 + 地区图标, interval: 300, tolerance: 100, url: "https://cp.cloudflare.com/generate_204", timeout: 2000, "max-failed-times": 3, method: "HEAD", lazy: true },
-            { name: `${地区名}散列`, type: "load-balance", strategy: "consistent-hashing", use: 外部订阅, filter: `(?i)${地区正则}`, proxies: 测速池, hidden: true, icon: 图标库 + 地区图标, interval: 300, url: "https://cp.cloudflare.com/generate_204", timeout: 2000, "max-failed-times": 3, method: "HEAD", lazy: true },
-            { name: `${地区名}轮询`, type: "load-balance", strategy: "round-robin", use: 外部订阅, filter: `(?i)${地区正则}`, proxies: 测速池, hidden: true, icon: 图标库 + 地区图标, interval: 300, url: "https://cp.cloudflare.com/generate_204", timeout: 2000, "max-failed-times": 3, method: "HEAD", lazy: true }
+            { name: `${地区名}节点`, type: "select", use: 外部订阅, filter: `(?i)${地区正则}`, proxies: [`${地区名}优选`, `${地区名}自动`, `${地区名}散列`, `${地区名}轮询`, ...选择池], icon: 图标库 + 地区图标 },
+            { name: `${地区名}优选`, type: "url-test", use: 外部订阅, filter: `(?i)(?=.*${地区正则})(?=.*${优选筛选})`, proxies: 测速池, hidden: true, icon: 图标库 + 地区图标, interval: 300, tolerance: 100, url: 测速链接, timeout: 2000, "max-failed-times": 3, method: "HEAD", lazy: true },
+            { name: `${地区名}自动`, type: "url-test", use: 外部订阅, filter: `(?i)${地区正则}`, proxies: 测速池, hidden: true, icon: 图标库 + 地区图标, interval: 300, tolerance: 100, url: 测速链接, timeout: 2000, "max-failed-times": 3, method: "HEAD", lazy: true },
+            { name: `${地区名}散列`, type: "load-balance", strategy: "consistent-hashing", use: 外部订阅, filter: `(?i)(?=.*${地区正则})(?=.*${优选筛选})`, proxies: 测速池, hidden: true, icon: 图标库 + 地区图标, interval: 300, url: 测速链接, timeout: 2000, "max-failed-times": 3, method: "HEAD", lazy: true },
+            { name: `${地区名}轮询`, type: "load-balance", strategy: "round-robin", use: 外部订阅, filter: `(?i)(?=.*${地区正则})(?=.*${优选筛选})`, proxies: 测速池, hidden: true, icon: 图标库 + 地区图标, interval: 300, url: 测速链接, timeout: 2000, "max-failed-times": 3, method: "HEAD", lazy: true }
         ];
     }
 
