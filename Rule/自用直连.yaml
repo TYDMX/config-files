@@ -8,7 +8,6 @@ payload:
   - DOMAIN-SUFFIX,download.nvidia.com
   - DOMAIN-SUFFIX,tpb.proxyninja.org
   - DOMAIN-SUFFIX,git.imee.me
-  - DOMAIN-KEYWORD,nfsq
   - DOMAIN-SUFFIX,proxypool.dmit.dpdns.org
 
   # ═══ 人机验证 ═══
