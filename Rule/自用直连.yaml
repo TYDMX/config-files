@@ -56,7 +56,7 @@ payload:
   #ingest.gdp.blizzard.com
 
   # ═══ 微软 ═══
-  - DOMAIN-SUFFIX,mobile.events.data.microsoft.com
+  #- DOMAIN-SUFFIX,mobile.events.data.microsoft.com
 
   # ── onedrive ──
   # - DOMAIN-WILDCARD,*.files.1drv.com  # vizyng,public
