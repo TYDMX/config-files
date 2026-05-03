@@ -192,11 +192,9 @@ function main(config) {
         "direct-nameserver-follow-policy": true,
         "nameserver-policy": {
             "RULE-SET,private": 国内DNS,
-            "RULE-SET,google@cn": 国内DNS,
-            "RULE-SET,googlefcm": 国内DNS,
+            "RULE-SET,google@cn,googlefcm": 国内DNS,
             "RULE-SET,steam": 国内DNS,
-            "RULE-SET,cn": 国内DNS,
-            "RULE-SET,geolocation-cn": 国内DNS,
+            "RULE-SET,cn,geolocation-cn": 国内DNS,
         },
         "nameserver": 国外DNS,
     };
