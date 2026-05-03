@@ -5,7 +5,7 @@ payload:
   #   zlrj
 
   # ═══ 软件应用 ═══
-  - PROCESS-NAME,dk.tacit.android.foldersync.lite  # flodersync
+  #- PROCESS-NAME,dk.tacit.android.foldersync.lite  # flodersync
   #PROCESS-NAME,svchost.exe  # svchost
   #PROCESS-NAME,com.samsung.android.packageinstaller  # 三星软件安装
 
