@@ -130,6 +130,7 @@ function main(config) {
     const 谷歌IP = ["8.8.8.8", "8.8.4.4"];
     const 谷歌DOT = ["tls://dns.google"];
     const 谷歌DOH = ["https://dns.google/dns-query#🖥️ 域名服务"];
+    const 谷歌DOQ = ["quic://dns.google#🖥️ 域名服务"];
     const cloudflare_IP = ["1.1.1.1", "1.0.0.1"];
     const cloudflare_DOT = ["tls://cloudflare-dns.com"];
     const cloudflare_DOH = ["https://cloudflare-dns.com/dns-query#🖥️ 域名服务"];
@@ -142,7 +143,7 @@ function main(config) {
     const 腾讯DOT = ["tls://dot.pub"];
     const 腾讯DOH = ["https://doh.pub/dns-query"];
     const 国外DNS = [
-        ...谷歌DOH, 
+        ...谷歌DOQ, 
         ...cloudflare_DOH,
     ];
     const 国内DNS = [
@@ -165,11 +166,10 @@ function main(config) {
         "use-hosts": true,
         "use-system-hosts": false,
         "ipv6": true,
-        "prefer-h3": true,
+        "prefer-h3": false,
         "respect-rules": false,
         "proxy-server-nameserver": [
             "https://dns.alidns.com/dns-query",
-            "quic://dns.alidns.com",
         ],
         "cache-algorithm": "arc",
         "listen": "127.0.0.1:1053",
@@ -187,14 +187,13 @@ function main(config) {
         ],
         "default-nameserver": [
             "https://223.5.5.5/dns-query",
-            "quic://223.5.5.5",
         ],
         //"direct-nameserver": 国内DNS,
         //"direct-nameserver-follow-policy": true,
         "nameserver-policy": {
             "RULE-SET,private": 国内DNS,
-            "RULE-SET,google@cn,googlefcm": 国内DNS,
-            "RULE-SET,category-game-platforms-download": 国内DNS,
+            //"RULE-SET,google@cn,googlefcm": 国内DNS,
+            //"RULE-SET,category-game-platforms-download": 国内DNS,
             //"RULE-SET,cn,geolocation-cn": 国内DNS,
             "RULE-SET,gfw,geolocation-!cn": 国外DNS,
         },
@@ -306,15 +305,16 @@ function main(config) {
     const domain_mrs = { type: "http", interval: 86400, behavior: "domain", format: "mrs" };
     const ipcidr_mrs = { type: "http", interval: 86400, behavior: "ipcidr", format: "mrs" };
     const domain_text = { type: "http", interval: 86400, behavior: "domain", format: "text" };
+    const TYDMX_url = "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main";
     const geosite_url = "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite";
     const geoip_url = "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geoip";
     config["rule-providers"] = {
         // 自用规则
-        "自用直连规则": { ...classical_yaml, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/Rule/自用直连.yaml" },
-        "自用代理规则": { ...classical_yaml, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/Rule/自用代理.yaml" },
-        "自用直连软件": { ...classical_yaml, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/Rule/直连软件.yaml" },
-        "自用代理软件": { ...classical_yaml, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/Rule/代理软件.yaml" },
-        "前置直连规则": { ...classical_yaml, url: "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main/Rule/前置直连.yaml" },
+        "自用直连规则": { ...classical_yaml, url: `${TYDMX_url}/Rule/自用直连.yaml` },
+        "自用代理规则": { ...classical_yaml, url: `${TYDMX_url}/Rule/自用代理.yaml` },
+        "自用直连软件": { ...classical_yaml, url: `${TYDMX_url}/Rule/直连软件.yaml` },
+        "自用代理软件": { ...classical_yaml, url: `${TYDMX_url}/Rule/代理软件.yaml` },
+        "前置直连规则": { ...classical_yaml, url: `${TYDMX_url}/Rule/前置直连.yaml` },
         // 特殊规则集
         "cn": { ...domain_mrs, url: "https://raw.githubusercontent.com/wwqgtxx/clash-rules/refs/heads/release/direct.mrs" },
         "adblockmihomolite": { ...domain_mrs, url: "https://raw.githubusercontent.com/217heidai/adblockfilters/refs/heads/main/rules/adblockmihomolite.mrs" },
