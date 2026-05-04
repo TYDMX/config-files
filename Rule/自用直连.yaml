@@ -9,6 +9,7 @@ payload:
   - DOMAIN-SUFFIX,tpb.proxyninja.org
   - DOMAIN-SUFFIX,git.imee.me
   - DOMAIN-SUFFIX,proxypool.dmit.dpdns.org
+  - DOMAIN-SUFFIX,cline.bot
 
   # ═══ 人机验证 ═══
   - DOMAIN-KEYWORD,challenges.cloudflare
