@@ -39,8 +39,8 @@ payload:
   - DOMAIN-SUFFIX,scdn.co
 
   # ═══ 三星 ═══
-  - DOMAIN-SUFFIX,samsung.com
-  - DOMAIN-SUFFIX,galaxyappstore.com
+  #- DOMAIN-SUFFIX,samsung.com
+  #- DOMAIN-SUFFIX,galaxyappstore.com
 
   # ═══ 游戏 ═══
   - DOMAIN-SUFFIX,brokenarrowgame.com
