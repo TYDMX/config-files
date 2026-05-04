@@ -142,20 +142,14 @@ function main(config) {
     const 腾讯DOT = ["tls://dot.pub"];
     const 腾讯DOH = ["https://doh.pub/dns-query"];
     const 国外DNS = [
-        ...谷歌DOH, 
         ...cloudflare_DOH,
     ];
     const 国内DNS = [
-        //"system",
         ...阿里自建,
+        ...阿里DOQ,
     ];
     config["hosts"] = {
-        "dns.google": 谷歌IP,
-        "dns.cloudflare.com": cloudflare_IP,
         "cloudflare-dns.com": cloudflare_IP,
-        "dns.alidns.com": 阿里IP,
-        "doh.pub": 腾讯IP,
-        "dot.pub": 腾讯IP,
         "service.googleapis.cn": "service.googleapis.com",
         "mtalk.google.com": "142.250.107.188, 108.177.125.188",
     };
@@ -169,7 +163,6 @@ function main(config) {
         "respect-rules": false,
         "proxy-server-nameserver": [
             "https://dns.alidns.com/dns-query",
-            "quic://dns.alidns.com",
         ],
         "cache-algorithm": "arc",
         "listen": "127.0.0.1:1053",
@@ -187,7 +180,6 @@ function main(config) {
         ],
         "default-nameserver": [
             "https://223.5.5.5/dns-query",
-            "quic://223.5.5.5",
         ],
         "direct-nameserver": 国内DNS,
         "direct-nameserver-follow-policy": true,
