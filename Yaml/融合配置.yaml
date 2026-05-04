@@ -49,6 +49,12 @@ proxy-providers:
     override:
       additional-prefix: "💧 "
 
+  vivo 💧:
+    <<: *template
+    url: "https://a1.a3ab91e6.us/lczq1w2/?token=CUQ05xiHzbkBG3_yb0YGE4eNs9NsnZNq"
+    override:
+      additional-prefix: "💧 "
+
   #自建 🌏:
     #<<: *template
     #interval: 3600
