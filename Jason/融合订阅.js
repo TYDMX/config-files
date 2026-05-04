@@ -299,7 +299,7 @@ function main(config) {
     // ═══════════════════════════════════
     //   六、规则体系
     // ═══════════════════════════════════
-    // --- ① 规则提供器常量 -----
+    // --- ① 规则常量定义 -----
     const classical_yaml = { type: "http", interval: 300, behavior: "classical", format: "yaml" };
     const domain_mrs = { type: "http", interval: 86400, behavior: "domain", format: "mrs" };
     const ipcidr_mrs = { type: "http", interval: 86400, behavior: "ipcidr", format: "mrs" };
@@ -307,10 +307,9 @@ function main(config) {
     const TYDMX_url = "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main";
     const geosite_url = "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite";
     const geoip_url = "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geoip";
-
-    // --- ② 规则提供器（增减规则改这里，target 决定是否参与合成，group 决定组合方式）---
+    // --- ② 外部规则拉取 ---
     config["rule-providers"] = {
-        // ▸ 前置规则
+        // ▸ 前置规则组
         "private":              { group:"私有网络", target:"🔒 私有网络", ...domain_mrs,     url:`${geosite_url}/private.mrs` },
         "private-ip":           { group:"私有网络", target:"🔒 私有网络", ...ipcidr_mrs,     url:`${geoip_url}/private.mrs`, noResolve:true },
         "前置直连规则":          { target:"⬆️ 自用直连", ...classical_yaml, url:`${TYDMX_url}/Rule/前置直连.yaml` },
@@ -322,7 +321,7 @@ function main(config) {
         "自用直连规则":          { target:"⬆️ 自用直连", ...classical_yaml, url:`${TYDMX_url}/Rule/自用直连.yaml` },
         "自用代理软件":          { target:"🖥️ 代理软件", ...classical_yaml, url:`${TYDMX_url}/Rule/代理软件.yaml` },
         "自用直连软件":          { target:"🖥️ 直连软件", ...classical_yaml, url:`${TYDMX_url}/Rule/直连软件.yaml` },
-        // ▸ 直连规则
+        // ▸ 直连规则组
         "category-games-cn":    { group:"🎮 game@CN", target:"🎮 game@CN", ...domain_mrs,    url:`${geosite_url}/category-games-cn.mrs` },
         "steam@cn":             { group:"🎮 game@CN", target:"🎮 game@CN", ...domain_mrs,    url:`${geosite_url}/steam@cn.mrs` },
         "category-game-platforms-download":{ group:"🎮 game@CN", target:"🎮 game@CN", ...domain_mrs, url:`${geosite_url}/category-game-platforms-download.mrs` },
@@ -333,7 +332,7 @@ function main(config) {
         "cloudflare@cn":        { group:"🖥️ 直连服务", target:"🖥️ 直连服务", ...domain_mrs, url:`${geosite_url}/cloudflare@cn.mrs` },
         "samsung":              { group:"🖥️ 直连服务", target:"🖥️ 直连服务", ...domain_mrs, url:`${geosite_url}/samsung.mrs` },
         "cloudfront-ip":        { group:"🖥️ 直连服务", target:"🖥️ 直连服务", ...ipcidr_mrs, url:`${geoip_url}/cloudfront.mrs`, noResolve:true },
-        // ▸ 代理规则
+        // ▸ 代理规则组
         "category-games-!cn":   { target:"🎮 game", ...domain_mrs,        url:`${geosite_url}/category-games-!cn.mrs` },
         "openai":               { group:"🤖 人工智能", target:"🤖 人工智能", ...domain_mrs, url:`${geosite_url}/openai.mrs` },
         "google-gemini":        { group:"🤖 人工智能", target:"🤖 人工智能", ...domain_mrs, url:`${geosite_url}/google-gemini.mrs` },
@@ -351,7 +350,7 @@ function main(config) {
         "instagram":            { group:"📲 社交媒体", target:"📲 社交媒体", ...domain_mrs, url:`${geosite_url}/instagram.mrs` },
         "telegram":             { group:"📲 电报飞机", target:"📲 电报飞机", ...domain_mrs, url:`${geosite_url}/telegram.mrs` },
         "telegram-ip":          { group:"📲 电报飞机", target:"📲 电报飞机", ...ipcidr_mrs, url:`${geoip_url}/telegram.mrs`, noResolve:true },
-        "youtube":              { pre:["AND,((NETWORK,UDP),(DST-PORT,443),(RULE-SET,youtube)),REJECT"],
+        "youtube":              { pre:["AND,((NETWORK,UDP),(DST-PORT,443),(RULE-SET,youtube)),🚫 阻止"],
             group:"📹 视频平台", target:"📹 视频平台", ...domain_mrs, url:`${geosite_url}/youtube.mrs` },
         "netflix":              { group:"📹 视频平台", target:"📹 视频平台", ...domain_mrs, url:`${geosite_url}/netflix.mrs` },
         "twitch":               { group:"📹 视频平台", target:"📹 视频平台", ...domain_mrs, url:`${geosite_url}/twitch.mrs` },
@@ -363,18 +362,17 @@ function main(config) {
         "microsoft":            { target:"🪟 Microsoft", ...domain_mrs,   url:`${geosite_url}/microsoft.mrs` },
         "google":               { group:"🇬 谷歌", target:"🇬 谷歌", ...domain_mrs,       url:`${geosite_url}/google.mrs` },
         "google-ip":            { group:"🇬 谷歌", target:"🇬 谷歌", ...ipcidr_mrs,       url:`${geoip_url}/google.mrs`, noResolve:true },
-        // ▸ 兜底规则
+        // ▸ 兜底规则组
         "gfw":                  { group:"🪜 代理域名", target:"🪜 代理域名", ...domain_mrs, url:`${geosite_url}/gfw.mrs` },
         "geolocation-!cn":      { group:"🪜 代理域名", target:"🪜 代理域名", ...domain_mrs, url:`${geosite_url}/geolocation-!cn.mrs` },
         "cn":                   { group:"⬆️ 直连域名", target:"⬆️ 直连域名", ...domain_mrs, url:"https://raw.githubusercontent.com/wwqgtxx/clash-rules/refs/heads/release/direct.mrs" },
         "geolocation-cn":       { group:"⬆️ 直连域名", target:"⬆️ 直连域名", ...domain_mrs, url:`${geosite_url}/geolocation-cn.mrs` },
         "cn-ip":                { target:"⬆️ 直连IP", ...ipcidr_mrs,     url:`${geoip_url}/cn.mrs` },
-        // ▸ 仅引用
+        // ▸ 仅引用部分
         "connectivity-check":   { ...domain_mrs, url:`${geosite_url}/connectivity-check.mrs` },
         "fakeip_filter":        { ...domain_text, url:"https://raw.githubusercontent.com/juewuy/ShellCrash/refs/heads/dev/public/fake_ip_filter.list" },
     };
-
-    // --- ③ 规则列表自动合成（固定代码，永不改动）---
+    // --- ③ 创建规则列表 ---
     (function 合成规则列表() {
         const gMap = {};
         for (const [k, v] of Object.entries(config["rule-providers"])) {
