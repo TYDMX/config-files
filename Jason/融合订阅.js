@@ -308,65 +308,66 @@ function main(config) {
     const geosite_url = "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite";
     const geoip_url = "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geoip";
 
-    // --- ② 规则提供器（增减规则改这里，section/group/target 决定规则组位置与策略组）---
+    // --- ② 规则提供器（增减规则改这里，target 决定是否参与合成，group 决定组合方式）---
     config["rule-providers"] = {
         // ▸ 前置规则
-        "private":              { section:"前置规则", group:"私有网络", target:"🔒 私有网络", ...domain_mrs,     url:`${geosite_url}/private.mrs` },
-        "private-ip":           { section:"前置规则", group:"私有网络", target:"🔒 私有网络", ...ipcidr_mrs,     url:`${geoip_url}/private.mrs`, noResolve:true },
-        "前置直连规则":          { section:"前置规则", target:"⬆️ 自用直连", ...classical_yaml, url:`${TYDMX_url}/Rule/前置直连.yaml` },
-        "tracker":              { section:"前置规则", group:"追踪拦截", target:"🚫 追踪拦截", ...domain_mrs,     url:`${geosite_url}/tracker.mrs` },
-        "category-public-tracker":{ section:"前置规则", group:"追踪拦截", target:"🚫 追踪拦截", ...domain_mrs,  url:`${geosite_url}/category-public-tracker.mrs` },
-        "adblockmihomolite":    { section:"前置规则", group:"广告拦截", target:"🚫 广告拦截", ...domain_mrs,     url:"https://raw.githubusercontent.com/217heidai/adblockfilters/refs/heads/main/rules/adblockmihomolite.mrs" },
-        "ad-ip":                { section:"前置规则", group:"广告拦截", target:"🚫 广告拦截", ...ipcidr_mrs,     url:`${geoip_url}/ad.mrs`, noResolve:true },
-        "自用代理规则":          { section:"前置规则", target:"🌐 自用代理", ...classical_yaml, url:`${TYDMX_url}/Rule/自用代理.yaml` },
-        "自用直连规则":          { section:"前置规则", target:"⬆️ 自用直连", ...classical_yaml, url:`${TYDMX_url}/Rule/自用直连.yaml` },
-        "自用代理软件":          { section:"前置规则", target:"🖥️ 代理软件", ...classical_yaml, url:`${TYDMX_url}/Rule/代理软件.yaml` },
-        "自用直连软件":          { section:"前置规则", target:"🖥️ 直连软件", ...classical_yaml, url:`${TYDMX_url}/Rule/直连软件.yaml` },
+        "private":              { group:"私有网络", target:"🔒 私有网络", ...domain_mrs,     url:`${geosite_url}/private.mrs` },
+        "private-ip":           { group:"私有网络", target:"🔒 私有网络", ...ipcidr_mrs,     url:`${geoip_url}/private.mrs`, noResolve:true },
+        "前置直连规则":          { target:"⬆️ 自用直连", ...classical_yaml, url:`${TYDMX_url}/Rule/前置直连.yaml` },
+        "tracker":              { group:"追踪拦截", target:"🚫 追踪拦截", ...domain_mrs,     url:`${geosite_url}/tracker.mrs` },
+        "category-public-tracker":{ group:"追踪拦截", target:"🚫 追踪拦截", ...domain_mrs,  url:`${geosite_url}/category-public-tracker.mrs` },
+        "adblockmihomolite":    { group:"广告拦截", target:"🚫 广告拦截", ...domain_mrs,     url:"https://raw.githubusercontent.com/217heidai/adblockfilters/refs/heads/main/rules/adblockmihomolite.mrs" },
+        "ad-ip":                { group:"广告拦截", target:"🚫 广告拦截", ...ipcidr_mrs,     url:`${geoip_url}/ad.mrs`, noResolve:true },
+        "自用代理规则":          { target:"🌐 自用代理", ...classical_yaml, url:`${TYDMX_url}/Rule/自用代理.yaml` },
+        "自用直连规则":          { target:"⬆️ 自用直连", ...classical_yaml, url:`${TYDMX_url}/Rule/自用直连.yaml` },
+        "自用代理软件":          { target:"🖥️ 代理软件", ...classical_yaml, url:`${TYDMX_url}/Rule/代理软件.yaml` },
+        "自用直连软件":          { target:"🖥️ 直连软件", ...classical_yaml, url:`${TYDMX_url}/Rule/直连软件.yaml` },
         // ▸ 直连规则
-        "category-games-cn":    { section:"直连规则", group:"🎮 game@CN", target:"🎮 game@CN", ...domain_mrs,    url:`${geosite_url}/category-games-cn.mrs` },
-        "steam@cn":             { section:"直连规则", group:"🎮 game@CN", target:"🎮 game@CN", ...domain_mrs,    url:`${geosite_url}/steam@cn.mrs` },
-        "category-game-platforms-download":{ section:"直连规则", group:"🎮 game@CN", target:"🎮 game@CN", ...domain_mrs, url:`${geosite_url}/category-game-platforms-download.mrs` },
-        "ookla-speedtest":      { section:"直连规则", target:"📈 测速地址", ...domain_mrs,     url:`${geosite_url}/ookla-speedtest.mrs` },
-        "microsoft@cn":         { section:"直连规则", target:"🪟 Microsoft@CN", ...domain_mrs, url:`${geosite_url}/microsoft@cn.mrs` },
-        "google@cn":            { section:"直连规则", group:"🇬 谷歌@CN", target:"🇬 谷歌@CN", ...domain_mrs,    url:`${geosite_url}/google@cn.mrs` },
-        "googlefcm":            { section:"直连规则", group:"🇬 谷歌@CN", target:"🇬 谷歌@CN", ...domain_mrs,    url:`${geosite_url}/googlefcm.mrs` },
-        "cloudflare@cn":        { section:"直连规则", group:"🖥️ 直连服务", target:"🖥️ 直连服务", ...domain_mrs, url:`${geosite_url}/cloudflare@cn.mrs` },
-        "cloudfront-ip":        { section:"直连规则", group:"🖥️ 直连服务", target:"🖥️ 直连服务", ...ipcidr_mrs, url:`${geoip_url}/cloudfront.mrs`, noResolve:true },
+        "category-games-cn":    { group:"🎮 game@CN", target:"🎮 game@CN", ...domain_mrs,    url:`${geosite_url}/category-games-cn.mrs` },
+        "steam@cn":             { group:"🎮 game@CN", target:"🎮 game@CN", ...domain_mrs,    url:`${geosite_url}/steam@cn.mrs` },
+        "category-game-platforms-download":{ group:"🎮 game@CN", target:"🎮 game@CN", ...domain_mrs, url:`${geosite_url}/category-game-platforms-download.mrs` },
+        "ookla-speedtest":      { target:"📈 测速地址", ...domain_mrs,     url:`${geosite_url}/ookla-speedtest.mrs` },
+        "microsoft@cn":         { target:"🪟 Microsoft@CN", ...domain_mrs, url:`${geosite_url}/microsoft@cn.mrs` },
+        "google@cn":            { group:"🇬 谷歌@CN", target:"🇬 谷歌@CN", ...domain_mrs,    url:`${geosite_url}/google@cn.mrs` },
+        "googlefcm":            { group:"🇬 谷歌@CN", target:"🇬 谷歌@CN", ...domain_mrs,    url:`${geosite_url}/googlefcm.mrs` },
+        "cloudflare@cn":        { group:"🖥️ 直连服务", target:"🖥️ 直连服务", ...domain_mrs, url:`${geosite_url}/cloudflare@cn.mrs` },
+        "cloudfront-ip":        { group:"🖥️ 直连服务", target:"🖥️ 直连服务", ...ipcidr_mrs, url:`${geoip_url}/cloudfront.mrs`, noResolve:true },
         // ▸ 代理规则
-        "category-games-!cn":   { section:"代理规则", target:"🎮 game", ...domain_mrs,        url:`${geosite_url}/category-games-!cn.mrs` },
-        "openai":               { section:"代理规则", group:"🤖 人工智能", target:"🤖 人工智能", ...domain_mrs, url:`${geosite_url}/openai.mrs` },
-        "google-gemini":        { section:"代理规则", group:"🤖 人工智能", target:"🤖 人工智能", ...domain_mrs, url:`${geosite_url}/google-gemini.mrs` },
-        "category-ai-!cn":      { section:"代理规则", group:"🤖 人工智能", target:"🤖 人工智能", ...domain_mrs, url:`${geosite_url}/category-ai-!cn.mrs` },
-        "spotify":              { section:"代理规则", target:"🎵 音乐服务", ...domain_mrs,     url:`${geosite_url}/spotify.mrs` },
-        "paypal":               { section:"代理规则", target:"💶 PayPal", ...domain_mrs,      url:`${geosite_url}/paypal.mrs` },
-        "github":               { section:"代理规则", target:"👨🏿‍💻 GitHub", ...domain_mrs,     url:`${geosite_url}/github.mrs` },
-        "bing":                 { section:"代理规则", target:"🪟 Bing", ...domain_mrs,        url:`${geosite_url}/bing.mrs` },
-        "twitter":              { section:"代理规则", group:"📲 社交媒体", target:"📲 社交媒体", ...domain_mrs, url:`${geosite_url}/twitter.mrs` },
-        "tiktok":               { section:"代理规则", group:"📲 社交媒体", target:"📲 社交媒体", ...domain_mrs, url:`${geosite_url}/tiktok.mrs` },
-        "reddit":               { section:"代理规则", group:"📲 社交媒体", target:"📲 社交媒体", ...domain_mrs, url:`${geosite_url}/reddit.mrs` },
-        "discord":              { section:"代理规则", group:"📲 社交媒体", target:"📲 社交媒体", ...domain_mrs, url:`${geosite_url}/discord.mrs` },
-        "vk":                   { section:"代理规则", group:"📲 社交媒体", target:"📲 社交媒体", ...domain_mrs, url:`${geosite_url}/vk.mrs` },
-        "facebook":             { section:"代理规则", group:"📲 社交媒体", target:"📲 社交媒体", ...domain_mrs, url:`${geosite_url}/facebook.mrs` },
-        "instagram":            { section:"代理规则", group:"📲 社交媒体", target:"📲 社交媒体", ...domain_mrs, url:`${geosite_url}/instagram.mrs` },
-        "telegram":             { section:"代理规则", group:"📲 电报飞机", target:"📲 电报飞机", ...domain_mrs, url:`${geosite_url}/telegram.mrs` },
-        "telegram-ip":          { section:"代理规则", group:"📲 电报飞机", target:"📲 电报飞机", ...ipcidr_mrs, url:`${geoip_url}/telegram.mrs`, noResolve:true },
-        "youtube":              { section:"代理规则", group:"UDP443", groupLogic:"AND", target:"REJECT", extra:"(NETWORK,UDP),(DST-PORT,443)", ...domain_mrs, url:`${geosite_url}/youtube.mrs` },
-        "netflix":              { section:"代理规则", group:"📹 视频平台", target:"📹 视频平台", ...domain_mrs, url:`${geosite_url}/netflix.mrs` },
-        "twitch":               { section:"代理规则", group:"📹 视频平台", target:"📹 视频平台", ...domain_mrs, url:`${geosite_url}/twitch.mrs` },
-        "disney":               { section:"代理规则", group:"📹 视频平台", target:"📹 视频平台", ...domain_mrs, url:`${geosite_url}/disney.mrs` },
-        "biliintl":             { section:"代理规则", group:"📹 视频平台", target:"📹 视频平台", ...domain_mrs, url:`${geosite_url}/biliintl.mrs` },
-        "category-porn":        { section:"代理规则", group:"📹 视频平台", target:"📹 视频平台", ...domain_mrs, url:`${geosite_url}/category-porn.mrs` },
-        "cloudflare":           { section:"代理规则", group:"🖥️ 代理服务", target:"🖥️ 代理服务", ...domain_mrs, url:`${geosite_url}/cloudflare.mrs` },
-        "cloudflare-ip":        { section:"代理规则", group:"🖥️ 代理服务", target:"🖥️ 代理服务", ...ipcidr_mrs, url:`${geoip_url}/cloudflare.mrs`, noResolve:true },
-        "microsoft":            { section:"代理规则", target:"🪟 Microsoft", ...domain_mrs,   url:`${geosite_url}/microsoft.mrs` },
-        "google":               { section:"代理规则", group:"🇬 谷歌", target:"🇬 谷歌", ...domain_mrs,       url:`${geosite_url}/google.mrs` },
-        "google-ip":            { section:"代理规则", group:"🇬 谷歌", target:"🇬 谷歌", ...ipcidr_mrs,       url:`${geoip_url}/google.mrs`, noResolve:true },
+        "category-games-!cn":   { target:"🎮 game", ...domain_mrs,        url:`${geosite_url}/category-games-!cn.mrs` },
+        "openai":               { group:"🤖 人工智能", target:"🤖 人工智能", ...domain_mrs, url:`${geosite_url}/openai.mrs` },
+        "google-gemini":        { group:"🤖 人工智能", target:"🤖 人工智能", ...domain_mrs, url:`${geosite_url}/google-gemini.mrs` },
+        "category-ai-!cn":      { group:"🤖 人工智能", target:"🤖 人工智能", ...domain_mrs, url:`${geosite_url}/category-ai-!cn.mrs` },
+        "spotify":              { target:"🎵 音乐服务", ...domain_mrs,     url:`${geosite_url}/spotify.mrs` },
+        "paypal":               { target:"💶 PayPal", ...domain_mrs,      url:`${geosite_url}/paypal.mrs` },
+        "github":               { target:"👨🏿‍💻 GitHub", ...domain_mrs,     url:`${geosite_url}/github.mrs` },
+        "bing":                 { target:"🪟 Bing", ...domain_mrs,        url:`${geosite_url}/bing.mrs` },
+        "twitter":              { group:"📲 社交媒体", target:"📲 社交媒体", ...domain_mrs, url:`${geosite_url}/twitter.mrs` },
+        "tiktok":               { group:"📲 社交媒体", target:"📲 社交媒体", ...domain_mrs, url:`${geosite_url}/tiktok.mrs` },
+        "reddit":               { group:"📲 社交媒体", target:"📲 社交媒体", ...domain_mrs, url:`${geosite_url}/reddit.mrs` },
+        "discord":              { group:"📲 社交媒体", target:"📲 社交媒体", ...domain_mrs, url:`${geosite_url}/discord.mrs` },
+        "vk":                   { group:"📲 社交媒体", target:"📲 社交媒体", ...domain_mrs, url:`${geosite_url}/vk.mrs` },
+        "facebook":             { group:"📲 社交媒体", target:"📲 社交媒体", ...domain_mrs, url:`${geosite_url}/facebook.mrs` },
+        "instagram":            { group:"📲 社交媒体", target:"📲 社交媒体", ...domain_mrs, url:`${geosite_url}/instagram.mrs` },
+        "telegram":             { group:"📲 电报飞机", target:"📲 电报飞机", ...domain_mrs, url:`${geosite_url}/telegram.mrs` },
+        "telegram-ip":          { group:"📲 电报飞机", target:"📲 电报飞机", ...ipcidr_mrs, url:`${geoip_url}/telegram.mrs`, noResolve:true },
+        "youtube":              { pre:["AND,((NETWORK,UDP),(DST-PORT,443),(RULE-SET,youtube)),REJECT"],
+            group:"📹 视频平台", target:"📹 视频平台", ...domain_mrs, url:`${geosite_url}/youtube.mrs` },
+        "netflix":              { group:"📹 视频平台", target:"📹 视频平台", ...domain_mrs, url:`${geosite_url}/netflix.mrs` },
+        "twitch":               { group:"📹 视频平台", target:"📹 视频平台", ...domain_mrs, url:`${geosite_url}/twitch.mrs` },
+        "disney":               { group:"📹 视频平台", target:"📹 视频平台", ...domain_mrs, url:`${geosite_url}/disney.mrs` },
+        "biliintl":             { group:"📹 视频平台", target:"📹 视频平台", ...domain_mrs, url:`${geosite_url}/biliintl.mrs` },
+        "category-porn":        { group:"📹 视频平台", target:"📹 视频平台", ...domain_mrs, url:`${geosite_url}/category-porn.mrs` },
+        "cloudflare":           { group:"🖥️ 代理服务", target:"🖥️ 代理服务", ...domain_mrs, url:`${geosite_url}/cloudflare.mrs` },
+        "cloudflare-ip":        { group:"🖥️ 代理服务", target:"🖥️ 代理服务", ...ipcidr_mrs, url:`${geoip_url}/cloudflare.mrs`, noResolve:true },
+        "microsoft":            { target:"🪟 Microsoft", ...domain_mrs,   url:`${geosite_url}/microsoft.mrs` },
+        "google":               { group:"🇬 谷歌", target:"🇬 谷歌", ...domain_mrs,       url:`${geosite_url}/google.mrs` },
+        "google-ip":            { group:"🇬 谷歌", target:"🇬 谷歌", ...ipcidr_mrs,       url:`${geoip_url}/google.mrs`, noResolve:true },
         // ▸ 兜底规则
-        "gfw":                  { section:"兜底规则", group:"🪜 代理域名", target:"🪜 代理域名", ...domain_mrs, url:`${geosite_url}/gfw.mrs` },
-        "geolocation-!cn":      { section:"兜底规则", group:"🪜 代理域名", target:"🪜 代理域名", ...domain_mrs, url:`${geosite_url}/geolocation-!cn.mrs` },
-        "cn":                   { section:"兜底规则", group:"⬆️ 直连域名", target:"⬆️ 直连域名", ...domain_mrs, url:"https://raw.githubusercontent.com/wwqgtxx/clash-rules/refs/heads/release/direct.mrs" },
-        "geolocation-cn":       { section:"兜底规则", group:"⬆️ 直连域名", target:"⬆️ 直连域名", ...domain_mrs, url:`${geosite_url}/geolocation-cn.mrs` },
-        "cn-ip":                { section:"兜底规则", target:"⬆️ 直连IP", ...ipcidr_mrs,     url:`${geoip_url}/cn.mrs` },
+        "gfw":                  { group:"🪜 代理域名", target:"🪜 代理域名", ...domain_mrs, url:`${geosite_url}/gfw.mrs` },
+        "geolocation-!cn":      { group:"🪜 代理域名", target:"🪜 代理域名", ...domain_mrs, url:`${geosite_url}/geolocation-!cn.mrs` },
+        "cn":                   { group:"⬆️ 直连域名", target:"⬆️ 直连域名", ...domain_mrs, url:"https://raw.githubusercontent.com/wwqgtxx/clash-rules/refs/heads/release/direct.mrs" },
+        "geolocation-cn":       { group:"⬆️ 直连域名", target:"⬆️ 直连域名", ...domain_mrs, url:`${geosite_url}/geolocation-cn.mrs` },
+        "cn-ip":                { target:"⬆️ 直连IP", ...ipcidr_mrs,     url:`${geoip_url}/cn.mrs` },
         // ▸ 仅引用
         "connectivity-check":   { ...domain_mrs, url:`${geosite_url}/connectivity-check.mrs` },
         "fakeip_filter":        { ...domain_text, url:"https://raw.githubusercontent.com/juewuy/ShellCrash/refs/heads/dev/public/fake_ip_filter.list" },
@@ -377,28 +378,27 @@ function main(config) {
         const gMap = {};
         for (const [k, v] of Object.entries(config["rule-providers"])) {
             if (!v.group) continue;
-            if (!gMap[v.group]) gMap[v.group] = { logic: v.groupLogic || "OR", target: v.target, extra: v.extra, members: [] };
+            if (!gMap[v.group]) gMap[v.group] = { logic: v.groupLogic || "OR", target: v.target, extra: v.extra, members: [], pre: [] };
             gMap[v.group].members.push(k);
+            if (v.pre) gMap[v.group].pre.push(...v.pre);
         }
-        const 分区顺序 = ["前置规则", "直连规则", "代理规则", "兜底规则"];
         const used = new Set();
         config["rules"] = [];
-        for (const sec of 分区顺序) {
-            for (const [name, p] of Object.entries(config["rule-providers"])) {
-                if (p.section !== sec || used.has(name)) continue;
-                if (p.group) {
-                    const g = gMap[p.group];
-                    g.members.forEach(m => used.add(m));
-                    const parts = g.members.map(m => {
-                        const mp = config["rule-providers"][m];
-                        return `(RULE-SET,${m}${mp.noResolve ? ",no-resolve" : ""})`;
-                    });
-                    if (g.extra) parts.unshift(g.extra);
-                    config["rules"].push(`${g.logic},(${parts.join(",")}),${g.target}`);
-                } else {
-                    used.add(name);
-                    config["rules"].push(`RULE-SET,${name},${p.target}`);
-                }
+        for (const [name, p] of Object.entries(config["rule-providers"])) {
+            if (!p.target || used.has(name)) continue;
+            if (p.group) {
+                const g = gMap[p.group];
+                if (g.pre) g.pre.forEach(line => config["rules"].push(line));
+                g.members.forEach(m => used.add(m));
+                const parts = g.members.map(m => {
+                    const mp = config["rule-providers"][m];
+                    return `(RULE-SET,${m}${mp.noResolve ? ",no-resolve" : ""})`;
+                });
+                if (g.extra) parts.unshift(g.extra);
+                config["rules"].push(`${g.logic},(${parts.join(",")}),${g.target}`);
+            } else {
+                used.add(name);
+                config["rules"].push(`RULE-SET,${name},${p.target}`);
             }
         }
         config["rules"].push("MATCH,🐟 漏网之鱼");
