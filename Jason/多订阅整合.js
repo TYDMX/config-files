@@ -57,7 +57,8 @@ function main(config) {
     config["sniffer"] = {
         "enable": true,
         "force-dns-mapping": true,
-        "parse-pure-ip": false,
+        "parse-pure-ip": true,
+        "override-destination": false,
         "sniff": {
             "HTTP": { "ports": [80, "8080-8880"], "override-destination": true },
             "TLS": { "ports": [443, 853, "5228-5230"] },
@@ -85,24 +86,24 @@ function main(config) {
     };
 
     // --- 【DNS配置模板】 ---
-    const 谷歌IP = ["8.8.8.8"];
+    const 谷歌IP = ["8.8.8.8", "8.8.4.4"];
     const 谷歌DOT = ["tls://dns.google"];
-    const 谷歌DOH = ["https://dns.google/dns-query#h3=true"];
+    const 谷歌DOH = ["https://dns.google/dns-query"];
     const 谷歌QUIC = ["quic://dns.google"];
-    const cloudflare_IP = ["1.1.1.1"];
+    const cloudflare_IP = ["1.1.1.1", "1.0.0.1"];
     const cloudflare_DOT = ["tls://cloudflare-dns.com"];
-    const cloudflare_DOH = ["https://cloudflare-dns.com/dns-query#h3=true"];
+    const cloudflare_DOH = ["https://cloudflare-dns.com/dns-query#🖥️ 域名服务"];
 
-    const 阿里IP = ["223.5.5.5"];
+    const 阿里IP = ["223.5.5.5", "223.6.6.6"];
     const 阿里DOT = ["tls://dns.alidns.com"];
-    const 阿里DOH = ["https://dns.alidns.com/dns-query#h3=true"];
+    const 阿里DOH = ["https://dns.alidns.com/dns-query"];
     const 阿里QUIC = ["quic://dns.alidns.com"];
-    const 腾讯IP = ["119.29.29.29"];
+    const 腾讯IP = ["119.29.29.29", "120.53.53.90"];
     const 腾讯DOT = ["tls://dot.pub"];
-    const 腾讯DOH = ["https://doh.pub/dns-query#h3=true", "https://sm2.doh.pub/dns-query#h3=true"];
+    const 腾讯DOH = ["https://doh.pub/dns-query", "https://sm2.doh.pub/dns-query"];
 
-    const DNS国外 = [...谷歌DOT, ...谷歌DOH, ...cloudflare_DOT, ...cloudflare_DOH];
-    const DNS国内 = [...阿里DOT, ...阿里DOH, ...阿里QUIC, ...腾讯DOT, ...腾讯DOH];
+    const DNS国外 = [...cloudflare_DOH];
+    const DNS国内 = [...阿里DOH, ...阿里QUIC, ...腾讯DOH];
 
     config["hosts"] = {
         "dns.google": 谷歌IP,
@@ -118,35 +119,37 @@ function main(config) {
         "enable": true,
         "ipv6": true,
         "prefer-h3": false,
-        "respect-rules": true,
+        "respect-rules": false,
         "proxy-server-nameserver": [
-            "tls://223.5.5.5", 
-            "tls://119.29.29.29", 
+            "https://dns.alidns.com/dns-query",
         ],
         "cache-algorithm": "arc",
         "listen": "127.0.0.1:1053",
         "enhanced-mode": "fake-ip",
         "fake-ip-range": "198.18.0.1/16",
         "fake-ip-range6": "fdfe:dcba:9876::/64",
-        "fake-ip-filter-mode": "blacklist",
+        "fake-ip-filter-mode": "rule",
         "fake-ip-filter": [
-            "rule-set:自用fake-ip",
-            "geosite:private",
-            "geosite:connectivity-check",
-            "geosite:googlefcm",
+            "GEOSITE,private,real-ip",
+            "GEOSITE,connectivity-check,real-ip",
+            "RULE-SET,自用fake-ip,real-ip",
+            "GEOSITE,cn,real-ip",
+            "GEOSITE,geolocation-cn,real-ip",
+            "MATCH,fake-ip",
         ],
-        "use-hosts": false,
+        "use-hosts": true,
         "use-system-hosts": false,
         "default-nameserver": [
-            "tls://223.5.5.5", 
-            "tls://119.29.29.29",
+            "https://223.5.5.5/dns-query",
+            "https://119.29.29.29/dns-query",
         ],
         "direct-nameserver": DNS国内,
-        "nameserver": DNS国内,
+        "direct-nameserver-follow-policy": true,
+        "nameserver": DNS国外,
         "nameserver-policy": {
             "geosite:private": DNS国内,
-            "geosite:microsoft,google@cn,googlefcm": DNS国内,
-            "geosite:cn,geolocation-cn": DNS国内,
+            "geosite:microsoft@cn,cloudflare@cn,samsung,google@cn,googlefcm": DNS国内,
+            "geosite:cn,geolocation-cn,steam@cn,category-games-cn,category-game-platforms-download": DNS国内,
             "geosite:gfw,geolocation-!cn": DNS国外,
         },
     };
@@ -186,6 +189,7 @@ function main(config) {
         // --- 【主要策略组】 ---
         { name: "🚀 节点选择", type: "select", proxies: ["🖥️ 服务节点", "🎯 全球直连", ...自选节点池], icon: 图标库 + "Static.png" },
         { name: "🖥️ 服务节点", type: "select", proxies: [...自选节点池, "🎯 全球直连"], icon: 图标库 + "ULB.png" },
+        { name: "🇨🇳 直连", type: "select", proxies: ["🎯 全球直连"], "include-all-proxies": true, filter: '🇨🇳 直连', icon: 图标库 + "China.png" },
         { name: "🇭🇰 香港故转", type: "fallback", proxies: 香港故转池, hidden: true, icon: 图标库 + "Hong_Kong.png" },
         { name: "🇸🇬 狮城故转", type: "fallback", proxies: 狮城故转池, hidden: true, icon: 图标库 + "Singapore.png" },
         { name: "🇺🇸 美国故转", type: "fallback", proxies: 美国故转池, hidden: true, icon: 图标库 + "United_States.png" },
@@ -196,6 +200,8 @@ function main(config) {
         { name: "📲 电报飞机", type: "select", proxies: ["🚀 节点选择", "🖥️ 服务节点", ...自选节点池, "🎯 全球直连"], icon: 图标库 + "Telegram_X.png" },
         { name: "🤖 人工智能", type: "select", proxies: ["🚀 节点选择", "🖥️ 服务节点", ...自选节点池, "🎯 全球直连"], icon: 图标库 + "ChatGPT.png" },
         { name: "🎮 game", type: "select", proxies: ["🚀 节点选择", "🖥️ 服务节点", ...自选节点池, "🎯 全球直连"], icon: 图标库 + "Game.png" },
+        { name: "🎵 音乐服务", type: "select", proxies: ["🚀 节点选择", "🖥️ 服务节点", ...自选节点池, "🎯 全球直连"], icon: 图标库 + "Spotify.png" },
+        { name: "📈 测速地址", type: "select", proxies: ["🎯 全球直连", "🚀 节点选择", "🖥️ 服务节点", ...自选节点池], icon: 图标库 + "Speedtest.png" },
         { name: "🇬 谷歌", type: "select", proxies: ["🚀 节点选择", "🖥️ 服务节点", ...自选节点池, "🎯 全球直连"], icon: 图标库 + "Google_Search.png" },
         { name: "🪟 Microsoft", type: "select", proxies: ["🎯 全球直连", "🚀 节点选择", "🖥️ 服务节点", ...自选节点池], icon: 图标库 + "Microsoft.png" },
         // --- 【固定分流组】 ---
@@ -204,17 +210,20 @@ function main(config) {
         { name: "🎮 game@CN", type: "fallback", proxies: ["🎯 全球直连"], icon: 图标库 + "Game.png", hidden: true },
         { name: "🪟 Bing", type: "fallback", proxies: ["🚀 节点选择"], icon: 图标库 + "Microsoft.png", hidden: true },
         { name: "🇬 谷歌@CN", type: "fallback", proxies: ["🎯 全球直连"], icon: 图标库 + "Google_Search.png", hidden: true },
+        { name: "🪟 Microsoft@CN", type: "fallback", proxies: ["🎯 全球直连"], icon: 图标库 + "Microsoft.png", hidden: true },
         // --- 【代理策略组】 ---
         { name: "🪜 代理域名", type: "fallback", proxies: ["🚀 节点选择"], hidden: true },
         { name: "🌐 自用代理", type: "fallback", proxies: ["🚀 节点选择"], hidden: true },
         { name: "⬆️ 自用直连", type: "fallback", proxies: ["🎯 全球直连"], hidden: true },
         { name: "⬆️ 直连域名", type: "fallback", proxies: ["🎯 全球直连"], hidden: true },
+        { name: "⬆️ 直连IP", type: "fallback", proxies: ["🎯 全球直连"], hidden: true },
         { name: "🔒 私有网络", type: "fallback", proxies: ["🎯 全球直连"], hidden: true },
         // --- 【功能策略组】 ---
         { name: "🖥️ 直连软件", type: "fallback", proxies: ["🎯 全球直连"], hidden: true },
         { name: "🖥️ 直连服务", type: "fallback", proxies: ["🎯 全球直连"], hidden: true },
         { name: "🖥️ 代理软件", type: "fallback", proxies: ["🖥️ 服务节点"], hidden: true },
         { name: "🖥️ 代理服务", type: "fallback", proxies: ["🖥️ 服务节点"], hidden: true },
+        { name: "🖥️ 域名服务", type: "fallback", proxies: ["🖥️ 服务节点"], icon: 图标库 + "Cloudflare.png", hidden: true },
         { name: "🚫 广告拦截", type: "fallback", proxies: ["🚫 阻止"], hidden: true },
         { name: "🚫 追踪拦截", type: "fallback", proxies: ["🚫 阻止"], hidden: true },
         // --- 【生成地区组】 ---
@@ -234,7 +243,11 @@ function main(config) {
     config["proxies"] = [
         { name: "🎯 全球直连", type: "direct", udp: true },
         { name: "🈚️ 假节点", type: "reject" },
-        { name: "🚫 阻止", type: "reject" }
+        { name: "🚫 阻止", type: "reject" },
+        { name: '🇨🇳 直连(IPv4)', type: 'direct', udp: true, 'ip-version': 'ipv4' },
+        { name: '🇨🇳 直连(IPv6)', type: 'direct', udp: true, 'ip-version': 'ipv6' },
+        { name: '🇨🇳 直连(IPv4优先)', type: 'direct', udp: true, 'ip-version': 'ipv4-prefer' },
+        { name: '🇨🇳 直连(IPv6优先)', type: 'direct', udp: true, 'ip-version': 'ipv6-prefer' },
     ];
 
     // --- 【规则组定义锚】 ---
@@ -258,29 +271,33 @@ function main(config) {
     config["rules"] = [
         "OR,((GEOSITE,private),(GEOIP,private)),🔒 私有网络",
         "RULE-SET,前置直连规则,⬆️ 自用直连",
+        "OR,((GEOSITE,tracker),(GEOSITE,category-public-tracker)),🚫 追踪拦截",
+        "OR,((GEOSITE,category-ads-all),(GEOIP,ad)),🚫 广告拦截",
         "RULE-SET,自用代理规则,🌐 自用代理",
         "RULE-SET,自用直连规则,⬆️ 自用直连",
         "RULE-SET,自用代理软件,🖥️ 代理软件",
         "RULE-SET,自用直连软件,🖥️ 直连软件",
-        "OR,((GEOSITE,tracker),(GEOSITE,category-public-tracker)),🚫 追踪拦截",
-        "OR,((GEOSITE,category-ads-all),(GEOIP,ad)),🚫 广告拦截",
-        "GEOSITE,category-games-cn,🎮 game@CN",
+        "OR,((GEOSITE,category-games-cn),(GEOSITE,steam@cn),(GEOSITE,category-game-platforms-download)),🎮 game@CN",
+        "GEOSITE,ookla-speedtest,📈 测速地址",
+        "GEOSITE,microsoft@cn,🪟 Microsoft@CN",
         "OR,((GEOSITE,google@cn),(GEOSITE,googlefcm)),🇬 谷歌@CN",
+        "OR,((GEOSITE,cloudflare@cn),(GEOSITE,samsung),(GEOIP,cloudfront)),🖥️ 直连服务",
         "GEOSITE,category-games-!cn,🎮 game",
-        //"AND,((DST-PORT,443),(NETWORK,UDP)), REJECT",
         "OR,((GEOSITE,openai),(GEOSITE,google-gemini),(GEOSITE,category-ai-!cn)),🤖 人工智能",
-        "GEOSITE,spotify,🇯🇵 日本故转",
+        "GEOSITE,spotify,🎵 音乐服务",
         "GEOSITE,paypal,💶 PayPal",
         "GEOSITE,github,👨🏿‍💻 GitHub",
         "GEOSITE,bing,🪟 Bing",
-        "OR,((GEOSITE,twitter),(GEOSITE,tiktok),(GEOSITE,Reddit),(GEOSITE,discord)),📲 社交媒体",
+        "OR,((GEOSITE,twitter),(GEOSITE,tiktok),(GEOSITE,Reddit),(GEOSITE,discord),(GEOSITE,vk),(GEOSITE,facebook),(GEOSITE,instagram)),📲 社交媒体",
         "OR,((GEOSITE,telegram),(GEOIP,telegram)),📲 电报飞机",
-        "OR,((GEOSITE,youtube),(GEOSITE,netflix),(GEOSITE,onedrive),(GEOSITE,twitch),(GEOSITE,vk),(GEOSITE,disney),(GEOSITE,biliintl),(GEOSITE,category-porn)),📹 视频平台",
+        "AND,((NETWORK,UDP),(DST-PORT,443),(GEOSITE,youtube)),🚫 阻止",
+        "OR,((GEOSITE,youtube),(GEOSITE,netflix),(GEOSITE,twitch),(GEOSITE,disney),(GEOSITE,biliintl),(GEOSITE,category-porn)),📹 视频平台",
+        "OR,((GEOSITE,cloudflare),(GEOIP,cloudflare)),🖥️ 代理服务",
         "GEOSITE,microsoft,🪟 Microsoft",
         "OR,((GEOSITE,google),(GEOIP,google)),🇬 谷歌",
-        "OR,((GEOSITE,cloudflare),(GEOIP,cloudflare),(GEOIP,cloudfront)),🖥️ 代理服务",
-        "OR,((GEOSITE,cn),(GEOSITE,geolocation-cn),(GEOIP,cn)),⬆️ 直连域名",
         "OR,((GEOSITE,gfw),(GEOSITE,geolocation-!cn)),🪜 代理域名",
+        "OR,((GEOSITE,cn),(GEOSITE,geolocation-cn)),⬆️ 直连域名",
+        "GEOIP,cn,⬆️ 直连IP,no-resolve",
         "MATCH,🐟 漏网之鱼"
     ];
 
