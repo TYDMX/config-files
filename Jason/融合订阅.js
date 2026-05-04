@@ -331,6 +331,7 @@ function main(config) {
         "google@cn":            { group:"🇬 谷歌@CN", target:"🇬 谷歌@CN", ...domain_mrs,    url:`${geosite_url}/google@cn.mrs` },
         "googlefcm":            { group:"🇬 谷歌@CN", target:"🇬 谷歌@CN", ...domain_mrs,    url:`${geosite_url}/googlefcm.mrs` },
         "cloudflare@cn":        { group:"🖥️ 直连服务", target:"🖥️ 直连服务", ...domain_mrs, url:`${geosite_url}/cloudflare@cn.mrs` },
+        "samsung":              { group:"🖥️ 直连服务", target:"🖥️ 直连服务", ...domain_mrs, url:`${geosite_url}/samsung.mrs` },
         "cloudfront-ip":        { group:"🖥️ 直连服务", target:"🖥️ 直连服务", ...ipcidr_mrs, url:`${geoip_url}/cloudfront.mrs`, noResolve:true },
         // ▸ 代理规则
         "category-games-!cn":   { target:"🎮 game", ...domain_mrs,        url:`${geosite_url}/category-games-!cn.mrs` },
