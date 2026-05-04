@@ -148,8 +148,9 @@ function main(config) {
         "nameserver": DNS国外,
         "nameserver-policy": {
             "geosite:private": DNS国内,
-            "geosite:microsoft@cn,cloudflare@cn,samsung,google@cn,googlefcm": DNS国内,
-            "geosite:cn,geolocation-cn,steam@cn,category-games-cn,category-game-platforms-download": DNS国内,
+            "geosite:google@cn,googlefcm": DNS国内,
+            "geosite:category-game-platforms-download": DNS国内,
+            "geosite:cn,geolocation-cn": DNS国内,
             "geosite:gfw,geolocation-!cn": DNS国外,
         },
     };
