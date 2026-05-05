@@ -129,10 +129,10 @@ function main(config) {
     // --- ① DNS 常量模板 ----------
     const 谷歌IP = ["8.8.8.8", "8.8.4.4"];
     const 谷歌DOT = ["tls://dns.google"];
-    const 谷歌DOH = ["https://dns.google/dns-query#🖥️ 域名服务"];
+    const 谷歌DOH = ["https://dns.google/dns-query"];
     const cloudflare_IP = ["1.1.1.1", "1.0.0.1"];
     const cloudflare_DOT = ["tls://cloudflare-dns.com"];
-    const cloudflare_DOH = ["https://cloudflare-dns.com/dns-query#🖥️ 域名服务"];
+    const cloudflare_DOH = ["https://cloudflare-dns.com/dns-query"];
     const 阿里IP = ["223.5.5.5", "223.6.6.6"];
     const 阿里DOT = ["tls://dns.alidns.com"];
     const 阿里DOH = ["https://dns.alidns.com/dns-query"];
@@ -160,7 +160,7 @@ function main(config) {
         "use-system-hosts": false,
         "ipv6": true,
         "prefer-h3": false,
-        "respect-rules": false,
+        "respect-rules": true,
         "proxy-server-nameserver": [
             "https://dns.alidns.com/dns-query",
         ],
