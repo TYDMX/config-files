@@ -3,6 +3,7 @@ payload:
 
   # ═══ 软件应用 ═══
   #- PROCESS-NAME,com.microsoft.appmanager  # 连结至 Windows
+  - PROCESS-NAME,com.bytedance.android.doubaoime
 
   # ── 三星推送软件 ──
   #PROCESS-NAME,com.sec.factory.camera
