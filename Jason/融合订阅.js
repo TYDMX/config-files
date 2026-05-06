@@ -94,7 +94,7 @@ function main(config) {
     };
     // --- ② 流量嗅探 --------------
     config["sniffer"] = {
-        "enable": true,
+        "enable": false,
         "force-dns-mapping": true,
         "parse-pure-ip": true,
         "override-destination": false,
