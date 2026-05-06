@@ -9,8 +9,6 @@ function main(config) {
     // --- ① 合并外部订阅 ----------
     config["proxy-providers"] = {
         ...(config["proxy-providers"] || {}),
-        //"自建 🌏": { url: "https://sub.dmit.dpdns.org/share/sub/dingyue_Center_zijian_auto?token=xgy1nCsG7xgerdecv4QRn",  interval: 3600 },
-        //"自建 🔮": { url: "https://raw.githubusercontent.com/go4sharing/sub/main/clash.yaml",  interval: 3600 },
         //"节点池 🪩": { url: "https://proxypool.dmit.dpdns.org/clash/proxies?nstream=netflix,disney&type=vless",  interval: 3600 },
         //"节点池vmess 🪩": { url: "https://proxypool.dmit.dpdns.org/clash/proxies?nstream=netflix,disney&type=vmess",  interval: 3600 },
         //"节点池trojan 🪩": { url: "https://proxypool.dmit.dpdns.org/clash/proxies?nstream=netflix,disney&type=trojan",  interval: 3600 },
@@ -128,28 +126,24 @@ function main(config) {
     // ═══════════════════════════════════
     // --- ① DNS 常量模板 ----------
     const 谷歌IP = ["8.8.8.8", "8.8.4.4"];
-    const 谷歌DOT = ["tls://dns.google"];
     const 谷歌DOH = ["https://dns.google/dns-query"];
     const cloudflare_IP = ["1.1.1.1", "1.0.0.1"];
-    const cloudflare_DOT = ["tls://cloudflare-dns.com"];
     const cloudflare_DOH = ["https://cloudflare-dns.com/dns-query"];
     const 阿里IP = ["223.5.5.5", "223.6.6.6"];
-    const 阿里DOT = ["tls://dns.alidns.com"];
+    const 阿里DNS = ["https://223.5.5.5/dns-query", "quic://223.5.5.5",];
     const 阿里DOH = ["https://dns.alidns.com/dns-query"];
     const 阿里DOQ = ["quic://dns.alidns.com"];
     const 阿里自建 = ["https://819431-jchlcf2024.alidns.com/dns-query"];
     const 腾讯IP = ["119.29.29.29", "120.53.53.90"];
-    const 腾讯DOT = ["tls://dot.pub"];
     const 腾讯DOH = ["https://doh.pub/dns-query"];
     const 国外DNS = [
         ...cloudflare_DOH,
     ];
     const 国内DNS = [
         ...阿里自建,
-        ...阿里DOQ,
+        ...阿里DNS,
     ];
     config["hosts"] = {
-        "cloudflare-dns.com": cloudflare_IP,
         "service.googleapis.cn": "service.googleapis.com",
         "mtalk.google.com": "142.250.107.188, 108.177.125.188",
     };
@@ -159,11 +153,8 @@ function main(config) {
         "use-hosts": true,
         "use-system-hosts": false,
         "ipv6": true,
-        "prefer-h3": false,
-        "respect-rules": true,
-        "proxy-server-nameserver": [
-            "https://dns.alidns.com/dns-query",
-        ],
+        "prefer-h3": true,
+        "respect-rules": false,
         "cache-algorithm": "arc",
         "listen": "127.0.0.1:1053",
         "enhanced-mode": "fake-ip",
@@ -178,18 +169,17 @@ function main(config) {
             "RULE-SET,geolocation-cn,real-ip",
             "MATCH,fake-ip"
         ],
-        "default-nameserver": [
-            "https://223.5.5.5/dns-query",
-        ],
-        "direct-nameserver": 国内DNS,
-        "direct-nameserver-follow-policy": true,
-        "nameserver-policy": {
-            "RULE-SET,private": 国内DNS,
-            "RULE-SET,google@cn,googlefcm": 国内DNS,
-            "RULE-SET,category-game-platforms-download": 国内DNS,
-            "RULE-SET,cn,geolocation-cn": 国内DNS,
-            "RULE-SET,gfw,geolocation-!cn": 国外DNS,
-        },
+        "default-nameserver": 阿里DNS,
+        "proxy-server-nameserver": 阿里DNS,
+        //"direct-nameserver": 国内DNS,
+        //"direct-nameserver-follow-policy": true,
+        //"nameserver-policy": {
+            //"RULE-SET,private": 国内DNS,
+            //"RULE-SET,google@cn,googlefcm": 国内DNS,
+            //"RULE-SET,game-download": 国内DNS,
+            //"RULE-SET,cn,geolocation-cn": 国内DNS,
+            //"RULE-SET,gfw,geolocation-!cn": 国外DNS,
+        //},
         "nameserver": 国内DNS,
     };
 
@@ -199,7 +189,7 @@ function main(config) {
     // --- ① 节点正则表达式 ---------
     const 香港正则 = "^(?!(.*(家|住))).*(港|🇭🇰|HK|Hong|HKG)";
     const 狮城正则 = '(新|🇸🇬|坡|SG|Sing|SIN|XSP)';
-    const 美国正则 = "^(?!(.*(新|流量))).*(美|🇺🇸|US|USA|加|🇨🇦|CA|JFK|LAX|ORD|ATL|DFW|SFO|MIA|SEA|IAD)";
+    const 美国正则 = "^(?!(.*(新|流量|家|住))).*(美|🇺🇸|US|USA|加|🇨🇦|CA|JFK|LAX|ORD|ATL|DFW|SFO|MIA|SEA|IAD)";
     const 日本正则 = '(日|🇯🇵|JP|Japan|NRT|HND|KIX|CTS|FUK)';
     const 韩国正则 = '(韩|🇰🇷|韓|首尔|南朝鲜|KR|KOR|Korea)';
     const 台湾正则 = '(台|🇹🇼|TW|tai|TPE|TSA|KHH)';
@@ -308,7 +298,7 @@ function main(config) {
         "private-ip":           { group:"私有网络", target:"🔒 私有网络", ...ipcidr_mrs,     url:`${geoip_url}/private.mrs`, noResolve:true },
         "前置直连规则":          { target:"⬆️ 自用直连", ...classical_yaml, url:`${TYDMX_url}/Rule/前置直连.yaml` },
         "tracker":              { group:"追踪拦截", target:"🚫 追踪拦截", ...domain_mrs,     url:`${geosite_url}/tracker.mrs` },
-        "category-public-tracker":{ group:"追踪拦截", target:"🚫 追踪拦截", ...domain_mrs,  url:`${geosite_url}/category-public-tracker.mrs` },
+        "public-tracker":       { group:"追踪拦截", target:"🚫 追踪拦截", ...domain_mrs,  url:`${geosite_url}/category-public-tracker.mrs` },
         "adblockmihomolite":    { group:"广告拦截", target:"🚫 广告拦截", ...domain_mrs,     url:"https://raw.githubusercontent.com/217heidai/adblockfilters/refs/heads/main/rules/adblockmihomolite.mrs" },
         "ad-ip":                { group:"广告拦截", target:"🚫 广告拦截", ...ipcidr_mrs,     url:`${geoip_url}/ad.mrs`, noResolve:true },
         "自用代理规则":          { target:"🌐 自用代理", ...classical_yaml, url:`${TYDMX_url}/Rule/自用代理.yaml` },
@@ -316,9 +306,9 @@ function main(config) {
         "自用代理软件":          { target:"🖥️ 代理软件", ...classical_yaml, url:`${TYDMX_url}/Rule/代理软件.yaml` },
         "自用直连软件":          { target:"🖥️ 直连软件", ...classical_yaml, url:`${TYDMX_url}/Rule/直连软件.yaml` },
         // ▸ 直连规则组
-        "category-games-cn":    { group:"🎮 game@CN", target:"🎮 game@CN", ...domain_mrs,    url:`${geosite_url}/category-games-cn.mrs` },
+        "games-cn":             { group:"🎮 game@CN", target:"🎮 game@CN", ...domain_mrs,    url:`${geosite_url}/category-games-cn.mrs` },
         "steam@cn":             { group:"🎮 game@CN", target:"🎮 game@CN", ...domain_mrs,    url:`${geosite_url}/steam@cn.mrs` },
-        "category-game-platforms-download":{ group:"🎮 game@CN", target:"🎮 game@CN", ...domain_mrs, url:`${geosite_url}/category-game-platforms-download.mrs` },
+        "game-download":        { group:"🎮 game@CN", target:"🎮 game@CN", ...domain_mrs, url:`${geosite_url}/category-game-platforms-download.mrs` },
         "ookla-speedtest":      { target:"📈 测速地址", ...domain_mrs,     url:`${geosite_url}/ookla-speedtest.mrs` },
         "microsoft@cn":         { target:"🪟 Microsoft@CN", ...domain_mrs, url:`${geosite_url}/microsoft@cn.mrs` },
         "google@cn":            { group:"🇬 谷歌@CN", target:"🇬 谷歌@CN", ...domain_mrs,    url:`${geosite_url}/google@cn.mrs` },
@@ -327,10 +317,10 @@ function main(config) {
         "samsung":              { group:"🖥️ 直连服务", target:"🖥️ 直连服务", ...domain_mrs, url:`${geosite_url}/samsung.mrs` },
         "cloudfront-ip":        { group:"🖥️ 直连服务", target:"🖥️ 直连服务", ...ipcidr_mrs, url:`${geoip_url}/cloudfront.mrs`, noResolve:true },
         // ▸ 代理规则组
-        "category-games-!cn":   { target:"🎮 game", ...domain_mrs,        url:`${geosite_url}/category-games-!cn.mrs` },
+        "games-!cn":            { target:"🎮 game", ...domain_mrs,        url:`${geosite_url}/category-games-!cn.mrs` },
         "openai":               { group:"🤖 人工智能", target:"🤖 人工智能", ...domain_mrs, url:`${geosite_url}/openai.mrs` },
         "google-gemini":        { group:"🤖 人工智能", target:"🤖 人工智能", ...domain_mrs, url:`${geosite_url}/google-gemini.mrs` },
-        "category-ai-!cn":      { group:"🤖 人工智能", target:"🤖 人工智能", ...domain_mrs, url:`${geosite_url}/category-ai-!cn.mrs` },
+        "ai-!cn":               { group:"🤖 人工智能", target:"🤖 人工智能", ...domain_mrs, url:`${geosite_url}/category-ai-!cn.mrs` },
         "spotify":              { target:"🎵 音乐服务", ...domain_mrs,     url:`${geosite_url}/spotify.mrs` },
         "paypal":               { target:"💶 PayPal", ...domain_mrs,      url:`${geosite_url}/paypal.mrs` },
         "github":               { target:"👨🏿‍💻 GitHub", ...domain_mrs,     url:`${geosite_url}/github.mrs` },
@@ -345,12 +335,12 @@ function main(config) {
         "telegram":             { group:"📲 电报飞机", target:"📲 电报飞机", ...domain_mrs, url:`${geosite_url}/telegram.mrs` },
         "telegram-ip":          { group:"📲 电报飞机", target:"📲 电报飞机", ...ipcidr_mrs, url:`${geoip_url}/telegram.mrs`, noResolve:true },
         "youtube":              { pre:["AND,((NETWORK,UDP),(DST-PORT,443),(RULE-SET,youtube)),🚫 阻止"],
-            group:"📹 视频平台", target:"📹 视频平台", ...domain_mrs, url:`${geosite_url}/youtube.mrs` },
+                                  group:"📹 视频平台", target:"📹 视频平台", ...domain_mrs, url:`${geosite_url}/youtube.mrs` },
         "netflix":              { group:"📹 视频平台", target:"📹 视频平台", ...domain_mrs, url:`${geosite_url}/netflix.mrs` },
         "twitch":               { group:"📹 视频平台", target:"📹 视频平台", ...domain_mrs, url:`${geosite_url}/twitch.mrs` },
         "disney":               { group:"📹 视频平台", target:"📹 视频平台", ...domain_mrs, url:`${geosite_url}/disney.mrs` },
         "biliintl":             { group:"📹 视频平台", target:"📹 视频平台", ...domain_mrs, url:`${geosite_url}/biliintl.mrs` },
-        "category-porn":        { group:"📹 视频平台", target:"📹 视频平台", ...domain_mrs, url:`${geosite_url}/category-porn.mrs` },
+        "porn":                 { group:"📹 视频平台", target:"📹 视频平台", ...domain_mrs, url:`${geosite_url}/category-porn.mrs` },
         "cloudflare":           { group:"🖥️ 代理服务", target:"🖥️ 代理服务", ...domain_mrs, url:`${geosite_url}/cloudflare.mrs` },
         "cloudflare-ip":        { group:"🖥️ 代理服务", target:"🖥️ 代理服务", ...ipcidr_mrs, url:`${geoip_url}/cloudflare.mrs`, noResolve:true },
         "microsoft":            { target:"🪟 Microsoft", ...domain_mrs,   url:`${geosite_url}/microsoft.mrs` },
