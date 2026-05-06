@@ -69,10 +69,10 @@ proxy-providers:
     #override:
       #additional-prefix: "🔮 "
 
-  #节点池 🪩:
+  #节点池vless 🪩:
     #<<: *template
     #interval: 3600
-    #url: "https://proxypool.dmit.dpdns.org/clash/proxies?nstream=netflix,disney&speed=30"
+    #url: "https://proxypool.dmit.dpdns.org/clash/proxies?nstream=netflix,disney&type=vless"
     #override:
       #additional-prefix: "🪩 "
 
