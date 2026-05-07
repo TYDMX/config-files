@@ -39,7 +39,7 @@ proxy-providers:
 
   flclash 💧:
     <<: *template
-    url: "https://a1.a3ab91e6.us/lczq1w2/?token=XsrCZrg9HmA578ndhDm1lJ_MECMSz1GX"
+    url: "https://a1.a3ab91e6.us/lczq1w2/?token=0RAuDPAyB-T7f7scZeZJyqB4zB_rMIva"
     override:
       additional-prefix: "💧 "
 
