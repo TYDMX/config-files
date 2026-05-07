@@ -30,7 +30,7 @@ payload:
   - PROCESS-NAME,samsung.android.mdx
 
   # ── OneDrive客户端 ──
-  - PROCESS-NAME,OneDrive.exe
+  #- PROCESS-NAME,OneDrive.exe
   #PROCESS-NAME,com.microsoft.skydrive
 
   # ═══ 三星 ═══
