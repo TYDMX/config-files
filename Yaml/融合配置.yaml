@@ -33,7 +33,7 @@ proxy-providers:
 
   bettbox 💧:
     <<: *template
-    url: "https://a2.a3ab91e6.us/lczq1w2/?token=sQsiyJk4Y9vmAhT3CcNT7PNtra1UYFzy"
+    url: "https://a2.a3ab91e6.us/lczq1w2/?token=dStC7u7Ph2UjKGTeNESlN7eo2rcip9aK"
     override:
       additional-prefix: "💧 "
 
