@@ -166,7 +166,7 @@ function main(config) {
             "RULE-SET,connectivity-check,real-ip",
             "RULE-SET,category-ntp,real-ip",
             "RULE-SET,fakeip_filter,real-ip",
-            //"RULE-SET,cn,real-ip",
+            "RULE-SET,cn,real-ip",
             "RULE-SET,geolocation-cn,real-ip",
             "MATCH,fake-ip"
         ],
@@ -188,9 +188,9 @@ function main(config) {
     //   四、节点筛选层
     // ═══════════════════════════════════
     // --- ① 节点正则表达式 ---------
-    const 香港正则 = "^(?!(.*(家|住|直))).*(港|🇭🇰|HK|Hong|HKG)";
-    const 狮城正则 = "^(?!(.*(家|住|直))).*(新|🇸🇬|坡|SG|Sing|SIN|XSP)";
-    const 美国正则 = "^(?!(.*(新|流量|家|住|直))).*(美|🇺🇸|US|USA|加|🇨🇦|CA|JFK|LAX|ORD|ATL|DFW|SFO|MIA|SEA|IAD)";
+    const 香港正则 = "(港|🇭🇰|HK|Hong|HKG)";
+    const 狮城正则 = "(新|🇸🇬|坡|SG|Sing|SIN|XSP)";
+    const 美国正则 = "^(?!(.*(新|流量))).*(美|🇺🇸|US|USA|加|🇨🇦|CA|JFK|LAX|ORD|ATL|DFW|SFO|MIA|SEA|IAD)";
     const 日本正则 = '(日|🇯🇵|JP|Japan|NRT|HND|KIX|CTS|FUK)';
     const 韩国正则 = '(韩|🇰🇷|韓|首尔|南朝鲜|KR|KOR|Korea)';
     const 台湾正则 = '(台|🇹🇼|TW|tai|TPE|TSA|KHH)';
@@ -268,13 +268,13 @@ function main(config) {
         { name: "🚫 广告拦截", type: "select", proxies: ["🚫 阻止", "🇨🇳 直连"], icon: 图标库 + "Advertising.png", hidden: false },
         { name: "🚫 追踪拦截", type: "fallback", proxies: ["🚫 阻止"], icon: 图标库 + "AdBlack.png", hidden: true },
         // ▸ 生成地区组 ----------
-        ...创建地区分组("🇭🇰 香港", "Hong_Kong.png", 香港_List, 香港筛选, `${香港正则}`, `${"💧"}`),
-        ...创建地区分组("🇸🇬 狮城", "Singapore.png", 狮城_List, 狮城筛选, `${狮城正则}`, `${"💧"}`),
-        ...创建地区分组("🇺🇸 美国", "United_States.png", 美国_List, 美国筛选, `${美国正则}`, `${"💧"}`),
-        ...创建地区分组("🇯🇵 日本", "Japan.png", 日本_List, 日本筛选, `${日本正则}`, `${"💧"}`),
-        ...创建地区分组("🇹🇼 台湾", "Taiwan.png", 台湾_List, 台湾筛选, `${台湾正则}`, `${"💧"}`),
-        ...创建地区分组("🇰🇷 韩国", "Korea.png", 韩国_List, 韩国筛选, `${韩国正则}`, `${"💧"}`),
-        ...创建地区分组("🇪🇺 欧盟", "European_Union.png", 欧盟_List, 欧盟筛选, `${欧盟正则}`, `${"💧"}`),
+        ...创建地区分组("🇭🇰 香港", "Hong_Kong.png", 香港_List, 香港筛选, `${香港正则}`, `${"💧"}`, `${"(?!.*(家|住|直))"}`),
+        ...创建地区分组("🇸🇬 狮城", "Singapore.png", 狮城_List, 狮城筛选, `${狮城正则}`, `${"💧"}`, `${"(?!.*(家|住|直))"}`),
+        ...创建地区分组("🇺🇸 美国", "United_States.png", 美国_List, 美国筛选, `${美国正则}`, `${"💧"}`, `${"(?!.*(家|住|直))"}`),
+        ...创建地区分组("🇯🇵 日本", "Japan.png", 日本_List, 日本筛选, `${日本正则}`, `${"💧"}`, `${"(?!.*(家|住|直))"}`),
+        ...创建地区分组("🇹🇼 台湾", "Taiwan.png", 台湾_List, 台湾筛选, `${台湾正则}`, `${"💧"}`, `${"(?!.*(家|住|直))"}`),
+        ...创建地区分组("🇰🇷 韩国", "Korea.png", 韩国_List, 韩国筛选, `${韩国正则}`, `${"💧"}`, `${"(?!.*(家|住|直))"}`),
+        ...创建地区分组("🇪🇺 欧盟", "European_Union.png", 欧盟_List, 欧盟筛选, `${欧盟正则}`, `${"💧"}`, `${"(?!.*(家|住|直))"}`),
         // ▸ 其他策略组 ----------
         { name: "🌐 冷门自选", type: "select", use: 外部订阅, "exclude-filter": `(?i)(${汇总正则})`, proxies: ["🈚️ 假节点", ...冷门_List], icon: 图标库 + "Europe_Map.png" },
         { name: "🌐 全部节点", type: "select", use: 外部订阅, proxies: ["🈚️ 假节点", ...全部_List], icon: 图标库 + "Clubhouse.png" },
@@ -393,13 +393,13 @@ function main(config) {
     //   七、工具函数
     // ═══════════════════════════════════
     // --- ① 创建地区分组 ----------
-    function 创建地区分组(地区名, 地区图标, 选择池, 测速池, 地区正则, 优选筛选) {
+    function 创建地区分组(地区名, 地区图标, 内部地区_List, 内部地区节点池, 地区正则, 优选, 排除) {
         return [
-            { name: `${地区名}节点`, type: "select", use: 外部订阅, filter: `(?i)${地区正则}`, proxies: [`${地区名}优选`, `${地区名}自动`, `${地区名}散列`, `${地区名}轮询`, ...选择池], icon: 图标库 + 地区图标 },
-            { name: `${地区名}优选`, type: "url-test", use: 外部订阅, filter: `(?i)(?=.*${地区正则})(?=.*${优选筛选})`, proxies: 测速池, hidden: true, icon: 图标库 + 地区图标, interval: 300, tolerance: 100, url: 测速链接, timeout: 2000, "max-failed-times": 3, method: "HEAD", lazy: true },
-            { name: `${地区名}自动`, type: "url-test", use: 外部订阅, filter: `(?i)${地区正则}`, proxies: 测速池, hidden: true, icon: 图标库 + 地区图标, interval: 300, tolerance: 100, url: 测速链接, timeout: 2000, "max-failed-times": 3, method: "HEAD", lazy: true },
-            { name: `${地区名}散列`, type: "load-balance", strategy: "consistent-hashing", use: 外部订阅, filter: `(?i)(?=.*${地区正则})(?=.*${优选筛选})`, proxies: 测速池, hidden: true, icon: 图标库 + 地区图标, interval: 300, url: 测速链接, timeout: 2000, "max-failed-times": 3, method: "HEAD", lazy: true },
-            { name: `${地区名}轮询`, type: "load-balance", strategy: "round-robin", use: 外部订阅, filter: `(?i)(?=.*${地区正则})(?=.*${优选筛选})`, proxies: 测速池, hidden: true, icon: 图标库 + 地区图标, interval: 300, url: 测速链接, timeout: 2000, "max-failed-times": 3, method: "HEAD", lazy: true }
+            { name: `${地区名}节点`, type: "select", use: 外部订阅, filter: `(?i)${地区正则}`, proxies: [`${地区名}优选`, `${地区名}自动`, `${地区名}散列`, `${地区名}轮询`, ...内部地区_List], icon: 图标库 + 地区图标 },
+            { name: `${地区名}优选`, type: "url-test", use: 外部订阅, filter: `(?i)(?=.*${地区正则})(?=.*${优选})${排除}`, proxies: 内部地区节点池, hidden: true, icon: 图标库 + 地区图标, interval: 300, tolerance: 100, url: 测速链接, timeout: 2000, "max-failed-times": 3, method: "HEAD", lazy: true },
+            { name: `${地区名}自动`, type: "url-test", use: 外部订阅, filter: `(?i)(?=.*${地区正则})${排除}`, proxies: 内部地区节点池, hidden: true, icon: 图标库 + 地区图标, interval: 300, tolerance: 100, url: 测速链接, timeout: 2000, "max-failed-times": 3, method: "HEAD", lazy: true },
+            { name: `${地区名}散列`, type: "load-balance", strategy: "consistent-hashing", use: 外部订阅, filter: `(?i)(?=.*${地区正则})(?=.*${优选})${排除}`, proxies: 内部地区节点池, hidden: true, icon: 图标库 + 地区图标, interval: 300, url: 测速链接, timeout: 2000, "max-failed-times": 3, method: "HEAD", lazy: true },
+            { name: `${地区名}轮询`, type: "load-balance", strategy: "round-robin", use: 外部订阅, filter: `(?i)(?=.*${地区正则})(?=.*${优选})${排除}`, proxies: 内部地区节点池, hidden: true, icon: 图标库 + 地区图标, interval: 300, url: 测速链接, timeout: 2000, "max-failed-times": 3, method: "HEAD", lazy: true }
         ];
     }
 
