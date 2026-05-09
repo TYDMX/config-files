@@ -141,7 +141,7 @@ function main(config) {
     ];
     const 国内DNS = [
         ...阿里自建,
-        ...阿里DNS,
+        //...阿里DNS,
     ];
     config["hosts"] = {
         "service.googleapis.cn": "service.googleapis.com",
@@ -164,13 +164,14 @@ function main(config) {
         "fake-ip-filter": [
             "RULE-SET,private,real-ip",
             "RULE-SET,connectivity-check,real-ip",
+            "RULE-SET,category-ntp,real-ip",
             "RULE-SET,fakeip_filter,real-ip",
-            "RULE-SET,cn,real-ip",
+            //"RULE-SET,cn,real-ip",
             "RULE-SET,geolocation-cn,real-ip",
             "MATCH,fake-ip"
         ],
         "default-nameserver": 阿里DNS,
-        "proxy-server-nameserver": 阿里DNS,
+        "proxy-server-nameserver": 国内DNS,
         //"direct-nameserver": 国内DNS,
         //"direct-nameserver-follow-policy": true,
         //"nameserver-policy": {
@@ -354,6 +355,7 @@ function main(config) {
         "cn-ip":                { target:"⬆️ 直连IP", ...ipcidr_mrs,     url:`${geoip_url}/cn.mrs` },
         // ▸ 仅引用部分
         "connectivity-check":   { ...domain_mrs, url:`${geosite_url}/connectivity-check.mrs` },
+        "connectivity-check":   { ...domain_mrs, url:`${geosite_url}/category-ntp.mrs` },
         "fakeip_filter":        { ...domain_text, url:"https://raw.githubusercontent.com/juewuy/ShellCrash/refs/heads/dev/public/fake_ip_filter.list" },
     };
     // --- ③ 创建规则列表 ---
