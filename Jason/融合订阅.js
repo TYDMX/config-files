@@ -355,7 +355,7 @@ function main(config) {
         "cn-ip":                { target:"⬆️ 直连IP", ...ipcidr_mrs,     url:`${geoip_url}/cn.mrs` },
         // ▸ 仅引用部分
         "connectivity-check":   { ...domain_mrs, url:`${geosite_url}/connectivity-check.mrs` },
-        "connectivity-check":   { ...domain_mrs, url:`${geosite_url}/category-ntp.mrs` },
+        "category-ntp":         { ...domain_mrs, url:`${geosite_url}/category-ntp.mrs` },
         "fakeip_filter":        { ...domain_text, url:"https://raw.githubusercontent.com/juewuy/ShellCrash/refs/heads/dev/public/fake_ip_filter.list" },
     };
     // --- ③ 创建规则列表 ---
