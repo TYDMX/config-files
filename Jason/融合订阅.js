@@ -160,6 +160,7 @@ function main(config) {
         "enhanced-mode": "fake-ip",
         "fake-ip-range": "198.18.0.1/16",
         "fake-ip-range6": "fdfe:dcba:9876::/64",
+        "fake-ip-ttl": 86400,
         "fake-ip-filter-mode": "rule",
         "fake-ip-filter": [
             "RULE-SET,private,real-ip",
