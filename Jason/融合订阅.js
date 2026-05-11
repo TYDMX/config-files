@@ -286,7 +286,7 @@ function main(config) {
     //   六、规则体系
     // ═══════════════════════════════════
     // --- ① 规则常量定义 -----
-    const classical_yaml = { type: "http", interval: 300, behavior: "classical", format: "yaml" };
+    const classical_yaml = { type: "http", interval: 86400, behavior: "classical", format: "yaml" };
     const domain_mrs = { type: "http", interval: 86400, behavior: "domain", format: "mrs" };
     const ipcidr_mrs = { type: "http", interval: 86400, behavior: "ipcidr", format: "mrs" };
     const domain_text = { type: "http", interval: 86400, behavior: "domain", format: "text" };
