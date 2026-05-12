@@ -172,7 +172,8 @@ function main(config) {
             "MATCH,fake-ip"
         ],
         "default-nameserver": 阿里DNS,
-        "proxy-server-nameserver": 国内DNS,
+        "proxy-server-nameserver":
+            国内DNS.map(d => `${d}#disable-ipv6=true`),
         //"direct-nameserver": 国内DNS,
         //"direct-nameserver-follow-policy": true,
         //"nameserver-policy": {
