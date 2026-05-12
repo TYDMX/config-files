@@ -167,7 +167,6 @@ function main(config) {
             "RULE-SET,connectivity-check,real-ip",
             "RULE-SET,category-ntp,real-ip",
             "RULE-SET,fakeip_filter,real-ip",
-            "RULE-SET,cn,real-ip",
             "RULE-SET,geolocation-cn,real-ip",
             "MATCH,fake-ip"
         ],
