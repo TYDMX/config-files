@@ -141,7 +141,8 @@ function main(config) {
     ];
     const 国内DNS = [
         ...阿里自建,
-        //...阿里DNS,
+        ...阿里DNS,
+        ...腾讯DOH,
     ];
     config["hosts"] = {
         "service.googleapis.cn": "service.googleapis.com",
@@ -167,12 +168,15 @@ function main(config) {
             "RULE-SET,connectivity-check,real-ip",
             "RULE-SET,category-ntp,real-ip",
             "RULE-SET,fakeip_filter,real-ip",
+            "RULE-SET,cn,real-ip",
             "RULE-SET,geolocation-cn,real-ip",
             "MATCH,fake-ip"
         ],
         "default-nameserver": 阿里DNS,
-        "proxy-server-nameserver":
-            国内DNS.map(d => `${d}#disable-ipv6=true`),
+        "proxy-server-nameserver": [
+            ...阿里自建.map(d => `${d}#disable-ipv6=true`),
+            ...阿里DOQ.map(d => `${d}#disable-ipv6=true`),
+        ],
         //"direct-nameserver": 国内DNS,
         //"direct-nameserver-follow-policy": true,
         //"nameserver-policy": {
