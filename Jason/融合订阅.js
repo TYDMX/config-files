@@ -136,7 +136,7 @@ function main(config) {
     const 阿里自建 = ["https://819431-jchlcf2024.alidns.com/dns-query"];
     const 腾讯IP = ["119.29.29.29", "120.53.53.90"];
     const 腾讯DOH = ["https://doh.pub/dns-query"];
-    const AdGuardDNS = ["https://dns.adguard-dns.com/dns-query"];
+    const AdGuardDNS = ["https://dns.adguard-dns.com/dns-query", "quic://dns.adguard-dns.com"];
     const 国外DNS = [
         ...cloudflare_DOH,
     ];
