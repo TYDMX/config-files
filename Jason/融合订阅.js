@@ -402,7 +402,7 @@ function main(config) {
         return [
             { name: `${地区名}节点`, type: "select", use: 外部订阅, filter: `(?i)${地区正则}`, proxies: [`${地区名}优选`, `${地区名}自动`, `${地区名}散列`, `${地区名}轮询`, ...内部地区_List], icon: 图标库 + 地区图标 },
             { name: `${地区名}优选`, type: "url-test", use: 外部订阅, filter: `(?i)(?=.*${地区正则})(?=.*${优选})${排除}`, proxies: 内部地区节点池, hidden: true, icon: 图标库 + 地区图标, interval: 660, tolerance: 100, url: 测速链接, timeout: 2000, "max-failed-times": 3, method: "HEAD", lazy: true },
-            { name: `${地区名}自动`, type: "url-test", use: 外部订阅, filter: `(?i)(?=.*${地区正则})${排除}`, proxies: 内部地区节点池, hidden: true, icon: 图标库 + 地区图标, interval: 1380, tolerance: 100, url: 测速链接, timeout: 2000, "max-failed-times": 3, method: "HEAD", lazy: true },
+            { name: `${地区名}自动`, type: "url-test", use: 外部订阅, filter: `(?i)(?=.*${地区正则})`, proxies: 内部地区节点池, hidden: true, icon: 图标库 + 地区图标, interval: 1380, tolerance: 100, url: 测速链接, timeout: 2000, "max-failed-times": 3, method: "HEAD", lazy: true },
             { name: `${地区名}散列`, type: "load-balance", strategy: "consistent-hashing", use: 外部订阅, filter: `(?i)(?=.*${地区正则})(?=.*${优选})${排除}`, proxies: 内部地区节点池, hidden: true, icon: 图标库 + 地区图标, interval: 2820, url: 测速链接, timeout: 2000, "max-failed-times": 3, method: "HEAD", lazy: true },
             { name: `${地区名}轮询`, type: "load-balance", strategy: "round-robin", use: 外部订阅, filter: `(?i)(?=.*${地区正则})(?=.*${优选})${排除}`, proxies: 内部地区节点池, hidden: true, icon: 图标库 + 地区图标, interval: 2820, url: 测速链接, timeout: 2000, "max-failed-times": 3, method: "HEAD", lazy: true }
         ];
