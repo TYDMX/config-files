@@ -187,7 +187,7 @@ function main(config) {
             //"RULE-SET,cn,geolocation-cn": 国内DNS,
             //"RULE-SET,gfw,geolocation-!cn": 国外DNS,
         //},
-        "nameserver": AdGuardDNS,
+        "nameserver": 国内DNS,
     };
 
     // ═══════════════════════════════════
