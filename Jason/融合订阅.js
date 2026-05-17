@@ -172,10 +172,13 @@ function main(config) {
             "RULE-SET,geolocation-cn,real-ip",
             "MATCH,fake-ip"
         ],
-        "default-nameserver": 阿里DNS,
+        "default-nameserver": [
+            "system",
+            //...阿里DNS,
+        ],
         "proxy-server-nameserver": [
             "system",
-            // ...阿里自建.map(d => `${d}#disable-ipv6=true`),
+            //...阿里自建.map(d => `${d}#disable-ipv6=true`),
         ],
         //"direct-nameserver": 国内DNS,
         //"direct-nameserver-follow-policy": true,
@@ -188,7 +191,7 @@ function main(config) {
         //},
         "nameserver": [
             "system",
-            // ...国内DNS,
+            //...国内DNS,
         ],
     };
 
