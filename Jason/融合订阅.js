@@ -146,7 +146,7 @@ function main(config) {
     ];
     config["hosts"] = {
         "service.googleapis.cn": "service.googleapis.com",
-        "mtalk.google.com": "142.250.107.188, 108.177.125.188",
+        //"mtalk.google.com": "142.250.107.188, 108.177.125.188",
     };
     // --- ② DNS 模式配置 ----------
     config["dns"] = {
@@ -168,6 +168,7 @@ function main(config) {
             "RULE-SET,connectivity-check,real-ip",
             "RULE-SET,category-ntp,real-ip",
             "RULE-SET,fakeip_filter,real-ip",
+            "RULE-SET,googlefcm,real-ip",
             "RULE-SET,cn,real-ip",
             "RULE-SET,geolocation-cn,real-ip",
             "MATCH,fake-ip"
@@ -323,8 +324,8 @@ function main(config) {
         "game-download":        { group:"🎮 game@CN", target:"🎮 game@CN", ...domain_mrs, url:`${geosite_url}/category-game-platforms-download.mrs` },
         "ookla-speedtest":      { target:"📈 测速地址", ...domain_mrs,     url:`${geosite_url}/ookla-speedtest.mrs` },
         "microsoft@cn":         { target:"🪟 Microsoft@CN", ...domain_mrs, url:`${geosite_url}/microsoft@cn.mrs` },
-        //"google@cn":            { group:"🇬 谷歌@CN", target:"🇬 谷歌@CN", ...domain_mrs,    url:`${geosite_url}/google@cn.mrs` },
-        //"googlefcm":            { group:"🇬 谷歌@CN", target:"🇬 谷歌@CN", ...domain_mrs,    url:`${geosite_url}/googlefcm.mrs` },
+        "google@cn":            { group:"🇬 谷歌@CN", target:"🇬 谷歌@CN", ...domain_mrs,    url:`${geosite_url}/google@cn.mrs` },
+        "googlefcm":            { group:"🇬 谷歌@CN", target:"🇬 谷歌@CN", ...domain_mrs,    url:`${geosite_url}/googlefcm.mrs` },
         "cloudflare@cn":        { group:"🖥️ 直连服务", target:"🖥️ 直连服务", ...domain_mrs, url:`${geosite_url}/cloudflare@cn.mrs` },
         "samsung":              { group:"🖥️ 直连服务", target:"🖥️ 直连服务", ...domain_mrs, url:`${geosite_url}/samsung.mrs` },
         "cloudfront-ip":        { group:"🖥️ 直连服务", target:"🖥️ 直连服务", ...ipcidr_mrs, url:`${geoip_url}/cloudfront.mrs`, noResolve:true },
