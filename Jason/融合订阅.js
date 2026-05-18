@@ -365,8 +365,7 @@ function main(config) {
         // ▸ 兜底规则组
         "gfw":                  { group:"🪜 代理域名", target:"🪜 代理域名", ...domain_mrs, url:`${geosite_url}/gfw.mrs` },
         "geolocation-!cn":      { group:"🪜 代理域名", target:"🪜 代理域名", ...domain_mrs, url:`${geosite_url}/geolocation-!cn.mrs` },
-        "cn":                   { pre:["AND,((NETWORK,UDP),(DST-PORT,443),(RULE-SET,cn)),🚫 阻止"],
-                                  group:"⬆️ 直连域名", target:"⬆️ 直连域名", ...domain_mrs, url:"https://raw.githubusercontent.com/wwqgtxx/clash-rules/refs/heads/release/direct.mrs" },
+        "cn":                   { group:"⬆️ 直连域名", target:"⬆️ 直连域名", ...domain_mrs, url:"https://raw.githubusercontent.com/wwqgtxx/clash-rules/refs/heads/release/direct.mrs" },
         "geolocation-cn":       { group:"⬆️ 直连域名", target:"⬆️ 直连域名", ...domain_mrs, url:`${geosite_url}/geolocation-cn.mrs` },
         "cn-ip":                { target:"⬆️ 直连IP", ...ipcidr_mrs,     url:`${geoip_url}/cn.mrs` },
         // ▸ 仅引用部分
