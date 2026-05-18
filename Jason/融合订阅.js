@@ -145,8 +145,11 @@ function main(config) {
         ...阿里DNS,
     ];
     config["hosts"] = {
+        "dns.google": 谷歌IP,
+        "cloudflare-dns.com": cloudflare_IP,
+        "dns.alidns.com": 阿里IP,
+        "doh.pub": 腾讯IP, "dot.pub": 腾讯IP,
         "service.googleapis.cn": "service.googleapis.com",
-        //"mtalk.google.com": "142.250.107.188, 108.177.125.188",
     };
     // --- ② DNS 模式配置 ----------
     config["dns"] = {
@@ -175,7 +178,7 @@ function main(config) {
         ],
         "default-nameserver": [
             "system",
-            //...阿里DNS,
+            ...阿里IP,
         ],
         "proxy-server-nameserver": [
             "system",
