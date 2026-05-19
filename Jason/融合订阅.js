@@ -148,6 +148,7 @@ function main(config) {
         "dns.google": 谷歌IP,
         "cloudflare-dns.com": cloudflare_IP,
         "dns.alidns.com": 阿里IP,
+        "819431-jchlcf2024.alidns.com": 阿里IP,
         "doh.pub": 腾讯IP, "dot.pub": 腾讯IP,
         "service.googleapis.cn": "service.googleapis.com",
     };
@@ -327,8 +328,8 @@ function main(config) {
         "game-download":        { group:"🎮 game@CN", target:"🎮 game@CN", ...domain_mrs, url:`${geosite_url}/category-game-platforms-download.mrs` },
         "ookla-speedtest":      { target:"📈 测速地址", ...domain_mrs,     url:`${geosite_url}/ookla-speedtest.mrs` },
         "microsoft@cn":         { target:"🪟 Microsoft@CN", ...domain_mrs, url:`${geosite_url}/microsoft@cn.mrs` },
-        "google@cn":            { group:"🇬 谷歌@CN", target:"🇬 谷歌@CN", ...domain_mrs,    url:`${geosite_url}/google@cn.mrs` },
-        "googlefcm":            { group:"🇬 谷歌@CN", target:"🇬 谷歌@CN", ...domain_mrs,    url:`${geosite_url}/googlefcm.mrs` },
+        //"google@cn":            { group:"🇬 谷歌@CN", target:"🇬 谷歌@CN", ...domain_mrs,    url:`${geosite_url}/google@cn.mrs` },
+        //"googlefcm":            { group:"🇬 谷歌@CN", target:"🇬 谷歌@CN", ...domain_mrs,    url:`${geosite_url}/googlefcm.mrs` },
         "cloudflare@cn":        { group:"🖥️ 直连服务", target:"🖥️ 直连服务", ...domain_mrs, url:`${geosite_url}/cloudflare@cn.mrs` },
         "samsung":              { group:"🖥️ 直连服务", target:"🖥️ 直连服务", ...domain_mrs, url:`${geosite_url}/samsung.mrs` },
         "cloudfront-ip":        { group:"🖥️ 直连服务", target:"🖥️ 直连服务", ...ipcidr_mrs, url:`${geoip_url}/cloudfront.mrs`, noResolve:true },
@@ -372,6 +373,7 @@ function main(config) {
         "connectivity-check":   { ...domain_mrs, url:`${geosite_url}/connectivity-check.mrs` },
         "category-ntp":         { ...domain_mrs, url:`${geosite_url}/category-ntp.mrs` },
         "fakeip_filter":        { ...domain_text, url:"https://raw.githubusercontent.com/juewuy/ShellCrash/refs/heads/dev/public/fake_ip_filter.list" },
+        "googlefcm":            { ...domain_mrs, url:`${geosite_url}/googlefcm.mrs` },
     };
     // --- ③ 创建规则列表 ---
     (function 合成规则列表() {
