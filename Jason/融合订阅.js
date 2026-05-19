@@ -158,7 +158,7 @@ function main(config) {
         "use-system-hosts": false,
         "ipv6": true,
         "prefer-h3": true,
-        "respect-rules": false,
+        "respect-rules": true,
         "cache-algorithm": "arc",
         "listen": "127.0.0.1:1053",
         "enhanced-mode": "fake-ip",
@@ -186,13 +186,13 @@ function main(config) {
         ],
         //"direct-nameserver": 国内DNS,
         //"direct-nameserver-follow-policy": true,
-        //"nameserver-policy": {
+        "nameserver-policy": {
             //"RULE-SET,private": 国内DNS,
             //"RULE-SET,google@cn,googlefcm": 国内DNS,
             //"RULE-SET,game-download": 国内DNS,
             //"RULE-SET,cn,geolocation-cn": 国内DNS,
-            //"RULE-SET,gfw,geolocation-!cn": 国外DNS,
-        //},
+            "RULE-SET,gfw,geolocation-!cn": 国外DNS,
+        },
         "nameserver": [
             "system",
             //...国内DNS,
