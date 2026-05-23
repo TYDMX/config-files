@@ -142,7 +142,7 @@ function main(config) {
         ...谷歌DOH,
     ];
     const 国内DNS = [
-        "system",
+        //"system",
         ...阿里自建, ...阿里DNS,
     ];
     config["hosts"] = {
@@ -178,10 +178,7 @@ function main(config) {
             "RULE-SET,geolocation-cn,real-ip",
             "MATCH,fake-ip"
         ],
-        "default-nameserver": [
-            "system",
-            ...阿里DNS,
-        ],
+        "default-nameserver": 阿里DNS,
         "proxy-server-nameserver": [
             //"system",
             ...阿里DNS.map(d => `${d}#disable-ipv6=true`),
@@ -189,15 +186,11 @@ function main(config) {
         "direct-nameserver": 国内DNS,
         //"direct-nameserver-follow-policy": true,
         "nameserver-policy": {
-            "RULE-SET,private,googlefcm": "system",
+            "RULE-SET,private,googlefcm": 国内DNS,
             //"RULE-SET,cn,geolocation-cn": 国内DNS,
             //"RULE-SET,gfw,geolocation-!cn": 国外DNS,
         },
-        "nameserver": [
-            //"system",
-            //...国内DNS,
-            ...国外DNS,
-        ],
+        "nameserver": 国外DNS
     };
 
     // ═══════════════════════════════════
