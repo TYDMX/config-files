@@ -139,6 +139,7 @@ function main(config) {
     const AdGuardDNS = ["https://dns.adguard-dns.com/dns-query", "quic://dns.adguard-dns.com"];
     const 国外DNS = [
         ...cloudflare_DOH,
+        ...谷歌DOH,
     ];
     const 国内DNS = [
         ...阿里自建,
@@ -179,24 +180,22 @@ function main(config) {
         ],
         "default-nameserver": [
             "system",
-            ...阿里IP,
+            ...阿里DNS,
         ],
         "proxy-server-nameserver": [
             "system",
-            //...阿里自建.map(d => `${d}#disable-ipv6=true`),
+            ...阿里自建.map(d => `${d}#disable-ipv6=true`),
         ],
         //"direct-nameserver": 国内DNS,
         //"direct-nameserver-follow-policy": true,
         "nameserver-policy": {
-            //"RULE-SET,private": 国内DNS,
-            //"RULE-SET,google@cn,googlefcm": 国内DNS,
-            //"RULE-SET,game-download": 国内DNS,
+            "RULE-SET,private,googlefcm": "system",
             //"RULE-SET,cn,geolocation-cn": 国内DNS,
             "RULE-SET,gfw,geolocation-!cn": 国外DNS,
         },
         "nameserver": [
             "system",
-            //...国内DNS,
+            ...国内DNS,
         ],
     };
 
@@ -294,6 +293,7 @@ function main(config) {
         // ▸ 其他策略组 ----------
         { name: "🌐 冷门自选", type: "select", use: 外部订阅, "exclude-filter": `(?i)(${汇总正则})`, proxies: ["🈚️ 假节点", ...冷门_List], icon: 图标库 + "Europe_Map.png" },
         { name: "🌐 全部节点", type: "select", use: 外部订阅, proxies: ["🈚️ 假节点", ...全部_List], icon: 图标库 + "Clubhouse.png" },
+        { name: "🖥️ UDP连接", type: "select", proxies: ["🚀 节点选择", "🖥️ 服务节点", "🚫 阻止", "🇨🇳 直连"], icon: 图标库 + "Final.png" },
         { name: "🐟 漏网之鱼", type: "select", proxies: ["🚀 节点选择", "🖥️ 服务节点", "🇨🇳 直连"], icon: 图标库 + "Final.png" }
     ];
 
@@ -351,7 +351,7 @@ function main(config) {
         "instagram":            { group:"📲 社交媒体", target:"📲 社交媒体", ...domain_mrs, url:`${geosite_url}/instagram.mrs` },
         "telegram":             { group:"📲 电报飞机", target:"📲 电报飞机", ...domain_mrs, url:`${geosite_url}/telegram.mrs` },
         "telegram-ip":          { group:"📲 电报飞机", target:"📲 电报飞机", ...ipcidr_mrs, url:`${geoip_url}/telegram.mrs`, noResolve:true },
-        "youtube":              { pre:["AND,((NETWORK,UDP),(DST-PORT,443),(RULE-SET,youtube)),🚫 阻止"],
+        "youtube":              { pre:["AND,((NETWORK,UDP),(DST-PORT,443),(RULE-SET,youtube)),🖥️ UDP连接"],
                                   group:"📹 视频平台", target:"📹 视频平台", ...domain_mrs, url:`${geosite_url}/youtube.mrs` },
         "netflix":              { group:"📹 视频平台", target:"📹 视频平台", ...domain_mrs, url:`${geosite_url}/netflix.mrs` },
         "twitch":               { group:"📹 视频平台", target:"📹 视频平台", ...domain_mrs, url:`${geosite_url}/twitch.mrs` },
