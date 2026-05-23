@@ -184,7 +184,7 @@ function main(config) {
         ],
         "proxy-server-nameserver": [
             //"system",
-            ...国内DNS.map(d => `${d}#disable-ipv6=true`),
+            ...阿里DNS.map(d => `${d}#disable-ipv6=true`),
         ],
         "direct-nameserver": 国内DNS,
         //"direct-nameserver-follow-policy": true,
