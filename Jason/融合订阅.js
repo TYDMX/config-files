@@ -150,7 +150,8 @@ function main(config) {
         "cloudflare-dns.com": cloudflare_IP,
         "dns.alidns.com": 阿里IP,
         "819431-jchlcf2024.alidns.com": 阿里IP,
-        "doh.pub": 腾讯IP, "dot.pub": 腾讯IP,
+        "doh.pub": ["1.12.12.12", "120.53.53.53"],
+        "dot.pub": ["1.12.12.12", "120.53.53.53"],
         "service.googleapis.cn": "service.googleapis.com",
     };
     // --- ② DNS 模式配置 ----------
