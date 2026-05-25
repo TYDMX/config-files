@@ -143,7 +143,7 @@ function main(config) {
     ];
     const 国内DNS = [
         //"system",
-        ...阿里自建, ...阿里QUIC,
+        ...阿里自建, ...阿里DOQ,
     ];
     config["hosts"] = {
         "dns.google": 谷歌IP,
