@@ -181,17 +181,17 @@ function main(config) {
         ],
         "default-nameserver": 阿里DNS,
         "proxy-server-nameserver": [
-            //"system",
+            //...国内DNS,
             ...阿里DNS.map(d => `${d}#disable-ipv6=true`),
         ],
         "direct-nameserver": 国内DNS,
-        //"direct-nameserver-follow-policy": true,
+        "direct-nameserver-follow-policy": true,
         "nameserver-policy": {
             "RULE-SET,private,googlefcm": 国内DNS,
-            //"RULE-SET,cn,geolocation-cn": 国内DNS,
-            //"RULE-SET,gfw,geolocation-!cn": 国外DNS,
+            "RULE-SET,cn,geolocation-cn": 国内DNS,
+            "RULE-SET,gfw,geolocation-!cn": 国外DNS,
         },
-        "nameserver": 国外DNS
+        "nameserver": 国内DNS
     };
 
     // ═══════════════════════════════════
