@@ -159,7 +159,7 @@ function main(config) {
         "enable": true,
         "use-hosts": false,
         "use-system-hosts": true,
-        "ipv6": true,
+        "ipv6": false,
         "prefer-h3": true,
         "respect-rules": true,
         "cache-algorithm": "arc",
