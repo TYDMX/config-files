@@ -167,7 +167,7 @@ function main(config) {
         "enhanced-mode": "fake-ip",
         "fake-ip-range": "198.18.0.1/16",
         "fake-ip-range6": "fdfe:dcba:9876::/64",
-        "fake-ip-ttl": 86400,
+        "fake-ip-ttl": 3600,
         "fake-ip-filter-mode": "rule",
         "fake-ip-filter": [
             "RULE-SET,private,real-ip",
@@ -175,20 +175,20 @@ function main(config) {
             "RULE-SET,category-ntp,real-ip",
             "RULE-SET,fakeip_filter,real-ip",
             "RULE-SET,googlefcm,real-ip",
-            "RULE-SET,cn,real-ip",
-            "RULE-SET,geolocation-cn,real-ip",
+            //"RULE-SET,cn,real-ip",
+            //"RULE-SET,geolocation-cn,real-ip",
             "MATCH,fake-ip"
         ],
         "default-nameserver": 阿里DNS,
         "proxy-server-nameserver": [
             //...国内DNS,
-            ...阿里DNS.map(d => `${d}#disable-ipv6=true`),
+            ...阿里自建.map(d => `${d}#disable-ipv6=true`),
         ],
         "direct-nameserver": 国内DNS,
         //"direct-nameserver-follow-policy": true,
         "nameserver-policy": {
             "RULE-SET,private,googlefcm": 国内DNS,
-            "RULE-SET,cn,geolocation-cn": 国内DNS,
+            //"RULE-SET,cn,geolocation-cn": 国内DNS,
             "RULE-SET,gfw,geolocation-!cn": 国外DNS,
         },
         "nameserver": 国内DNS
@@ -408,10 +408,10 @@ function main(config) {
     function 创建地区分组(地区名, 地区图标, 内部地区_List, 内部地区节点池, 地区正则, 优选, 排除) {
         return [
             { name: `${地区名}节点`, type: "select", use: 外部订阅, filter: `(?i)${地区正则}`, proxies: [`${地区名}优选`, `${地区名}自动`, `${地区名}散列`, `${地区名}轮询`, ...内部地区_List], icon: 图标库 + 地区图标 },
-            { name: `${地区名}优选`, type: "url-test", use: 外部订阅, filter: `(?i)(?=.*${地区正则})(?=.*${优选})${排除}`, proxies: 内部地区节点池, hidden: true, icon: 图标库 + 地区图标, interval: 660, tolerance: 100, url: 测速链接, timeout: 2000, "max-failed-times": 3, method: "HEAD", lazy: true },
-            { name: `${地区名}自动`, type: "url-test", use: 外部订阅, filter: `(?i)(?=.*${地区正则})`, proxies: 内部地区节点池, hidden: true, icon: 图标库 + 地区图标, interval: 2380, tolerance: 100, url: 测速链接, timeout: 2000, "max-failed-times": 3, method: "HEAD", lazy: true },
-            { name: `${地区名}散列`, type: "load-balance", strategy: "consistent-hashing", use: 外部订阅, filter: `(?i)(?=.*${地区正则})(?=.*${优选})${排除}`, proxies: 内部地区节点池, hidden: true, icon: 图标库 + 地区图标, interval: 2820, url: 测速链接, timeout: 2000, "max-failed-times": 3, method: "HEAD", lazy: true },
-            { name: `${地区名}轮询`, type: "load-balance", strategy: "round-robin", use: 外部订阅, filter: `(?i)(?=.*${地区正则})(?=.*${优选})${排除}`, proxies: 内部地区节点池, hidden: true, icon: 图标库 + 地区图标, interval: 2870, url: 测速链接, timeout: 2000, "max-failed-times": 3, method: "HEAD", lazy: true }
+            { name: `${地区名}优选`, type: "url-test", use: 外部订阅, filter: `(?i)(?=.*${地区正则})(?=.*${优选})${排除}`, proxies: 内部地区节点池, hidden: true, icon: 图标库 + 地区图标, interval: 120, tolerance: 100, url: 测速链接 },
+            { name: `${地区名}自动`, type: "url-test", use: 外部订阅, filter: `(?i)(?=.*${地区正则})`, proxies: 内部地区节点池, hidden: true, icon: 图标库 + 地区图标, interval: 280, tolerance: 100, url: 测速链接 },
+            { name: `${地区名}散列`, type: "load-balance", strategy: "consistent-hashing", use: 外部订阅, filter: `(?i)(?=.*${地区正则})(?=.*${优选})${排除}`, proxies: 内部地区节点池, hidden: true, icon: 图标库 + 地区图标, interval: 820, url: 测速链接 },
+            { name: `${地区名}轮询`, type: "load-balance", strategy: "round-robin", use: 外部订阅, filter: `(?i)(?=.*${地区正则})(?=.*${优选})${排除}`, proxies: 内部地区节点池, hidden: true, icon: 图标库 + 地区图标, interval: 870, url: 测速链接 }
         ];
     }
 
