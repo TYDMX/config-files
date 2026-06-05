@@ -183,8 +183,8 @@ function main(config) {
         ],
         "default-nameserver": 阿里DNS,
         "proxy-server-nameserver": [
-            //...国内DNS,
-            ...阿里自建.map(d => `${d}#disable-ipv6=true`),
+            ...国内DNS,
+            //...阿里自建.map(d => `${d}#disable-ipv6=true`),
         ],
         "direct-nameserver": 国内DNS,
         //"direct-nameserver-follow-policy": true,
