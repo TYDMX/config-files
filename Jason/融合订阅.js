@@ -167,7 +167,7 @@ function main(config) {
         "enhanced-mode": "fake-ip",
         "fake-ip-range": "198.18.0.1/16",
         "fake-ip-range6": "fdfe:dcba:9876::/64",
-        "fake-ip-ttl": 0,
+        "fake-ip-ttl": 1,
         "fake-ip-filter-mode": "rule",
         "fake-ip-filter": [
             "RULE-SET,private,real-ip",
@@ -177,7 +177,9 @@ function main(config) {
             "RULE-SET,googlefcm,real-ip",
             //"RULE-SET,cn,real-ip",
             //"RULE-SET,geolocation-cn,real-ip",
-            "MATCH,fake-ip"
+            "RULE-SET,gfw,fake-ip",
+            "RULE-SET,geolocation-!cn,fake-ip",
+            "MATCH,real-ip"
         ],
         "default-nameserver": 阿里DNS,
         "proxy-server-nameserver": [
