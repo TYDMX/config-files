@@ -111,13 +111,13 @@ function main(config) {
     // --- ③ TUN 模式 --------------
     config["tun"] = {
         "enable": true,
-        "stack": "system",
+        "stack": "mixed",
         "dns-hijack": ["any:53"],
         "auto-route": true,
         "auto-detect-interface": true,
         "strict-route": true,
-        "disable-icmp-forwarding": true,
-        "mtu": 4064,
+        "disable-icmp-forwarding": false,
+        "mtu": 1400,
         "udp-timeout": 300, // 秒
     };
 
