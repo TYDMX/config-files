@@ -94,7 +94,7 @@ function main(config) {
     };
     // --- ② 流量嗅探 --------------
     config["sniffer"] = {
-        "enable": true,
+        "enable": false,
         "force-dns-mapping": true,
         "parse-pure-ip": true,
         "override-destination": false,
@@ -116,7 +116,7 @@ function main(config) {
         "auto-route": true,
         "auto-detect-interface": true,
         "strict-route": true,
-        "disable-icmp-forwarding": false,
+        "disable-icmp-forwarding": true,
         "mtu": 1400,
         "udp-timeout": 300, // 秒
     };
