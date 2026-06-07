@@ -118,7 +118,7 @@ function main(config) {
         "strict-route": true,
         "disable-icmp-forwarding": true,
         "mtu": 4064,
-        "udp-timeout": 300, // 秒
+        "udp-timeout": 3600, // 秒
     };
 
     // ═══════════════════════════════════
