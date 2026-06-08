@@ -433,10 +433,10 @@ function main(config) {
     function 创建地区分组(地区名, 地区图标, 内部地区_List, 内部地区节点池, 地区正则, 优选, 排除) {
         return [
             { name: `${地区名}节点`, type: "select", use: 外部订阅, filter: `(?i)${地区正则}`, proxies: [`${地区名}优选`, `${地区名}自动`, `${地区名}散列`, `${地区名}轮询`, ...内部地区_List], icon: 图标库 + 地区图标 },
-            { name: `${地区名}优选`, type: "url-test", use: 外部订阅, filter: `(?i)(?=.*${地区正则})(?=.*${优选})${排除}`, proxies: 内部地区节点池, hidden: true, icon: 图标库 + 地区图标,"empty-fallback": "REJECT" },
-            { name: `${地区名}自动`, type: "url-test", use: 外部订阅, filter: `(?i)(?=.*${地区正则})`, proxies: 内部地区节点池, hidden: true, icon: 图标库 + 地区图标,"empty-fallback": "REJECT" },
-            { name: `${地区名}散列`, type: "load-balance", strategy: "consistent-hashing", use: 外部订阅, filter: `(?i)(?=.*${地区正则})(?=.*${优选})${排除}`, proxies: 内部地区节点池, hidden: true, icon: 图标库 + 地区图标,"empty-fallback": "REJECT" },
-            { name: `${地区名}轮询`, type: "load-balance", strategy: "round-robin", use: 外部订阅, filter: `(?i)(?=.*${地区正则})(?=.*${优选})${排除}`, proxies: 内部地区节点池, hidden: true, icon: 图标库 + 地区图标,"empty-fallback": "REJECT" }
+            { name: `${地区名}优选`, type: "url-test", use: 外部订阅, filter: `(?i)(?=.*${地区正则})(?=.*${优选})${排除}`, proxies: 内部地区节点池, hidden: true, icon: 图标库 + 地区图标,"empty-fallback": "REJECT-DROP" },
+            { name: `${地区名}自动`, type: "url-test", use: 外部订阅, filter: `(?i)(?=.*${地区正则})`, proxies: 内部地区节点池, hidden: true, icon: 图标库 + 地区图标,"empty-fallback": "REJECT-DROP" },
+            { name: `${地区名}散列`, type: "load-balance", strategy: "consistent-hashing", use: 外部订阅, filter: `(?i)(?=.*${地区正则})(?=.*${优选})${排除}`, proxies: 内部地区节点池, hidden: true, icon: 图标库 + 地区图标,"empty-fallback": "REJECT-DROP" },
+            { name: `${地区名}轮询`, type: "load-balance", strategy: "round-robin", use: 外部订阅, filter: `(?i)(?=.*${地区正则})(?=.*${优选})${排除}`, proxies: 内部地区节点池, hidden: true, icon: 图标库 + 地区图标,"empty-fallback": "REJECT-DROP" }
         ];
     }
 
