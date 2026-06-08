@@ -53,7 +53,7 @@ function main(config) {
         { name: "🎯 全球直连", type: "direct", udp: true },
         { name: "🈚️ 假节点", type: "reject" },
         { name: "🚫 阻止", type: "reject" },
-        { name: "↕️ 跳过规则", type: "PASS-RULE" },
+        // { name: "↕️ 跳过规则", type: "PASS-RULE" },  // PASS-RULE 不能作为节点类型，暂时注释
         { name: '🇨🇳 直连(IPv4)', type: 'direct', udp: true, 'ip-version': 'ipv4' },
         { name: '🇨🇳 直连(IPv6)', type: 'direct', udp: true, 'ip-version': 'ipv6' },
         { name: '🇨🇳 直连(IPv4优先)', type: 'direct', udp: true, 'ip-version': 'ipv4-prefer' },
@@ -176,7 +176,7 @@ function main(config) {
             "RULE-SET,category-ntp,real-ip",
             "RULE-SET,fakeip_filter,real-ip",
             "RULE-SET,googlefcm,real-ip",
-            "RULE-SET,cn,real-ip",
+            //"RULE-SET,cn,real-ip",
             "RULE-SET,geolocation-cn,real-ip",
             "MATCH,fake-ip"
         ],
@@ -290,7 +290,7 @@ function main(config) {
         // ▸ 其他策略组 ----------
         { name: "🌐 冷门自选", type: "select", use: 外部订阅, "exclude-filter": `(?i)(${汇总正则})`, proxies: ["🈚️ 假节点", ...冷门_List], icon: 图标库 + "Europe_Map.png" },
         { name: "🌐 全部节点", type: "select", use: 外部订阅, proxies: ["🈚️ 假节点", ...全部_List], icon: 图标库 + "Clubhouse.png" },
-        { name: "🖥️ UDP连接", type: "select", proxies: ["↕️ 跳过规则", 🚀 节点选择", "🖥️ 服务节点", "🚫 阻止", "🇨🇳 直连"], icon: 图标库 + "Final.png" },
+        { name: "🖥️ UDP连接", type: "select", proxies: ["PASS-RULE", "🚀 节点选择", "🖥️ 服务节点", "🚫 阻止", "🇨🇳 直连"], icon: 图标库 + "Final.png" },
         { name: "🐟 漏网之鱼", type: "select", proxies: ["🚀 节点选择", "🖥️ 服务节点", "🇨🇳 直连"], icon: 图标库 + "Final.png" }
     ];
 
@@ -347,8 +347,9 @@ function main(config) {
         "facebook":             { group:"📲 社交媒体", target:"📲 社交媒体", ...domain_mrs, url:`${geosite_url}/facebook.mrs` },
         "instagram":            { group:"📲 社交媒体", target:"📲 社交媒体", ...domain_mrs, url:`${geosite_url}/instagram.mrs` },
         "telegram":             { group:"📲 电报飞机", target:"📲 电报飞机", ...domain_mrs, url:`${geosite_url}/telegram.mrs` },
-        "telegram-ip":          { group:"📲 电报飞机", target:"📲 电报飞机", ...ipcidr_mrs, url:`${geoip_url}/telegram.mrs`, noResolve:true },
-        "youtube":              { pre:["AND,((NETWORK,UDP),(DST-PORT,443),(RULE-SET,youtube)),🖥️ UDP连接"],
+        "telegram-ip":          { subRule:true,
+                                  group:"📲 电报飞机", target:"📲 电报飞机", ...ipcidr_mrs, url:`${geoip_url}/telegram.mrs`, noResolve:true },
+        "youtube":              { subRule:"youtube",
                                   group:"📹 视频平台", target:"📹 视频平台", ...domain_mrs, url:`${geosite_url}/youtube.mrs` },
         "netflix":              { group:"📹 视频平台", target:"📹 视频平台", ...domain_mrs, url:`${geosite_url}/netflix.mrs` },
         "twitch":               { group:"📹 视频平台", target:"📹 视频平台", ...domain_mrs, url:`${geosite_url}/twitch.mrs` },
@@ -372,29 +373,51 @@ function main(config) {
         "fakeip_filter":        { ...domain_text, url:"https://raw.githubusercontent.com/juewuy/ShellCrash/refs/heads/dev/public/fake_ip_filter.list" },
         "googlefcm":            { ...domain_mrs, url:`${geosite_url}/googlefcm.mrs` },
     };
-    // --- ③ 创建规则列表 ---
+    // --- ③ 规则合成 ----------
+    function quicPre(ruleSetName, target = "🖥️ UDP连接", { noResolve = false } = {}) {
+        const rset = ruleSetName ? `,(RULE-SET,${ruleSetName}${noResolve ? ",no-resolve" : ""})` : "";
+        return `AND,((NETWORK,UDP),(DST-PORT,443)${rset}),${target}`;
+    }
     (function 合成规则列表() {
         const gMap = {};
         for (const [k, v] of Object.entries(config["rule-providers"])) {
             if (!v.group) continue;
-            if (!gMap[v.group]) gMap[v.group] = { logic: v.groupLogic || "OR", target: v.target, extra: v.extra, members: [], pre: [] };
+            if (!gMap[v.group]) gMap[v.group] = { logic: v.groupLogic || "OR", target: v.target, extra: v.extra, members: [], pre: [], subRuleMembers: [] };
             gMap[v.group].members.push(k);
             if (v.pre) gMap[v.group].pre.push(...v.pre);
+            if (v.subRule) gMap[v.group].subRuleMembers.push(k);
         }
         const used = new Set();
         config["rules"] = [];
+        config["sub-rules"] = {};
         for (const [name, p] of Object.entries(config["rule-providers"])) {
             if (!p.target || used.has(name)) continue;
             if (p.group) {
                 const g = gMap[p.group];
-                if (g.pre) g.pre.forEach(line => config["rules"].push(line));
                 g.members.forEach(m => used.add(m));
                 const parts = g.members.map(m => {
                     const mp = config["rule-providers"][m];
                     return `(RULE-SET,${m}${mp.noResolve ? ",no-resolve" : ""})`;
                 });
                 if (g.extra) parts.unshift(g.extra);
-                config["rules"].push(`${g.logic},(${parts.join(",")}),${g.target}`);
+                if (g.subRuleMembers.length) {
+                    const subName = `sub-${g.target}`;
+                    const matchRule = `(${g.logic},(${parts.join(",")}))`;
+                    config["rules"].push(`SUB-RULE,${matchRule},${subName}`);
+                    const subEntry = g.subRuleMembers.map(m => {
+                        const mp = config["rule-providers"][m];
+                        if (mp.subRule === true) {
+                            return `AND,((NETWORK,UDP),(DST-PORT,443)),🖥️ UDP连接`;
+                        }
+                        return `AND,((NETWORK,UDP),(DST-PORT,443),(RULE-SET,${m}${mp.noResolve ? ",no-resolve" : ""})),🖥️ UDP连接`;
+                    });
+                    subEntry.push(`MATCH,${g.target}`);
+                    config["sub-rules"][subName] = subEntry;
+                } else {
+                    const groupRule = `${g.logic},(${parts.join(",")}),${g.target}`;
+                    if (g.pre.length) g.pre.forEach(line => config["rules"].push(line));
+                    config["rules"].push(groupRule);
+                }
             } else {
                 used.add(name);
                 config["rules"].push(`RULE-SET,${name},${p.target}`);
