@@ -53,6 +53,7 @@ function main(config) {
         { name: "🎯 全球直连", type: "direct", udp: true },
         { name: "🈚️ 假节点", type: "reject" },
         { name: "🚫 阻止", type: "reject" },
+        { name: "↕️ 跳过规则", type: "PASS-RULE" },
         { name: '🇨🇳 直连(IPv4)', type: 'direct', udp: true, 'ip-version': 'ipv4' },
         { name: '🇨🇳 直连(IPv6)', type: 'direct', udp: true, 'ip-version': 'ipv6' },
         { name: '🇨🇳 直连(IPv4优先)', type: 'direct', udp: true, 'ip-version': 'ipv4-prefer' },
@@ -111,13 +112,13 @@ function main(config) {
     // --- ③ TUN 模式 --------------
     config["tun"] = {
         "enable": true,
-        "stack": "system",
+        "stack": "mixed",
         "dns-hijack": ["any:53"],
         "auto-route": true,
         "auto-detect-interface": true,
         "strict-route": true,
         "disable-icmp-forwarding": true,
-        "mtu": 4064,
+        //"mtu": 4064,
         "udp-timeout": 3600, // 秒
     };
 
@@ -167,7 +168,7 @@ function main(config) {
         "enhanced-mode": "fake-ip",
         "fake-ip-range": "198.18.0.1/16",
         "fake-ip-range6": "fdfe:dcba:9876::/64",
-        "fake-ip-ttl": 86400,
+        //"fake-ip-ttl": 86400,
         "fake-ip-filter-mode": "rule",
         "fake-ip-filter": [
             "RULE-SET,private,real-ip",
@@ -185,10 +186,11 @@ function main(config) {
             ...阿里DNS.map(d => `${d}#disable-ipv6=true`),
         ],
         "direct-nameserver": 国内DNS,
-        //"direct-nameserver-follow-policy": true,
+        "direct-nameserver-follow-policy": true,
         "nameserver-policy": {
             "RULE-SET,private,googlefcm": 国内DNS,
-            "RULE-SET,cn,geolocation-cn": 国内DNS,
+            //"RULE-SET,cn": 国内DNS,
+            "RULE-SET,geolocation-cn": 国内DNS,
             "RULE-SET,gfw,geolocation-!cn": 国外DNS,
         },
         "nameserver": 国内DNS
@@ -288,7 +290,7 @@ function main(config) {
         // ▸ 其他策略组 ----------
         { name: "🌐 冷门自选", type: "select", use: 外部订阅, "exclude-filter": `(?i)(${汇总正则})`, proxies: ["🈚️ 假节点", ...冷门_List], icon: 图标库 + "Europe_Map.png" },
         { name: "🌐 全部节点", type: "select", use: 外部订阅, proxies: ["🈚️ 假节点", ...全部_List], icon: 图标库 + "Clubhouse.png" },
-        { name: "🖥️ UDP连接", type: "select", proxies: ["🚀 节点选择", "🖥️ 服务节点", "🚫 阻止", "🇨🇳 直连"], icon: 图标库 + "Final.png" },
+        { name: "🖥️ UDP连接", type: "select", proxies: ["↕️ 跳过规则", 🚀 节点选择", "🖥️ 服务节点", "🚫 阻止", "🇨🇳 直连"], icon: 图标库 + "Final.png" },
         { name: "🐟 漏网之鱼", type: "select", proxies: ["🚀 节点选择", "🖥️ 服务节点", "🇨🇳 直连"], icon: 图标库 + "Final.png" }
     ];
 
@@ -361,7 +363,7 @@ function main(config) {
         // ▸ 兜底规则组
         "gfw":                  { group:"🪜 代理域名", target:"🪜 代理域名", ...domain_mrs, url:`${geosite_url}/gfw.mrs` },
         "geolocation-!cn":      { group:"🪜 代理域名", target:"🪜 代理域名", ...domain_mrs, url:`${geosite_url}/geolocation-!cn.mrs` },
-        "cn":                   { group:"⬆️ 直连域名", target:"⬆️ 直连域名", ...domain_mrs, url:"https://raw.githubusercontent.com/wwqgtxx/clash-rules/refs/heads/release/direct.mrs" },
+        //"cn":                   { group:"⬆️ 直连域名", target:"⬆️ 直连域名", ...domain_mrs, url:"https://raw.githubusercontent.com/wwqgtxx/clash-rules/refs/heads/release/direct.mrs" },
         "geolocation-cn":       { group:"⬆️ 直连域名", target:"⬆️ 直连域名", ...domain_mrs, url:`${geosite_url}/geolocation-cn.mrs` },
         "cn-ip":                { target:"⬆️ 直连IP", ...ipcidr_mrs,     url:`${geoip_url}/cn.mrs` },
         // ▸ 仅引用部分
@@ -408,10 +410,10 @@ function main(config) {
     function 创建地区分组(地区名, 地区图标, 内部地区_List, 内部地区节点池, 地区正则, 优选, 排除) {
         return [
             { name: `${地区名}节点`, type: "select", use: 外部订阅, filter: `(?i)${地区正则}`, proxies: [`${地区名}优选`, `${地区名}自动`, `${地区名}散列`, `${地区名}轮询`, ...内部地区_List], icon: 图标库 + 地区图标 },
-            { name: `${地区名}优选`, type: "url-test", use: 外部订阅, filter: `(?i)(?=.*${地区正则})(?=.*${优选})${排除}`, proxies: 内部地区节点池, hidden: true, icon: 图标库 + 地区图标 },
-            { name: `${地区名}自动`, type: "url-test", use: 外部订阅, filter: `(?i)(?=.*${地区正则})`, proxies: 内部地区节点池, hidden: true, icon: 图标库 + 地区图标 },
-            { name: `${地区名}散列`, type: "load-balance", strategy: "consistent-hashing", use: 外部订阅, filter: `(?i)(?=.*${地区正则})(?=.*${优选})${排除}`, proxies: 内部地区节点池, hidden: true, icon: 图标库 + 地区图标 },
-            { name: `${地区名}轮询`, type: "load-balance", strategy: "round-robin", use: 外部订阅, filter: `(?i)(?=.*${地区正则})(?=.*${优选})${排除}`, proxies: 内部地区节点池, hidden: true, icon: 图标库 + 地区图标 }
+            { name: `${地区名}优选`, type: "url-test", use: 外部订阅, filter: `(?i)(?=.*${地区正则})(?=.*${优选})${排除}`, proxies: 内部地区节点池, hidden: true, icon: 图标库 + 地区图标,"empty-fallback": "REJECT" },
+            { name: `${地区名}自动`, type: "url-test", use: 外部订阅, filter: `(?i)(?=.*${地区正则})`, proxies: 内部地区节点池, hidden: true, icon: 图标库 + 地区图标,"empty-fallback": "REJECT" },
+            { name: `${地区名}散列`, type: "load-balance", strategy: "consistent-hashing", use: 外部订阅, filter: `(?i)(?=.*${地区正则})(?=.*${优选})${排除}`, proxies: 内部地区节点池, hidden: true, icon: 图标库 + 地区图标,"empty-fallback": "REJECT" },
+            { name: `${地区名}轮询`, type: "load-balance", strategy: "round-robin", use: 外部订阅, filter: `(?i)(?=.*${地区正则})(?=.*${优选})${排除}`, proxies: 内部地区节点池, hidden: true, icon: 图标库 + 地区图标,"empty-fallback": "REJECT" }
         ];
     }
 
