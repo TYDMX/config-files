@@ -153,7 +153,9 @@ function main(config) {
         "819431-jchlcf2024.alidns.com": 阿里IP,
         "doh.pub": ["1.12.12.12", "120.53.53.53"],
         "dot.pub": ["1.12.12.12", "120.53.53.53"],
-        "service.googleapis.cn": "service.googleapis.com",
+        "services.googleapis.cn": "services.googleapis.com",
+        "google.cn": "google.com",
+        "cn.bing.com": "global.bing.com"
     };
     // --- ② DNS 模式配置 ----------
     config["dns"] = {
@@ -277,7 +279,8 @@ function main(config) {
         { name: "🖥️ 代理软件", type: "fallback", proxies: ["🖥️ 服务节点"], hidden: true },
         { name: "🖥️ 代理服务", type: "fallback", proxies: ["🖥️ 服务节点"], hidden: true },
         { name: "🖥️ 域名服务", type: "fallback", proxies: ["🖥️ 服务节点"], icon: 图标库 + "Cloudflare.png", hidden: true },
-        // { name: "🚫 广告拦截", type: "select", proxies: ["🚫 阻止", "🇨🇳 直连"], icon: 图标库 + "Advertising.png", hidden: false },
+        { name: "🖥️ UDP连接", type: "select", proxies: ["PASS-RULE", "🚀 节点选择", "🖥️ 服务节点", "🚫 阻止", "🇨🇳 直连"], icon: 图标库 + "Final.png" },
+        { name: "🚫 广告拦截", type: "select", proxies: ["PASS", "🚫 阻止"], icon: 图标库 + "Advertising.png", hidden: false },
         // { name: "🚫 追踪拦截", type: "fallback", proxies: ["🚫 阻止"], icon: 图标库 + "AdBlack.png", hidden: true },
         // ▸ 生成地区组 ----------
         ...创建地区分组("🇭🇰 香港", "Hong_Kong.png", 香港_List, 香港筛选, `${香港正则}`, `${"💧"}`, `${"(?!.*(家|住|直))"}`),
@@ -290,7 +293,6 @@ function main(config) {
         // ▸ 其他策略组 ----------
         { name: "🌐 冷门自选", type: "select", use: 外部订阅, "exclude-filter": `(?i)(${汇总正则})`, proxies: ["🈚️ 假节点", ...冷门_List], icon: 图标库 + "Europe_Map.png" },
         { name: "🌐 全部节点", type: "select", use: 外部订阅, proxies: ["🈚️ 假节点", ...全部_List], icon: 图标库 + "Clubhouse.png" },
-        { name: "🖥️ UDP连接", type: "select", proxies: ["PASS-RULE", "🚀 节点选择", "🖥️ 服务节点", "🚫 阻止", "🇨🇳 直连"], icon: 图标库 + "Final.png" },
         { name: "🐟 漏网之鱼", type: "select", proxies: ["🚀 节点选择", "🖥️ 服务节点", "🇨🇳 直连"], icon: 图标库 + "Final.png" }
     ];
 
@@ -311,10 +313,10 @@ function main(config) {
         "private":              { group:"私有网络", target:"🔒 私有网络", ...domain_mrs,     url:`${geosite_url}/private.mrs` },
         "private-ip":           { group:"私有网络", target:"🔒 私有网络", ...ipcidr_mrs,     url:`${geoip_url}/private.mrs`, noResolve:true },
         "前置直连规则":          { target:"⬆️ 自用直连", ...classical_yaml, url:`${TYDMX_url}/Rule/前置直连.yaml` },
-        // "tracker":              { group:"追踪拦截", target:"🚫 追踪拦截", ...domain_mrs,     url:`${geosite_url}/tracker.mrs` },
-        // "public-tracker":       { group:"追踪拦截", target:"🚫 追踪拦截", ...domain_mrs,  url:`${geosite_url}/category-public-tracker.mrs` },
-        // "adblockmihomolite":    { group:"广告拦截", target:"🚫 广告拦截", ...domain_mrs,     url:"https://raw.githubusercontent.com/217heidai/adblockfilters/refs/heads/main/rules/adblockmihomolite.mrs" },
-        // "ad-ip":                { group:"广告拦截", target:"🚫 广告拦截", ...ipcidr_mrs,     url:`${geoip_url}/ad.mrs`, noResolve:true },
+        "tracker":              { group:"追踪拦截", target:"🚫 追踪拦截", ...domain_mrs,     url:`${geosite_url}/tracker.mrs` },
+        "public-tracker":       { group:"追踪拦截", target:"🚫 追踪拦截", ...domain_mrs,  url:`${geosite_url}/category-public-tracker.mrs` },
+        "adblockmihomolite":    { group:"广告拦截", target:"🚫 广告拦截", ...domain_mrs,     url:"https://raw.githubusercontent.com/217heidai/adblockfilters/refs/heads/main/rules/adblockmihomolite.mrs" },
+        "ad-ip":                { group:"广告拦截", target:"🚫 广告拦截", ...ipcidr_mrs,     url:`${geoip_url}/ad.mrs`, noResolve:true },
         "自用代理规则":          { target:"🌐 自用代理", ...classical_yaml, url:`${TYDMX_url}/Rule/自用代理.yaml` },
         "自用直连规则":          { target:"⬆️ 自用直连", ...classical_yaml, url:`${TYDMX_url}/Rule/自用直连.yaml` },
         "自用代理软件":          { target:"🖥️ 代理软件", ...classical_yaml, url:`${TYDMX_url}/Rule/代理软件.yaml` },
