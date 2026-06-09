@@ -349,9 +349,9 @@ function main(config) {
         "facebook":             { group:"📲 社交媒体", target:"📲 社交媒体", ...domain_mrs, url:`${geosite_url}/facebook.mrs` },
         "instagram":            { group:"📲 社交媒体", target:"📲 社交媒体", ...domain_mrs, url:`${geosite_url}/instagram.mrs` },
         "telegram":             { group:"📲 电报飞机", target:"📲 电报飞机", ...domain_mrs, url:`${geosite_url}/telegram.mrs` },
-        "telegram-ip":          { subRule:true,
+        "telegram-ip":          { subRule:true, pre:[quicPre()],
                                   group:"📲 电报飞机", target:"📲 电报飞机", ...ipcidr_mrs, url:`${geoip_url}/telegram.mrs`, noResolve:true },
-        "youtube":              { subRule:"youtube",
+        "youtube":              { subRule:true, pre:[quicPre("youtube")],
                                   group:"📹 视频平台", target:"📹 视频平台", ...domain_mrs, url:`${geosite_url}/youtube.mrs` },
         "netflix":              { group:"📹 视频平台", target:"📹 视频平台", ...domain_mrs, url:`${geosite_url}/netflix.mrs` },
         "twitch":               { group:"📹 视频平台", target:"📹 视频平台", ...domain_mrs, url:`${geosite_url}/twitch.mrs` },
@@ -361,7 +361,8 @@ function main(config) {
         "cloudflare":           { group:"🖥️ 代理服务", target:"🖥️ 代理服务", ...domain_mrs, url:`${geosite_url}/cloudflare.mrs` },
         "cloudflare-ip":        { group:"🖥️ 代理服务", target:"🖥️ 代理服务", ...ipcidr_mrs, url:`${geoip_url}/cloudflare.mrs`, noResolve:true },
         "microsoft":            { target:"🪟 Microsoft", ...domain_mrs,   url:`${geosite_url}/microsoft.mrs` },
-        "google":               { group:"🇬 谷歌", target:"🇬 谷歌", ...domain_mrs,       url:`${geosite_url}/google.mrs` },
+        "google":               { subRule:true, pre:[`DST-PORT,5228-5230,🇬 谷歌@CN`, quicPre()],
+                                  group:"🇬 谷歌", target:"🇬 谷歌", ...domain_mrs,       url:`${geosite_url}/google.mrs` },
         "google-ip":            { group:"🇬 谷歌", target:"🇬 谷歌", ...ipcidr_mrs,       url:`${geoip_url}/google.mrs`, noResolve:true },
         // ▸ 兜底规则组
         "gfw":                  { group:"🪜 代理域名", target:"🪜 代理域名", ...domain_mrs, url:`${geosite_url}/gfw.mrs` },
@@ -384,10 +385,10 @@ function main(config) {
         const gMap = {};
         for (const [k, v] of Object.entries(config["rule-providers"])) {
             if (!v.group) continue;
-            if (!gMap[v.group]) gMap[v.group] = { logic: v.groupLogic || "OR", target: v.target, extra: v.extra, members: [], pre: [], subRuleMembers: [] };
+            if (!gMap[v.group]) gMap[v.group] = { logic: v.groupLogic || "OR", target: v.target, extra: v.extra, members: [], pre: [], subRule: false };
             gMap[v.group].members.push(k);
             if (v.pre) gMap[v.group].pre.push(...v.pre);
-            if (v.subRule) gMap[v.group].subRuleMembers.push(k);
+            if (v.subRule) gMap[v.group].subRule = true;
         }
         const used = new Set();
         config["rules"] = [];
@@ -402,18 +403,11 @@ function main(config) {
                     return `(RULE-SET,${m}${mp.noResolve ? ",no-resolve" : ""})`;
                 });
                 if (g.extra) parts.unshift(g.extra);
-                if (g.subRuleMembers.length) {
+                if (g.subRule) {
                     const subName = `sub-${g.target}`;
                     const matchRule = `(${g.logic},(${parts.join(",")}))`;
                     config["rules"].push(`SUB-RULE,${matchRule},${subName}`);
-                    const subEntry = g.subRuleMembers.map(m => {
-                        const mp = config["rule-providers"][m];
-                        if (mp.subRule === true) {
-                            return `AND,((NETWORK,UDP),(DST-PORT,443)),🖥️ UDP连接`;
-                        }
-                        return `AND,((NETWORK,UDP),(DST-PORT,443),(RULE-SET,${m}${mp.noResolve ? ",no-resolve" : ""})),🖥️ UDP连接`;
-                    });
-                    subEntry.push(`MATCH,${g.target}`);
+                    const subEntry = [...g.pre, `MATCH,${g.target}`];
                     config["sub-rules"][subName] = subEntry;
                 } else {
                     const groupRule = `${g.logic},(${parts.join(",")}),${g.target}`;
