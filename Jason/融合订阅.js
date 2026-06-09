@@ -81,6 +81,7 @@ function main(config) {
     config["allow-lan"] = false;
     config["unified-delay"] = true;
     config["tcp-concurrent"] = true;
+    config["etag-support"] = true;
     config["external-controller"] = "127.0.0.1:9090";
     config["secret"] = "12345678";
     config["find-process-mode"] = "strict";
@@ -191,6 +192,7 @@ function main(config) {
         "direct-nameserver-follow-policy": true,
         "nameserver-policy": {
             "RULE-SET,private,googlefcm": 国内DNS,
+            "RULE-SET,adblockmihomolite,tracker,public-tracker": ["rcode://name_error"],
             //"RULE-SET,cn": 国内DNS,
             "RULE-SET,geolocation-cn": 国内DNS,
             "RULE-SET,gfw,geolocation-!cn": 国外DNS,
