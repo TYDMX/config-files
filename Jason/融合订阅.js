@@ -9,9 +9,9 @@ function main(config) {
     // --- ① 合并外部订阅 ----------
     config["proxy-providers"] = {
         ...(config["proxy-providers"] || {}),
-        //"节点池vless 🪩": { url: "https://proxypool.dmit.dpdns.org/clash/proxies?nstream=netflix,disney&type=vless",  interval: 3600 },
-        //"节点池vmess 🪩": { url: "https://proxypool.dmit.dpdns.org/clash/proxies?nstream=netflix,disney&type=vmess",  interval: 3600 },
-        //"节点池trojan 🪩": { url: "https://proxypool.dmit.dpdns.org/clash/proxies?nstream=netflix,disney&type=trojan",  interval: 3600 },
+        "节点池vless 🪩": { url: "https://proxypool.dmit.dpdns.org/clash/proxies?nstream=netflix,disney&type=vless",  interval: 3600 },
+        "节点池vmess 🪩": { url: "https://proxypool.dmit.dpdns.org/clash/proxies?nstream=netflix,disney&type=vmess",  interval: 3600 },
+        "节点池trojan 🪩": { url: "https://proxypool.dmit.dpdns.org/clash/proxies?nstream=netflix,disney&type=trojan",  interval: 3600 },
         "节点池hysteria2 🪩": { url: "https://proxypool.dmit.dpdns.org/clash/proxies?nstream=netflix,disney&type=hysteria2",  interval: 3600 },
         "节点池anytls 🪩": { url: "https://proxypool.dmit.dpdns.org/clash/proxies?nstream=netflix,disney&type=anytls",  interval: 3600 },
     };
@@ -40,7 +40,7 @@ function main(config) {
                         "url": 测速链接,
                         "interval": 600,
                         "timeout": 2000,
-                        "max-failed-times": 2,
+                        "max-failed-times": 3,
                         "lazy": true,
                         "method": "HEAD",
                     },
@@ -53,7 +53,7 @@ function main(config) {
         { name: "🎯 全球直连", type: "direct", udp: true },
         { name: "🈚️ 假节点", type: "reject" },
         { name: "🚫 阻止", type: "reject" },
-        // { name: "↕️ 跳过规则", type: "PASS-RULE" },  // PASS-RULE 不能作为节点类型，暂时注释
+        // { name: "↕️ 跳过规则", type: "PASS-RULE" },  // PASS-RULE 不能作为节点类型
         { name: '🇨🇳 直连(IPv4)', type: 'direct', udp: true, 'ip-version': 'ipv4' },
         { name: '🇨🇳 直连(IPv6)', type: 'direct', udp: true, 'ip-version': 'ipv6' },
         { name: '🇨🇳 直连(IPv4优先)', type: 'direct', udp: true, 'ip-version': 'ipv4-prefer' },
@@ -91,7 +91,7 @@ function main(config) {
     };
     config["experimental"] = {
         "quic-go-disable-gso": false,
-        "quic-go-disable-ecn": false,
+        "quic-go-disable-ecn": true,
         "dialer-ip4p-convert": false,
     };
     // --- ② 流量嗅探 --------------
@@ -161,10 +161,10 @@ function main(config) {
     // --- ② DNS 模式配置 ----------
     config["dns"] = {
         "enable": true,
-        "use-hosts": false,
-        "use-system-hosts": false,
+        "use-hosts": true,
+        "use-system-hosts": true,
         "ipv6": true,
-        "prefer-h3": true,
+        "prefer-h3": false,
         "respect-rules": true,
         "cache-algorithm": "arc",
         "listen": "127.0.0.1:1053",
@@ -180,7 +180,7 @@ function main(config) {
             "RULE-SET,fakeip_filter,real-ip",
             "RULE-SET,googlefcm,real-ip",
             //"RULE-SET,cn,real-ip",
-            "RULE-SET,geolocation-cn,real-ip",
+            //"RULE-SET,geolocation-cn,real-ip",
             "MATCH,fake-ip"
         ],
         "default-nameserver": 阿里DNS,
@@ -262,28 +262,28 @@ function main(config) {
         { name: "🪟 Microsoft", type: "select", proxies: ["🇨🇳 直连", "🖥️ 服务节点", "🚀 节点选择", ...自选节点池], icon: 图标库 + "Microsoft.png" },
         { name: "📈 测速地址", type: "select", proxies: ["🇨🇳 直连", "🚀 节点选择", ...节点选择池], icon: 图标库 + "Speedtest.png" },
         // ▸ 固定分流组 ----------
-        { name: "👨🏿‍💻 GitHub", type: "fallback", proxies: ["🖥️ 服务节点"], icon: 图标库 + "GitHub.png", hidden: true },
-        { name: "💶 PayPal", type: "fallback", proxies: ["🖥️ 服务节点"], icon: 图标库 + "PayPal.png", hidden: true },
-        { name: "🎮 game@CN", type: "fallback", proxies: ["🇨🇳 直连"], icon: 图标库 + "Game.png", hidden: true },
-        { name: "🪟 Bing", type: "fallback", proxies: ["🖥️ 服务节点"], icon: 图标库 + "Microsoft.png", hidden: true },
-        { name: "🇬 谷歌@CN", type: "fallback", proxies: ["🇨🇳 直连"], icon: 图标库 + "Google_Search.png", hidden: true },
-        { name: "🪟 Microsoft@CN", type: "fallback", proxies: ["🇨🇳 直连"], icon: 图标库 + "Microsoft.png", hidden: true },
+        { name: "👨🏿‍💻 GitHub", type: "select", proxies: ["🖥️ 服务节点"], icon: 图标库 + "GitHub.png", hidden: true },
+        { name: "💶 PayPal", type: "select", proxies: ["🖥️ 服务节点"], icon: 图标库 + "PayPal.png", hidden: true },
+        { name: "🎮 game@CN", type: "select", proxies: ["🇨🇳 直连"], icon: 图标库 + "Game.png", hidden: true },
+        { name: "🪟 Bing", type: "select", proxies: ["🖥️ 服务节点"], icon: 图标库 + "Microsoft.png", hidden: true },
+        { name: "🇬 谷歌fcm", type: "select", proxies: ["🇨🇳 直连"], icon: 图标库 + "Google_Search.png", hidden: true },
+        { name: "🪟 Microsoft@CN", type: "select", proxies: ["🇨🇳 直连"], icon: 图标库 + "Microsoft.png", hidden: true },
         // ▸ 代理策略组 ----------
-        { name: "🪜 代理域名", type: "fallback", proxies: ["🚀 节点选择"], hidden: true },
-        { name: "🌐 自用代理", type: "fallback", proxies: ["🚀 节点选择"], hidden: true },
-        { name: "⬆️ 自用直连", type: "fallback", proxies: ["🇨🇳 直连"], hidden: true },
-        { name: "⬆️ 直连域名", type: "fallback", proxies: ["🇨🇳 直连"], hidden: true },
-        { name: "⬆️ 直连IP", type: "fallback", proxies: ["🇨🇳 直连"], hidden: true },
-        { name: "🔒 私有网络", type: "fallback", proxies: ["🇨🇳 直连"], hidden: true },
+        { name: "🪜 代理域名", type: "select", proxies: ["🚀 节点选择"], hidden: true },
+        { name: "🌐 自用代理", type: "select", proxies: ["🚀 节点选择"], hidden: true },
+        { name: "⬆️ 自用直连", type: "select", proxies: ["🇨🇳 直连"], hidden: true },
+        { name: "⬆️ 直连域名", type: "select", proxies: ["🇨🇳 直连"], hidden: true },
+        { name: "⬆️ 直连IP", type: "select", proxies: ["🇨🇳 直连"], hidden: true },
+        { name: "🔒 私有网络", type: "select", proxies: ["🇨🇳 直连"], hidden: true },
         // ▸ 功能策略组 ----------
-        { name: "🖥️ 直连软件", type: "fallback", proxies: ["🇨🇳 直连"], hidden: true },
-        { name: "🖥️ 直连服务", type: "fallback", proxies: ["🇨🇳 直连"], hidden: true },
-        { name: "🖥️ 代理软件", type: "fallback", proxies: ["🖥️ 服务节点"], hidden: true },
-        { name: "🖥️ 代理服务", type: "fallback", proxies: ["🖥️ 服务节点"], hidden: true },
-        { name: "🖥️ 域名服务", type: "fallback", proxies: ["🖥️ 服务节点"], icon: 图标库 + "Cloudflare.png", hidden: true },
-        { name: "🖥️ UDP连接", type: "select", proxies: ["PASS-RULE", "🚀 节点选择", "🖥️ 服务节点", "🚫 阻止", "🇨🇳 直连"], icon: 图标库 + "Final.png" },
+        { name: "🖥️ 直连软件", type: "select", proxies: ["🇨🇳 直连"], hidden: true },
+        { name: "🖥️ 直连服务", type: "select", proxies: ["🇨🇳 直连"], hidden: true },
+        { name: "🖥️ 代理软件", type: "select", proxies: ["🖥️ 服务节点"], hidden: true },
+        { name: "🖥️ 代理服务", type: "select", proxies: ["🖥️ 服务节点"], hidden: true },
+        { name: "🖥️ 域名服务", type: "select", proxies: ["🖥️ 服务节点"], icon: 图标库 + "Cloudflare.png", hidden: true },
+        { name: "🖥️ UDP连接", type: "select", proxies: ["PASS-RULE", "🚫 阻止"], icon: 图标库 + "Final.png" },
         { name: "🚫 广告拦截", type: "select", proxies: ["PASS", "🚫 阻止"], icon: 图标库 + "Advertising.png", hidden: false },
-        { name: "🚫 追踪拦截", type: "fallback", proxies: ["🚫 阻止"], icon: 图标库 + "AdBlack.png", hidden: true },
+        { name: "🚫 追踪拦截", type: "select", proxies: ["🚫 阻止"], icon: 图标库 + "AdBlack.png", hidden: true },
         // ▸ 生成地区组 ----------
         ...创建地区分组("🇭🇰 香港", "Hong_Kong.png", 香港_List, 香港筛选, `${香港正则}`, `${"💧"}`, `${"(?!.*(家|住|直))"}`),
         ...创建地区分组("🇸🇬 狮城", "Singapore.png", 狮城_List, 狮城筛选, `${狮城正则}`, `${"💧"}`, `${"(?!.*(家|住|直))"}`),
@@ -363,7 +363,7 @@ function main(config) {
         "cloudflare":           { group:"🖥️ 代理服务", target:"🖥️ 代理服务", ...domain_mrs, url:`${geosite_url}/cloudflare.mrs` },
         "cloudflare-ip":        { group:"🖥️ 代理服务", target:"🖥️ 代理服务", ...ipcidr_mrs, url:`${geoip_url}/cloudflare.mrs`, noResolve:true },
         "microsoft":            { target:"🪟 Microsoft", ...domain_mrs,   url:`${geosite_url}/microsoft.mrs` },
-        "google":               { subRule:true, pre:[`DST-PORT,5228-5230,🇬 谷歌@CN`, quicPre()],
+        "google":               { subRule:true, pre:[`DST-PORT,5228-5230,🇬 谷歌fcm`, quicPre()],
                                   group:"🇬 谷歌", target:"🇬 谷歌", ...domain_mrs,       url:`${geosite_url}/google.mrs` },
         "google-ip":            { group:"🇬 谷歌", target:"🇬 谷歌", ...ipcidr_mrs,       url:`${geoip_url}/google.mrs`, noResolve:true },
         // ▸ 兜底规则组
