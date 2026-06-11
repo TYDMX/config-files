@@ -156,7 +156,7 @@ function main(config) {
         //"dot.pub": ["1.12.12.12", "120.53.53.53"],
         "services.googleapis.cn": "services.googleapis.com",
         "google.cn": "google.com",
-        "cn.bing.com": "global.bing.com"
+        "cn.bing.com": "global.bing.com",
         "+.mcdn.bilivideo.com": ["0.0.0.0"],
         "+.mcdn.bilivideo.cn": ["0.0.0.0"],
     };
