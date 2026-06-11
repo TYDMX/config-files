@@ -150,10 +150,10 @@ function main(config) {
     config["hosts"] = {
         "dns.google": 谷歌IP,
         "cloudflare-dns.com": cloudflare_IP,
-        "dns.alidns.com": 阿里IP,
-        "819431-jchlcf2024.alidns.com": 阿里IP,
-        "doh.pub": ["1.12.12.12", "120.53.53.53"],
-        "dot.pub": ["1.12.12.12", "120.53.53.53"],
+        //"dns.alidns.com": 阿里IP,
+        //"819431-jchlcf2024.alidns.com": 阿里IP,
+        //"doh.pub": ["1.12.12.12", "120.53.53.53"],
+        //"dot.pub": ["1.12.12.12", "120.53.53.53"],
         "services.googleapis.cn": "services.googleapis.com",
         "google.cn": "google.com",
         "cn.bing.com": "global.bing.com"
@@ -163,7 +163,7 @@ function main(config) {
         "enable": true,
         "use-hosts": true,
         "use-system-hosts": true,
-        "ipv6": true,
+        "ipv6": false,
         "prefer-h3": false,
         "respect-rules": true,
         "cache-algorithm": "arc",
