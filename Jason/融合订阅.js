@@ -157,6 +157,8 @@ function main(config) {
         "services.googleapis.cn": "services.googleapis.com",
         "google.cn": "google.com",
         "cn.bing.com": "global.bing.com"
+        "+.mcdn.bilivideo.com": ["0.0.0.0"],
+        "+.mcdn.bilivideo.cn": ["0.0.0.0"],
     };
     // --- ② DNS 模式配置 ----------
     config["dns"] = {
