@@ -91,7 +91,7 @@ function main(config) {
     };
     config["experimental"] = {
         "quic-go-disable-gso": false,
-        "quic-go-disable-ecn": true,
+        "quic-go-disable-ecn": false,
         "dialer-ip4p-convert": false,
     };
     // --- ② 流量嗅探 --------------
@@ -148,8 +148,8 @@ function main(config) {
         ...阿里自建,
     ];
     config["hosts"] = {
-        "dns.google": 谷歌IP,
-        "cloudflare-dns.com": cloudflare_IP,
+        //"dns.google": 谷歌IP,
+        //"cloudflare-dns.com": cloudflare_IP,
         //"dns.alidns.com": 阿里IP,
         //"819431-jchlcf2024.alidns.com": 阿里IP,
         //"doh.pub": ["1.12.12.12", "120.53.53.53"],
@@ -197,7 +197,7 @@ function main(config) {
             "RULE-SET,private,googlefcm": 国内DNS,
             "RULE-SET,adblockmihomolite,tracker,public-tracker": ["rcode://name_error"],
             //"RULE-SET,cn": 国内DNS,
-            "RULE-SET,geolocation-cn": 国内DNS,
+            //"RULE-SET,geolocation-cn": 国内DNS,
             "RULE-SET,gfw,geolocation-!cn": 国外DNS,
         },
         "nameserver": 国内DNS
@@ -316,12 +316,12 @@ function main(config) {
     config["rule-providers"] = {
         // ▸ 前置规则组
         "private":              { group:"私有网络", target:"🔒 私有网络", ...domain_mrs,     url:`${geosite_url}/private.mrs` },
-        "private-ip":           { group:"私有网络", target:"🔒 私有网络", ...ipcidr_mrs,     url:`${geoip_url}/private.mrs`, noResolve:true },
+        "private-ip":           { group:"私有网络", target:"🔒 私有网络", ...ipcidr_mrs,     url:`${geoip_url}/private.mrs` },
         "前置直连规则":          { target:"⬆️ 自用直连", ...classical_yaml, url:`${TYDMX_url}/Rule/前置直连.yaml` },
         "tracker":              { group:"追踪拦截", target:"🚫 追踪拦截", ...domain_mrs,     url:`${geosite_url}/tracker.mrs` },
         "public-tracker":       { group:"追踪拦截", target:"🚫 追踪拦截", ...domain_mrs,  url:`${geosite_url}/category-public-tracker.mrs` },
         "adblockmihomolite":    { group:"广告拦截", target:"🚫 广告拦截", ...domain_mrs,     url:"https://raw.githubusercontent.com/217heidai/adblockfilters/refs/heads/main/rules/adblockmihomolite.mrs" },
-        "ad-ip":                { group:"广告拦截", target:"🚫 广告拦截", ...ipcidr_mrs,     url:`${geoip_url}/ad.mrs`, noResolve:true },
+        "ad-ip":                { group:"广告拦截", target:"🚫 广告拦截", ...ipcidr_mrs,     url:`${geoip_url}/ad.mrs` },
         "自用代理规则":          { target:"🌐 自用代理", ...classical_yaml, url:`${TYDMX_url}/Rule/自用代理.yaml` },
         "自用直连规则":          { target:"⬆️ 自用直连", ...classical_yaml, url:`${TYDMX_url}/Rule/自用直连.yaml` },
         "自用代理软件":          { target:"🖥️ 代理软件", ...classical_yaml, url:`${TYDMX_url}/Rule/代理软件.yaml` },
@@ -336,7 +336,7 @@ function main(config) {
         //"googlefcm":            { group:"🇬 谷歌@CN", target:"🇬 谷歌@CN", ...domain_mrs,    url:`${geosite_url}/googlefcm.mrs` },
         "cloudflare@cn":        { group:"🖥️ 直连服务", target:"🖥️ 直连服务", ...domain_mrs, url:`${geosite_url}/cloudflare@cn.mrs` },
         "samsung":              { group:"🖥️ 直连服务", target:"🖥️ 直连服务", ...domain_mrs, url:`${geosite_url}/samsung.mrs` },
-        "cloudfront-ip":        { group:"🖥️ 直连服务", target:"🖥️ 直连服务", ...ipcidr_mrs, url:`${geoip_url}/cloudfront.mrs`, noResolve:true },
+        "cloudfront-ip":        { group:"🖥️ 直连服务", target:"🖥️ 直连服务", ...ipcidr_mrs, url:`${geoip_url}/cloudfront.mrs` },
         // ▸ 代理规则组
         "games-!cn":            { target:"🎮 game", ...domain_mrs,        url:`${geosite_url}/category-games-!cn.mrs` },
         "openai":               { group:"🤖 人工智能", target:"🤖 人工智能", ...domain_mrs, url:`${geosite_url}/openai.mrs` },
@@ -355,7 +355,7 @@ function main(config) {
         "instagram":            { group:"📲 社交媒体", target:"📲 社交媒体", ...domain_mrs, url:`${geosite_url}/instagram.mrs` },
         "telegram":             { group:"📲 电报飞机", target:"📲 电报飞机", ...domain_mrs, url:`${geosite_url}/telegram.mrs` },
         "telegram-ip":          { subRule:true, pre:[quicPre()],
-                                  group:"📲 电报飞机", target:"📲 电报飞机", ...ipcidr_mrs, url:`${geoip_url}/telegram.mrs`, noResolve:true },
+                                  group:"📲 电报飞机", target:"📲 电报飞机", ...ipcidr_mrs, url:`${geoip_url}/telegram.mrs` },
         "youtube":              { subRule:true, pre:[quicPre("youtube")],
                                   group:"📹 视频平台", target:"📹 视频平台", ...domain_mrs, url:`${geosite_url}/youtube.mrs` },
         "netflix":              { group:"📹 视频平台", target:"📹 视频平台", ...domain_mrs, url:`${geosite_url}/netflix.mrs` },
@@ -364,17 +364,17 @@ function main(config) {
         "biliintl":             { group:"📹 视频平台", target:"📹 视频平台", ...domain_mrs, url:`${geosite_url}/biliintl.mrs` },
         "porn":                 { group:"📹 视频平台", target:"📹 视频平台", ...domain_mrs, url:`${geosite_url}/category-porn.mrs` },
         "cloudflare":           { group:"🖥️ 代理服务", target:"🖥️ 代理服务", ...domain_mrs, url:`${geosite_url}/cloudflare.mrs` },
-        "cloudflare-ip":        { group:"🖥️ 代理服务", target:"🖥️ 代理服务", ...ipcidr_mrs, url:`${geoip_url}/cloudflare.mrs`, noResolve:true },
+        "cloudflare-ip":        { group:"🖥️ 代理服务", target:"🖥️ 代理服务", ...ipcidr_mrs, url:`${geoip_url}/cloudflare.mrs` },
         "microsoft":            { target:"🪟 Microsoft", ...domain_mrs,   url:`${geosite_url}/microsoft.mrs` },
         "google":               { subRule:true, pre:[`DST-PORT,5228-5230,🇬 谷歌fcm`, quicPre()],
                                   group:"🇬 谷歌", target:"🇬 谷歌", ...domain_mrs,       url:`${geosite_url}/google.mrs` },
-        "google-ip":            { group:"🇬 谷歌", target:"🇬 谷歌", ...ipcidr_mrs,       url:`${geoip_url}/google.mrs`, noResolve:true },
+        "google-ip":            { group:"🇬 谷歌", target:"🇬 谷歌", ...ipcidr_mrs,       url:`${geoip_url}/google.mrs` },
         // ▸ 兜底规则组
         "gfw":                  { group:"🪜 代理域名", target:"🪜 代理域名", ...domain_mrs, url:`${geosite_url}/gfw.mrs` },
         "geolocation-!cn":      { group:"🪜 代理域名", target:"🪜 代理域名", ...domain_mrs, url:`${geosite_url}/geolocation-!cn.mrs` },
         //"cn":                   { group:"⬆️ 直连域名", target:"⬆️ 直连域名", ...domain_mrs, url:"https://raw.githubusercontent.com/wwqgtxx/clash-rules/refs/heads/release/direct.mrs" },
         "geolocation-cn":       { group:"⬆️ 直连域名", target:"⬆️ 直连域名", ...domain_mrs, url:`${geosite_url}/geolocation-cn.mrs` },
-        "cn-ip":                { target:"⬆️ 直连IP", ...ipcidr_mrs,     url:`${geoip_url}/cn.mrs` },
+        "cn-ip":                { target:"⬆️ 直连IP", ...ipcidr_mrs,     url:`${geoip_url}/cn.mrs`, noResolve:true },
         // ▸ 仅引用部分
         "connectivity-check":   { ...domain_mrs, url:`${geosite_url}/connectivity-check.mrs` },
         "category-ntp":         { ...domain_mrs, url:`${geosite_url}/category-ntp.mrs` },
