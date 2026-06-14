@@ -195,7 +195,6 @@ function main(config) {
         "direct-nameserver-follow-policy": true,
         "nameserver-policy": {
             "RULE-SET,private,googlefcm": 国内DNS,
-            "RULE-SET,adblockmihomolite,tracker,public-tracker": ["rcode://name_error"],
             //"RULE-SET,cn": 国内DNS,
             //"RULE-SET,geolocation-cn": 国内DNS,
             "RULE-SET,gfw,geolocation-!cn": 国外DNS,
