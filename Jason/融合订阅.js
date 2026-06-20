@@ -330,7 +330,7 @@ function main(config) {
         // ▸ 前置规则组
         "private":              { group:"私有网络", target:"🔒 私有网络", ...domain_mrs,     url:`${geosite_url}/private.mrs` },
         "private-ip":           { group:"私有网络", target:"🔒 私有网络", ...ipcidr_mrs,     url:`${geoip_url}/private.mrs`, noResolve:true },
-        "前置直连规则":          { target:"⬆️ 自用直连", ...classical_yaml, url:`${TYDMX_url}/Rule/前置直连.yaml` },
+        "前置直连规则":          { target:"⬆️ 自用直连", ...classical_yaml, url:`${Ty_url}/Rule/前置直连.yaml` },
         "tracker":              { group:"追踪拦截", target:"🚫 追踪拦截", ...domain_mrs,     url:`${geosite_url}/tracker.mrs` },
         "public-tracker":       { group:"追踪拦截", target:"🚫 追踪拦截", ...domain_mrs,  url:`${geosite_url}/category-public-tracker.mrs` },
         "adblockmihomolite":    { group:"广告拦截", target:"🚫 广告拦截", ...domain_mrs,     url:"https://raw.githubusercontent.com/217heidai/adblockfilters/refs/heads/main/rules/adblockmihomolite.mrs" },
