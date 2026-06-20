@@ -127,32 +127,30 @@ function main(config) {
     //   三、DNS 体系
     // ═══════════════════════════════════
     // --- ① DNS 常量模板 ----------
-    const 谷歌IP = ["8.8.8.8", "8.8.4.4"];
-    const 谷歌DOH = ["https://dns.google/dns-query#🖥️ DNS解析"];
-    const cloudflare_IP = ["1.1.1.1", "1.0.0.1"];
-    const cloudflare_DOH = ["https://cloudflare-dns.com/dns-query#🖥️ DNS解析"];
+    const GoogleDOH = ["https://dns.google/dns-query#🖥️ DNS解析"];
+    const CloudflareDOH = ["https://cloudflare-dns.com/dns-query#🖥️ DNS解析"];
     const 阿里IP = ["223.5.5.5", "223.6.6.6"];
     const 阿里DOH = ["https://dns.alidns.com/dns-query"];
     const 阿里DOQ = ["quic://dns.alidns.com"];
     const 阿里自建 = ["https://819431-jchlcf2024.alidns.com/dns-query", 
                         "quic://819431-jchlcf2024.alidns.com"];
     const 阿里DNS = ["https://223.5.5.5/dns-query", 
-                       "quic://223.5.5.5",];
+                       //"quic://223.5.5.5",];
     const 腾讯IP = ["119.29.29.29", "120.53.53.90"];
     const 腾讯DOH = ["https://doh.pub/dns-query"];
     const AdGuardDNS = ["https://dns.adguard-dns.com/dns-query", 
                         "quic://dns.adguard-dns.com"];
     const 国外DNS = [
-        ...cloudflare_DOH,
-        ...谷歌DOH,
+        ...CloudflareDOH,
+        ...GoogleDOH,
     ];
     const 国内DNS = [
         //"system",
         ...阿里自建,
     ];
     config["hosts"] = {
-        //"dns.google": 谷歌IP,
-        //"cloudflare-dns.com": cloudflare_IP,
+        //"dns.google": ["8.8.8.8", "8.8.4.4"],
+        //"cloudflare-dns.com": ["1.1.1.1", "1.0.0.1"],
         //"dns.alidns.com": 阿里IP,
         //"819431-jchlcf2024.alidns.com": 阿里IP,
         //"doh.pub": ["1.12.12.12", "120.53.53.53"],
@@ -197,10 +195,10 @@ function main(config) {
             //...阿里DNS.map(d => `${d}#disable-ipv6=true`),
         ],
         "direct-nameserver": 国内DNS,
-        "direct-nameserver-follow-policy": false,
+        "direct-nameserver-follow-policy": true,
         "nameserver-policy": {
             "RULE-SET,private,googlefcm": 国内DNS,
-            //"RULE-SET,cn": 国内DNS,
+            "RULE-SET,cn": 国内DNS,
             "RULE-SET,geolocation-cn": 国内DNS,
             //"RULE-SET,gfw": 国外DNS,
             //"RULE-SET,geolocation-!cn": 国外DNS,
@@ -382,7 +380,7 @@ function main(config) {
         // ▸ 兜底规则组
         "gfw":                  { group:"🪜 代理域名", target:"🪜 代理域名", ...domain_mrs, url:`${geosite_url}/gfw.mrs` },
         "geolocation-!cn":      { group:"🪜 代理域名", target:"🪜 代理域名", ...domain_mrs, url:`${geosite_url}/geolocation-!cn.mrs` },
-        //"cn":                   { group:"⬆️ 直连域名", target:"⬆️ 直连域名", ...domain_mrs, url:"https://raw.githubusercontent.com/wwqgtxx/clash-rules/refs/heads/release/direct.mrs" },
+        "cn":                   { group:"⬆️ 直连域名", target:"⬆️ 直连域名", ...domain_mrs, url:"https://raw.githubusercontent.com/wwqgtxx/clash-rules/refs/heads/release/direct.mrs" },
         "geolocation-cn":       { group:"⬆️ 直连域名", target:"⬆️ 直连域名", ...domain_mrs, url:`${geosite_url}/geolocation-cn.mrs` },
         "cn-ip":                { target:"⬆️ 直连IP", ...ipcidr_mrs,     url:`${geoip_url}/cn.mrs`, noResolve:false },
         // ▸ 仅引用部分
