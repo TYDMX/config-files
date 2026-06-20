@@ -380,7 +380,7 @@ function main(config) {
         "geolocation-!cn":      { group:"🪜 代理域名", target:"🪜 代理域名", ...domain_mrs, url:`${geosite_url}/geolocation-!cn.mrs` },
         //"cn":                   { group:"⬆️ 直连域名", target:"⬆️ 直连域名", ...domain_mrs, url:"https://raw.githubusercontent.com/wwqgtxx/clash-rules/refs/heads/release/direct.mrs" },
         "geolocation-cn":       { group:"⬆️ 直连域名", target:"⬆️ 直连域名", ...domain_mrs, url:`${geosite_url}/geolocation-cn.mrs` },
-        "cn-ip":                { target:"⬆️ 直连IP", ...,     url:`${geoip_url}/cn.mrs`, noResolve:false },
+        "cn-ip":                { target:"⬆️ 直连IP", ...ipcidr_mrs,     url:`${geoip_url}/cn.mrs`, noResolve:false },
         // ▸ 仅引用部分
         "connectivity-check":   { ...domain_mrs, url:`${geosite_url}/connectivity-check.mrs` },
         "category-ntp":         { ...domain_mrs, url:`${geosite_url}/category-ntp.mrs` },
