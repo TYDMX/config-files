@@ -134,8 +134,8 @@ function main(config) {
     const 阿里IP = ["223.5.5.5", "223.6.6.6"];
     const 阿里DOH = ["https://dns.alidns.com/dns-query"];
     const 阿里DOQ = ["quic://dns.alidns.com"];
-    const 阿里自建 = ["https://819431-jchlcf2024.alidns.com/dns-query#🇨🇳 直连", 
-                        "quic://819431-jchlcf2024.alidns.com#🇨🇳 直连"];
+    const 阿里自建 = ["https://819431-jchlcf2024.alidns.com/dns-query", 
+                        "quic://819431-jchlcf2024.alidns.com"];
     const 阿里DNS = ["https://223.5.5.5/dns-query", 
                        "quic://223.5.5.5",];
     const 腾讯IP = ["119.29.29.29", "120.53.53.90"];
@@ -160,8 +160,8 @@ function main(config) {
         "services.googleapis.cn": "services.googleapis.com",
         "google.cn": "google.com",
         "cn.bing.com": "global.bing.com",
-        "+.mcdn.bilivideo.com": ["0.0.0.0"],
-        "+.mcdn.bilivideo.cn": ["0.0.0.0"],
+        //"+.mcdn.bilivideo.com": ["0.0.0.0"],
+        //"+.mcdn.bilivideo.cn": ["0.0.0.0"],
     };
     // --- ② DNS 模式配置 ----------
     config["dns"] = {
@@ -170,7 +170,7 @@ function main(config) {
         "use-system-hosts": true,
         "ipv6": true,
         "prefer-h3": true,
-        "respect-rules": true,
+        "respect-rules": false,
         "cache-algorithm": "arc",
         "listen": "127.0.0.1:1053",
         "enhanced-mode": "fake-ip",
@@ -195,12 +195,12 @@ function main(config) {
             //...阿里DNS.map(d => `${d}#disable-ipv6=true`),
         ],
         "direct-nameserver": 国内DNS,
-        "direct-nameserver-follow-policy": true,
+        "direct-nameserver-follow-policy": false,
         "nameserver-policy": {
             "RULE-SET,private,googlefcm": 国内DNS,
             //"RULE-SET,cn": 国内DNS,
             //"RULE-SET,geolocation-cn": 国内DNS,
-            "RULE-SET,gfw,geolocation-!cn": 国外DNS,
+            //"RULE-SET,gfw,geolocation-!cn": 国外DNS,
         },
         "nameserver": 国外DNS
     };
