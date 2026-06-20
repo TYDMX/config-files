@@ -132,14 +132,20 @@ function main(config) {
     const 阿里IP = ["223.5.5.5", "223.6.6.6"];
     const 阿里DOH = ["https://dns.alidns.com/dns-query"];
     const 阿里DOQ = ["quic://dns.alidns.com"];
-    const 阿里自建 = ["https://819431-jchlcf2024.alidns.com/dns-query", 
-                        "quic://819431-jchlcf2024.alidns.com"];
-    const 阿里DNS = ["https://223.5.5.5/dns-query", 
-                       //"quic://223.5.5.5",];
+    const 阿里自建 = [
+        "https://819431-jchlcf2024.alidns.com/dns-query", 
+        //"quic://819431-jchlcf2024.alidns.com",
+    ];
+    const 阿里DNS = [
+        "https://223.5.5.5/dns-query", 
+        //"quic://223.5.5.5",
+    ];
     const 腾讯IP = ["119.29.29.29", "120.53.53.90"];
     const 腾讯DOH = ["https://doh.pub/dns-query"];
-    const AdGuardDNS = ["https://dns.adguard-dns.com/dns-query", 
-                        "quic://dns.adguard-dns.com"];
+    const AdGuardDNS = [
+        "https://dns.adguard-dns.com/dns-query", 
+        //"quic://dns.adguard-dns.com",
+    ];
     const 国外DNS = [
         ...CloudflareDOH,
         ...GoogleDOH,
@@ -151,8 +157,8 @@ function main(config) {
     config["hosts"] = {
         //"dns.google": ["8.8.8.8", "8.8.4.4"],
         //"cloudflare-dns.com": ["1.1.1.1", "1.0.0.1"],
-        //"dns.alidns.com": 阿里IP,
-        //"819431-jchlcf2024.alidns.com": 阿里IP,
+        //"dns.alidns.com": ["223.5.5.5", "223.6.6.6"],
+        //"819431-jchlcf2024.alidns.com": ["223.5.5.5", "223.6.6.6"],
         //"doh.pub": ["1.12.12.12", "120.53.53.53"],
         //"dot.pub": ["1.12.12.12", "120.53.53.53"],
         "services.googleapis.cn": "services.googleapis.com",
@@ -191,8 +197,7 @@ function main(config) {
         "default-nameserver": 阿里DNS,
         "proxy-server-nameserver": [
             //...国内DNS,
-            ...阿里DNS,
-            //...阿里DNS.map(d => `${d}#disable-ipv6=true`),
+            ...阿里DNS.map(d => `${d}#disable-ipv6=false`),
         ],
         "direct-nameserver": 国内DNS,
         "direct-nameserver-follow-policy": true,
@@ -317,7 +322,7 @@ function main(config) {
     const domain_mrs = { type: "http", interval: 86400, behavior: "domain", format: "mrs" };
     const ipcidr_mrs = { type: "http", interval: 86400, behavior: "ipcidr", format: "mrs" };
     const domain_text = { type: "http", interval: 86400, behavior: "domain", format: "text" };
-    const TYDMX_url = "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main";
+    const Ty_url = "https://raw.githubusercontent.com/TYDMX/config-files/refs/heads/main";
     const geosite_url = "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite";
     const geoip_url = "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geoip";
     // --- ② 外部规则拉取 ---
@@ -330,10 +335,10 @@ function main(config) {
         "public-tracker":       { group:"追踪拦截", target:"🚫 追踪拦截", ...domain_mrs,  url:`${geosite_url}/category-public-tracker.mrs` },
         "adblockmihomolite":    { group:"广告拦截", target:"🚫 广告拦截", ...domain_mrs,     url:"https://raw.githubusercontent.com/217heidai/adblockfilters/refs/heads/main/rules/adblockmihomolite.mrs" },
         "ad-ip":                { group:"广告拦截", target:"🚫 广告拦截", ...ipcidr_mrs,     url:`${geoip_url}/ad.mrs`, noResolve:true },
-        "自用代理规则":          { target:"🌐 自用代理", ...classical_yaml, url:`${TYDMX_url}/Rule/自用代理.yaml` },
-        "自用直连规则":          { target:"⬆️ 自用直连", ...classical_yaml, url:`${TYDMX_url}/Rule/自用直连.yaml` },
-        "自用代理软件":          { target:"🖥️ 代理软件", ...classical_yaml, url:`${TYDMX_url}/Rule/代理软件.yaml` },
-        "自用直连软件":          { target:"🖥️ 直连软件", ...classical_yaml, url:`${TYDMX_url}/Rule/直连软件.yaml` },
+        "自用代理规则":          { target:"🌐 自用代理", ...classical_yaml, url:`${Ty_url}/Rule/自用代理.yaml` },
+        "自用直连规则":          { target:"⬆️ 自用直连", ...classical_yaml, url:`${Ty_url}/Rule/自用直连.yaml` },
+        "自用代理软件":          { target:"🖥️ 代理软件", ...classical_yaml, url:`${Ty_url}/Rule/代理软件.yaml` },
+        "自用直连软件":          { target:"🖥️ 直连软件", ...classical_yaml, url:`${Ty_url}/Rule/直连软件.yaml` },
         // ▸ 直连规则组
         "games-cn":             { group:"🎮 game@CN", target:"🎮 game@CN", ...domain_mrs,    url:`${geosite_url}/category-games-cn.mrs` },
         "steam@cn":             { group:"🎮 game@CN", target:"🎮 game@CN", ...domain_mrs,    url:`${geosite_url}/steam@cn.mrs` },
