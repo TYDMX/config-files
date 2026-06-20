@@ -186,6 +186,8 @@ function main(config) {
             "RULE-SET,googlefcm,real-ip",
             //"RULE-SET,cn,real-ip",
             //"RULE-SET,geolocation-cn,real-ip",
+            //"RULE-SET,gfw,fake-ip",
+            //"RULE-SET,geolocation-!cn,fake-ip",
             "MATCH,fake-ip"
         ],
         "default-nameserver": 阿里DNS,
@@ -198,8 +200,10 @@ function main(config) {
         "direct-nameserver-follow-policy": false,
         "nameserver-policy": {
             "RULE-SET,private,googlefcm": 国内DNS,
-            "RULE-SET,cn": 国内DNS,
+            //"RULE-SET,cn": 国内DNS,
             "RULE-SET,geolocation-cn": 国内DNS,
+            //"RULE-SET,gfw": 国外DNS,
+            //"RULE-SET,geolocation-!cn": 国外DNS,
         },
         "nameserver": 国外DNS,
         "fallback": 国外DNS,
