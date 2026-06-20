@@ -17,7 +17,7 @@ payload:
   - DOMAIN-KEYWORD,ctp.cloudflare.com
 
   # ═══ 战雷 ═══
-  # - DOMAIN-WILDCARD,char*.warthunder.com  # 角色
+  #- DOMAIN-WILDCARD,char*.warthunder.com  # 角色
   - DOMAIN-WILDCARD,chat*.warthunder.com  # 聊天
   - DOMAIN-WILDCARD,forum*.warthunder.com  # 论坛
   - DOMAIN-SUFFIX,trade.gaijin.net  # 交易所
@@ -59,9 +59,9 @@ payload:
   #- DOMAIN-SUFFIX,mobile.events.data.microsoft.com
 
   # ── onedrive ──
-  # - DOMAIN-WILDCARD,*.files.1drv.com  # vizyng,public
+  #- DOMAIN-WILDCARD,*.files.1drv.com  # vizyng,public
   - DOMAIN-WILDCARD,*.microsoftpersonalcontent.com  # my.上传-下载
-  #DOMAIN-SUFFIX,-mediap.svc.ms  # 观看域名
+  #- DOMAIN-SUFFIX,-mediap.svc.ms  # 观看域名
 
   # ═══ twitch ═══
   #video-weaver  # 广告流
@@ -70,10 +70,10 @@ payload:
   #hls.ttvnw.net
 
   # ═══ 推特 ═══
-  # - DOMAIN-WILDCARD,abs*.twimg.com
-  # - DOMAIN-WILDCARD,abs-*.twimg.com
-  # - DOMAIN-WILDCARD,pbs*.twimg.com
-  # - DOMAIN-WILDCARD,video*.twimg.com
+  #- DOMAIN-WILDCARD,abs*.twimg.com
+  #- DOMAIN-WILDCARD,abs-*.twimg.com
+  #- DOMAIN-WILDCARD,pbs*.twimg.com
+  #- DOMAIN-WILDCARD,video*.twimg.com
   #- DOMAIN-WILDCARD,ton.twimg.com
 
   # ═══ vk ═══

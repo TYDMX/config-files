@@ -6,8 +6,8 @@ payload:
   - PROCESS-NAME,com.bytedance.android.doubaoime
   - PROCESS-NAME,com.huanchengfly.tieba.post # sofire.baidu.com 签到
   # ── 三星推送软件 ──
-  #PROCESS-NAME,com.sec.factory.camera
+  #- PROCESS-NAME,com.sec.factory.camera
   #- PROCESS-NAME,com.sec.spp.push
   #- PROCESS-NAME,com.samsung.android.pushservice
   #- DOMAIN-KEYWORD,ss.getui.com
-  #PROCESS-NAME,com.samsung.android.app.spage
+  #- PROCESS-NAME,com.samsung.android.app.spage

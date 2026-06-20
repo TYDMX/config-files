@@ -6,16 +6,16 @@ payload:
 
   # ═══ 软件应用 ═══
   #- PROCESS-NAME,dk.tacit.android.foldersync.lite  # flodersync
-  #PROCESS-NAME,svchost.exe  # svchost
-  #PROCESS-NAME,com.samsung.android.packageinstaller  # 三星软件安装
+  #- PROCESS-NAME,svchost.exe  # svchost
+  #- PROCESS-NAME,com.samsung.android.packageinstaller  # 三星软件安装
 
   # ── 谷歌全家桶 ──
-  #PROCESS-NAME,com.google.android.apps.bard  # Google app
-  #PROCESS-NAME,com.google.android.googlequicksearchbox  # 圈搜
-  #PROCESS-NAME,com.google.bard  # Gemini
-  #PROCESS-NAME,com.android.vending  # play商店
+  #- PROCESS-NAME,com.google.android.apps.bard  # Google app
+  #- PROCESS-NAME,com.google.android.googlequicksearchbox  # 圈搜
+  #- PROCESS-NAME,com.google.bard  # Gemini
+  #- PROCESS-NAME,com.android.vending  # play商店
 
   # ═══ 游戏 ═══
   - PROCESS-NAME,aces.exe
-  #PROCESS-NAME,com.supercell.moco
-  #PROCESS-NAME,com.blizzard.arc
+  #- PROCESS-NAME,com.supercell.moco
+  #- PROCESS-NAME,com.blizzard.arc
