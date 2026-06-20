@@ -27,7 +27,7 @@ payload:
   - PROCESS-NAME,PhoneExperienceHost.exe
   - PROCESS-NAME,CrossDeviceService.exe
   - PROCESS-NAME,com.microsoft.appmanager
-  - PROCESS-NAME,samsung.android.mdx
+  - PROCESS-NAME,com.samsung.android.mdx
 
   # ── OneDrive客户端 ──
   #- PROCESS-NAME,OneDrive.exe
