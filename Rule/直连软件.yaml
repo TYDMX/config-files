@@ -40,7 +40,7 @@ payload:
   #- PROCESS-NAME,com.sec.android.daemonapp  # 天气
 
   # ═══ 设备 ═══
-  #- PROCESS-NAME,AdGuardHome.exe
+  - PROCESS-NAME,AdGuardHome.exe
   - PROCESS-NAME,com.tplink.ipc
   - PROCESS-NAME,com.xiaomi.smarthome
   - PROCESS-NAME,nvcontainer.exe
