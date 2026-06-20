@@ -198,11 +198,15 @@ function main(config) {
         "direct-nameserver-follow-policy": false,
         "nameserver-policy": {
             "RULE-SET,private,googlefcm": 国内DNS,
-            //"RULE-SET,cn": 国内DNS,
-            //"RULE-SET,geolocation-cn": 国内DNS,
-            //"RULE-SET,gfw,geolocation-!cn": 国外DNS,
+            "RULE-SET,cn": 国内DNS,
+            "RULE-SET,geolocation-cn": 国内DNS,
         },
-        "nameserver": 国外DNS
+        "nameserver": 国外DNS,
+        "fallback": 国外DNS,
+        "fallback-filter": {
+            "geoip": true,
+            "geoip-code": "CN",
+        },
     };
 
     // ═══════════════════════════════════
