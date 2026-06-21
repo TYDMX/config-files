@@ -132,20 +132,11 @@ function main(config) {
     const 阿里IP = ["223.5.5.5", "223.6.6.6"];
     const 阿里DOH = ["https://dns.alidns.com/dns-query"];
     const 阿里DOQ = ["quic://dns.alidns.com"];
-    const 阿里自建 = [
-        "https://819431-jchlcf2024.alidns.com/dns-query", 
-        //"quic://819431-jchlcf2024.alidns.com",
-    ];
-    const 阿里DNS = [
-        "https://223.5.5.5/dns-query", 
-        //"quic://223.5.5.5",
-    ];
+    const 阿里自建 = ["https://819431-jchlcf2024.alidns.com/dns-query"];
+    const 阿里DNS = ["https://223.5.5.5/dns-query"];
     const 腾讯IP = ["119.29.29.29", "120.53.53.90"];
     const 腾讯DOH = ["https://doh.pub/dns-query"];
-    const AdGuardDNS = [
-        "https://dns.adguard-dns.com/dns-query", 
-        //"quic://dns.adguard-dns.com",
-    ];
+    const AdGuardDNS = ["https://dns.adguard-dns.com/dns-query"];
     const 国外DNS = [
         ...CloudflareDOH,
         ...GoogleDOH,
@@ -158,14 +149,11 @@ function main(config) {
         //"dns.google": ["8.8.8.8", "8.8.4.4"],
         //"cloudflare-dns.com": ["1.1.1.1", "1.0.0.1"],
         //"dns.alidns.com": ["223.5.5.5", "223.6.6.6"],
-        //"819431-jchlcf2024.alidns.com": ["223.5.5.5", "223.6.6.6"],
         //"doh.pub": ["1.12.12.12", "120.53.53.53"],
         //"dot.pub": ["1.12.12.12", "120.53.53.53"],
         "services.googleapis.cn": "services.googleapis.com",
         "google.cn": "google.com",
         "cn.bing.com": "global.bing.com",
-        //"+.mcdn.bilivideo.com": ["0.0.0.0"],
-        //"+.mcdn.bilivideo.cn": ["0.0.0.0"],
     };
     // --- ② DNS 模式配置 ----------
     config["dns"] = {
@@ -188,10 +176,10 @@ function main(config) {
             "RULE-SET,category-ntp,real-ip",
             "RULE-SET,fakeip_filter,real-ip",
             "RULE-SET,googlefcm,real-ip",
-            //"RULE-SET,cn,real-ip",
-            //"RULE-SET,geolocation-cn,real-ip",
             //"RULE-SET,gfw,fake-ip",
+            //"RULE-SET,geolocation-cn,real-ip",
             //"RULE-SET,geolocation-!cn,fake-ip",
+            //"RULE-SET,cn,real-ip",
             "MATCH,fake-ip"
         ],
         "default-nameserver": 阿里DNS,
@@ -203,17 +191,17 @@ function main(config) {
         "direct-nameserver-follow-policy": true,
         "nameserver-policy": {
             "RULE-SET,private,googlefcm": 国内DNS,
-            "RULE-SET,cn": 国内DNS,
-            "RULE-SET,geolocation-cn": 国内DNS,
-            //"RULE-SET,gfw": 国外DNS,
+            "RULE-SET,gfw": 国外DNS,
             //"RULE-SET,geolocation-!cn": 国外DNS,
+            "RULE-SET,geolocation-cn": 国内DNS,
+            "RULE-SET,cn": 国内DNS,
         },
         "nameserver": 国外DNS,
-        "fallback": 国外DNS,
-        "fallback-filter": {
-            "geoip": true,
-            "geoip-code": "CN",
-        },
+        //"fallback": 国外DNS,
+        //"fallback-filter": {
+            //"geoip": true,
+            //"geoip-code": "CN",
+        //},
     };
 
     // ═══════════════════════════════════
