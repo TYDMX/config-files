@@ -132,7 +132,7 @@ function main(config) {
     const 阿里IP = ["223.5.5.5", "223.6.6.6"];
     const 阿里DOH = ["https://dns.alidns.com/dns-query"];
     const 阿里DOQ = ["quic://dns.alidns.com"];
-    const 阿里自建 = ["https://819431-jchlcf2024.alidns.com/dns-query"];
+    const 阿里自建 = ["https://819431-jchlcf2024.alidns.com/dns-query#h3=true"];
     const 阿里DNS = ["https://223.5.5.5/dns-query"];
     const 腾讯IP = ["119.29.29.29", "120.53.53.90"];
     const 腾讯DOH = ["https://doh.pub/dns-query"];
@@ -160,8 +160,8 @@ function main(config) {
         "enable": true,
         "use-hosts": true,
         "use-system-hosts": true,
-        "ipv6": true,
-        "prefer-h3": true,
+        "ipv6": false,
+        "prefer-h3": false,
         "respect-rules": false,
         "cache-algorithm": "arc",
         "listen": "127.0.0.1:1053",
