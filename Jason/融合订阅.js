@@ -177,9 +177,9 @@ function main(config) {
             "RULE-SET,fakeip_filter,real-ip",
             "RULE-SET,googlefcm,real-ip",
             //"RULE-SET,gfw,fake-ip",
+            //"RULE-SET,cn,real-ip",
             //"RULE-SET,geolocation-cn,real-ip",
             //"RULE-SET,geolocation-!cn,fake-ip",
-            //"RULE-SET,cn,real-ip",
             "MATCH,fake-ip"
         ],
         "default-nameserver": 阿里DNS,
