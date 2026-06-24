@@ -226,13 +226,6 @@ function main(config) {
     const 欧盟筛选 = 内部节点.filter(n => new RegExp(欧盟正则, "i").test(n));
     const 冷门_List = 内部节点.filter(n => !new RegExp(`${汇总正则}|${节点黑名单}`, "i").test(n));
     const 全部_List = 内部节点.filter(n => !new RegExp(节点黑名单, "i").test(n));
-    const 香港_List = 香港筛选.length > 0 ? 香港筛选 : ["🈚️ 假节点"];
-    const 狮城_List = 狮城筛选.length > 0 ? 狮城筛选 : ["🈚️ 假节点"];
-    const 美国_List = 美国筛选.length > 0 ? 美国筛选 : ["🈚️ 假节点"];
-    const 日本_List = 日本筛选.length > 0 ? 日本筛选 : ["🈚️ 假节点"];
-    const 台湾_List = 台湾筛选.length > 0 ? 台湾筛选 : ["🈚️ 假节点"];
-    const 韩国_List = 韩国筛选.length > 0 ? 韩国筛选 : ["🈚️ 假节点"];
-    const 欧盟_List = 欧盟筛选.length > 0 ? 欧盟筛选 : ["🈚️ 假节点"];
 
     // ═══════════════════════════════════
     //   五、策略组体系
@@ -293,13 +286,13 @@ function main(config) {
         { name: "🌐 全部节点", type: "select", use: 外部订阅, proxies: ["🈚️ 假节点", ...全部_List], icon: 图标库 + "Clubhouse.png" },
         { name: "🐟 漏网之鱼", type: "select", proxies: ["🚀 节点选择", "🖥️ 服务节点", "🇨🇳 直连"], icon: 图标库 + "Final.png" },
         // ▸ 生成地区组 ----------
-        ...创建地区分组("🇭🇰 香港", "Hong_Kong.png", 香港_List, 香港筛选, `${香港正则}`, `${"💧"}`, `${"(?!.*(家|住|直))"}`),
-        ...创建地区分组("🇸🇬 狮城", "Singapore.png", 狮城_List, 狮城筛选, `${狮城正则}`, `${"💧"}`, `${"(?!.*(家|住|直))"}`),
-        ...创建地区分组("🇺🇸 美国", "United_States.png", 美国_List, 美国筛选, `${美国正则}`, `${"💧"}`, `${"(?!.*(家|住|直))"}`),
-        ...创建地区分组("🇯🇵 日本", "Japan.png", 日本_List, 日本筛选, `${日本正则}`, `${"💧"}`, `${"(?!.*(家|住|直))"}`),
-        ...创建地区分组("🇹🇼 台湾", "Taiwan.png", 台湾_List, 台湾筛选, `${台湾正则}`, `${"💧"}`, `${"(?!.*(家|住|直))"}`),
-        ...创建地区分组("🇰🇷 韩国", "Korea.png", 韩国_List, 韩国筛选, `${韩国正则}`, `${"💧"}`, `${"(?!.*(家|住|直))"}`),
-        ...创建地区分组("🇪🇺 欧盟", "European_Union.png", 欧盟_List, 欧盟筛选, `${欧盟正则}`, `${"💧"}`, `${"(?!.*(家|住|直))"}`),
+        ...创建地区分组("🇭🇰 香港", "Hong_Kong.png", 香港筛选, `${香港正则}`, `${"💧"}`, `${"(?!.*(家|住|直))"}`),
+        ...创建地区分组("🇸🇬 狮城", "Singapore.png", 狮城筛选, `${狮城正则}`, `${"💧"}`, `${"(?!.*(家|住|直))"}`),
+        ...创建地区分组("🇺🇸 美国", "United_States.png", 美国筛选, `${美国正则}`, `${"💧"}`, `${"(?!.*(家|住|直))"}`),
+        ...创建地区分组("🇯🇵 日本", "Japan.png", 日本筛选, `${日本正则}`, `${"💧"}`, `${"(?!.*(家|住|直))"}`),
+        ...创建地区分组("🇹🇼 台湾", "Taiwan.png", 台湾筛选, `${台湾正则}`, `${"💧"}`, `${"(?!.*(家|住|直))"}`),
+        ...创建地区分组("🇰🇷 韩国", "Korea.png", 韩国筛选, `${韩国正则}`, `${"💧"}`, `${"(?!.*(家|住|直))"}`),
+        ...创建地区分组("🇪🇺 欧盟", "European_Union.png", 欧盟筛选, `${欧盟正则}`, `${"💧"}`, `${"(?!.*(家|住|直))"}`),
     ];
 
     // ═══════════════════════════════════
@@ -437,13 +430,19 @@ function main(config) {
     //   七、工具函数
     // ═══════════════════════════════════
     // --- ① 创建地区分组 ----------
-    function 创建地区分组(地区名, 地区图标, 内部地区_List, 内部地区节点池, 地区正则, 优选, 排除) {
+    function 创建地区分组(地区名, 地区图标, 内部地区节点池, 地区正则, 优选, 排除) {
+        // 从排除正则提取排除词，生成优选池
+        const 排除词匹配 = 排除.match(/\(\?!\.\*\((.+)\)\)/);
+        const 排除词 = 排除词匹配 ? 排除词匹配[1] : null;
+        const 内部优选节点池 = 排除词
+            ? 内部地区节点池.filter(n => !new RegExp(排除词, "i").test(n))
+            : 内部地区节点池;
         return [
-            { name: `${地区名}节点`, type: "select", use: 外部订阅, filter: `(?i)${地区正则}`, proxies: [`${地区名}优选`, `${地区名}自动`, `${地区名}散列`, `${地区名}轮询`, ...内部地区_List], icon: 图标库 + 地区图标 },
-            { name: `${地区名}优选`, type: "url-test", use: 外部订阅, filter: `(?i)(?=.*${地区正则})(?=.*${优选})${排除}`, proxies: 内部地区节点池, hidden: true, icon: 图标库 + 地区图标,"empty-fallback": "REJECT-DROP" },
+            { name: `${地区名}节点`, type: "select", use: 外部订阅, filter: `(?i)${地区正则}`, proxies: [`${地区名}优选`, `${地区名}自动`, `${地区名}散列`, `${地区名}轮询`, ...内部地区节点池], icon: 图标库 + 地区图标 },
+            { name: `${地区名}优选`, type: "url-test", use: 外部订阅, filter: `(?i)(?=.*${地区正则})(?=.*${优选})${排除}`, proxies: 内部优选节点池, hidden: true, icon: 图标库 + 地区图标,"empty-fallback": "REJECT-DROP" },
             { name: `${地区名}自动`, type: "url-test", use: 外部订阅, filter: `(?i)(?=.*${地区正则})`, proxies: 内部地区节点池, hidden: true, icon: 图标库 + 地区图标,"empty-fallback": "REJECT-DROP" },
-            { name: `${地区名}散列`, type: "load-balance", strategy: "consistent-hashing", use: 外部订阅, filter: `(?i)(?=.*${地区正则})(?=.*${优选})${排除}`, proxies: 内部地区节点池, hidden: true, icon: 图标库 + 地区图标,"empty-fallback": "REJECT-DROP" },
-            { name: `${地区名}轮询`, type: "load-balance", strategy: "round-robin", use: 外部订阅, filter: `(?i)(?=.*${地区正则})(?=.*${优选})${排除}`, proxies: 内部地区节点池, hidden: true, icon: 图标库 + 地区图标,"empty-fallback": "REJECT-DROP" }
+            { name: `${地区名}散列`, type: "load-balance", strategy: "consistent-hashing", use: 外部订阅, filter: `(?i)(?=.*${地区正则})(?=.*${优选})${排除}`, proxies: 内部优选节点池, hidden: true, icon: 图标库 + 地区图标,"empty-fallback": "REJECT-DROP" },
+            { name: `${地区名}轮询`, type: "load-balance", strategy: "round-robin", use: 外部订阅, filter: `(?i)(?=.*${地区正则})(?=.*${优选})${排除}`, proxies: 内部优选节点池, hidden: true, icon: 图标库 + 地区图标,"empty-fallback": "REJECT-DROP" }
         ];
     }
 
