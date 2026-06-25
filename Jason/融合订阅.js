@@ -9,11 +9,11 @@ function main(config) {
     // --- ① 合并外部订阅 ----------
     config["proxy-providers"] = {
         ...(config["proxy-providers"] || {}),
-        "节点池vless 🪩": { url: "https://proxypool.dmit.dpdns.org/clash/proxies?nstream=netflix,disney&type=vless",  interval: 3600 },
-        "节点池vmess 🪩": { url: "https://proxypool.dmit.dpdns.org/clash/proxies?nstream=netflix,disney&type=vmess",  interval: 3600 },
-        "节点池trojan 🪩": { url: "https://proxypool.dmit.dpdns.org/clash/proxies?nstream=netflix,disney&type=trojan",  interval: 3600 },
-        "节点池hysteria2 🪩": { url: "https://proxypool.dmit.dpdns.org/clash/proxies?nstream=netflix,disney&type=hysteria2",  interval: 3600 },
-        "节点池anytls 🪩": { url: "https://proxypool.dmit.dpdns.org/clash/proxies?nstream=netflix,disney&type=anytls",  interval: 3600 },
+        "节点池vless 🪩": { url: "https://proxypool.dmit.dpdns.org/clash/proxies?type=vless",  interval: 3600 },
+        "节点池vmess 🪩": { url: "https://proxypool.dmit.dpdns.org/clash/proxies?type=vmess",  interval: 3600 },
+        "节点池trojan 🪩": { url: "https://proxypool.dmit.dpdns.org/clash/proxies?type=trojan",  interval: 3600 },
+        "节点池hysteria2 🪩": { url: "https://proxypool.dmit.dpdns.org/clash/proxies?type=hysteria2",  interval: 3600 },
+        "节点池anytls 🪩": { url: "https://proxypool.dmit.dpdns.org/clash/proxies?type=anytls",  interval: 3600 },
     };
     const 外部订阅 = Object.keys(config["proxy-providers"] || {});
     const 节点黑名单 = "(阻止|China|🇨🇳|高倍|×10|10M|节点|过滤|剩余|流量|距离|下次|重置|重新|订阅|导入|套餐|到期|跳转|域名|请勿|邀请|好友|关注|频道|收费|就说明|被骗|续费|更新|地址|官网|下载|群组|永久|长期|中继|更换|协议|软件|教程|Lite|ali)";
@@ -129,14 +129,10 @@ function main(config) {
     // --- ① DNS 常量模板 ----------
     const GoogleDOH = ["https://dns.google/dns-query#🖥️ DNS解析"];
     const CloudflareDOH = ["https://cloudflare-dns.com/dns-query#🖥️ DNS解析"];
-    const 阿里IP = ["223.5.5.5", "223.6.6.6"];
     const 阿里DOH = ["https://dns.alidns.com/dns-query"];
     const 阿里DOQ = ["quic://dns.alidns.com"];
-    const 阿里自建 = ["quic://819431-jchlcf2024.alidns.com"];
-    const 阿里DNS = ["https://223.5.5.5/dns-query"];
-    const 腾讯IP = ["119.29.29.29", "120.53.53.90"];
+    const 阿里自建 = ["https://819431-jchlcf2024.alidns.com/dns-query"];
     const 腾讯DOH = ["https://doh.pub/dns-query"];
-    const AdGuardDNS = ["https://dns.adguard-dns.com/dns-query"];
     const 国外DNS = [
         ...CloudflareDOH,
         ...GoogleDOH,
@@ -146,11 +142,8 @@ function main(config) {
         ...阿里自建,
     ];
     config["hosts"] = {
-        //"dns.google": ["8.8.8.8", "8.8.4.4"],
-        //"cloudflare-dns.com": ["1.1.1.1", "1.0.0.1"],
-        //"dns.alidns.com": ["223.5.5.5", "223.6.6.6"],
-        //"doh.pub": ["1.12.12.12", "120.53.53.53"],
-        //"dot.pub": ["1.12.12.12", "120.53.53.53"],
+        "dns.google": ["8.8.8.8", "8.8.4.4"],
+        "cloudflare-dns.com": ["1.1.1.1", "1.0.0.1"],
         "services.googleapis.cn": "services.googleapis.com",
         "google.cn": "google.com",
         "cn.bing.com": "global.bing.com",
@@ -182,10 +175,9 @@ function main(config) {
             "RULE-SET,geolocation-!cn,fake-ip",
             "MATCH,fake-ip"
         ],
-        "default-nameserver": 阿里DNS,
         "proxy-server-nameserver": [
-            ...国内DNS,
-            //...阿里DNS.map(d => `${d}#disable-ipv6=true`),
+            ...阿里DOH.map(d => `${d}#disable-ipv6=true`),
+            ...腾讯DOH.map(d => `${d}#disable-ipv6=true`),
         ],
         "direct-nameserver": 国内DNS,
         "direct-nameserver-follow-policy": true,
@@ -197,11 +189,6 @@ function main(config) {
             "RULE-SET,geolocation-!cn": 国外DNS,
         },
         "nameserver": 国外DNS,
-        //"fallback": 国外DNS,
-        //"fallback-filter": {
-            //"geoip": true,
-            //"geoip-code": "CN",
-        //},
     };
 
     // ═══════════════════════════════════
