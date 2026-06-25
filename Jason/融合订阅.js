@@ -131,7 +131,7 @@ function main(config) {
     const CloudflareDOH = ["https://cloudflare-dns.com/dns-query#🖥️ DNS解析"];
     const 阿里DOH = ["https://dns.alidns.com/dns-query"];
     const 阿里DOQ = ["quic://dns.alidns.com"];
-    const 阿里自建 = ["https://819431-jchlcf2024.alidns.com/dns-query"];
+    const 阿里自建 = ["https://819431-jchlcf2024.alidns.com/dns-query", "quic://819431-jchlcf2024.alidns.com"];
     const 腾讯DOH = ["https://doh.pub/dns-query"];
     const 国外DNS = [
         ...CloudflareDOH,
