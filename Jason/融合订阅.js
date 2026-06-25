@@ -140,6 +140,7 @@ function main(config) {
     const 国内DNS = [
         //"system",
         ...阿里自建,
+        ...腾讯DOH,
     ];
     config["hosts"] = {
         "dns.google": ["8.8.8.8", "8.8.4.4"],
@@ -176,8 +177,8 @@ function main(config) {
             "MATCH,fake-ip"
         ],
         "proxy-server-nameserver": [
-            ...阿里DOH.map(d => `${d}#disable-ipv6=true`),
-            ...腾讯DOH.map(d => `${d}#disable-ipv6=true`),
+            ...阿里DOH.map(d => `${d}#disable-ipv6=false`),
+            ...腾讯DOH.map(d => `${d}#disable-ipv6=false`),
         ],
         "direct-nameserver": 国内DNS,
         "direct-nameserver-follow-policy": true,
