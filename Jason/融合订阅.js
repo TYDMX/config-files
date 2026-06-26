@@ -127,20 +127,19 @@ function main(config) {
     //   三、DNS 体系
     // ═══════════════════════════════════
     // --- ① DNS 常量模板 ----------
-    const GoogleDOH = ["https://dns.google/dns-query#🖥️ DNS解析"];
-    const CloudflareDOH = ["https://cloudflare-dns.com/dns-query#🖥️ DNS解析"];
-    const 阿里DOH = ["https://dns.alidns.com/dns-query"];
-    const 阿里DOQ = ["quic://dns.alidns.com"];
+    const GoogleDNS = ["https://dns.google/dns-query"];
+    const CloudflareDNS = ["https://cloudflare-dns.com/dns-query"];
+    const 阿里DNS = ["https://dns.alidns.com/dns-query", "tls://dns.alidns.com", "quic://dns.alidns.com"];
     const 阿里自建 = ["https://819431-jchlcf2024.alidns.com/dns-query", "quic://819431-jchlcf2024.alidns.com"];
-    const 腾讯DOH = ["https://doh.pub/dns-query"];
+    const 腾讯DNS = ["https://doh.pub/dns-query" ,"tls://dot.pub"];
     const 国外DNS = [
-        ...CloudflareDOH,
-        ...GoogleDOH,
+        ...CloudflareDNS.map(d => `${d}#🖥️ DNS解析`),
+        ...GoogleDNS.map(d => `${d}#🖥️ DNS解析`),
     ];
     const 国内DNS = [
         //"system",
         ...阿里自建,
-        ...腾讯DOH,
+        ...腾讯DNS,
     ];
     config["hosts"] = {
         "dns.google": ["8.8.8.8", "8.8.4.4"],
@@ -155,7 +154,7 @@ function main(config) {
         "use-hosts": true,
         "use-system-hosts": true,
         "ipv6": true,
-        "prefer-h3": false,
+        "prefer-h3": true,
         "respect-rules": false,
         "cache-algorithm": "arc",
         "listen": "127.0.0.1:1053",
@@ -177,8 +176,8 @@ function main(config) {
             "MATCH,fake-ip"
         ],
         "proxy-server-nameserver": [
-            ...阿里DOH.map(d => `${d}#disable-ipv6=false`),
-            ...腾讯DOH.map(d => `${d}#disable-ipv6=false`),
+            ...阿里DNS.map(d => `${d}#disable-ipv6=false`),
+            ...腾讯DNS.map(d => `${d}#disable-ipv6=false`),
         ],
         "direct-nameserver": 国内DNS,
         "direct-nameserver-follow-policy": true,
