@@ -129,9 +129,9 @@ function main(config) {
     // --- ① DNS 常量模板 ----------
     const GoogleDNS = ["https://dns.google/dns-query"];
     const CloudflareDNS = ["https://cloudflare-dns.com/dns-query"];
-    const 阿里DNS = ["https://dns.alidns.com/dns-query", "tls://dns.alidns.com", "quic://dns.alidns.com"];
-    const 阿里自建 = ["https://819431-jchlcf2024.alidns.com/dns-query", "quic://819431-jchlcf2024.alidns.com"];
-    const 腾讯DNS = ["https://doh.pub/dns-query" ,"tls://dot.pub"];
+    const 阿里DNS = ["https://dns.alidns.com/dns-query"];
+    const 阿里自建 = ["https://819431-jchlcf2024.alidns.com/dns-query"];
+    const 腾讯DNS = ["https://doh.pub/dns-query"];
     const 国外DNS = [
         ...CloudflareDNS.map(d => `${d}#🖥️ DNS解析`),
         ...GoogleDNS.map(d => `${d}#🖥️ DNS解析`),
@@ -177,7 +177,6 @@ function main(config) {
         ],
         "proxy-server-nameserver": [
             ...阿里DNS.map(d => `${d}#disable-ipv6=false`),
-            ...腾讯DNS.map(d => `${d}#disable-ipv6=false`),
         ],
         "direct-nameserver": 国内DNS,
         "direct-nameserver-follow-policy": true,
