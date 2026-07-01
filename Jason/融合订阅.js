@@ -190,7 +190,7 @@ function main(config) {
             "RULE-SET,geolocation-cn": 国内DNS,
             "RULE-SET,geolocation-!cn": 国外DNS,
         },
-        "nameserver": 国外DNS,
+        "nameserver": 国内DNS,
     };
 
     // ═══════════════════════════════════
