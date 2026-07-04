@@ -41,7 +41,7 @@ function main(config) {
                     "health-check": {
                         "enable": true,
                         "url": 测速链接,
-                        "interval": 测速间隔 * 1.735,
+                        "interval": 测速间隔 * 1.73,
                         "timeout": 测速超时,
                         "max-failed-times": 3,
                         "lazy": true,
@@ -429,7 +429,7 @@ function main(config) {
         return [
             { name: `${地区名}节点`, type: "select", use: 外部订阅, filter: `(?i)${地区正则}`, proxies: [`${地区名}优选`, `${地区名}自动`, `${地区名}散列`, `${地区名}轮询`, ...内部地区节点池], icon: 图标库 + 地区图标 },
             { name: `${地区名}优选`, type: "url-test", use: 外部订阅, filter: `(?i)(?=.*${地区正则})(?=.*${优选})${排除}`, proxies: 内部优选节点池, hidden: true, icon: 图标库 + 地区图标, "url": 测速链接, "interval": 测速间隔, "timeout": 测速超时, "tolerance": 测速容差, "lazy": true, "empty-fallback": "REJECT-DROP" },
-            { name: `${地区名}自动`, type: "url-test", use: 外部订阅, filter: `(?i)(?=.*${地区正则})`, proxies: 内部地区节点池, hidden: true, icon: 图标库 + 地区图标, "url": 测速链接, "interval": 测速间隔, "timeout": 测速超时, "tolerance": 测速容差 * 1.414, "lazy": true, "empty-fallback": "REJECT-DROP" },
+            { name: `${地区名}自动`, type: "url-test", use: 外部订阅, filter: `(?i)(?=.*${地区正则})`, proxies: 内部地区节点池, hidden: true, icon: 图标库 + 地区图标, "url": 测速链接, "interval": 测速间隔, "timeout": 测速超时, "tolerance": 测速容差 * 1.41, "lazy": true, "empty-fallback": "REJECT-DROP" },
             { name: `${地区名}散列`, type: "load-balance", strategy: "consistent-hashing", use: 外部订阅, filter: `(?i)(?=.*${地区正则})(?=.*${优选})${排除}`, proxies: 内部优选节点池, hidden: true, icon: 图标库 + 地区图标,"empty-fallback": "REJECT-DROP" },
             { name: `${地区名}轮询`, type: "load-balance", strategy: "round-robin", use: 外部订阅, filter: `(?i)(?=.*${地区正则})(?=.*${优选})${排除}`, proxies: 内部优选节点池, hidden: true, icon: 图标库 + 地区图标,"empty-fallback": "REJECT-DROP" }
         ];
