@@ -11,7 +11,7 @@ payload:
 
   # ═══ 战雷 ═══
   #- PROCESS-NAME,aces.exe
-  - PROCESS-NAME,launcher.exe
+  - PROCESS-NAME,launcher.exe # 启动器
   #- PROCESS-NAME,aces_BE.exe
   #- PROCESS-NAME,BEService.exe
 
@@ -34,20 +34,20 @@ payload:
   #- PROCESS-NAME,com.microsoft.skydrive
 
   # ═══ 三星 ═══
-  - PROCESS-NAME,com.samsung.android.sskds
+  #- PROCESS-NAME,com.samsung.android.sskds
   #- PROCESS-NAME,com.sec.android.app.samsungapps  # 商店
   #- PROCESS-NAME,com.samsung.android.app.reminder  # 提醒
   #- PROCESS-NAME,com.sec.android.daemonapp  # 天气
 
   # ═══ 设备 ═══
   #- PROCESS-NAME,AdGuardHome.exe
-  - PROCESS-NAME,com.tplink.ipc
-  - PROCESS-NAME,com.xiaomi.smarthome
-  - PROCESS-NAME,nvcontainer.exe
-  - PROCESS-NAME,GamingCenter3_Cross.exe
+  #- PROCESS-NAME,com.tplink.ipc
+  #- PROCESS-NAME,com.xiaomi.smarthome
+  #- PROCESS-NAME,nvcontainer.exe
+  #- PROCESS-NAME,GamingCenter3_Cross.exe
 
   # ═══ 视频软件 ═══
-  - PROCESS-NAME,DownloadSDKServer.exe  # 迅雷下载
+  #- PROCESS-NAME,DownloadSDKServer.exe  # 迅雷下载
   #- PROCESS-NAME,Thunder.exe  # 迅雷
   #- PROCESS-NAME,cbox.exe
   #- PROCESS-NAME,douyin.exe
