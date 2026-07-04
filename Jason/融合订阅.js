@@ -164,7 +164,7 @@ function main(config) {
         "enhanced-mode": "fake-ip",
         "fake-ip-range": "198.18.0.1/15",
         "fake-ip-range6": "fc00::/18",
-        "fake-ip-ttl": 86400,
+        "fake-ip-ttl": 1,
         "fake-ip-filter-mode": "rule",
         "fake-ip-filter": [
             "RULE-SET,private,real-ip",
@@ -190,7 +190,7 @@ function main(config) {
             "RULE-SET,geolocation-cn": 国内DNS,
             "RULE-SET,geolocation-!cn": 国外DNS,
         },
-        "nameserver": 国内DNS,
+        "nameserver": 国外DNS,
     };
 
     // ═══════════════════════════════════
