@@ -245,7 +245,7 @@ function main(config) {
         { name: "🤖 人工智能", type: "select", proxies: ["🖥️ 服务节点", "🚀 节点选择", ...自选节点池, "🇨🇳 直连"], icon: 图标库 + "ChatGPT.png" },
         { name: "🎮 game", type: "select", proxies: ["🖥️ 服务节点", "🚀 节点选择", ...自选节点池, "🇨🇳 直连"], icon: 图标库 + "Game.png" },
         { name: "🇬 谷歌", type: "select", proxies: ["🖥️ 服务节点", "🚀 节点选择", ...自选节点池, "🇨🇳 直连"], icon: 图标库 + "Google_Search.png" },
-        { name: "🪟 Microsoft", type: "select", proxies: ["🇨🇳 直连", "🖥️ 服务节点", "🚀 节点选择", ...自选节点池], icon: 图标库 + "Microsoft.png" },
+        { name: "🪟 Microsoft", type: "select", proxies: ["🖥️ 服务节点", "🇨🇳 直连", "🚀 节点选择", ...自选节点池], icon: 图标库 + "Microsoft.png" },
         { name: "📈 测速地址", type: "select", proxies: ["🇨🇳 直连", "🚀 节点选择", ...节点选择池], icon: 图标库 + "Speedtest.png" },
         // ▸ 固定分流组 ----------
         { name: "👨🏿‍💻 GitHub", type: "select", proxies: ["🖥️ 服务节点"], icon: 图标库 + "GitHub.png", hidden: true },
