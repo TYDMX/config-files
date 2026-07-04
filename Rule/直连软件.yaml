@@ -24,10 +24,10 @@ payload:
   #- PROCESS-NAME,svchost.exe
 
   # ── 连接至 windows ──
-  - PROCESS-NAME,PhoneExperienceHost.exe
-  - PROCESS-NAME,CrossDeviceService.exe
-  - PROCESS-NAME,com.microsoft.appmanager
-  - PROCESS-NAME,com.samsung.android.mdx
+  #- PROCESS-NAME,PhoneExperienceHost.exe
+  #- PROCESS-NAME,CrossDeviceService.exe
+  #- PROCESS-NAME,com.microsoft.appmanager
+  #- PROCESS-NAME,com.samsung.android.mdx
 
   # ── OneDrive客户端 ──
   #- PROCESS-NAME,OneDrive.exe
