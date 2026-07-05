@@ -241,7 +241,7 @@ function main(config) {
         { name: "📹 视频平台", type: "select", proxies: ["🚀 节点选择", "🖥️ 服务节点", ...自选节点池, "🇨🇳 直连"], icon: 图标库 + "Netflix_Letter.png" },
         { name: "📲 社交媒体", type: "select", proxies: ["🚀 节点选择", "🖥️ 服务节点", ...自选节点池, "🇨🇳 直连"], icon: 图标库 + "Twitter.png" },
         { name: "📲 电报飞机", type: "select", proxies: ["🚀 节点选择", "🖥️ 服务节点", ...自选节点池, "🇨🇳 直连"], icon: 图标库 + "Telegram_X.png" },
-        { name: "🎵 音乐服务", type: "select", proxies: ["🖥️ 服务节点", "🚀 节点选择", ...自选节点池, "🇨🇳 直连"], icon: 图标库 + "Music.png" },
+        { name: "🎵 音乐服务", type: "select", proxies: ["🖥️ 服务节点", "🚀 节点选择", ...自选节点池, "🇨🇳 直连"], icon: 图标库 + "Music_Enhance.png" },
         { name: "🤖 人工智能", type: "select", proxies: ["🖥️ 服务节点", "🚀 节点选择", ...自选节点池, "🇨🇳 直连"], icon: 图标库 + "ChatGPT.png" },
         { name: "🎮 game", type: "select", proxies: ["🖥️ 服务节点", "🚀 节点选择", ...自选节点池, "🇨🇳 直连"], icon: 图标库 + "Game.png" },
         { name: "🇬 谷歌", type: "select", proxies: ["🖥️ 服务节点", "🚀 节点选择", ...自选节点池, "🇨🇳 直连"], icon: 图标库 + "Google_Search.png" },
