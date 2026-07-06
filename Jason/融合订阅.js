@@ -318,7 +318,6 @@ function main(config) {
         "microsoft@cn":         { target:"🪟 Microsoft@CN", ...domain_mrs, url:`${geosite_url}/microsoft@cn.mrs`, "path-in-bundle":`${BundleMRS}/microsoft@cn.mrs` },
         "cloudflare@cn":        { group:"🖥️ 直连服务", target:"🖥️ 直连服务", ...domain_mrs, url:`${geosite_url}/cloudflare@cn.mrs`, "path-in-bundle":`${BundleMRS}/cloudflare@cn.mrs` },
         "cloudfront-ip":        { group:"🖥️ 直连服务", target:"🖥️ 直连服务", ...ipcidr_mrs, url:`${geoip_url}/cloudfront.mrs`, noResolve:true },
-        "category-ntp":         { group:"🖥️ 直连服务", target:"🖥️ 直连服务",...domain_mrs, url:`${geosite_url}/category-ntp.mrs`, "path-in-bundle":`${BundleMRS}/category-ntp.mrs` },
         "samsung":              { group:"🖥️ 直连服务", target:"🖥️ 直连服务", ...domain_mrs, url:`${geosite_url}/samsung.mrs`, "path-in-bundle":`${BundleMRS}/samsung.mrs` },
         // ▸ 代理规则组
         "games-!cn":            { target:"🎮 game", ...domain_mrs, url:`${geosite_url}/category-games-!cn.mrs`, "path-in-bundle":`${BundleMRS}/category-games-!cn.mrs` },
@@ -356,6 +355,7 @@ function main(config) {
                                   group:"🇬 谷歌", target:"🇬 谷歌", ...domain_mrs, url:`${geosite_url}/google.mrs`, "path-in-bundle":`${BundleMRS}/google.mrs` },
         "google-ip":            { group:"🇬 谷歌", target:"🇬 谷歌", ...ipcidr_mrs, url:`${geoip_url}/google.mrs`, noResolve:true },
         // ▸ 兜底规则组
+        "category-ntp":         { target:"🖥️ 直连服务",...domain_mrs, url:`${geosite_url}/category-ntp.mrs`, "path-in-bundle":`${BundleMRS}/category-ntp.mrs` },
         "gfw":                  { subRule:true, pre:[quicPre("")],
                                   group:"🪜 代理域名", target:"🪜 代理域名", ...domain_mrs, url:`${geosite_url}/gfw.mrs`, "path-in-bundle":`${BundleMRS}/gfw.mrs` },
         "geolocation-!cn":      { group:"🪜 代理域名", target:"🪜 代理域名", ...domain_mrs, url:`${geosite_url}/geolocation-!cn.mrs`, "path-in-bundle":`${BundleMRS}/geolocation-!cn.mrs` },
