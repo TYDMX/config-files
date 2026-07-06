@@ -21,7 +21,7 @@ payload:
 
   # ═══ 战雷 ═══
   #- DOMAIN-WILDCARD,char*.warthunder.com  # 角色
-  #- DOMAIN-WILDCARD,chat*.warthunder.com  # 聊天
+  - DOMAIN-WILDCARD,chat*.warthunder.com  # 聊天
   #- DOMAIN-WILDCARD,forum*.warthunder.com  # 论坛
   #- DOMAIN-SUFFIX,trade.gaijin.net  # 交易所
   #- DOMAIN-WILDCARD,match*.warthunder.com  # 自动匹配服务器
