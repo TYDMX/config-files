@@ -239,7 +239,7 @@ function main(config) {
         { name: "🇯🇵 日本故转", type: "fallback", proxies: 日本故转池, icon: 图标库 + "Japan.png", hidden: true },
         // ▸ 自选策略组 ----------
         { name: "📹 视频平台", type: "select", proxies: ["🚀 节点选择", "🖥️ 服务节点", ...自选节点池, "🇨🇳 直连"], icon: 图标库 + "Netflix_Letter.png" },
-        { name: "📲 社交媒体", type: "select", proxies: ["🚀 节点选择", "🖥️ 服务节点", ...自选节点池, "🇨🇳 直连"], icon: 图标库 + "Twitter.png" },
+        { name: "📲 社交媒体", type: "select", proxies: ["🚀 节点选择", "🖥️ 服务节点", ...自选节点池, "🇨🇳 直连"], icon: 图标库 + "TikTok.png" },
         { name: "📲 电报飞机", type: "select", proxies: ["🚀 节点选择", "🖥️ 服务节点", ...自选节点池, "🇨🇳 直连"], icon: 图标库 + "Telegram_X.png" },
         { name: "🎵 音乐服务", type: "select", proxies: ["🖥️ 服务节点", "🚀 节点选择", ...自选节点池, "🇨🇳 直连"], icon: 图标库 + "Music_Enhance.png" },
         { name: "🤖 人工智能", type: "select", proxies: ["🖥️ 服务节点", "🚀 节点选择", ...自选节点池, "🇨🇳 直连"], icon: 图标库 + "ChatGPT.png" },
