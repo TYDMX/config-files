@@ -263,7 +263,7 @@ function main(config) {
         { name: "🔒 私有网络", type: "select", proxies: ["🇨🇳 直连"], icon: 图标库 + "Lock.png", hidden: true },
         // ▸ 功能策略组 ----------
         { name: "🖥️ 直连软件", type: "select", proxies: ["🇨🇳 直连"], icon: 图标库 + "Server.png", hidden: true },
-        { name: "🖥️ 直连服务", type: "select", proxies: ["🇨🇳 直连"], icon: 图标库 + "Cloudflare.png", hidden: true },
+        { name: "🖥️ 直连服务", type: "select", proxies: ["🇨🇳 直连"], icon: 图标库 + "Server.png", hidden: true },
         { name: "🖥️ 代理软件", type: "select", proxies: ["🖥️ 服务节点"], icon: 图标库 + "Server.png", hidden: true },
         { name: "🖥️ 代理服务", type: "select", proxies: ["🖥️ 服务节点"], icon: 图标库 + "Cloudflare.png", hidden: true },
         { name: "🖥️ DNS解析", type: "select", proxies: ["🖥️ 服务节点"], icon: 图标库 + "Cloudflare.png", hidden: true },
@@ -317,8 +317,9 @@ function main(config) {
         "ookla-speedtest":      { target:"📈 测速地址", ...domain_mrs, url:`${geosite_url}/ookla-speedtest.mrs`, "path-in-bundle":`${BundleMRS}/ookla-speedtest.mrs` },
         "microsoft@cn":         { target:"🪟 Microsoft@CN", ...domain_mrs, url:`${geosite_url}/microsoft@cn.mrs`, "path-in-bundle":`${BundleMRS}/microsoft@cn.mrs` },
         "cloudflare@cn":        { group:"🖥️ 直连服务", target:"🖥️ 直连服务", ...domain_mrs, url:`${geosite_url}/cloudflare@cn.mrs`, "path-in-bundle":`${BundleMRS}/cloudflare@cn.mrs` },
-        "samsung":              { group:"🖥️ 直连服务", target:"🖥️ 直连服务", ...domain_mrs, url:`${geosite_url}/samsung.mrs`, "path-in-bundle":`${BundleMRS}/samsung.mrs` },
         "cloudfront-ip":        { group:"🖥️ 直连服务", target:"🖥️ 直连服务", ...ipcidr_mrs, url:`${geoip_url}/cloudfront.mrs`, noResolve:true },
+        "category-ntp":         { group:"🖥️ 直连服务", target:"🖥️ 直连服务",...domain_mrs, url:`${geosite_url}/category-ntp.mrs`, "path-in-bundle":`${BundleMRS}/category-ntp.mrs` },
+        "samsung":              { group:"🖥️ 直连服务", target:"🖥️ 直连服务", ...domain_mrs, url:`${geosite_url}/samsung.mrs`, "path-in-bundle":`${BundleMRS}/samsung.mrs` },
         // ▸ 代理规则组
         "games-!cn":            { target:"🎮 game", ...domain_mrs, url:`${geosite_url}/category-games-!cn.mrs`, "path-in-bundle":`${BundleMRS}/category-games-!cn.mrs` },
         "openai":               { subRule:true, pre:[quicPre("")],
@@ -363,7 +364,6 @@ function main(config) {
         "cn-ip":                { target:"⬆️ 直连IP", ...ipcidr_mrs, url:`${geoip_url}/cn.mrs`, noResolve:false },
         // ▸ 仅引用部分
         "connectivity-check":   { ...domain_mrs, url:`${geosite_url}/connectivity-check.mrs`, "path-in-bundle":`${BundleMRS}/connectivity-check.mrs` },
-        "category-ntp":         { ...domain_mrs, url:`${geosite_url}/category-ntp.mrs`, "path-in-bundle":`${BundleMRS}/category-ntp.mrs` },
         "fakeip_filter":        { ...domain_text, url:"https://raw.githubusercontent.com/juewuy/ShellCrash/refs/heads/dev/public/fake_ip_filter.list", "path-in-bundle":`${BundleMRS}/private.mrs` },
         "googlefcm":            { ...domain_mrs, url:`${geosite_url}/googlefcm.mrs`, "path-in-bundle":`${BundleMRS}/googlefcm.mrs` },
     };
