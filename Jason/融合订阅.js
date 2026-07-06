@@ -142,11 +142,8 @@ function main(config) {
     const 国内DNS = [
         //"system",
         ...阿里自建,
-        ...腾讯DNS,
     ];
     config["hosts"] = {
-        "dns.google": ["8.8.8.8", "8.8.4.4"],
-        "cloudflare-dns.com": ["1.1.1.1", "1.0.0.1"],
         "services.googleapis.cn": "services.googleapis.com",
         "google.cn": "google.com",
         "cn.bing.com": "global.bing.com",
@@ -179,6 +176,7 @@ function main(config) {
             "MATCH,fake-ip"
         ],
         "proxy-server-nameserver": [
+            //...国内DNS,
             ...阿里DNS.map(d => `${d}#disable-ipv6=false`),
         ],
         "direct-nameserver": 国内DNS,
