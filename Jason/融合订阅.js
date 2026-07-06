@@ -137,7 +137,7 @@ function main(config) {
     const 腾讯DNS = ["https://doh.pub/dns-query"];
     const 国外DNS = [
         ...CloudflareDNS.map(d => `${d}#🖥️ DNS解析`),
-        ...GoogleDNS.map(d => `${d}#🖥️ DNS解析`),
+        //...GoogleDNS.map(d => `${d}#🖥️ DNS解析`),
     ];
     const 国内DNS = [
         //"system",
