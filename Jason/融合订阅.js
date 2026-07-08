@@ -4,7 +4,7 @@ function main(config) {
     const 测速链接 = "https://cp.cloudflare.com/generate_204";
     const 测速间隔 = 300;
     const 测速超时 = 2000;
-    const 测速容差 = 50;
+    const 测速容差 = 1;
 
     // ═══════════════════════════════════
     //   一、数据准备层
@@ -227,25 +227,21 @@ function main(config) {
         { name: "🖥️ 服务节点", type: "select", proxies: [...自选节点池, "🇨🇳 直连"], icon: 图标库 + "ULB.png" },
         { name: "🚀 节点选择", type: "select", proxies: ["🖥️ 服务节点", "🇨🇳 直连", ...自选节点池], icon: 图标库 + "Static.png" },
         { name: "🇨🇳 直连", type: "select", proxies: ["🎯 全球直连"], "include-all-proxies": true, filter: '🇨🇳 直连', icon: 图标库 + "China.png" },
-        { name: "🇭🇰 香港故转", type: "fallback", proxies: 香港故转池, icon: 图标库 + "Hong_Kong.png", hidden: true },
-        { name: "🇸🇬 狮城故转", type: "fallback", proxies: 狮城故转池, icon: 图标库 + "Singapore.png", hidden: true },
-        { name: "🇺🇸 美国故转", type: "fallback", proxies: 美国故转池, icon: 图标库 + "United_States.png", hidden: true },
-        { name: "🇯🇵 日本故转", type: "fallback", proxies: 日本故转池, icon: 图标库 + "Japan.png", hidden: true },
         // ▸ 自选策略组 ----------
         { name: "📹 视频平台", type: "select", proxies: 策略组, "default-selected": "🚀 节点选择", icon: 图标库 + "Netflix_Letter.png" },
         { name: "📲 电报飞机", type: "select", proxies: 策略组, "default-selected": "🚀 节点选择", icon: 图标库 + "Telegram_X.png" },
         { name: "📲 社交媒体", type: "select", proxies: 策略组, "default-selected": "🇯🇵 日本故转", icon: 图标库 + "TikTok.png" },
         { name: "🎵 音乐服务", type: "select", proxies: 策略组, "default-selected": "🇯🇵 日本故转", icon: 图标库 + "Music_Enhance.png" },
         { name: "🤖 人工智能", type: "select", proxies: 策略组, "default-selected": "🇯🇵 日本故转", icon: 图标库 + "ChatGPT.png" },
-        { name: "🎮 game", type: "select", proxies: 策略组, "default-selected": "🖥️ 服务节点", icon: 图标库 + "Game.png" },
-        { name: "🇬 谷歌", type: "select", proxies: 策略组, "default-selected": "🖥️ 服务节点", icon: 图标库 + "Google_Search.png" },
-        { name: "🪟 Microsoft", type: "select", proxies: 策略组, "default-selected": "🖥️ 服务节点", icon: 图标库 + "Microsoft.png" },
+        { name: "🎮 game", type: "select", proxies: 策略组, icon: 图标库 + "Game.png" },
+        { name: "🇬 谷歌", type: "select", proxies: 策略组, icon: 图标库 + "Google_Search.png" },
+        { name: "🪟 Microsoft", type: "select", proxies: 策略组, icon: 图标库 + "Microsoft.png" },
         // ▸ 固定分流组 ----------
         { name: "👨🏿‍💻 GitHub", type: "select", proxies: ["🖥️ 服务节点", "🇨🇳 直连"], icon: 图标库 + "GitHub.png", hidden: false },
+        { name: "🇬 谷歌fcm", type: "select", proxies: ["🇨🇳 直连", "PASS-RULE"], icon: 图标库 + "PostBox.png", hidden: false },
         { name: "💶 PayPal", type: "select", proxies: ["🖥️ 服务节点"], icon: 图标库 + "PayPal.png", hidden: true },
         { name: "🎮 game@CN", type: "select", proxies: ["🇨🇳 直连"], icon: 图标库 + "Game.png", hidden: true },
         { name: "🪟 Bing", type: "select", proxies: ["🖥️ 服务节点"], icon: 图标库 + "Microsoft.png", hidden: true },
-        { name: "🇬 谷歌fcm", type: "select", proxies: ["🇨🇳 直连", "PASS-RULE"], icon: 图标库 + "PostBox.png", hidden: false },
         { name: "🪟 Microsoft@CN", type: "select", proxies: ["🇨🇳 直连"], icon: 图标库 + "Microsoft.png", hidden: true },
         // ▸ 代理策略组 ----------
         { name: "🪜 代理域名", type: "select", proxies: ["🚀 节点选择"], icon: 图标库 + "Proxy.png", hidden: true },
@@ -260,7 +256,7 @@ function main(config) {
         { name: "🖥️ 代理软件", type: "select", proxies: ["🖥️ 服务节点"], icon: 图标库 + "Server.png", hidden: true },
         { name: "🖥️ 代理服务", type: "select", proxies: ["🖥️ 服务节点"], icon: 图标库 + "Cloudflare.png", hidden: true },
         { name: "🖥️ DNS解析", type: "select", proxies: ["🖥️ 服务节点"], icon: 图标库 + "Cloudflare.png", hidden: true },
-        { name: "🖥️ UDP连接", type: "select", proxies: ["PASS-RULE", "🚫 阻止"], icon: 图标库 + "Server.png" },
+        { name: "🖥️ UDP连接", type: "select", proxies: ["PASS-RULE", "🚫 阻止"], icon: 图标库 + "Server.png", hidden: false },
         { name: "🚫 广告拦截", type: "select", proxies: ["PASS", "🚫 阻止"], icon: 图标库 + "Advertising.png", hidden: false },
         { name: "🚫 追踪拦截", type: "select", proxies: ["🚫 阻止"], icon: 图标库 + "AdBlack.png", hidden: true },
         // ▸ 其他策略组 ----------
@@ -269,6 +265,10 @@ function main(config) {
         { name: "🌐 全部节点", type: "select", use: 外部订阅, proxies: ["🈚️ 假节点", ...全部_List], icon: 图标库 + "World_Map.png" },
         { name: "🐟 漏网之鱼", type: "select", proxies: ["🚀 节点选择", "🖥️ 服务节点", "🇨🇳 直连"], icon: 图标库 + "Loop.png" },
         // ▸ 生成地区组 ----------
+        { name: "🇭🇰 香港故转", type: "fallback", proxies: 香港故转池, icon: 图标库 + "Hong_Kong.png", hidden: true },
+        { name: "🇸🇬 狮城故转", type: "fallback", proxies: 狮城故转池, icon: 图标库 + "Singapore.png", hidden: true },
+        { name: "🇺🇸 美国故转", type: "fallback", proxies: 美国故转池, icon: 图标库 + "United_States.png", hidden: true },
+        { name: "🇯🇵 日本故转", type: "fallback", proxies: 日本故转池, icon: 图标库 + "Japan.png", hidden: true },
         ...创建地区分组("🇭🇰 香港", "Hong_Kong.png", 香港_List, `${香港正则}`, `${优选正则}`, `${"(?!.*(家|住|直))"}`),
         ...创建地区分组("🇸🇬 狮城", "Singapore.png", 狮城_List, `${狮城正则}`, `${优选正则}`, `${"(?!.*(家|住|直))"}`),
         ...创建地区分组("🇺🇸 美国", "United_States.png", 美国_List, `${美国正则}`, `${优选正则}`, `${"(?!.*(家|住|直))"}`),
