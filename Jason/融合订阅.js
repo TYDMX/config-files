@@ -12,14 +12,10 @@ function main(config) {
     // --- ① 合并外部订阅 ----------
     config["proxy-providers"] = {
         ...(config["proxy-providers"] || {}),
-        "节点池vless 🪩": { url: "https://proxypool.dmit.dpdns.org/clash/proxies?type=vless", interval: 3600 },
-        "节点池vmess 🪩": { url: "https://proxypool.dmit.dpdns.org/clash/proxies?type=vmess", interval: 3600 },
-        "节点池trojan 🪩": { url: "https://proxypool.dmit.dpdns.org/clash/proxies?type=trojan", interval: 3600 },
-        "节点池hysteria2 🪩": { url: "https://proxypool.dmit.dpdns.org/clash/proxies?type=hysteria2", interval: 3600 },
-        "节点池anytls 🪩": { url: "https://proxypool.dmit.dpdns.org/clash/proxies?type=anytls", interval: 3600 },
+        "节点池vless 🪩": { url: "https://proxypool.dmit.dpdns.org/clash/proxies", interval: 3600 },
     };
     const 外部订阅 = Object.keys(config["proxy-providers"] || {});
-    const 节点黑名单 = "(阻止|China|🇨🇳|高倍|×10|10M|节点|过滤|剩余|流量|距离|下次|重置|重新|订阅|导入|套餐|到期|跳转|域名|请勿|邀请|好友|关注|频道|收费|就说明|被骗|续费|更新|地址|官网|下载|群组|永久|长期|中继|更换|协议|软件|教程|Lite|ali)";
+    const 节点黑名单 = "(阻止|China|🇨🇳|高倍|×10|10M|节点|过滤|剩余|流量|距离|下次|重置|重新|订阅|导入|套餐|到期|跳转|域名|请勿|邀请|好友|关注|频道|收费|就说明|被骗|续费|更新|地址|官网|下载|群组|永久|长期|中继|更换|协议|软件|教程|Lite|ali|null)";
     if (config["proxy-providers"]) {
         for (let 机场名 in config["proxy-providers"]) {
             let 原订阅 = config["proxy-providers"][机场名];
