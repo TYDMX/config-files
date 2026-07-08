@@ -137,7 +137,6 @@ function main(config) {
     const 腾讯DNS = ["https://doh.pub/dns-query"];
     const 国外DNS = [
         ...CloudflareDNS.map(d => `${d}#🖥️ DNS解析`),
-        //...GoogleDNS.map(d => `${d}#🖥️ DNS解析`),
     ];
     const 国内DNS = [
         //"system",
@@ -153,7 +152,7 @@ function main(config) {
         "enable": true,
         "use-hosts": true,
         "use-system-hosts": true,
-        "ipv6": true,
+        "ipv6": false,
         "prefer-h3": false,
         "respect-rules": false,
         "cache-algorithm": "arc",
@@ -176,8 +175,7 @@ function main(config) {
             "MATCH,fake-ip"
         ],
         "proxy-server-nameserver": [
-            //...国内DNS,
-            ...阿里DNS.map(d => `${d}#disable-ipv6=false`),
+            ...国内DNS,
         ],
         "direct-nameserver": 国内DNS,
         "direct-nameserver-follow-policy": true,
