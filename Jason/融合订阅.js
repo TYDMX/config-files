@@ -173,8 +173,8 @@ function main(config) {
         "proxy-server-nameserver": [
             ...国内DNS,
         ],
-        "direct-nameserver": 国内DNS,
-        "direct-nameserver-follow-policy": true,
+        //"direct-nameserver": 国内DNS,
+        //"direct-nameserver-follow-policy": true,
         "nameserver-policy": {
             "RULE-SET,private,googlefcm": 国内DNS,
             "RULE-SET,gfw": 国外DNS,
