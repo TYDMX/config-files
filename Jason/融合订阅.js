@@ -236,8 +236,8 @@ function main(config) {
         { name: "🎮 game", type: "select", proxies: 策略组, icon: 图标库 + "Game.png" },
         { name: "🇬 谷歌", type: "select", proxies: 策略组, icon: 图标库 + "Google_Search.png" },
         { name: "🪟 Microsoft", type: "select", proxies: 策略组, icon: 图标库 + "Microsoft.png" },
+        { name: "👨🏿‍💻 GitHub", type: "select", proxies: 策略组, icon: 图标库 + "GitHub.png", hidden: false },
         // ▸ 固定分流组 ----------
-        { name: "👨🏿‍💻 GitHub", type: "select", proxies: ["🖥️ 服务节点", "🇨🇳 直连"], icon: 图标库 + "GitHub.png", hidden: false },
         { name: "🇬 谷歌fcm", type: "select", proxies: ["🇨🇳 直连", "PASS-RULE"], icon: 图标库 + "PostBox.png", hidden: false },
         { name: "💶 PayPal", type: "select", proxies: ["🖥️ 服务节点"], icon: 图标库 + "PayPal.png", hidden: true },
         { name: "🎮 game@CN", type: "select", proxies: ["🇨🇳 直连"], icon: 图标库 + "Game.png", hidden: true },
