@@ -12,7 +12,7 @@ function main(config) {
     // --- ① 合并外部订阅 ----------
     config["proxy-providers"] = {
         ...(config["proxy-providers"] || {}),
-        "节点池 🪩": { url: "https://proxypool.dmit.dpdns.org/clash/proxies", interval: 3600 },
+        //"节点池 🪩": { url: "https://proxypool.dmit.dpdns.org/clash/proxies", interval: 3600 },
     };
     const 外部订阅 = Object.keys(config["proxy-providers"] || {});
     const 节点黑名单 = "(阻止|China|🇨🇳|高倍|×10|10M|节点|过滤|剩余|流量|距离|下次|重置|重新|订阅|导入|套餐|到期|跳转|域名|请勿|邀请|好友|关注|频道|收费|就说明|被骗|续费|更新|地址|官网|下载|群组|永久|长期|中继|更换|协议|软件|教程|Lite|ali|null)";
@@ -156,7 +156,7 @@ function main(config) {
         "enhanced-mode": "fake-ip",
         "fake-ip-range": "198.18.0.1/15",
         "fake-ip-range6": "fc00::/18",
-        "fake-ip-ttl": 1,
+        //"fake-ip-ttl": 1,
         "fake-ip-filter-mode": "rule",
         "fake-ip-filter": [
             "RULE-SET,private,real-ip",
@@ -167,7 +167,7 @@ function main(config) {
             "RULE-SET,gfw,fake-ip",
             "RULE-SET,cn,real-ip",
             "RULE-SET,geolocation-cn,real-ip",
-            "RULE-SET,geolocation-!cn,fake-ip",
+            //"RULE-SET,geolocation-!cn,fake-ip",
             "MATCH,fake-ip"
         ],
         "proxy-server-nameserver": [
@@ -182,7 +182,7 @@ function main(config) {
             "RULE-SET,geolocation-cn": 国内DNS,
             "RULE-SET,geolocation-!cn": 国外DNS,
         },
-        "nameserver": 国外DNS,
+        "nameserver": 国内DNS,
     };
 
     // ═══════════════════════════════════
@@ -264,7 +264,7 @@ function main(config) {
         { name: "🌐 冷门自选", type: "select", use: 外部订阅, "exclude-filter": `(?i)(${汇总正则})`, proxies: ["🈚️ 假节点", ...冷门_List], icon: 图标库 + "Bypass.png" },
         { name: "🌐 全部节点", type: "select", use: 外部订阅, proxies: ["🈚️ 假节点", ...全部_List], icon: 图标库 + "World_Map.png" },
         { name: "🐟 漏网之鱼", type: "select", proxies: ["🚀 节点选择", "🖥️ 服务节点", "🇨🇳 直连"], icon: 图标库 + "Loop.png" },
-        // ▸ 生成地区组 ----------
+        // ▸ 地区生成组 ----------
         { name: "🇭🇰 香港故转", type: "fallback", proxies: 香港故转池, icon: 图标库 + "Hong_Kong.png", hidden: true },
         { name: "🇸🇬 狮城故转", type: "fallback", proxies: 狮城故转池, icon: 图标库 + "Singapore.png", hidden: true },
         { name: "🇺🇸 美国故转", type: "fallback", proxies: 美国故转池, icon: 图标库 + "United_States.png", hidden: true },
