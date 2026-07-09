@@ -404,7 +404,7 @@ function main(config) {
                 config["rules"].push(`RULE-SET,${name},${p.target}`);
             }
         }
-        config["rules"].push("MATCH,🐟 漏网之鱼");
+        config["rules"].push("AND,((NETWORK,UDP),(DST-PORT,443)),🖥️ UDP连接", "MATCH,🐟 漏网之鱼");
     })();
 
     // ═══════════════════════════════════
