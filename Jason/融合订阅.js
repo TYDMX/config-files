@@ -191,24 +191,35 @@ function main(config) {
     // --- ① 节点正则表达式 ---------
     const 香港正则 = "(港|🇭🇰|HK|Hong|HKG)";
     const 狮城正则 = "(新|🇸🇬|坡|SG|Sing|SIN|XSP)";
-    const 美国正则 = "^(?!(.*(新|流量))).*(美|🇺🇸|US|USA|加|🇨🇦|CA|JFK|LAX|ORD|ATL|DFW|SFO|MIA|SEA|IAD)";
+    const 美国正则 = "^(?!(?:.*(?:新|流量))).*(美|🇺🇸|US|USA|加|🇨🇦|CA|JFK|LAX|ORD|ATL|DFW|SFO|MIA|SEA|IAD)";
     const 日本正则 = '(日|🇯🇵|JP|Japan|NRT|HND|KIX|CTS|FUK)';
     const 韩国正则 = '(韩|🇰🇷|韓|首尔|南朝鲜|KR|KOR|Korea)';
     const 台湾正则 = '(台|🇹🇼|TW|tai|TPE|TSA|KHH)';
-    const 欧盟正则 = "^(?!(.*(马来|印度|流量))).*(奥|比|保|克罗地亚|塞|捷|丹|爱沙|芬|法|德|希|匈|爱尔|意|拉|立|卢|马其它|荷|波|葡|罗|斯洛伐|斯洛文|西|瑞|英|🇧🇪|🇨🇿|🇩🇰|🇫🇮|🇫🇷|🇩🇪|🇮🇪|🇮🇹|🇱🇹|🇱🇺|🇳🇱|🇵🇱|🇸🇪|🇬🇧|CDG|FRA|AMS|MAD|BCN|FCO|MUC|BRU|GB|FR|DE|NL|RU|LV|SE|LT|AU|NZ)";
+    const 欧盟正则 = "^(?!(?:.*(?:马来|印度|流量))).*(奥|比|保|克罗地亚|塞|捷|丹|爱沙|芬|法|德|希|匈|爱尔|意|拉|立|卢|马其它|荷|波|葡|罗|斯洛伐|斯洛文|西|瑞|英|🇧🇪|🇨🇿|🇩🇰|🇫🇮|🇫🇷|🇩🇪|🇮🇪|🇮🇹|🇱🇹|🇱🇺|🇳🇱|🇵🇱|🇸🇪|🇬🇧|CDG|FRA|AMS|MAD|BCN|FCO|MUC|BRU|GB|FR|DE|NL|RU|LV|SE|LT|AU|NZ)";
     const 优选正则 = "(💧|🐔)";
     const 排除正则 = "(家|住|直|x|倍)";
-    const 汇总正则 = `${[香港正则,狮城正则,美国正则,日本正则,韩国正则,台湾正则,欧盟正则].join("|")}`;
-    // --- ② 节点列表生成 ----------
-    const 香港_List = 内部节点.filter(n => new RegExp(香港正则, "i").test(n));
-    const 狮城_List = 内部节点.filter(n => new RegExp(狮城正则, "i").test(n));
-    const 美国_List = 内部节点.filter(n => new RegExp(美国正则, "i").test(n));
-    const 日本_List = 内部节点.filter(n => new RegExp(日本正则, "i").test(n));
-    const 台湾_List = 内部节点.filter(n => new RegExp(台湾正则, "i").test(n));
-    const 韩国_List = 内部节点.filter(n => new RegExp(韩国正则, "i").test(n));
-    const 欧盟_List = 内部节点.filter(n => new RegExp(欧盟正则, "i").test(n));
-    const 冷门_List = 内部节点.filter(n => !new RegExp(`${汇总正则}|${节点黑名单}`, "i").test(n));
-    const 全部_List = 内部节点.filter(n => !new RegExp(节点黑名单, "i").test(n));
+    const 汇总正则 = [香港正则,狮城正则,美国正则,日本正则,韩国正则,台湾正则,欧盟正则].join("|");
+    // --- ② 预编译正则 ----------
+    const RE_香港   = new RegExp(香港正则, "i");
+    const RE_狮城   = new RegExp(狮城正则, "i");
+    const RE_美国   = new RegExp(美国正则, "i");
+    const RE_日本   = new RegExp(日本正则, "i");
+    const RE_台湾   = new RegExp(台湾正则, "i");
+    const RE_韩国   = new RegExp(韩国正则, "i");
+    const RE_欧盟   = new RegExp(欧盟正则, "i");
+    const RE_汇总   = new RegExp(`${汇总正则}|${节点黑名单}`, "i");
+    const RE_黑名单 = new RegExp(节点黑名单, "i");
+    const RE_排除词 = new RegExp(排除正则.replace(/^\(|\)$/g, ""), "i");
+    // --- ③ 节点列表生成 ----------
+    const 香港_List = 内部节点.filter(n => RE_香港.test(n));
+    const 狮城_List = 内部节点.filter(n => RE_狮城.test(n));
+    const 美国_List = 内部节点.filter(n => RE_美国.test(n));
+    const 日本_List = 内部节点.filter(n => RE_日本.test(n));
+    const 台湾_List = 内部节点.filter(n => RE_台湾.test(n));
+    const 韩国_List = 内部节点.filter(n => RE_韩国.test(n));
+    const 欧盟_List = 内部节点.filter(n => RE_欧盟.test(n));
+    const 冷门_List = 内部节点.filter(n => !RE_汇总.test(n));
+    const 全部_List = 内部节点.filter(n => !RE_黑名单.test(n));
 
     // ═══════════════════════════════════
     //   五、策略组体系
@@ -417,7 +428,7 @@ function main(config) {
         const 排除词匹配 = 排除.match(/\(\?!\.\*\((.+)\)\)/);
         const 排除词 = 排除词匹配 ? 排除词匹配[1] : null;
         const 内部优选节点池 = 排除词
-            ? 内部地区节点池.filter(n => !new RegExp(排除词, "i").test(n))
+            ? 内部地区节点池.filter(n => !RE_排除词.test(n))
             : 内部地区节点池;
         return [
             { name: `${地区名}节点`, type: "select", use: 外部订阅, filter: `(?i)${地区正则}`, proxies: [`${地区名}优选`, `${地区名}自动`, `${地区名}散列`, `${地区名}轮询`, ...内部地区节点池], icon: 图标库 + 地区图标 },
