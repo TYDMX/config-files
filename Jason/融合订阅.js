@@ -20,7 +20,7 @@ function main(config) {
         for (let 机场名 in config["proxy-providers"]) {
             let 原订阅 = config["proxy-providers"][机场名];
             if (原订阅.url) {
-                const emojiMatch = 机场名.match(/[\u{1F300}-\u{1FBFF}\u{2600}-\u{27BF}]/u);
+                const emojiMatch = 机场名.match(/[\u{1F300}-\u{1FBFF}\u{2600}-\u{27BF}]\u{FE0F}?/u);
                 const 自动前缀 = emojiMatch ? `${emojiMatch[0]} ` : "";
                 config["proxy-providers"][机场名] = 
                     {...原订阅,
@@ -196,7 +196,7 @@ function main(config) {
     const 韩国正则 = '(韩|🇰🇷|韓|首尔|南朝鲜|KR|KOR|Korea)';
     const 台湾正则 = '(台|🇹🇼|TW|tai|TPE|TSA|KHH)';
     const 欧盟正则 = "^(?!(?:.*(?:马来|印度|流量))).*(奥|比|保|克罗地亚|塞|捷|丹|爱沙|芬|法|德|希|匈|爱尔|意|拉|立|卢|马其它|荷|波|葡|罗|斯洛伐|斯洛文|西|瑞|英|🇧🇪|🇨🇿|🇩🇰|🇫🇮|🇫🇷|🇩🇪|🇮🇪|🇮🇹|🇱🇹|🇱🇺|🇳🇱|🇵🇱|🇸🇪|🇬🇧|CDG|FRA|AMS|MAD|BCN|FCO|MUC|BRU|GB|FR|DE|NL|RU|LV|SE|LT|AU|NZ)";
-    const 优选正则 = "(💧|🐔|❤️)";
+    const 优选正则 = "(💧|🐔|❤️)".replace(/️/g, "️?");
     const 排除正则 = "(家|住|直|x|倍)";
     const 汇总正则 = [香港正则,狮城正则,美国正则,日本正则,韩国正则,台湾正则,欧盟正则].join("|");
     // --- ② 预编译正则 ----------
