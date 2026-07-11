@@ -16,6 +16,6 @@ payload:
   #- PROCESS-NAME,com.android.vending  # play商店
 
   # ═══ 游戏 ═══
-  #- PROCESS-NAME,aces.exe
+  - PROCESS-NAME,aces.exe
   #- PROCESS-NAME,com.supercell.moco
   #- PROCESS-NAME,com.blizzard.arc
