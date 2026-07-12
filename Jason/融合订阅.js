@@ -129,7 +129,7 @@ function main(config) {
     const GoogleDNS = ["https://dns.google/dns-query"];
     const CloudflareDNS = ["https://cloudflare-dns.com/dns-query"];
     const 阿里DNS = ["https://dns.alidns.com/dns-query"];
-    const 阿里自建 = ["quic://819431-jchlcf2024.alidns.com"];
+    const 阿里自建 = ["https://819431-jchlcf2024.alidns.com/dns-query"];
     const 腾讯DNS = ["https://doh.pub/dns-query"];
     const 国外DNS = [
         ...CloudflareDNS.map(d => `${d}#🖥️ DNS解析`),
