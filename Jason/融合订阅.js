@@ -351,7 +351,7 @@ function main(config) {
         "netflix":              { group:"📹 视频平台", target:"📹 视频平台", ...domain_mrs, url:`${geosite_url}/netflix.mrs`, "path-in-bundle":`${BundleMRS}/netflix.mrs` },
         "twitch":               { group:"📹 视频平台", target:"📹 视频平台", ...domain_mrs, url:`${geosite_url}/twitch.mrs`, "path-in-bundle":`${BundleMRS}/twitch.mrs` },
         "disney":               { group:"📹 视频平台", target:"📹 视频平台", ...domain_mrs, url:`${geosite_url}/disney.mrs`, "path-in-bundle":`${BundleMRS}/disney.mrs` },
-        "biliintl":             { group:"📹 视频平台", target:"📹 视频平台", ...domain_mrs, url:`${geosite_url}/biliintl.mrs`, "path-in-bundle":`${BundleMRS}/biliintl.mrs` },
+        //"biliintl":             { group:"📹 视频平台", target:"📹 视频平台", ...domain_mrs, url:`${geosite_url}/biliintl.mrs`, "path-in-bundle":`${BundleMRS}/biliintl.mrs` },
         "porn":                 { group:"📹 视频平台", target:"📹 视频平台", ...domain_mrs, url:`${geosite_url}/category-porn.mrs`, "path-in-bundle":`${BundleMRS}/category-porn.mrs` },
         "cloudflare":           { subRule:true, pre:[quicPre("")],
                                   group:"🖥️ 代理服务", target:"🖥️ 代理服务", ...domain_mrs, url:`${geosite_url}/cloudflare.mrs`, "path-in-bundle":`${BundleMRS}/cloudflare.mrs` },
