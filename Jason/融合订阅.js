@@ -335,7 +335,7 @@ function main(config) {
         "paypal":               { subRule:true, pre:[quicPre("")], target:"💶 PayPal", ...domain_mrs, url:`${geosite_url}/paypal.mrs`, "path-in-bundle":`${BundleMRS}/paypal.mrs` },
         "github":               { subRule:true, pre:[quicPre("")], target:"👨🏿‍💻 GitHub", ...domain_mrs, url:`${geosite_url}/github.mrs`, "path-in-bundle":`${BundleMRS}/github.mrs` },
         "bing":                 { subRule:true, pre:[quicPre("")], target:"🪟 Bing", ...domain_mrs, url:`${geosite_url}/bing.mrs`, "path-in-bundle":`${BundleMRS}/bing.mrs` },
-        "twitter":              { subRule:true, pre:[quicPre("")], 
+        "twitter":              { subRule:true, pre:[quicPre("")],
                                   group:"📲 社交媒体", target:"📲 社交媒体", ...domain_mrs, url:`${geosite_url}/twitter.mrs`, "path-in-bundle":`${BundleMRS}/twitter.mrs` },
         "tiktok":               { group:"📲 社交媒体", target:"📲 社交媒体", ...domain_mrs, url:`${geosite_url}/tiktok.mrs`, "path-in-bundle":`${BundleMRS}/tiktok.mrs` },
         "reddit":               { group:"📲 社交媒体", target:"📲 社交媒体", ...domain_mrs, url:`${geosite_url}/reddit.mrs`, "path-in-bundle":`${BundleMRS}/reddit.mrs` },
