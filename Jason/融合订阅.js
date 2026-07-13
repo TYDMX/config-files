@@ -247,7 +247,7 @@ function main(config) {
         { name: "🤖 人工智能", type: "select", proxies: 策略组, "default-selected": "🇯🇵 日本故转", icon: 图标库 + "ChatGPT.png" },
         { name: "🎮 game", type: "select", proxies: 策略组, icon: 图标库 + "Game.png" },
         { name: "🇬 谷歌", type: "select", proxies: 策略组, icon: 图标库 + "Google_Search.png" },
-        { name: "🪟 Microsoft", type: "select", proxies: 策略组, icon: 图标库 + "Microsoft.png" },
+        { name: "🪟 Microsoft", type: "select", proxies: 策略组, "default-selected": "🇨🇳 直连", icon: 图标库 + "Microsoft.png" },
         { name: "👨🏿‍💻 GitHub", type: "select", proxies: 策略组, icon: 图标库 + "GitHub.png", hidden: false },
         // ▸ 固定分流组 ----------
         { name: "🇬 谷歌fcm", type: "select", proxies: ["🇨🇳 直连", "PASS-RULE"], icon: 图标库 + "PostBox.png", hidden: false },
@@ -335,7 +335,7 @@ function main(config) {
         "paypal":               { subRule:true, pre:[quicPre("")], target:"💶 PayPal", ...domain_mrs, url:`${geosite_url}/paypal.mrs`, "path-in-bundle":`${BundleMRS}/paypal.mrs` },
         "github":               { subRule:true, pre:[quicPre("")], target:"👨🏿‍💻 GitHub", ...domain_mrs, url:`${geosite_url}/github.mrs`, "path-in-bundle":`${BundleMRS}/github.mrs` },
         "bing":                 { subRule:true, pre:[quicPre("")], target:"🪟 Bing", ...domain_mrs, url:`${geosite_url}/bing.mrs`, "path-in-bundle":`${BundleMRS}/bing.mrs` },
-        "twitter":              { subRule:true, pre:[quicPre("")],
+        "twitter":              { subRule:true, pre:[quicPre("")], 
                                   group:"📲 社交媒体", target:"📲 社交媒体", ...domain_mrs, url:`${geosite_url}/twitter.mrs`, "path-in-bundle":`${BundleMRS}/twitter.mrs` },
         "tiktok":               { group:"📲 社交媒体", target:"📲 社交媒体", ...domain_mrs, url:`${geosite_url}/tiktok.mrs`, "path-in-bundle":`${BundleMRS}/tiktok.mrs` },
         "reddit":               { group:"📲 社交媒体", target:"📲 社交媒体", ...domain_mrs, url:`${geosite_url}/reddit.mrs`, "path-in-bundle":`${BundleMRS}/reddit.mrs` },
@@ -353,6 +353,7 @@ function main(config) {
         "disney":               { group:"📹 视频平台", target:"📹 视频平台", ...domain_mrs, url:`${geosite_url}/disney.mrs`, "path-in-bundle":`${BundleMRS}/disney.mrs` },
         //"biliintl":             { group:"📹 视频平台", target:"📹 视频平台", ...domain_mrs, url:`${geosite_url}/biliintl.mrs`, "path-in-bundle":`${BundleMRS}/biliintl.mrs` },
         "porn":                 { group:"📹 视频平台", target:"📹 视频平台", ...domain_mrs, url:`${geosite_url}/category-porn.mrs`, "path-in-bundle":`${BundleMRS}/category-porn.mrs` },
+        // ▸ 服务规则组
         "cloudflare":           { subRule:true, pre:[quicPre("")],
                                   group:"🖥️ 代理服务", target:"🖥️ 代理服务", ...domain_mrs, url:`${geosite_url}/cloudflare.mrs`, "path-in-bundle":`${BundleMRS}/cloudflare.mrs` },
         "cloudflare-ip":        { group:"🖥️ 代理服务", target:"🖥️ 代理服务", ...ipcidr_mrs, url:`${geoip_url}/cloudflare.mrs`, noResolve:true },
@@ -360,8 +361,8 @@ function main(config) {
         "google":               { subRule:true, pre:[`DST-PORT,5228-5230,🇬 谷歌fcm`, quicPre()],
                                   group:"🇬 谷歌", target:"🇬 谷歌", ...domain_mrs, url:`${geosite_url}/google.mrs`, "path-in-bundle":`${BundleMRS}/google.mrs` },
         "google-ip":            { group:"🇬 谷歌", target:"🇬 谷歌", ...ipcidr_mrs, url:`${geoip_url}/google.mrs`, noResolve:true },
-        // ▸ 兜底规则组
         "category-ntp":         { target:"🖥️ 直连服务",...domain_mrs, url:`${geosite_url}/category-ntp.mrs`, "path-in-bundle":`${BundleMRS}/category-ntp.mrs` },
+        // ▸ 兜底规则组
         "gfw":                  { subRule:true, pre:[quicPre("")],
                                   group:"🪜 代理域名", target:"🪜 代理域名", ...domain_mrs, url:`${geosite_url}/gfw.mrs`, "path-in-bundle":`${BundleMRS}/gfw.mrs` },
         "geolocation-!cn":      { group:"🪜 代理域名", target:"🪜 代理域名", ...domain_mrs, url:`${geosite_url}/geolocation-!cn.mrs`, "path-in-bundle":`${BundleMRS}/geolocation-!cn.mrs` },
