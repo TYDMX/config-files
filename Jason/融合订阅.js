@@ -182,6 +182,8 @@ function main(config) {
             "RULE-SET,private,googlefcm": 国内DNS,
             ...(DNS默认代理
                 ? {
+                    "RULE-SET,cn": 国内DNS,
+                    "RULE-SET,geolocation-cn": 国内DNS,
                 }
                 : {
                     "RULE-SET,gfw": 国外DNS,
