@@ -171,6 +171,7 @@ function main(config) {
             //"RULE-SET,geolocation-!cn,fake-ip",
             "MATCH,fake-ip"
         ],
+        "default-nameserver": ["https://223.5.5.5/dns-query"],
         "proxy-server-nameserver": [
             ...国内DNS,
         ],
