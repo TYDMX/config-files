@@ -142,6 +142,7 @@ function main(config) {
         "services.googleapis.cn": "services.googleapis.com",
         "google.cn": "google.com",
         "cn.bing.com": "global.bing.com",
+        "t.me": "telegram.me",
     };
     // --- ② DNS 模式配置 ----------
     config["dns"] = {
