@@ -9,6 +9,7 @@ function main(config) {
     // ═══════════════════ 开关面板 ═══════════════════
     const 在家 = false; // true → 系统DNS | false → 阿里DoH
     const 启用IPv6 = true; // true → 全局+DNS开启 | false → 关闭
+    const DNS默认代理 = false; // true → 默认代理 | false → 默认直连
 
     // ═══════════════════════════════════
     //   一、数据准备层
@@ -173,16 +174,24 @@ function main(config) {
         "proxy-server-nameserver": [
             ...国内DNS,
         ],
-        //"direct-nameserver": 国内DNS,
-        //"direct-nameserver-follow-policy": true,
+        ...(DNS默认代理 ? {
+            "direct-nameserver": 国内DNS,
+            "direct-nameserver-follow-policy": true,
+        } : {}),
         "nameserver-policy": {
             "RULE-SET,private,googlefcm": 国内DNS,
-            "RULE-SET,gfw": 国外DNS,
-            "RULE-SET,cn": 国内DNS,
-            "RULE-SET,geolocation-cn": 国内DNS,
-            "RULE-SET,geolocation-!cn": 国外DNS,
+            ...(DNS默认代理
+                ? {
+                }
+                : {
+                    "RULE-SET,gfw": 国外DNS,
+                    "RULE-SET,cn": 国内DNS,
+                    "RULE-SET,geolocation-cn": 国内DNS,
+                    "RULE-SET,geolocation-!cn": 国外DNS,
+                }
+            ),
         },
-        "nameserver": 国内DNS,
+        "nameserver": DNS默认代理 ? 国外DNS : 国内DNS,
     };
 
     // ═══════════════════════════════════
