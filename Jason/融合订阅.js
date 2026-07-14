@@ -6,6 +6,10 @@ function main(config) {
     const 测速超时 = 2000;
     const 测速容差 = 1;
 
+    // ═══════════════════ 开关面板 ═══════════════════
+    const 在家 = false; // true → 系统DNS | false → 阿里DoH
+    const 启用IPv6 = true; // true → 全局+DNS开启 | false → 关闭
+
     // ═══════════════════════════════════
     //   一、数据准备层
     // ═══════════════════════════════════
@@ -76,7 +80,7 @@ function main(config) {
     config["socks-port"] = 7891;
     config["mixed-port"] = 7893;
     config["tproxy-port"] = 7894;
-    config["ipv6"] = true;
+    config["ipv6"] = 启用IPv6;
     config["allow-lan"] = false;
     config["unified-delay"] = true;
     config["tcp-concurrent"] = true;
@@ -134,22 +138,22 @@ function main(config) {
     const 国外DNS = [
         ...CloudflareDNS.map(d => `${d}#🖥️ DNS解析`),
     ];
-    const 国内DNS = [
-        //"system",
-        ...阿里自建,
-    ];
+    const 国内DNS = 在家 ? ["system"] : [...阿里自建];
     config["hosts"] = {
         "services.googleapis.cn": "services.googleapis.com",
         "google.cn": "google.com",
         "cn.bing.com": "global.bing.com",
         "t.me": "telegram.me",
+        "dns.google": ["8.8.8.8", "8.8.4.4", "2001:4860:4860::8888", "2001:4860:4860::8844"],
+
+        "cloudflare-dns.com": ["1.1.1.1", "1.0.0.1", "2606:4700:4700::1111", "2606:4700:4700::1001"],
     };
     // --- ② DNS 模式配置 ----------
     config["dns"] = {
         "enable": true,
         "use-hosts": true,
         "use-system-hosts": true,
-        "ipv6": true,
+        "ipv6": 启用IPv6,
         "prefer-h3": false,
         "respect-rules": false,
         "cache-algorithm": "arc",
@@ -157,18 +161,12 @@ function main(config) {
         "enhanced-mode": "fake-ip",
         "fake-ip-range": "198.18.0.1/15",
         "fake-ip-range6": "fc00::/18",
-        //"fake-ip-ttl": 1,
         "fake-ip-filter-mode": "rule",
         "fake-ip-filter": [
             "RULE-SET,private,real-ip",
             "RULE-SET,connectivity-check,real-ip",
             "RULE-SET,category-ntp,real-ip",
             "RULE-SET,fakeip_filter,real-ip",
-            //"RULE-SET,googlefcm,real-ip",
-            //"RULE-SET,gfw,fake-ip",
-            //"RULE-SET,cn,real-ip",
-            //"RULE-SET,geolocation-cn,real-ip",
-            //"RULE-SET,geolocation-!cn,fake-ip",
             "MATCH,fake-ip"
         ],
         "default-nameserver": ["https://223.5.5.5/dns-query"],
