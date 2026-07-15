@@ -7,9 +7,9 @@ function main(config) {
     const 测速容差 = 1;
 
     // ═══════════════════ 开关面板 ═══════════════════
-    const 在家 = false; // true → 系统DNS | false → 阿里DoH
-    const 启用IPv6 = true; // true → 全局+DNS开启 | false → 关闭
-    const DNS默认代理 = false; // true → 默认代理 | false → 默认直连
+    const 在家 = false;
+    const 启用IPv6 = true;
+    const DNS默认代理 = true;
 
     // ═══════════════════════════════════
     //   一、数据准备层
@@ -171,9 +171,7 @@ function main(config) {
             "MATCH,fake-ip"
         ],
         "default-nameserver": ["https://223.5.5.5/dns-query"],
-        "proxy-server-nameserver": [
-            ...国内DNS,
-        ],
+        "proxy-server-nameserver": 在家 ? 国内DNS : ["https://223.5.5.5/dns-query"],
         ...(DNS默认代理 ? {
             "direct-nameserver": 国内DNS,
             "direct-nameserver-follow-policy": true,
