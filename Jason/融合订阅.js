@@ -31,7 +31,7 @@ function main(config) {
                     {...原订阅,
                     "type": "http",
                     "url": 原订阅.url,
-                    "proxy": "DIRECT", 
+                    //"proxy": "DIRECT", 
                     "tfo": true,
                     "exclude-filter": `(?i)${节点黑名单}`,
                     "exclude-type": "http|ss",
