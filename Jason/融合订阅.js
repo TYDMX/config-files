@@ -235,14 +235,7 @@ function main(config) {
     //   五、策略组体系
     // ═══════════════════════════════════
     // --- ① 代理列表模板 ----------
-    const 自选节点池 = ["🇭🇰 香港故转", "🇺🇸 美国故转", "🇸🇬 狮城故转", "🇯🇵 日本故转", "🇹🇼 台湾故转", "🇰🇷 韩国故转", "🇪🇺 欧盟故转", "🌐 冷门自选", "🌐 全部节点"];
-    const 香港故转池 = ["🇭🇰 香港节点", "🇭🇰 香港自动"];
-    const 狮城故转池 = ["🇸🇬 狮城节点", "🇸🇬 狮城自动"];
-    const 美国故转池 = ["🇺🇸 美国节点", "🇺🇸 美国自动"];
-    const 日本故转池 = ["🇯🇵 日本节点", "🇯🇵 日本自动"];
-    const 台湾故转池 = ["🇹🇼 台湾节点", "🇹🇼 台湾自动"];
-    const 韩国故转池 = ["🇰🇷 韩国节点", "🇰🇷 韩国自动"];
-    const 欧盟故转池 = ["🇪🇺 欧盟节点", "🇪🇺 欧盟自动"];
+    const 自选节点池 = ["🇭🇰 香港节点", "🇺🇸 美国节点", "🇸🇬 狮城节点", "🇯🇵 日本节点", "🇹🇼 台湾节点", "🇰🇷 韩国节点", "🇪🇺 欧盟节点", "🌐 冷门自选", "🌐 全部节点"];
     const 策略组 = ["🖥️ 服务节点", "🚀 节点选择", "🇨🇳 直连", ...自选节点池];
     // --- ② 策略组定义 -----------
     config["proxy-groups"] = [
@@ -288,13 +281,6 @@ function main(config) {
         { name: "🌐 全部节点", type: "select", use: 外部订阅, proxies: ["🈚️ 假节点", ...全部_List], icon: 图标库 + "World_Map.png" },
         { name: "🐟 漏网之鱼", type: "select", proxies: ["🚀 节点选择", "🖥️ 服务节点", "📈 测速地址", "🇨🇳 直连"], icon: 图标库 + "Loop.png" },
         // ▸ 地区生成组 ----------
-        { name: "🇭🇰 香港故转", type: "fallback", proxies: 香港故转池, icon: 图标库 + "Hong_Kong.png", hidden: true },
-        { name: "🇸🇬 狮城故转", type: "fallback", proxies: 狮城故转池, icon: 图标库 + "Singapore.png", hidden: true },
-        { name: "🇺🇸 美国故转", type: "fallback", proxies: 美国故转池, icon: 图标库 + "United_States.png", hidden: true },
-        { name: "🇯🇵 日本故转", type: "fallback", proxies: 日本故转池, icon: 图标库 + "Japan.png", hidden: true },
-        { name: "🇹🇼 台湾故转", type: "fallback", proxies: 台湾故转池, icon: 图标库 + "Taiwan.png", hidden: true },
-        { name: "🇰🇷 韩国故转", type: "fallback", proxies: 韩国故转池, icon: 图标库 + "Korea.png", hidden: true },
-        { name: "🇪🇺 欧盟故转", type: "fallback", proxies: 欧盟故转池, icon: 图标库 + "European_Union.png", hidden: true },
         ...创建地区分组("🇭🇰 香港", "Hong_Kong.png", 香港_List, `${香港正则}`, `${优选机场正则}`, `(?!.*${排除正则})`),
         ...创建地区分组("🇸🇬 狮城", "Singapore.png", 狮城_List, `${狮城正则}`, `(?=.*${优选网络正则})(?=.*${优选机场正则})`, `(?!.*${排除正则})`),
         ...创建地区分组("🇺🇸 美国", "United_States.png", 美国_List, `${美国正则}`, `(?=.*${优选网络正则})(?=.*${优选机场正则})`, `(?!.*${排除正则})`),
@@ -446,7 +432,8 @@ function main(config) {
             ? 内部地区节点池.filter(n => !RE_排除词.test(n))
             : 内部地区节点池;
         return [
-            { name: `${地区名}节点`, type: "select", use: 外部订阅, filter: `(?i)${地区正则}`, proxies: [`${地区名}优选`, `${地区名}自动`, `${地区名}散列`, `${地区名}轮询`, ...内部地区节点池], icon: 图标库 + 地区图标 },
+            { name: `${地区名}节点`, type: "select", use: 外部订阅, filter: `(?i)${地区正则}`, proxies: [`${地区名}故转`, `${地区名}优选`, `${地区名}自动`, `${地区名}散列`, `${地区名}轮询`, ...内部地区节点池], icon: 图标库 + 地区图标 },
+            { name: `${地区名}故转`, type: "fallback", proxies: [`${地区名}优选`, `${地区名}自动`], icon: 图标库 + 地区图标, hidden: true },
             { name: `${地区名}优选`, type: "url-test", use: 外部订阅, filter: `(?i)(?=.*${地区正则})(?=.*${优选})${排除}`, proxies: 内部优选节点池, hidden: true, icon: 图标库 + 地区图标, "url": 测速链接, "interval": 测速间隔, "timeout": 测速超时, "tolerance": 测速容差, "lazy": true, "empty-fallback": "REJECT-DROP" },
             { name: `${地区名}自动`, type: "url-test", use: 外部订阅, filter: `(?i)(?=.*${地区正则})`, proxies: 内部地区节点池, hidden: true, icon: 图标库 + 地区图标, "url": 测速链接, "interval": 测速间隔, "timeout": 测速超时, "tolerance": 测速容差 * 1.41, "lazy": true, "empty-fallback": "REJECT-DROP" },
             { name: `${地区名}散列`, type: "load-balance", strategy: "consistent-hashing", use: 外部订阅, filter: `(?i)(?=.*${地区正则})(?=.*${优选})${排除}`, proxies: 内部优选节点池, hidden: true, icon: 图标库 + 地区图标,"empty-fallback": "REJECT-DROP" },
