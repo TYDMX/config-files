@@ -235,13 +235,14 @@ function main(config) {
     //   五、策略组体系
     // ═══════════════════════════════════
     // --- ① 代理列表模板 ----------
-    const 节点选择池 = ["🇹🇼 台湾节点", "🇰🇷 韩国节点", "🇪🇺 欧盟节点", "🌐 冷门自选", "🌐 全部节点"];
-    const 故转节点池 = ["🇭🇰 香港故转", "🇺🇸 美国故转", "🇸🇬 狮城故转", "🇯🇵 日本故转"];
-    const 自选节点池 = [...故转节点池, ...节点选择池];
+    const 自选节点池 = ["🇭🇰 香港故转", "🇺🇸 美国故转", "🇸🇬 狮城故转", "🇯🇵 日本故转", "🇹🇼 台湾故转", "🇰🇷 韩国故转", "🇪🇺 欧盟故转", "🌐 冷门自选", "🌐 全部节点"];
     const 香港故转池 = ["🇭🇰 香港节点", "🇭🇰 香港自动"];
     const 狮城故转池 = ["🇸🇬 狮城节点", "🇸🇬 狮城自动"];
     const 美国故转池 = ["🇺🇸 美国节点", "🇺🇸 美国自动"];
     const 日本故转池 = ["🇯🇵 日本节点", "🇯🇵 日本自动"];
+    const 台湾故转池 = ["🇹🇼 台湾节点", "🇹🇼 台湾自动"];
+    const 韩国故转池 = ["🇰🇷 韩国节点", "🇰🇷 韩国自动"];
+    const 欧盟故转池 = ["🇪🇺 欧盟节点", "🇪🇺 欧盟自动"];
     const 策略组 = ["🖥️ 服务节点", "🚀 节点选择", "🇨🇳 直连", ...自选节点池];
     // --- ② 策略组定义 -----------
     config["proxy-groups"] = [
@@ -282,7 +283,7 @@ function main(config) {
         { name: "🚫 广告拦截", type: "select", proxies: ["PASS", "🚫 阻止"], icon: 图标库 + "Advertising.png", hidden: false },
         { name: "🚫 追踪拦截", type: "select", proxies: ["🚫 阻止"], icon: 图标库 + "AdBlack.png", hidden: true },
         // ▸ 其他策略组 ----------
-        { name: "📈 测速地址", type: "select", proxies: ["🇨🇳 直连", "🚀 节点选择", ...节点选择池], icon: 图标库 + "Speedtest.png" },
+        { name: "📈 测速地址", type: "select", proxies: ["🇨🇳 直连", "🚀 节点选择", ...自选节点池], icon: 图标库 + "Speedtest.png" },
         { name: "🌐 冷门自选", type: "select", use: 外部订阅, "exclude-filter": `(?i)(${汇总正则})`, proxies: ["🈚️ 假节点", ...冷门_List], icon: 图标库 + "Bypass.png" },
         { name: "🌐 全部节点", type: "select", use: 外部订阅, proxies: ["🈚️ 假节点", ...全部_List], icon: 图标库 + "World_Map.png" },
         { name: "🐟 漏网之鱼", type: "select", proxies: ["🚀 节点选择", "🖥️ 服务节点", "📈 测速地址", "🇨🇳 直连"], icon: 图标库 + "Loop.png" },
@@ -291,6 +292,9 @@ function main(config) {
         { name: "🇸🇬 狮城故转", type: "fallback", proxies: 狮城故转池, icon: 图标库 + "Singapore.png", hidden: true },
         { name: "🇺🇸 美国故转", type: "fallback", proxies: 美国故转池, icon: 图标库 + "United_States.png", hidden: true },
         { name: "🇯🇵 日本故转", type: "fallback", proxies: 日本故转池, icon: 图标库 + "Japan.png", hidden: true },
+        { name: "🇹🇼 台湾故转", type: "fallback", proxies: 台湾故转池, icon: 图标库 + "Taiwan.png", hidden: true },
+        { name: "🇰🇷 韩国故转", type: "fallback", proxies: 韩国故转池, icon: 图标库 + "Korea.png", hidden: true },
+        { name: "🇪🇺 欧盟故转", type: "fallback", proxies: 欧盟故转池, icon: 图标库 + "European_Union.png", hidden: true },
         ...创建地区分组("🇭🇰 香港", "Hong_Kong.png", 香港_List, `${香港正则}`, `${优选机场正则}`, `(?!.*${排除正则})`),
         ...创建地区分组("🇸🇬 狮城", "Singapore.png", 狮城_List, `${狮城正则}`, `(?=.*${优选网络正则})(?=.*${优选机场正则})`, `(?!.*${排除正则})`),
         ...创建地区分组("🇺🇸 美国", "United_States.png", 美国_List, `${美国正则}`, `(?=.*${优选网络正则})(?=.*${优选机场正则})`, `(?!.*${排除正则})`),
