@@ -285,7 +285,7 @@ function main(config) {
         { name: "📈 测速地址", type: "select", proxies: ["🇨🇳 直连", "🚀 节点选择", ...节点选择池], icon: 图标库 + "Speedtest.png" },
         { name: "🌐 冷门自选", type: "select", use: 外部订阅, "exclude-filter": `(?i)(${汇总正则})`, proxies: ["🈚️ 假节点", ...冷门_List], icon: 图标库 + "Bypass.png" },
         { name: "🌐 全部节点", type: "select", use: 外部订阅, proxies: ["🈚️ 假节点", ...全部_List], icon: 图标库 + "World_Map.png" },
-        { name: "🐟 漏网之鱼", type: "select", proxies: ["🚀 节点选择", "🖥️ 服务节点", "🇨🇳 直连"], icon: 图标库 + "Loop.png" },
+        { name: "🐟 漏网之鱼", type: "select", proxies: ["🚀 节点选择", "🖥️ 服务节点", "📈 测速地址", "🇨🇳 直连"], icon: 图标库 + "Loop.png" },
         // ▸ 地区生成组 ----------
         { name: "🇭🇰 香港故转", type: "fallback", proxies: 香港故转池, icon: 图标库 + "Hong_Kong.png", hidden: true },
         { name: "🇸🇬 狮城故转", type: "fallback", proxies: 狮城故转池, icon: 图标库 + "Singapore.png", hidden: true },
