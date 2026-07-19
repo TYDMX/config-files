@@ -171,7 +171,7 @@ function main(config) {
             "MATCH,fake-ip"
         ],
         "default-nameserver": ["https://223.5.5.5/dns-query"],
-        "proxy-server-nameserver": 在家 ? 国内DNS : ["https://223.5.5.5/dns-query"],
+        "proxy-server-nameserver": ["https://223.5.5.5/dns-query"],
         ...(DNS默认代理 ? {
             "direct-nameserver": 国内DNS,
             "direct-nameserver-follow-policy": true,
