@@ -117,13 +117,13 @@ function main(config) {
     // --- ③ TUN 模式 --------------
     config["tun"] = {
         "enable": true,
-        "stack": "mixed",
+        "stack": "gvisor",
         "dns-hijack": ["any:53"],
         "auto-route": true,
         "auto-detect-interface": true,
         "strict-route": true,
         "disable-icmp-forwarding": true,
-        //"mtu": 4064,
+        "mtu": 65535,
         //"udp-timeout": 3600, // 秒
     };
 
@@ -134,6 +134,7 @@ function main(config) {
     const GoogleDNS = ["https://dns.google/dns-query"];
     const CloudflareDNS = ["https://cloudflare-dns.com/dns-query"];
     const 阿里DNS = ["https://dns.alidns.com/dns-query"];
+    const 阿里IP = ["https://223.5.5.5/dns-query"];
     const 阿里自建 = ["https://819431-jchlcf2024.alidns.com/dns-query"];
     const 腾讯DNS = ["https://doh.pub/dns-query"];
     const 国外DNS = [
@@ -155,8 +156,8 @@ function main(config) {
         "use-hosts": true,
         "use-system-hosts": true,
         "ipv6": 启用IPv6,
-        "prefer-h3": false,
-        "respect-rules": false,
+        "prefer-h3": true,
+        "respect-rules": true,
         "cache-algorithm": "arc",
         "listen": "127.0.0.1:1053",
         "enhanced-mode": "fake-ip",
@@ -170,8 +171,8 @@ function main(config) {
             "RULE-SET,fakeip_filter,real-ip",
             "MATCH,fake-ip"
         ],
-        "default-nameserver": ["https://223.5.5.5/dns-query"],
-        "proxy-server-nameserver": ["https://223.5.5.5/dns-query"],
+        "default-nameserver": 阿里IP,
+        "proxy-server-nameserver": 阿里IP,
         ...(DNS默认代理 ? {
             "direct-nameserver": 国内DNS,
             "direct-nameserver-follow-policy": true,
