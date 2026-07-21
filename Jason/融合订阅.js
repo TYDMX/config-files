@@ -355,9 +355,9 @@ function main(config) {
         //"biliintl":             { group:"📹 视频平台", target:"📹 视频平台", ...domain_mrs, url:`${geosite_url}/biliintl.mrs`, "path-in-bundle":`${BundleMRS}/biliintl.mrs` },
         "porn":                 { group:"📹 视频平台", target:"📹 视频平台", ...domain_mrs, url:`${geosite_url}/category-porn.mrs`, "path-in-bundle":`${BundleMRS}/category-porn.mrs` },
         // ▸ 服务规则组
-        "cloudflare":           { subRule:true, pre:[quicPre("")],
-                                  group:"🖥️ 代理服务", target:"🖥️ 代理服务", ...domain_mrs, url:`${geosite_url}/cloudflare.mrs`, "path-in-bundle":`${BundleMRS}/cloudflare.mrs` },
+        "cloudflare":           { group:"🖥️ 代理服务", target:"🖥️ 代理服务", ...domain_mrs, url:`${geosite_url}/cloudflare.mrs`, "path-in-bundle":`${BundleMRS}/cloudflare.mrs` },
         "cloudflare-ip":        { group:"🖥️ 代理服务", target:"🖥️ 代理服务", ...ipcidr_mrs, url:`${geoip_url}/cloudflare.mrs`, noResolve:true },
+        "adguard":              { group:"🖥️ 代理服务", target:"🖥️ 代理服务", ...domain_mrs, url:`${geosite_url}/adguard.mrs`, noResolve:true },
         "microsoft":            { target:"🪟 Microsoft", ...domain_mrs,   url:`${geosite_url}/microsoft.mrs`, "path-in-bundle":`${BundleMRS}/microsoft.mrs` },
         "google":               { subRule:true, pre:[`DST-PORT,5228-5230,🇬 谷歌fcm`, quicPre()],
                                   group:"🇬 谷歌", target:"🇬 谷歌", ...domain_mrs, url:`${geosite_url}/google.mrs`, "path-in-bundle":`${BundleMRS}/google.mrs` },
