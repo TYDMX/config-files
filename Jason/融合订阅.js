@@ -135,7 +135,7 @@ function main(config) {
     const CloudflareDNS = ["https://cloudflare-dns.com/dns-query"];
     const 阿里DNS = ["https://dns.alidns.com/dns-query"];
     const 阿里IP = ["https://223.5.5.5/dns-query"];
-    const 阿里自建 = ["https://819431-jchlcf2024.alidns.com/dns-query"];
+    const 阿里自建 = ["quic://819431-jchlcf2024.alidns.com"];
     const 腾讯DNS = ["https://doh.pub/dns-query"];
     const 国外DNS = [
         ...CloudflareDNS.map(d => `${d}#🖥️ DNS解析`),
@@ -145,9 +145,7 @@ function main(config) {
         "services.googleapis.cn": "services.googleapis.com",
         "google.cn": "google.com",
         "cn.bing.com": "global.bing.com",
-        "t.me": "telegram.me",
         "dns.google": ["8.8.8.8", "8.8.4.4", "2001:4860:4860::8888", "2001:4860:4860::8844"],
-
         "cloudflare-dns.com": ["1.1.1.1", "1.0.0.1", "2606:4700:4700::1111", "2606:4700:4700::1001"],
     };
     // --- ② DNS 模式配置 ----------
