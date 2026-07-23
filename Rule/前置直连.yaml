@@ -3,8 +3,8 @@ payload:
 
   # ═══ 软件应用 ═══
   #- PROCESS-NAME,com.microsoft.appmanager  # 连结至 Windows
-  #- PROCESS-NAME,com.bytedance.android.doubaoime
   #- PROCESS-NAME,com.huanchengfly.tieba.post # sofire.baidu.com 签到
+  - PROCESS-NAME,DownloadSDKServer.exe  # 迅雷下载
   # ── 三星推送软件 ──
   #- PROCESS-NAME,com.sec.factory.camera
   #- PROCESS-NAME,com.sec.spp.push
