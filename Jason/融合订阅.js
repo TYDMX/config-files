@@ -273,7 +273,7 @@ function main(config) {
         { name: "🖥️ DNS解析", type: "select", proxies: ["🖥️ 服务节点"], icon: 图标库 + "Cloudflare.png", hidden: true },
         { name: "🖥️ UDP连接", type: "select", proxies: ["PASS-RULE", "🚫 阻止"], icon: 图标库 + "Server.png", hidden: false },
         { name: "🚫 广告拦截", type: "select", proxies: ["PASS", "🚫 阻止"], icon: 图标库 + "Advertising.png", hidden: false },
-        { name: "🚫 追踪拦截", type: "select", proxies: ["🚫 阻止"], icon: 图标库 + "AdBlack.png", hidden: true },
+        { name: "🚫 追踪拦截", type: "select", proxies: ["PASS", "🚫 阻止"], icon: 图标库 + "AdBlack.png", hidden: false },
         // ▸ 其他策略组 ----------
         { name: "📈 测速地址", type: "select", proxies: ["🇨🇳 直连", "🚀 节点选择", ...自选节点池], icon: 图标库 + "Speedtest.png" },
         { name: "🌐 冷门自选", type: "select", use: 外部订阅, "exclude-filter": `(?i)(${汇总正则})`, proxies: ["🈚️ 假节点", ...冷门_List], icon: 图标库 + "Bypass.png" },
