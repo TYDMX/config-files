@@ -171,6 +171,7 @@ function main(config) {
             ...(cnRealIP ? [
                 "RULE-SET,geolocation-cn,real-ip",
                 "RULE-SET,gfw,fake-ip",
+                "RULE-SET,geolocation-!cn,fake-ip",
                 "RULE-SET,cn,real-ip",
             ] : []),
             "MATCH,fake-ip"
@@ -183,18 +184,10 @@ function main(config) {
         } : {}),
         "nameserver-policy": {
             "RULE-SET,private,googlefcm": 国内DNS,
-            ...(nameserverProxy
-                ? {
-                    "RULE-SET,cn": 国内DNS,
-                    "RULE-SET,geolocation-cn": 国内DNS,
-                }
-                : {
-                    "RULE-SET,gfw": 国外DNS,
-                    "RULE-SET,cn": 国内DNS,
-                    "RULE-SET,geolocation-cn": 国内DNS,
-                    "RULE-SET,geolocation-!cn": 国外DNS,
-                }
-            ),
+            "RULE-SET,geolocation-cn": 国内DNS,
+            "RULE-SET,gfw": 国外DNS,
+            "RULE-SET,geolocation-!cn": 国外DNS,
+            "RULE-SET,cn": 国内DNS,
         },
         "nameserver": nameserverProxy ? 国外DNS : 国内DNS,
     };
