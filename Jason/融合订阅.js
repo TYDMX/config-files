@@ -7,9 +7,10 @@ function main(config) {
     const 测速容差 = 1;
 
     // ═══════════════════ 开关面板 ═══════════════════
-    const 在家 = false;
-    const 启用IPv6 = true;
-    const DNS默认代理 = true;
+    const atHome = false;
+    const enableIPv6 = true;
+    const nameserverProxy = true;
+    const cnRealIP = true;
 
     // ═══════════════════════════════════
     //   一、数据准备层
@@ -81,7 +82,7 @@ function main(config) {
     config["socks-port"] = 7891;
     config["mixed-port"] = 7893;
     config["tproxy-port"] = 7894;
-    config["ipv6"] = 启用IPv6;
+    config["ipv6"] = enableIPv6;
     config["allow-lan"] = false;
     config["unified-delay"] = true;
     config["tcp-concurrent"] = true;
@@ -140,7 +141,7 @@ function main(config) {
     const 国外DNS = [
         ...CloudflareDNS.map(d => `${d}#🖥️ DNS解析`),
     ];
-    const 国内DNS = 在家 ? ["system"] : [...阿里自建];
+    const 国内DNS = atHome ? ["system"] : [...阿里自建];
     config["hosts"] = {
         "services.googleapis.cn": "services.googleapis.com",
         "google.cn": "google.com",
@@ -153,31 +154,36 @@ function main(config) {
         "enable": true,
         "use-hosts": true,
         "use-system-hosts": true,
-        "ipv6": 启用IPv6,
+        "ipv6": enableIPv6,
         "prefer-h3": true,
         "respect-rules": true,
         "cache-algorithm": "arc",
         "listen": "127.0.0.1:1053",
         "enhanced-mode": "fake-ip",
         "fake-ip-range": "198.18.0.1/15",
-        "fake-ip-range6": "fc00::/18",
+        ...(enableIPv6 ? { "fake-ip-range6": "fc00::/18" } : {}),
         "fake-ip-filter-mode": "rule",
         "fake-ip-filter": [
             "RULE-SET,private,real-ip",
             "RULE-SET,connectivity-check,real-ip",
             "RULE-SET,category-ntp,real-ip",
             "RULE-SET,fakeip_filter,real-ip",
+            ...(cnRealIP ? [
+                "RULE-SET,geolocation-cn,real-ip",
+                "RULE-SET,gfw,fake-ip",
+                "RULE-SET,cn,real-ip",
+            ] : []),
             "MATCH,fake-ip"
         ],
         "default-nameserver": 阿里IP,
         "proxy-server-nameserver": 阿里IP,
-        ...(DNS默认代理 ? {
+        ...(nameserverProxy ? {
             "direct-nameserver": 国内DNS,
             "direct-nameserver-follow-policy": true,
         } : {}),
         "nameserver-policy": {
             "RULE-SET,private,googlefcm": 国内DNS,
-            ...(DNS默认代理
+            ...(nameserverProxy
                 ? {
                     "RULE-SET,cn": 国内DNS,
                     "RULE-SET,geolocation-cn": 国内DNS,
@@ -190,7 +196,7 @@ function main(config) {
                 }
             ),
         },
-        "nameserver": DNS默认代理 ? 国外DNS : 国内DNS,
+        "nameserver": nameserverProxy ? 国外DNS : 国内DNS,
     };
 
     // ═══════════════════════════════════
