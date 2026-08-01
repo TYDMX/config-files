@@ -250,6 +250,7 @@ function main(config) {
         { name: "🎮 game", type: "select", proxies: 策略组, icon: 图标库 + "Game.png" },
         { name: "🇬 谷歌", type: "select", proxies: 策略组, icon: 图标库 + "Google_Search.png" },
         { name: "🪟 Microsoft", type: "select", proxies: 策略组, "default-selected": "🇨🇳 直连", icon: 图标库 + "Microsoft.png" },
+        { name: "☁️ OneDrive", type: "select", proxies: 策略组, "default-selected": "🇨🇳 直连", icon: 图标库 + "OneDrive.png" },
         { name: "👨🏿‍💻 GitHub", type: "select", proxies: 策略组, icon: 图标库 + "GitHub.png", hidden: false },
         // ▸ 固定分流组 ----------
         { name: "🇬 谷歌fcm", type: "select", proxies: ["🇨🇳 直连", "PASS-RULE"], icon: "https://fastly.jsdelivr.net/gh/MiToverG422/Qure@master/IconSet/Color/fcm.png", hidden: false },
@@ -331,6 +332,7 @@ function main(config) {
         "ai-!cn":               { group:"🤖 人工智能", target:"🤖 人工智能", ...domain_mrs, url:`${geosite_url}/category-ai-!cn.mrs`, "path-in-bundle":`${BundleMRS}/category-ai-!cn.mrs` },
         "spotify":              { subRule:true, pre:[quicPre("")], target:"🎵 音乐服务", ...domain_mrs, url:`${geosite_url}/spotify.mrs`, "path-in-bundle":`${BundleMRS}/spotify.mrs` },
         "paypal":               { subRule:true, pre:[quicPre("")], target:"💶 PayPal", ...domain_mrs, url:`${geosite_url}/paypal.mrs`, "path-in-bundle":`${BundleMRS}/paypal.mrs` },
+        "onedrive":             { subRule:true, pre:[quicPre("")], target:"☁️ OneDrive", ...domain_mrs, url:`${geosite_url}/onedrive.mrs`, "path-in-bundle":`${BundleMRS}/onedrive.mrs` },
         "github":               { subRule:true, pre:[quicPre("")], target:"👨🏿‍💻 GitHub", ...domain_mrs, url:`${geosite_url}/github.mrs`, "path-in-bundle":`${BundleMRS}/github.mrs` },
         "bing":                 { subRule:true, pre:[quicPre("")], target:"🪟 Bing", ...domain_mrs, url:`${geosite_url}/bing.mrs`, "path-in-bundle":`${BundleMRS}/bing.mrs` },
         "twitter":              { subRule:true, pre:[quicPre("")],
@@ -412,7 +414,14 @@ function main(config) {
                 }
             } else {
                 used.add(name);
-                config["rules"].push(`RULE-SET,${name},${p.target}`);
+                if (p.subRule) {
+                    const subName = `sub-${p.target}`;
+                    const subMatch = `(OR,((RULE-SET,${name}${p.noResolve ? ",no-resolve" : ""})))`;
+                    config["rules"].push(`SUB-RULE,${subMatch},${subName}`);
+                    config["sub-rules"][subName] = [...(p.pre || []), `MATCH,${p.target}`];
+                } else {
+                    config["rules"].push(`RULE-SET,${name},${p.target}`);
+                }
             }
         }
         config["rules"].push("AND,((NETWORK,UDP),(DST-PORT,443)),🖥️ UDP连接", "MATCH,🐟 漏网之鱼");
