@@ -154,7 +154,7 @@ function main(config) {
         "use-system-hosts": true,
         "ipv6": enableIPv6,
         "prefer-h3": false,
-        "respect-rules": true,
+        "respect-rules": false,
         "cache-algorithm": "arc",
         "listen": "127.0.0.1:1053",
         "enhanced-mode": "fake-ip",
