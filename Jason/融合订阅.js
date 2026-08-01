@@ -252,7 +252,7 @@ function main(config) {
         { name: "🪟 Microsoft", type: "select", proxies: 策略组, "default-selected": "🇨🇳 直连", icon: 图标库 + "Microsoft.png" },
         { name: "👨🏿‍💻 GitHub", type: "select", proxies: 策略组, icon: 图标库 + "GitHub.png", hidden: false },
         // ▸ 固定分流组 ----------
-        { name: "🇬 谷歌fcm", type: "select", proxies: ["🇨🇳 直连", "PASS-RULE"], icon: 图标库 + "PostBox.png", hidden: false },
+        { name: "🇬 谷歌fcm", type: "select", proxies: ["🇨🇳 直连", "PASS-RULE"], icon: "https://fastly.jsdelivr.net/gh/MiToverG422/Qure@master/IconSet/Color/fcm.png", hidden: false },
         { name: "💶 PayPal", type: "select", proxies: ["🖥️ 服务节点"], icon: 图标库 + "PayPal.png", hidden: true },
         { name: "🎮 game@CN", type: "select", proxies: ["🇨🇳 直连"], icon: 图标库 + "Game.png", hidden: true },
         { name: "🪟 Bing", type: "select", proxies: ["🖥️ 服务节点"], icon: 图标库 + "Microsoft.png", hidden: true },
