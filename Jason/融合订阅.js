@@ -33,21 +33,19 @@ function main(config) {
                     "type": "http",
                     "url": 原订阅.url,
                     //"proxy": "DIRECT", 
-                    "tfo": true,
                     "exclude-filter": `(?i)${节点黑名单}`,
-                    "exclude-type": "http|ss",
+                    "exclude-type": "http",
                     "path": `./proxies/${机场名}.yaml`,
                     "override": {
-                        "additional-prefix": 自动前缀
+                        "additional-prefix": 自动前缀,
+                        "tfo": true
                     },
                     "health-check": {
                         "enable": true,
                         "url": 测速链接,
                         "interval": 测速间隔 * 1.73,
                         "timeout": 测速超时,
-                        "max-failed-times": 3,
                         "lazy": true,
-                        "method": "HEAD",
                     },
                 };
             }
@@ -88,7 +86,7 @@ function main(config) {
     config["tcp-concurrent"] = true;
     config["etag-support"] = true;
     config["external-controller"] = "127.0.0.1:9090";
-    config["secret"] = "12345678";
+    config["secret"] = "2CBCdF4Pl34vs_PV-4F7QV_nvDTQPiBD";
     config["find-process-mode"] = "strict";
     config["profile"] = {
         "store-selected": true,
@@ -356,7 +354,7 @@ function main(config) {
         // ▸ 服务规则组
         "cloudflare":           { group:"🖥️ 代理服务", target:"🖥️ 代理服务", ...domain_mrs, url:`${geosite_url}/cloudflare.mrs`, "path-in-bundle":`${BundleMRS}/cloudflare.mrs` },
         "cloudflare-ip":        { group:"🖥️ 代理服务", target:"🖥️ 代理服务", ...ipcidr_mrs, url:`${geoip_url}/cloudflare.mrs`, noResolve:true },
-        "adguard":              { group:"🖥️ 代理服务", target:"🖥️ 代理服务", ...domain_mrs, url:`${geosite_url}/adguard.mrs`, noResolve:true },
+        "adguard":              { group:"🖥️ 代理服务", target:"🖥️ 代理服务", ...domain_mrs, url:`${geosite_url}/adguard.mrs` },
         "microsoft":            { target:"🪟 Microsoft", ...domain_mrs,   url:`${geosite_url}/microsoft.mrs`, "path-in-bundle":`${BundleMRS}/microsoft.mrs` },
         "google":               { subRule:true, pre:[`DST-PORT,5228-5230,🇬 谷歌fcm`, quicPre()],
                                   group:"🇬 谷歌", target:"🇬 谷歌", ...domain_mrs, url:`${geosite_url}/google.mrs`, "path-in-bundle":`${BundleMRS}/google.mrs` },
@@ -381,6 +379,19 @@ function main(config) {
     }
     (function 合成规则列表() {
         const gMap = {};
+        const 子规则名 = new Set();
+        const 取子规则名 = (target) => {
+            const base = `sub-${target}`;
+            if (!子规则名.has(base)) {
+                子规则名.add(base);
+                return base;
+            }
+            let i = 2;
+            while (子规则名.has(`${base}-${i}`)) i++;
+            const 去重名 = `${base}-${i}`;
+            子规则名.add(去重名);
+            return 去重名;
+        };
         for (const [k, v] of Object.entries(config["rule-providers"])) {
             if (!v.group) continue;
             if (!gMap[v.group]) gMap[v.group] = { logic: v.groupLogic || "OR", target: v.target, extra: v.extra, members: [], pre: [], subRule: false };
@@ -402,7 +413,7 @@ function main(config) {
                 });
                 if (g.extra) parts.unshift(g.extra);
                 if (g.subRule) {
-                    const subName = `sub-${g.target}`;
+                    const subName = 取子规则名(g.target);
                     const matchRule = `(${g.logic},(${parts.join(",")}))`;
                     config["rules"].push(`SUB-RULE,${matchRule},${subName}`);
                     const subEntry = [...g.pre, `MATCH,${g.target}`];
@@ -415,8 +426,8 @@ function main(config) {
             } else {
                 used.add(name);
                 if (p.subRule) {
-                    const subName = `sub-${p.target}`;
-                    const subMatch = `(OR,((RULE-SET,${name}${p.noResolve ? ",no-resolve" : ""})))`;
+                    const subName = 取子规则名(p.target);
+                    const subMatch = `(RULE-SET,${name}${p.noResolve ? ",no-resolve" : ""})`;
                     config["rules"].push(`SUB-RULE,${subMatch},${subName}`);
                     config["sub-rules"][subName] = [...(p.pre || []), `MATCH,${p.target}`];
                 } else {
