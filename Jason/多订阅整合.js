@@ -22,9 +22,7 @@ function main(config) {
                         "url": "https://cp.cloudflare.com/generate_204", 
                         "interval": 120, 
                         "timeout": 5000, 
-                        "consecutive-failures": 3, 
                         "lazy": true, 
-                        "method": "HEAD", 
                     },
                 };
             }

@@ -20,9 +20,7 @@ cfw-latency-url: https://cp.cloudflare.com/generate_204
     url: https://cp.cloudflare.com/generate_204
     interval: 21600
     timeout: 5000
-    consecutive-failures: 3
     lazy: true
-    method: HEAD
   #proxies: select1 # 使用此提供者为select1中转
   #proxy: select1 # 更新用的代理组
   #override:
